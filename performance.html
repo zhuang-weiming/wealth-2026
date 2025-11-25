@@ -57,27 +57,55 @@
             }
         }
 
-        /* Responsive Copilot Panel Styling */
-        .copilot-panel {
-            width: 100%;
-            border-left: none;
+        /* Floating Copilot Widget Styling */
+        .copilot-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            height: 600px;
+            max-height: 80vh;
+            z-index: 50;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
         }
-
-        @media (min-width: 1024px) {
-            .copilot-panel {
-                width: 384px;
-                /* lg:w-96 */
-                border-left: 1px solid #e5e7eb;
+        .copilot-widget.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 640px) {
+            .copilot-widget {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                border-radius: 1rem 1rem 0 0;
+                max-height: 50vh;
             }
         }
+        .copilot-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 49;
+            transition: transform 0.2s;
+        }
+        .copilot-trigger:hover {
+            transform: scale(1.05);
+        }
     </style>
-</head>
 
-<body class="bg-gray-100 text-gray-800 h-screen flex flex-col lg:flex-row overflow-hidden">
+        </head>
+
+        <body class="bg-gray-100 text-gray-800 h-screen flex flex-col overflow-hidden">
 
     <div class="flex-1 flex flex-col overflow-y-auto">
 
-        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
+        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
                     <div
@@ -87,19 +115,19 @@
                 </div>
                 <nav class="flex space-x-4 text-sm items-center">
                     <a href="opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
-                            class="fa-solid fa-magnifying-glass mr-1"></i> Opportunity</a>
+                            class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
                     <a href="planning.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
-                            class="fa-solid fa-user-check mr-1"></i> Planning</a>
+                            class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
                     <a href="performance.html"
                         class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i
-                            class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
+                            class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
                     <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i
                             class="fa-solid fa-house"></i></a>
                 </nav>
             </div>
         </header>
 
-        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
             <div class="max-w-5xl mx-auto space-y-8">
 
                 <div id="copilot-insight-card"
@@ -112,9 +140,9 @@
                                     class="bg-yellow-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">INSIGHT</span>
                                 Coaching Opportunity
                             </h3>
-                            <p class="text-sm text-gray-700">Team West's success rate on ESG mandate referrals is 15%
+                            <p class="text-sm text-gray-700">Pacific Northwest's success rate on ESG mandate referrals is 15%
                                 below the national average. Suggest a brief training session.</p>
-                            <button onclick="handleCopilotInput('Team West ESG coaching plan')"
+                            <button onclick="handleCopilotInput('Pacific Northwest ESG coaching plan')"
                                 class="mt-3 text-sm font-semibold text-yellow-700 hover:underline flex items-center">
                                 Generate Coaching Plan <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
                             </button>
@@ -125,20 +153,20 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                         <p class="text-sm text-gray-500 font-semibold mb-1">QTD Sales Volume</p>
-                        <p class="text-3xl font-bold text-gray-900">$2.4M</p>
-                        <p class="text-xs text-green-600 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i> +12% from last
+                        <p class="text-3xl font-bold text-gray-900">$2,415,000</p>
+                        <p class="text-xs text-green-600 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i> +12.4% from last
                             quarter</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                         <p class="text-sm text-gray-500 font-semibold mb-1">Referral Pipeline</p>
-                        <p class="text-3xl font-bold text-gray-900">45</p>
-                        <p class="text-xs text-red-600 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i> -5 referrals
+                        <p class="text-3xl font-bold text-gray-900">42</p>
+                        <p class="text-xs text-red-600 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i> -3 referrals
                             this week</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                         <p class="text-sm text-gray-500 font-semibold mb-1">ESG Conversion Rate</p>
-                        <p class="text-3xl font-bold text-gray-900">65%</p>
-                        <p class="text-xs text-gray-500 mt-1">National Avg: 71%</p>
+                        <p class="text-3xl font-bold text-gray-900">64.8%</p>
+                        <p class="text-xs text-gray-500 mt-1">National Avg: 71.2%</p>
                     </div>
                 </div>
 
@@ -148,11 +176,11 @@
                         <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                             <div class="flex items-center">
                                 <span class="font-bold w-4 text-green-700">1.</span>
-                                <span class="font-semibold text-gray-800 ml-3">Jane Doe</span>
+                                <span class="font-semibold text-gray-800 ml-3">Emily Zhang</span>
                             </div>
                             <div class="text-right">
-                                <p class="font-bold text-lg text-green-700">$450K</p>
-                                <span class="text-xs text-gray-500">20 New Accounts</span>
+                                <p class="font-bold text-lg text-green-700">$452,100</p>
+                                <span class="text-xs text-gray-500">22 New Accounts</span>
                             </div>
                         </div>
                         <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
@@ -161,7 +189,7 @@
                                 <span class="font-semibold text-gray-800 ml-3">Michael Scott</span>
                             </div>
                             <div class="text-right">
-                                <p class="font-bold text-lg text-gray-800">$380K</p>
+                                <p class="font-bold text-lg text-gray-800">$384,200</p>
                                 <span class="text-xs text-gray-500">1 Major Deal</span>
                             </div>
                         </div>
@@ -171,7 +199,7 @@
                                 <span class="font-semibold text-gray-800 ml-3">Sasa Connor</span>
                             </div>
                             <div class="text-right">
-                                <p class="font-bold text-lg text-gray-800">$210K</p>
+                                <p class="font-bold text-lg text-gray-800">$215,400</p>
                                 <span class="text-xs text-gray-500">3 Deals</span>
                             </div>
                         </div>
@@ -203,35 +231,34 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Team East
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Northeast Metro
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1.1M</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">78%
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,105,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">78.4%
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600"><i
-                                            class="fa-solid fa-arrow-up mr-1"></i> +5%</td>
+                                            class="fa-solid fa-arrow-up mr-1"></i> +5.2%</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700">Top-tier product
                                         knowledge.</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Team West
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Pacific Northwest
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$0.8M</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-semibold">50%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$802,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-semibold">50.1%</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600"><i
-                                            class="fa-solid fa-arrow-down mr-1"></i> -10%</td>
+                                            class="fa-solid fa-arrow-down mr-1"></i> -10.5%</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700 flex items-center">
                                         ESG mandate struggling.
-                                        <button onclick="handleCopilotInput('Team West struggling')"
+                                        <button onclick="handleCopilotInput('Pacific Northwest struggling')"
                                             class="ml-3 text-blue-500 hover:text-blue-700 text-xs font-semibold">Ask
                                             AI</button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Team
-                                        Central</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$0.5M</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-semibold">71%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Midwest Region</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$508,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-semibold">71.0%</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0%</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700">Steady performance, no
                                         flags.</td>
@@ -245,10 +272,15 @@
         </main>
     </div>
 
-    <aside class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
+    <!-- Floating Action Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-red-700 focus:outline-none transition-colors">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
-            <span class="text-xs text-gray-500"><i class="fa-solid fa-robot text-gray-400"></i></span>
+            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
+            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
@@ -269,15 +301,15 @@
                     <span class="text-xs font-semibold text-gray-600">Quick Actions:</span>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="handleCopilotInput('Why is Team West struggling?')"
+                    <button onclick="handleCopilotInput('Why is Pacific Northwest struggling?')"
                         class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Why
-                        is Team West struggling?</button>
+                        is Pacific Northwest struggling?</button>
                     <button onclick="handleCopilotInput('Identify top growth this quarter')"
                         class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Identify
                         top growth this quarter</button>
-                    <button onclick="handleCopilotInput('Schedule Team West ESG coaching')"
+                    <button onclick="handleCopilotInput('Schedule Pacific Northwest ESG coaching')"
                         class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Schedule
-                        Team West ESG coaching</button>
+                        Regional ESG coaching</button>
                 </div>
             </div>
 
@@ -328,19 +360,35 @@
 
                 // Simulate AI response based on message
                 let response = `Analysis requested for: **${message}**. Please wait for the results.`;
-                if (message.includes('Team West struggling')) {
-                    response = `Team West's primary gap is **lack of confidence in new product documentation**. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
+                if (message.includes('Pacific Northwest struggling')) {
+                    response = `The Pacific Northwest region's primary gap is **lack of confidence in new ESG product documentation**. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
                 } else if (message.includes('growth this quarter')) {
                     response = `Top 3 growth drivers: **Robert Chen** (Liquidity Event), **Alice Num** (New ETF allocation), and **Sarah Jenkins** (New client onboard).`;
                 } else if (message.includes('ESG coaching plan')) {
-                    response = `Coaching Plan Generated: Focus on product knowledge (ESG Fund X vs. ESG Fund Y). Schedule sent to Team West leaders.`;
-                } else if (message.includes('Schedule Team West ESG coaching')) {
-                    response = `Meeting scheduled with Team West leaders for **Tuesday, 10:00 AM** to review ESG process. Calendar invites sent.`;
+                    response = `Coaching Plan Generated: Focus on product knowledge (iShares ESG Advanced vs. Vanguard ESG Global). Schedule sent to Regional leaders.`;
+                } else if (message.includes('Schedule Pacific Northwest ESG coaching')) {
+                    response = `Meeting scheduled with Pacific Northwest leaders for **Tuesday, 10:00 AM** to review ESG process. Calendar invites sent.`;
                 }
 
                 setTimeout(() => {
                     sendChatMessage(response, false);
                 }, 800);
+            }
+        }
+
+        function toggleCopilot() {
+            const widget = document.getElementById('copilot-widget');
+            const trigger = document.getElementById('copilot-trigger');
+            widget.classList.toggle('active');
+            
+            if (widget.classList.contains('active')) {
+                trigger.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    const input = document.getElementById('copilot-input');
+                    if(input) input.focus();
+                }, 100);
+            } else {
+                trigger.style.transform = 'scale(1)';
             }
         }
     </script>

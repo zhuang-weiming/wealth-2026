@@ -8,9 +8,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Open Sans', sans-serif; }
-        .brand-blue { background-color: #2563eb; }
-        .text-brand-blue { color: #2563eb; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .brand-blue {
+            background-color: #2563eb;
+        }
+
+        .text-brand-blue {
+            color: #2563eb;
+        }
+
+        .bg-brand-blue {
+            background-color: #2563eb;
+        }
+
+        .border-brand-blue {
+            border-color: #2563eb;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        .chat-bubble-in {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @keyframes pulse-slow {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -18,56 +64,85 @@
         .animate-pulse-slow {
             animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
-        .chat-bubble-in { animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* Responsive chat panel */
-        .copilot-panel {
-            width: 100%;
-            border-left: none;
+
+        /* Floating Copilot Widget Styling */
+        .copilot-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            height: 600px;
+            max-height: 80vh;
+            z-index: 50;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
         }
-        @media (min-width: 1024px) {
-            .copilot-panel {
-                width: 384px; /* w-96 */
-                border-left: 1px solid #e5e7eb;
+        .copilot-widget.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 640px) {
+            .copilot-widget {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                border-radius: 1rem 1rem 0 0;
+                max-height: 50vh;
             }
+        }
+        .copilot-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 49;
+            transition: transform 0.2s;
+        }
+        .copilot-trigger:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 h-screen flex flex-col lg:flex-row overflow-hidden">
+<body class="bg-gray-100 text-gray-800 h-screen flex flex-col overflow-hidden">
 
     <div class="flex-1 flex flex-col overflow-y-auto">
-        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
+        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="w-8 h-8 bg-blue-600 text-white flex items-center justify-center font-bold text-lg mr-3 rounded"><i class="fa-solid fa-chart-line"></i></div>
-                    <h2 class="font-bold text-xl tracking-tight text-gray-800">INVESTMENT</h2>
+                    <h2 class="font-bold text-lg text-gray-800">INVESTMENT</h2>
                 </div>
-                <nav class="flex space-x-4 text-sm">
-                    <a href="#" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1 flex items-center"><i class="fa-solid fa-chart-area mr-1"></i> Research</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-cubes-stacked mr-1"></i> Vetting</a>
-                    <a href="index.html" class="text-gray-400 hover:text-brand-blue text-lg"><i class="fa-solid fa-house"></i></a>
+                <nav class="flex space-x-4 text-sm items-center">
+                    <a href="#" class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1 flex items-center"><i class="fa-solid fa-chart-area md:mr-1"></i> <span class="hidden md:inline">Research</span></a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-cubes-stacked md:mr-1"></i> <span class="hidden md:inline">Vetting</span></a>
+                    <a href="index.html" class="text-gray-400 hover:text-brand-blue text-lg ml-4"><i class="fa-solid fa-house"></i></a>
                 </nav>
             </div>
         </header>
 
-        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 mb-2">AI-Driven Investment Monitoring</h1>
                     <p class="text-gray-500">Focus on critical market movements and product risks.</p>
                 </div>
 
-                <div id="copilot-alert-card" class="bg-red-100 rounded-xl p-5 shadow-xl border-l-8 border-red-500">
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl text-red-700"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div id="copilot-alert-card" class="bg-red-100 rounded-xl p-4 shadow-xl border-l-4 border-red-500">
+                    <div class="flex items-start gap-3 sm:gap-4">
+                        <div class="text-2xl sm:text-4xl text-red-700"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         <div class="flex-1">
-                            <h3 class="font-bold text-xl text-red-800 mb-2 flex items-center">
-                                <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2 animate-pulse-slow">URGENT</span> AI Risk Alert: Fund Violation
+                            <h3 class="font-bold text-lg sm:text-xl text-red-800 mb-2 flex items-center flex-wrap gap-2">
+                                <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full animate-pulse-slow">URGENT</span>
+                                <span>Compliance Risk: SFDR Article 9 Violation</span>
                             </h3>
-                            <p class="text-sm text-red-700">Two new ESG reports flag excessive carbon exposure in 4 currently-approved funds on our platform. Immediate Product Vetting review is required to update our risk scores.</p>
-                            <div class="mt-4 flex gap-3">
-                                <button onclick="sendActionToAgent('Review Flagged Funds for carbon exposure in Product Vetting Queue')" class="text-sm bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg transition shadow-md flex items-center"><i class="fa-solid fa-clipboard-list mr-2"></i> Review Flagged Funds</button>
-                                <button onclick="sendActionToAgent('View ESG Report Summary')" class="text-sm border border-red-600 text-red-600 hover:bg-red-50 font-semibold px-4 py-2 rounded-lg transition shadow-sm flex items-center"><i class="fa-solid fa-file-pdf mr-2"></i> View Report Summary</button>
+                            <p class="text-xs sm:text-sm text-red-700">Two new ESG reports flag excessive carbon exposure in 4 currently-approved funds. Immediate Product Vetting review is required to maintain SFDR Article 9 classification.</p>
+                            <div class="mt-3 flex flex-col sm:flex-row gap-2 sm:gap-3">
+                                <button onclick="sendActionToAgent('Review Flagged Funds for Article 9 Compliance in Product Vetting Queue')" class="text-xs sm:text-sm bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-2 rounded-lg transition shadow-md flex items-center justify-center"><i class="fa-solid fa-clipboard-list mr-2"></i> Review Compliance</button>
+                                <button onclick="sendActionToAgent('View ESG Report Summary')" class="text-xs sm:text-sm border border-red-600 text-red-600 hover:bg-red-50 font-semibold px-3 py-2 rounded-lg transition shadow-sm flex items-center justify-center"><i class="fa-solid fa-file-pdf mr-2"></i> View Report Summary</button>
                             </div>
                         </div>
                     </div>
@@ -79,12 +154,12 @@
                         <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-book-open-reader text-gray-500 mr-2"></i> Market Research Synthesis (Last 24hrs)</h3>
                         <div class="space-y-4">
                             <div class="border p-4 rounded-lg bg-gray-50">
-                                <p class="font-bold text-sm mb-1 flex items-center"><i class="fa-solid fa-solar-panel text-blue-500 mr-2"></i> Top Finding: Renewables Outperform</p>
-                                <p class="text-sm text-gray-700">Funds with >30% solar/wind exposure beat MSCI World by 1.5% YTD. **Action:** Flag for Wealth Managers as a talking point.</p>
+                                <p class="font-bold text-sm mb-1 flex items-center"><i class="fa-solid fa-solar-panel text-blue-500 mr-2"></i> Clean Energy Sector Outperformance</p>
+                                <p class="text-sm text-gray-700">iShares Global Clean Energy ETF (ICLN) and peers beat MSCI World by 1.5% YTD. **Action:** Flag for Wealth Managers as a talking point.</p>
                             </div>
                             <div class="border p-4 rounded-lg bg-gray-50">
-                                <p class="font-bold text-sm mb-1 flex items-center"><i class="fa-solid fa-calendar-day text-blue-500 mr-2"></i> Central Bank Event Follow-up</p>
-                                <p class="text-sm text-gray-700">APAC Central Bank officer is speaking on yield curve tomorrow. **Action:** Meeting scheduled for Tuesday 11:30 AM (Confirmed by AI Agent).</p>
+                                <p class="font-bold text-sm mb-1 flex items-center"><i class="fa-solid fa-calendar-day text-blue-500 mr-2"></i> Federal Reserve FOMC Minutes Review</p>
+                                <p class="text-sm text-gray-700">Key emphasis on "higher for longer" rates. **Action:** Fixed Income strategy meeting scheduled for Tuesday 11:30 AM.</p>
                             </div>
                         </div>
                     </div>
@@ -93,15 +168,15 @@
                         <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-check-double text-gray-500 mr-2"></i> Product Vetting Queue</h3>
                         <div class="space-y-3">
                             <div class="text-sm p-3 rounded bg-red-50 border border-red-200 flex justify-between items-center">
-                                <span><i class="fa-solid fa-fire text-red-500 mr-2"></i> **Urgent:** 4 Flagged ESG Funds</span>
+                                <span><i class="fa-solid fa-fire text-red-500 mr-2"></i> **Urgent:** 4 Flagged SFDR Funds</span>
                                 <span class="text-red-600 font-bold text-xs">Due Today</span>
                             </div>
                             <div class="text-sm p-3 rounded bg-blue-50 border border-blue-200 flex justify-between items-center">
-                                <span><i class="fa-solid fa-cube text-blue-500 mr-2"></i> **New:** US Microcap Fund</span>
+                                <span><i class="fa-solid fa-cube text-blue-500 mr-2"></i> **New:** Russell 2000 Growth</span>
                                 <span class="text-blue-600 font-bold text-xs">Due in 3 days</span>
                             </div>
                             <div class="text-sm p-3 rounded bg-gray-50 border border-gray-200 flex justify-between items-center">
-                                <span><i class="fa-solid fa-calendar-check text-gray-500 mr-2"></i> **Scheduled:** Emerging Markets Bond Review</span>
+                                <span><i class="fa-solid fa-calendar-check text-gray-500 mr-2"></i> **Rebal:** JPM EM Bond Index</span>
                                 <span class="text-gray-600 font-bold text-xs">Due in 7 days</span>
                             </div>
                         </div>
@@ -111,31 +186,36 @@
         </main>
     </div>
 
-    <div class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
+    <!-- Floating Action Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-blue-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-blue-700 focus:outline-none transition-colors">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
-            <span class="text-xs text-gray-500">v1.1</span>
+            <h3 class="text-lg font-bold text-blue-600 flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
+            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
-        
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, Alex. Critical risk is flagged in the main dashboard. What is your next action?</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. Critical risk is flagged in the main dashboard. What is your next action?</div>
+            </div>
+            <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+                <button onclick="sendActionToAgent('Schedule Central Bank meeting confirmation with all analysts')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap"><i class="fa-solid fa-calendar-check mr-1"></i> Confirm Analyst Meeting</button>
+                <button onclick="sendActionToAgent('Generate a risk report on the US Microcap Fund vetting item')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap"><i class="fa-solid fa-file-alt mr-1"></i> Generate Vetting Report</button>
             </div>
         </div>
 
-        <div class="flex-shrink-0 space-y-3">
-            <div class="flex flex-wrap gap-2">
-                <button onclick="sendActionToAgent('Schedule Central Bank meeting confirmation with all analysts')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-calendar-check mr-1"></i> Confirm Analyst Meeting</button>
-                <button onclick="sendActionToAgent('Generate a risk report on the US Microcap Fund vetting item')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-file-alt mr-1"></i> Generate Vetting Report</button>
-            </div>
-            <div class="relative flex items-center">
-                <button class="text-gray-400 hover:text-brand-blue mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
-                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type text or click a shortcut..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-blue shadow-sm">
-                <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-blue hover:text-blue-700"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
+        <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2">
+            <input type="text" id="copilot-input" placeholder="Ask a question about your opportunities..."
+                class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-blue-600"
+                onkeypress="if(event.key === 'Enter') handleCopilotInput()">
+            <button onclick="handleCopilotInput()"
+                class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i
+                    class="fa-solid fa-paper-plane"></i></button>
         </div>
-    </div>
+    </aside>
 
     <script>
         function sendActionToAgent(action) {
@@ -153,16 +233,19 @@
 
         function sendChatMessage(message, isUser = true) {
             const chatContainer = document.getElementById('chat-container');
-            
+            const newChat = document.createElement('div');
+            newChat.className = `flex gap-3 chat-bubble-in mb-4 ${isUser ? 'justify-end' : ''}`;
+
+            const messageContent = `<div class="p-3 rounded-lg shadow-sm border text-sm w-full max-w-xs ${isUser ? 'bg-blue-600 text-white rounded-tr-none border-blue-600' : 'bg-white text-gray-700 rounded-tl-none border-gray-200'}">${message}</div>`;
+            const avatar = `<div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs ${isUser ? 'bg-gray-400' : 'bg-gray-900'}"><i class="fa-solid ${isUser ? 'fa-user' : 'fa-robot'}"></i></div>`;
+
             if (isUser) {
-                // User message bubble
-                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-blue-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+                newChat.innerHTML = `${messageContent}${avatar}`;
             } else {
-                // AI response bubble
-                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${message}</div></div>`;
+                newChat.innerHTML = `${avatar}${messageContent}`;
             }
 
-            // Scroll to bottom
+            chatContainer.appendChild(newChat);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
@@ -178,6 +261,22 @@
                 }, 800);
                 
                 input.value = '';
+            }
+        }
+
+        function toggleCopilot() {
+            const widget = document.getElementById('copilot-widget');
+            const trigger = document.getElementById('copilot-trigger');
+            widget.classList.toggle('active');
+            
+            if (widget.classList.contains('active')) {
+                trigger.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    const input = document.getElementById('copilot-input');
+                    if(input) input.focus();
+                }, 100);
+            } else {
+                trigger.style.transform = 'scale(1)';
             }
         }
     </script>
