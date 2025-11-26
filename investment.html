@@ -151,6 +151,53 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-users-gear text-blue-600 mr-2"></i> AI Rebalancing Review Queue</h3>
+                        <div class="space-y-3">
+                            <div class="text-sm p-3 rounded bg-red-50 border border-red-200 hover:bg-red-100 transition cursor-pointer">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">🔴 Urgent</span>
+                                        <span class="font-bold text-gray-800">Jennifer Wu</span>
+                                    </div>
+                                    <button onclick="showAdviceDetail('jennifer')" class="text-xs bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1 rounded transition">View Details</button>
+                                </div>
+                                <div class="text-xs text-gray-700 space-y-1">
+                                    <p><i class="fa-solid fa-exclamation-triangle text-red-500 mr-1"></i> SVB Crisis Rebalancing | Risk Exposure <span class="font-bold text-red-600">65%</span></p>
+                                    <p><i class="fa-solid fa-wallet text-gray-500 mr-1"></i> AUM: <span class="font-bold">$300K</span></p>
+                                </div>
+                            </div>
+
+                            <div class="text-sm p-3 rounded bg-yellow-50 border border-yellow-200 hover:bg-yellow-100 transition cursor-pointer">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-yellow-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">🟡 Important</span>
+                                        <span class="font-bold text-gray-800">Michael Chen</span>
+                                    </div>
+                                    <button onclick="showAdviceDetail('michael')" class="text-xs bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-3 py-1 rounded transition">View Details</button>
+                                </div>
+                                <div class="text-xs text-gray-700 space-y-1">
+                                    <p><i class="fa-solid fa-chart-line text-yellow-600 mr-1"></i> Fed Rate Hike Response | Risk Exposure <span class="font-bold text-yellow-600">45%</span></p>
+                                    <p><i class="fa-solid fa-wallet text-gray-500 mr-1"></i> AUM: <span class="font-bold">$500K</span></p>
+                                </div>
+                            </div>
+
+                            <div class="text-sm p-3 rounded bg-green-50 border border-green-200 hover:bg-green-100 transition cursor-pointer">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">🟢 Normal</span>
+                                        <span class="font-bold text-gray-800">Sarah Lee</span>
+                                    </div>
+                                    <button onclick="showAdviceDetail('sarah')" class="text-xs bg-green-600 hover:bg-green-700 text-white font-semibold px-3 py-1 rounded transition">View Details</button>
+                                </div>
+                                <div class="text-xs text-gray-700 space-y-1">
+                                    <p><i class="fa-solid fa-coins text-green-600 mr-1"></i> Gold Allocation Opportunity | Risk Exposure <span class="font-bold text-green-600">20%</span></p>
+                                    <p><i class="fa-solid fa-wallet text-gray-500 mr-1"></i> AUM: <span class="font-bold">$200K</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
                         <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-book-open-reader text-gray-500 mr-2"></i> Market Research Synthesis (Last 24hrs)</h3>
                         <div class="space-y-4">
                             <div class="border p-4 rounded-lg bg-gray-50">
@@ -183,6 +230,122 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 建议详情展开面板 -->
+            <div id="advice-detail-panel" style="display: none;" class="max-w-6xl mx-auto mt-8 bg-white rounded-xl shadow-xl border border-gray-200 p-6">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center"><i class="fa-solid fa-file-invoice text-blue-600 mr-3"></i> Rebalancing Advice Details</h2>
+                    <button onclick="hideAdviceDetail()" class="text-gray-400 hover:text-gray-600 transition-colors text-2xl"><i class="fa-solid fa-times"></i></button>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Client Information -->
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <h3 class="font-bold text-blue-900 mb-2 flex items-center"><i class="fa-solid fa-user-tie mr-2"></i> Client Information</h3>
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div><span class="text-gray-600">Name:</span> <span class="font-bold text-gray-900">Jennifer Wu</span></div>
+                            <div><span class="text-gray-600">Client Tier:</span> <span class="font-bold text-gray-900">Premier Customer</span></div>
+                            <div><span class="text-gray-600">AUM:</span> <span class="font-bold text-gray-900">$300K</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 触发事件 -->
+                    <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                        <h3 class="font-bold text-red-900 mb-2 flex items-center"><i class="fa-solid fa-exclamation-triangle mr-2"></i> Trigger Event</h3>
+                        <p class="text-sm text-red-800">SVB collapse triggered 60% tech stock plunge, client portfolio risk exposure reached 65%, immediate rebalancing recommended to reduce risk.</p>
+                    </div>
+
+                    <!-- 持仓对比 -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <h3 class="font-bold text-gray-900 mb-3 flex items-center"><i class="fa-solid fa-balance-scale mr-2 text-blue-600"></i> Portfolio Comparison Analysis</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="text-left p-3 font-semibold text-gray-700">Asset</th>
+                                        <th class="text-right p-3 font-semibold text-gray-700">Current Position</th>
+                                        <th class="text-right p-3 font-semibold text-green-700">Recommended Position</th>
+                                        <th class="text-right p-3 font-semibold text-blue-700">Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 font-medium">QQQ (Tech ETF)</td>
+                                        <td class="text-right p-3 text-red-600 font-bold">$200K (65%)</td>
+                                        <td class="text-right p-3 text-green-600 font-bold">$100K (35%)</td>
+                                        <td class="text-right p-3 text-red-600 font-bold">-$100K (-30%)</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 font-medium">TLT (Treasury ETF)</td>
+                                        <td class="text-right p-3">$50K (15%)</td>
+                                        <td class="text-right p-3 text-green-600 font-bold">$150K (50%)</td>
+                                        <td class="text-right p-3 text-green-600 font-bold">+$100K (+35%)</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 font-medium">Cash</td>
+                                        <td class="text-right p-3">$50K (20%)</td>
+                                        <td class="text-right p-3">$50K (15%)</td>
+                                        <td class="text-right p-3 text-gray-600">$0 (0%)</td>
+                                    </tr>
+                                    <tr class="bg-gray-50 font-bold">
+                                        <td class="p-3">Total</td>
+                                        <td class="text-right p-3">$300K</td>
+                                        <td class="text-right p-3">$300K</td>
+                                        <td class="text-right p-3">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Expected Results -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <p class="text-sm text-green-700 mb-1">Risk Reduction</p>
+                            <p class="text-3xl font-bold text-green-800">30%</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <p class="text-sm text-blue-700 mb-1">Estimated Loss Avoided</p>
+                            <p class="text-3xl font-bold text-blue-800">$30K</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Analysis -->
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h3 class="font-bold text-gray-900 mb-2 flex items-center"><i class="fa-solid fa-robot mr-2 text-blue-600"></i> AI Analysis Explanation</h3>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-3">
+                            SVB collapse triggered tech stock panic, market risk-off sentiment rising. Recommend reducing Tech ETF (QQQ) by 50%, reallocating to Treasury ETF (TLT) to lower volatility risk.
+                        </p>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            <strong>Historical Backtest Data:</strong> Clients implementing this strategy after similar events reduced downside risk by 30% on average while maintaining liquidity. Strategy outperformed market benchmarks by 15-20% during 2008 financial crisis and 2020 pandemic.
+                        </p>
+                    </div>
+
+                    <!-- Compliance Check -->
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h3 class="font-bold text-green-900 mb-2 flex items-center"><i class="fa-solid fa-shield-check mr-2"></i> Compliance Check</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="flex items-center text-green-800"><i class="fa-solid fa-check-circle mr-2 text-green-600"></i> ✅ Complies with client risk level (moderate to aggressive)</p>
+                            <p class="flex items-center text-green-800"><i class="fa-solid fa-check-circle mr-2 text-green-600"></i> ✅ No position limit conflicts</p>
+                            <p class="flex items-center text-green-800"><i class="fa-solid fa-check-circle mr-2 text-green-600"></i> ✅ Meets regulatory requirements (Hong Kong SFC)</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-3 pt-4 border-t border-gray-200">
+                        <button onclick="approveRebalancing()" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg transition flex items-center justify-center">
+                            <i class="fa-solid fa-check mr-2"></i> Approve
+                        </button>
+                        <button onclick="modifyRebalancing()" class="flex-1 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-3 rounded-lg transition flex items-center justify-center">
+                            <i class="fa-solid fa-edit mr-2"></i> Modify
+                        </button>
+                        <button onclick="hideAdviceDetail()" class="flex-1 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-bold py-3 rounded-lg transition flex items-center justify-center">
+                            <i class="fa-solid fa-times mr-2"></i> Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
 
@@ -278,6 +441,27 @@
             } else {
                 trigger.style.transform = 'scale(1)';
             }
+        }
+
+        function showAdviceDetail(clientId) {
+            const panel = document.getElementById('advice-detail-panel');
+            panel.style.display = 'block';
+            // 滚动到面板位置
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function hideAdviceDetail() {
+            document.getElementById('advice-detail-panel').style.display = 'none';
+        }
+
+        function approveRebalancing() {
+            alert('✅ Rebalancing advice approved!\nClient will receive execution notification\nTrade will complete within 2 hours');
+            localStorage.setItem('rebalancing_status', 'approved');
+            document.getElementById('advice-detail-panel').style.display = 'none';
+        }
+
+        function modifyRebalancing() {
+            alert('Modify function: Allow investment officer to adjust AI recommendation parameters');
         }
     </script>
 </body>
