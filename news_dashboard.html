@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Native Wealth - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .app-frame {
+            width: 393px;
+            height: 852px; /* iPhone 16 height approx */
+            background-color: #ffffff;
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Hide Scrollbar */
+        .app-frame::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hsbc-red { color: #db0011; }
+        .bg-hsbc-red { background-color: #db0011; }
+        
+        .ai-gradient {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 1px solid #d1d5db;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(90deg, #db0011 0%, #ff4d4d 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Toggle Switch Styling */
+        .strategy-btn {
+            transition: all 0.2s;
+        }
+        .strategy-btn.active {
+            background-color: #1f2937;
+            color: white;
+            border-color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-frame flex flex-col">
+        
+        <header class="sticky top-0 bg-white z-20 px-5 pt-12 pb-4 border-b border-gray-100">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-hsbc-red text-white flex items-center justify-center font-bold text-lg">H</div>
+                    <span class="font-semibold text-lg tracking-tight">Wealth AI</span>
+                </div>
+                <div class="flex gap-4 text-gray-600">
+                    <i class="far fa-bell text-lg"></i>
+                    <i class="far fa-user-circle text-lg"></i>
+                </div>
+            </div>
+            
+            <div>
+                <p class="text-gray-500 text-xs uppercase tracking-wide">Total Assets (USD)</p>
+                <div class="flex items-end gap-2">
+                    <h1 class="text-3xl font-bold text-gray-900">$1,245,800</h1>
+                    <span class="text-green-600 font-medium text-sm mb-1">
+                        <i class="fas fa-arrow-up"></i> +$3,420 (0.28%)
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 px-5 pt-6 pb-24 space-y-6 bg-gray-50">
+
+            <section>
+                <h2 class="text-sm font-bold text-gray-400 uppercase mb-3">Today's Market News (2025.11.26)</h2>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-3">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-gray-800 text-sm leading-snug">Fed Suggests Possible Stop of Balance Sheet Reduction in Early 2026</h3>
+                        <span class="text-xs text-gray-400">07:00 AM</span>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                        <div class="mb-1"><span class="ai-badge"><i class="fas fa-robot"></i> AI Summary</span></div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            This news directly benefits your long-term bond holdings. However, it may also cause tech growth stocks (like your QQQ holdings) to be overvalued and pull back in the short term.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-gray-800 text-sm leading-snug">Tech Sector Earnings Season Ends, VIX Rises</h3>
+                        <span class="text-xs text-gray-400">07:15 AM</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-2">Although most companies exceeded earnings expectations, guidance was weak.</p>
+                    <div class="flex items-center gap-2 text-xs font-medium text-amber-600">
+                        <i class="fas fa-exclamation-triangle"></i> Your tech stock exposure is currently too high (42%)
+                    </div>
+                </div>
+            </section>
+
+            <section id="action-card" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden ring-1 ring-black/5">
+                <div class="bg-gray-900 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <h2 class="font-bold text-md flex items-center gap-2">
+                            <i class="fas fa-bolt text-yellow-400"></i> AI Investment Advice
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-0.5">Real-time optimization based on volatility and macro data</p>
+                    </div>
+                    <span class="bg-white/20 px-2 py-1 rounded text-xs">92% Recommendation</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="mb-5">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Decision Basis (Transparency)</h3>
+                        <div class="flex gap-2 mb-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded text-gray-600">Historical backtest win rate 78%</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded text-gray-600">Risk exposure -12%</span>
+                        </div>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            Given increased tech stock volatility and high Treasury yields, recommend locking in some tech stock profits and moving to defensive bonds to balance portfolio risk.
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Select Strategy (Control)</h3>
+                        <div class="flex p-1 bg-gray-100 rounded-lg">
+                            <button onclick="setStrategy('conservative')" id="btn-conservative" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Conservative</button>
+                            <button onclick="setStrategy('balanced')" id="btn-balanced" class="strategy-btn active flex-1 py-2 text-xs font-medium rounded-md bg-white shadow-sm text-gray-900 border border-gray-200">Balanced (Recommended)</button>
+                            <button onclick="setStrategy('aggressive')" id="btn-aggressive" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Aggressive</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-4 border border-dashed border-gray-300 mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-red-600"><i class="fas fa-minus-circle"></i> Sell</span>
+                            <span class="text-sm font-bold" id="sell-target">QQQ (NASDAQ ETF)</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-3" id="sell-amount">$50,000</div>
+                        
+                        <div class="h-px bg-gray-200 my-2"></div>
+
+                        <div class="flex justify-between items-center mb-2 mt-3">
+                            <span class="text-sm font-semibold text-green-600"><i class="fas fa-plus-circle"></i> Buy</span>
+                            <span class="text-sm font-bold" id="buy-target">TLT (20-Year Treasury)</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900" id="buy-amount">$50,000</div>
+                    </div>
+
+                    <button class="w-full bg-hsbc-red hover:bg-red-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-red-200 transition active:scale-95 flex justify-center items-center gap-2">
+                        <i class="fas fa-fingerprint"></i> Execute Rebalancing Now
+                    </button>
+                    <p class="text-center text-[10px] text-gray-400 mt-2">Clicking represents your agreement to the AI Auto Trading Service Terms</p>
+                </div>
+            </section>
+            
+            <div class="text-center text-xs text-gray-400 pb-4">
+                HSBC AI Wealth Services &copy; 2025
+            </div>
+
+        </main>
+
+        <nav class="fixed bottom-0 w-full max-w-[393px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-30 pb-8">
+            <div class="flex flex-col items-center text-hsbc-red">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-400">
+                <i class="fas fa-chart-pie text-xl mb-1"></i>
+                <span class="text-[10px] font-medium">Portfolio</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-400">
+                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center -mt-6 border-4 border-gray-50 shadow-lg">
+                    <i class="fas fa-magic text-white text-lg"></i>
+                </div>
+                <span class="text-[10px] font-medium mt-1">AI Advisor</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-400">
+                <i class="fas fa-newspaper text-xl mb-1"></i>
+                <span class="text-[10px] font-medium">News</span>
+            </div>
+            <div class="flex flex-col items-center text-gray-400">
+                <i class="fas fa-cog text-xl mb-1"></i>
+                <span class="text-[10px] font-medium">Settings</span>
+            </div>
+        </nav>
+    </div>
+
+    <script>
+        function setStrategy(type) {
+            // Update Buttons
+            document.querySelectorAll('.strategy-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-white', 'shadow-sm', 'text-gray-900', 'border', 'border-gray-200');
+                btn.classList.add('text-gray-500');
+            });
+            const activeBtn = document.getElementById('btn-' + type);
+            activeBtn.classList.add('active', 'bg-white', 'shadow-sm', 'text-gray-900', 'border', 'border-gray-200');
+            activeBtn.classList.remove('text-gray-500');
+
+            // Update Content based on Risk Profile
+            const sellAmount = document.getElementById('sell-amount');
+            const buyAmount = document.getElementById('buy-amount');
+
+            if (type === 'conservative') {
+                sellAmount.innerText = "$80,000";
+                buyAmount.innerText = "$80,000";
+                // Animation effect
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            } else if (type === 'balanced') {
+                sellAmount.innerText = "$50,000";
+                buyAmount.innerText = "$50,000";
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            } else if (type === 'aggressive') {
+                sellAmount.innerText = "$15,000";
+                buyAmount.innerText = "$15,000";
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            }
+        }
+
+        function flashUpdate(element) {
+            element.style.opacity = '0.5';
+            setTimeout(() => element.style.opacity = '1', 200);
+        }
+    </script>
+</body>
+</html>

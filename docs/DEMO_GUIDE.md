@@ -105,7 +105,7 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 
 **What to show:**
 - Professional desktop interface
-- AI-Driven Investment Monitoring dashboard
+- AI-Native Investment Monitoring dashboard
 - Multiple monitoring cards visible
 
 **Talking points:**
