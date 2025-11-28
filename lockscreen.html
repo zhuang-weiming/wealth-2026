@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 16 Lock Screen - AI Wealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* iPhone 16 Screen Ratio & Font */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .iphone-frame {
+            width: 393px;
+            height: 852px;
+            background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'); /* Abstract Dark Background */
+            background-size: cover;
+            background-position: center;
+            border-radius: 55px;
+            position: relative;
+            box-shadow: 0 0 0 12px #333, 0 0 0 14px #555;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Glassmorphism Notification */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dynamic-island {
+            width: 120px;
+            height: 35px;
+            background: black;
+            border-radius: 20px;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iphone-frame flex flex-col items-center pt-16 px-4 relative">
+        <div class="dynamic-island"></div>
+
+        <div class="mb-4 text-center opacity-80">
+            <i class="fas fa-lock text-sm"></i>
+        </div>
+
+        <div class="text-center mb-10">
+            <div class="text-xl font-medium opacity-90">November 26, Wednesday</div>
+            <div class="text-[5.5rem] font-bold leading-none tracking-tight">07:30</div>
+        </div>
+
+        <div class="w-full flex flex-col gap-3 mt-auto mb-20">
+            
+            <div class="glass-panel rounded-2xl p-4 transform scale-95 opacity-60">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-5 h-5 bg-red-600 rounded-md flex items-center justify-center text-[10px] font-bold">H</div>
+                        <span class="text-xs font-semibold text-gray-200 uppercase">AI Native Wealth</span>
+                    </div>
+                    <span class="text-xs text-gray-300">8h ago</span>
+                </div>
+                <div class="pl-7">
+                    <h4 class="font-semibold text-sm">Market Close Review: Portfolio Performance</h4>
+                    <p class="text-xs text-gray-200 leading-tight mt-1">As of yesterday, the portfolio returned 0.4% above the S&P 500 benchmark. Further analysis on the impact of interest rate changes on fixed-income holdings is available in the detailed report.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4 transform scale-98 opacity-80">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-5 h-5 bg-red-600 rounded-md flex items-center justify-center text-[10px] font-bold">H</div>
+                        <span class="text-xs font-semibold text-gray-200 uppercase">AI Native Wealth</span>
+                    </div>
+                    <span class="text-xs text-gray-300">4h ago</span>
+                </div>
+                <div class="pl-7">
+                    <h4 class="font-semibold text-sm">Market Alert: Tech Stock Volatility Increases</h4>
+                    <p class="text-xs text-gray-200 leading-tight mt-1">NASDAQ intraday volatility reached monthly peaks. A defensive hedging strategy has been automated based on current market conditions.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-4 cursor-pointer hover:bg-white/20 transition" onclick="window.location.href='news_dashboard.html'">
+                <div class="flex justify-between items-start mb-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-5 h-5 bg-red-600 rounded-md flex items-center justify-center text-[10px] font-bold">H</div>
+                        <span class="text-xs font-semibold text-gray-200 uppercase">AI Native Wealth</span>
+                    </div>
+                    <span class="text-xs text-gray-300">21m ago</span>
+                </div>
+                <div class="pl-7">
+                    <h4 class="font-semibold text-sm">Morning Brief: HSBC Fin News Summary</h4>
+                    <p class="text-sm text-white leading-snug mt-1">Morning Update: Inflation data surpassed forecasts, indicating potential short-term pressure on technology equities. Recommendation: Reduce exposure to QQQ and increase allocation to TLT.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 w-full flex justify-between px-10">
+            <div class="w-12 h-12 glass-panel rounded-full flex items-center justify-center">
+                <i class="fas fa-flashlight text-white"></i>
+            </div>
+            <div class="w-12 h-12 glass-panel rounded-full flex items-center justify-center">
+                <i class="fas fa-camera text-white"></i>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-2 w-32 h-1 bg-white rounded-full"></div>
+    </div>
+
+</body>
+</html>

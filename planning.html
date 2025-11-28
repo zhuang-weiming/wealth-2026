@@ -19,39 +19,69 @@
         .chat-bubble-in { animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .blur-sm-text { color: transparent; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
-        /* Responsive Copilot Panel Styling */
-        .copilot-panel {
-            width: 100%;
-            border-left: none;
+
+        /* Floating Copilot Widget Styling */
+        .copilot-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            height: 600px;
+            max-height: 80vh;
+            z-index: 40;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
         }
-        @media (min-width: 1024px) {
-            .copilot-panel {
-                width: 384px; /* lg:w-96 */
-                border-left: 1px solid #e5e7eb;
+        .copilot-widget.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 640px) {
+            .copilot-widget {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                border-radius: 1rem 1rem 0 0;
+                max-height: 50vh;
             }
+        }
+        .copilot-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 30;
+            transition: transform 0.2s;
+        }
+        .copilot-trigger:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 h-screen flex flex-col lg:flex-row overflow-hidden">
+<body class="bg-gray-100 text-gray-800 h-screen flex flex-col overflow-hidden">
 
     <div class="flex-1 flex flex-col overflow-y-auto">
         
-        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
+        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-base mr-3 rounded"><i class="fa-solid fa-user-check"></i></div>
                     <h2 class="font-bold text-lg text-gray-800" id="header-title">Financial Planning: Robert Chen</h2>
                 </div>
                 <nav class="flex space-x-4 text-sm items-center">
-                    <a href="opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> Opportunity</a>
-                    <a href="planning.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-user-check mr-1"></i> Planning</a>
-                    <a href="performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
+                    <a href="opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
+                    <a href="planning.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
+                    <a href="performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
                     <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i class="fa-solid fa-house"></i></a>
                 </nav>
             </div>
         </header>
 
-        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
             <div class="max-w-5xl mx-auto space-y-6">
                 
                 <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex flex-col sm:flex-row items-start gap-6">
@@ -101,14 +131,20 @@
         </main>
     </div>
 
-    <aside class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
+    <!-- Floating Action Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-red-700 focus:outline-none transition-colors">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
+            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
+            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **Robert Chen's** Financial Planning profile.</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. I have loaded Robert Chen's Financial Planning profile.</div>
             </div>
             <div id="copilot-initial-insight">
                 </div>
@@ -132,19 +168,19 @@
                 risk: "Balanced",
                 demographics: "52 / Married, 1 Child (16yo)",
                 job: "Business Owner (Tech)",
-                aum: "$5,250,000",
+                aum: "$5,254,100",
                 timeline: "8 Yrs to Retirement",
                 allocation: [
                     { label: "Cash & Equivalents", value: "60%", color: "bg-red-600", note: "High Liquidity for Business" },
                     { label: "Equities", value: "30%", color: "bg-gray-600", note: "Underweight" },
                     { label: "Fixed Income", value: "10%", color: "bg-gray-400", note: "Stable" }
                 ],
-                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Short-term Liquidity Focus</span></p><p class='text-xs'>Client holds $3.1M in Money Market Funds</p></div>",
+                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Short-term Liquidity Focus</span></p><p class='text-xs'>Client holds $3.14M in Money Market Funds</p></div>",
                 copilotInit: {
                     color: 'red',
                     icon: 'fa-solid fa-circle-exclamation',
                     title: 'ALERT: Cash Drag Risk',
-                    message: "I've analyzed Robert's portfolio. He is holding **60% in Cash ($3.1M)**. As he plans to retire in 8 years, this cash drag will miss his $8M target.",
+                    message: "I've analyzed Robert's portfolio. He is holding **60% in Cash ($3.14M)**. As he plans to retire in 8 years, this cash drag will miss his $8M target.",
                     actionText: "Run Retirement Projection",
                     action: "funds"
                 },
@@ -159,15 +195,15 @@
                         <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-green-600 h-1.5 rounded-full" style="width: 75%"></div></div>
                         <p class="text-xs text-gray-500 mt-1 flex justify-between">
                             <span>Target: $8.0M</span>
-                            <span>Current Projection: $6.0M</span>
+                            <span>Current Projection: $6.1M</span>
                         </p>
                     </div>
                     <div class="border-b pb-3">
                         <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">Education Fund (Child Age 18) <span class="text-xs font-normal px-2 py-0.5 bg-red-100 text-red-700 rounded-full">Behind</span></p>
                         <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-red-600 h-1.5 rounded-full" style="width: 25%"></div></div>
                         <p class="text-xs text-gray-500 mt-1 flex justify-between">
-                            <span>Target: $450K</span>
-                            <span>Current: $120K</span>
+                            <span>Target: $450,000</span>
+                            <span>Current: $124K</span>
                         </p>
                     </div>
                     <div>
@@ -175,7 +211,7 @@
                         <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-yellow-600 h-1.5 rounded-full" style="width: 60%"></div></div>
                         <p class="text-xs text-gray-500 mt-1 flex justify-between">
                             <span>Target: $1.2M</span>
-                            <span>Available: $750K</span>
+                            <span>Available: $755K</span>
                         </p>
                     </div>
                 `
@@ -186,8 +222,8 @@
                 status: "New Premier Client | Onboarding",
                 risk: "Undetermined",
                 demographics: "48 / Married, 2 Children (8yo, 12yo)",
-                job: "Director @ Google",
-                aum: "$1,800,000",
+                job: "Director @ GlobalTech",
+                aum: "$1,850,400",
                 // Updated timeline for new client discovery focus
                 timeline: "Focus on Wealth Discovery", 
                 // Updated allocation to reflect Unknown status
@@ -222,7 +258,7 @@
                 risk: "Growth",
                 demographics: "31 / Single",
                 job: "Software Engineer (Startup)",
-                aum: "$450,000",
+                aum: "$452,100",
                 // Updated timeline for Singapore home focus
                 timeline: "Focus on First Home (Singapore)", 
                 // Updated allocation for home purchase focus
@@ -251,7 +287,7 @@
                         <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-blue-600 h-1.5 rounded-full" style="width: 70%"></div></div>
                         <p class="text-xs text-gray-500 mt-1 flex justify-between">
                             <span>Target: $1.0M SGD</span>
-                            <span>Saved: $700K SGD</span>
+                            <span>Saved: $712K SGD</span>
                         </p>
                     </div>
                 `
@@ -328,7 +364,7 @@
             chatContainer.innerHTML = `
                 <div class="flex gap-3 chat-bubble-in mb-4">
                     <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **${client.name}'s** Financial Planning profile.</div>
+                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. I have loaded ${client.name}'s Financial Planning profile.</div>
                 </div>
                 <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
                     </div>
@@ -376,7 +412,7 @@
                     botResp = `**Projection Run:** If Robert maintains 60% cash, he will miss his $8M target by **$2.0M**. Recommended action: Reallocate $1.5M of cash to Growth Strategy Funds.`;
                 } else if (action === 'property') {
                     userText = "Show Florida Property Details";
-                    botResp = `**Florida Property:** Estimated value $1.2M. Robert has a pre-approved $450K bridge loan. The current strategy is to use $750K from his liquidity cash.`;
+                    botResp = `**Florida Property:** Estimated value $1.2M. Robert has a pre-approved $450,000 bridge loan. The current strategy is to use $750,000 from his liquidity cash.`;
                 }
             } else if (currentClient === 'sarah') {
                 if(action === 'talking_points') {
@@ -413,6 +449,22 @@
                 setTimeout(() => {
                      sendChatMessage("I've noted that in the meeting minutes.", false);
                 }, 500);
+            }
+        }
+
+        function toggleCopilot() {
+            const widget = document.getElementById('copilot-widget');
+            const trigger = document.getElementById('copilot-trigger');
+            widget.classList.toggle('active');
+            
+            if (widget.classList.contains('active')) {
+                trigger.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    const input = document.getElementById('copilot-input');
+                    if(input) input.focus();
+                }, 100);
+            } else {
+                trigger.style.transform = 'scale(1)';
             }
         }
     </script>
