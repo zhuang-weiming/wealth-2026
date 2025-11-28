@@ -4,9 +4,9 @@
 
 基于设计文档，本系统需要在现有的三个角色视图中集成新功能：
 
-- **客户端 (customer.html)**: 接收AI调仓建议、一键确认执行
-- **投资官端 (investment.html)**: 审核AI建议、批量处理客户请求
-- **关系经理端 (opportunity.html/planning.html)**: 监控客户组合风险、主动联系
+- **客户端 (customer_portfolio.html)**: 接收AI调仓建议、一键确认执行
+- **投资官端 (rm_investment.html)**: 审核AI建议、批量处理客户请求
+- **关系经理端 (rm_opportunity.html/rm_planning.html)**: 监控客户组合风险、主动联系
 
 ## Phase 1: Infrastructure & Setup (脚手架与配置)
 
@@ -68,36 +68,36 @@
 
 ## Phase 4: Frontend Components (UI 组件)
 
-### 客户端 (customer.html)
+### 客户端 (customer_portfolio.html)
 
 - [ ] **TASK-010** - 在客户端添加市场预警推送卡片
-  - **Context**: 修改 `customer.html` 的 `screen-dashboard` 和 `screen-wealth` 部分
+  - **Context**: 修改 `customer_portfolio.html` 的 `screen-dashboard` 和 `screen-wealth` 部分
     - 在现有蓝色预警卡片下方添加新的"市场情绪预警"卡片
     - 显示：事件名称、情绪指数、影响的持仓、建议操作按钮
   - **Verification**: 卡片在Dashboard和Wealth页面正确显示，样式一致
 
 - [ ] **TASK-011** - 创建调仓建议详情模态框
-  - **Context**: 在 `customer.html` 中添加新的模态框组件
+  - **Context**: 在 `customer_portfolio.html` 中添加新的模态框组件
     - 显示：当前持仓 vs 建议持仓对比表、风险降低百分比、预期收益、AI解释
     - 包含三个按钮：【一键采纳】【查看详情】【忽略】
   - **Verification**: 点击预警卡片的"查看建议"按钮，模态框正确弹出并显示数据
 
 - [ ] **TASK-012** - 实现一键确认调仓功能
-  - **Context**: 在 `customer.html` 的JavaScript中添加 `confirmRebalancing(adviceId)` 函数
+  - **Context**: 在 `customer_portfolio.html` 的JavaScript中添加 `confirmRebalancing(adviceId)` 函数
     - 点击【一键采纳】后显示确认动画
     - 更新UI状态为"等待投资官审核"
   - **Verification**: 点击按钮后，状态正确更新，显示确认提示
 
 - [ ] **TASK-013** - 集成调仓建议到AI Agent对话
-  - **Context**: 修改 `customer.html` 中的 `sendActionFromChip()` 函数
+  - **Context**: 修改 `customer_portfolio.html` 中的 `sendActionFromChip()` 函数
     - 添加新的快捷操作："查看最新调仓建议"、"解释为什么要调仓"
     - AI Agent返回自然语言解释
   - **Verification**: 在AI Agent中询问调仓建议，返回正确的解释文本
 
-### 投资官端 (investment.html)
+### 投资官端 (rm_investment.html)
 
 - [ ] **TASK-014** - 添加待审核调仓建议队列
-  - **Context**: 在 `investment.html` 的主面板中添加新的"待审核调仓建议"卡片
+  - **Context**: 在 `rm_investment.html` 的主面板中添加新的"待审核调仓建议"卡片
     - 显示：客户姓名、建议摘要、风险等级、优先级标签
     - 按优先级排序（红色=紧急、黄色=重要、绿色=常规）
   - **Verification**: 队列正确显示，优先级标签颜色正确
@@ -115,27 +115,27 @@
   - **Verification**: 选中多个建议，点击批量批准，状态正确更新
 
 - [ ] **TASK-017** - 集成到AI Agent工作台
-  - **Context**: 修改 `investment.html` 的AI Agent对话
+  - **Context**: 修改 `rm_investment.html` 的AI Agent对话
     - 添加快捷操作："显示今日高优先级客户"、"生成调仓建议摘要报告"
     - AI Agent返回结构化数据
   - **Verification**: AI Agent正确响应新的快捷操作
 
-### 关系经理端 (opportunity.html / planning.html)
+### 关系经理端 (rm_opportunity.html / rm_planning.html)
 
-- [ ] **TASK-018** - 在opportunity.html添加风险预警仪表盘
-  - **Context**: 在 `opportunity.html` 顶部添加"客户风险热力图"
+- [ ] **TASK-018** - 在rm_opportunity.html添加风险预警仪表盘
+  - **Context**: 在 `rm_opportunity.html` 顶部添加"客户风险热力图"
     - 显示：当前市场情绪最激烈的板块、受影响的客户数量
     - 点击板块，展开受影响客户列表
   - **Verification**: 热力图正确显示，点击交互正常
 
-- [ ] **TASK-019** - 在planning.html集成调仓建议追踪
-  - **Context**: 在 `planning.html` 的客户财务规划页面中添加"最近调仓建议"时间线
+- [ ] **TASK-019** - 在rm_planning.html集成调仓建议追踪
+  - **Context**: 在 `rm_planning.html` 的客户财务规划页面中添加"最近调仓建议"时间线
     - 显示：建议时间、采纳状态、实际收益对比
     - 用于向客户展示AI建议的历史表现
   - **Verification**: 时间线正确显示历史建议，数据准确
 
 - [ ] **TASK-020** - 添加主动联系客户提醒
-  - **Context**: 在 `opportunity.html` 中添加"待联系客户"列表
+  - **Context**: 在 `rm_opportunity.html` 中添加"待联系客户"列表
     - 显示：拒绝了AI建议的客户、需要人工解释的复杂情况
     - 包含一键拨号按钮（模拟）
   - **Verification**: 列表正确显示，点击拨号按钮触发模拟通话界面
@@ -149,7 +149,7 @@
   - **Verification**: 在不同页面操作，状态正确同步
 
 - [ ] **TASK-022** - 添加实时推送通知模拟
-  - **Context**: 在 `customer.html` 中添加浏览器通知API调用（需用户授权）
+  - **Context**: 在 `customer_portfolio.html` 中添加浏览器通知API调用（需用户授权）
     - 模拟市场预警触发时推送通知
     - 通知内容：事件名称、风险等级、快捷操作链接
   - **Verification**: 触发预警时，浏览器显示通知（需用户授权）
@@ -161,7 +161,7 @@
   - **Verification**: 演示模式完整运行，所有页面状态正确更新
 
 - [ ] **TASK-024** - 添加透明度中心页面
-  - **Context**: 在 `customer.html` 中添加新的 `screen-transparency` 页面
+  - **Context**: 在 `customer_portfolio.html` 中添加新的 `screen-transparency` 页面
     - 显示：AI决策逻辑解释、历史回测数据、情绪指数趋势图
     - 使用Chart.js绘制可视化图表
   - **Verification**: 透明度中心页面正确显示，图表渲染正常
@@ -169,7 +169,7 @@
 - [ ] **TASK-025** - 实现合规性审计日志
   - **Context**: 在所有关键操作中记录审计日志（存储在localStorage）
     - 包含：操作时间、操作人、操作类型、相关数据
-    - 在 investment.html 中添加"审计日志查看器"
+    - 在 rm_investment.html 中添加"审计日志查看器"
   - **Verification**: 审计日志正确记录，查看器可显示完整历史
 
 ## Phase 6: Testing & Optimization (测试与优化)
@@ -231,32 +231,32 @@
 
 核心用户旅程在项目中的实现位置：
 
-1. **客户发现市场预警 (customer.html)**
+1. **客户发现市场预警 (customer_portfolio.html)**
    - 入口: Dashboard页面的蓝色预警卡片（已有）
    - 新增: 市场情绪预警卡片（TASK-010）
    - 按钮: "查看AI建议" → 打开调仓建议详情模态框（TASK-011）
 
-2. **客户查看调仓建议 (customer.html)**
+2. **客户查看调仓建议 (customer_portfolio.html)**
    - 入口: 调仓建议详情模态框
    - 显示: 当前持仓 vs 建议持仓、风险指标、AI解释
    - 按钮: 【一键采纳】（TASK-012）、【查看详情】（跳转到透明度中心 TASK-024）、【忽略】
 
-3. **客户通过AI Agent咨询 (customer.html)**
+3. **客户通过AI Agent咨询 (customer_portfolio.html)**
    - 入口: Dashboard底部的"Ask AI Agent"按钮（已有）
    - 新增: 快捷操作芯片 - "查看最新调仓建议"（TASK-013）
    - 对话: AI Agent解释调仓原因、历史表现
 
-4. **投资官审核建议 (investment.html)**
+4. **投资官审核建议 (rm_investment.html)**
    - 入口: 主面板的"待审核调仓建议队列"（TASK-014）
    - 点击: 展开建议详情面板（TASK-015）
    - 按钮: 【批准】【修改】【拒绝】、批量操作工具栏（TASK-016）
 
-5. **关系经理监控客户风险 (opportunity.html)**
+5. **关系经理监控客户风险 (rm_opportunity.html)**
    - 入口: 顶部的"客户风险热力图"（TASK-018）
    - 显示: 受影响客户列表、优先级排序
    - 按钮: "联系客户"（TASK-020）
 
-6. **关系经理展示历史表现 (planning.html)**
+6. **关系经理展示历史表现 (rm_planning.html)**
    - 入口: 客户财务规划页面的"调仓建议时间线"（TASK-019）
    - 显示: 历史建议、采纳率、实际收益对比
 

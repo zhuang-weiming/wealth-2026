@@ -451,7 +451,7 @@ page 1 - 锁屏的iphone 16，系统屏幕，Jennifer 收到系统推送，共�
 
 ### 如何使用这些代码
 
-1.  将第一个代码块保存为 `lockscreen.html`。
+1.  将第一个代码块保存为 `customer_lockscreen.html`。
 2.  将第二个代码块保存为 `app_dashboard.html`。
 3.  在浏览器中打开它们（建议使用浏览器的“开发者工具”并将视图模式切换为 **iPhone 12/14/16 Pro** 尺寸，以获得最佳预览效果）。
 

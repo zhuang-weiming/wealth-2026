@@ -23,6 +23,10 @@
             animation: slide-in 0.5s ease-out;
         }
         .chat-bubble-in { animation: slide-in 0.3s ease-out; }
+        .copilot-widget { position: fixed; bottom: 90px; right: 24px; width: 380px; height: 600px; max-height: 80vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
+        .copilot-widget.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+        .copilot-trigger { position: fixed; bottom: 24px; right: 24px; z-index: 49; transition: transform 0.2s; }
+        .copilot-trigger:hover { transform: scale(1.05); }
     </style>
 </head>
 <body class="bg-white sm:bg-gray-100 h-screen flex items-center justify-center p-0">
@@ -32,14 +36,14 @@
 
         <div id="screen-login" class="screen active-screen flex flex-col items-center justify-center p-8 h-full bg-white">
             <div class="text-center mb-8">
-                <i class="fa-solid fa-house-chimney-window text-brand-green text-5xl mb-4"></i>
+                <img src="resource/IMG_1035.png" alt="HSBC" class="h-10 mx-auto mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">Welcome Back</h1>
                 <p class="text-sm text-gray-500">Securely access your WealthOS</p>
             </div>
             <div class="w-full space-y-4">
                 <input type="text" value="j.wu@example.com" class="w-full border border-gray-300 rounded-lg py-3 px-4 text-sm focus:outline-none focus:border-brand-green" placeholder="Username">
                 <input type="password" value="password123" class="w-full border border-gray-300 rounded-lg py-3 px-4 text-sm focus:outline-none focus:border-brand-green" placeholder="Password">
-                <button onclick="showScreen('screen-dashboard')" class="w-full brand-green hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg transition">
+                <button onclick="showScreen('screen-wealth')" class="w-full brand-green hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg transition">
                     Log In <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
@@ -48,6 +52,7 @@
 
         <div id="screen-dashboard" class="screen flex-col h-full">
             <div class="flex-shrink-0 p-5 pt-10 brand-green text-white">
+                <img src="resource/IMG_1034.webp" alt="HSBC" class="h-5 mb-3">
                 <p class="text-sm">Good Afternoon, Jennifer</p>
                 <h2 class="text-3xl font-bold mt-1">$24,542<span class="text-sm font-normal opacity-70">.18</span></h2>
                 <p class="text-xs opacity-80">Checking Account Balance</p>
@@ -98,6 +103,7 @@
         
         <div id="screen-wealth" class="screen flex-col h-full">
             <div class="flex-shrink-0 p-5 pt-10 bg-white border-b border-gray-100">
+                <img src="resource/IMG_1035.png" alt="HSBC" class="h-5 mb-3">
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl font-bold text-gray-800">My Wealth</h2>
                     <i class="fa-solid fa-rotate-right text-gray-400 hover:text-brand-green" onclick="showScreen('screen-dashboard')"></i>
@@ -387,5 +393,8 @@
         // Initialize view
         showScreen('screen-login');
     </script>
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i class="fa-solid fa-robot"></i></button>
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col p-4 border border-gray-200"><div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200"><h3 class="text-lg font-bold text-green-600 flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3><button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button></div><div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4"><div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">How can I help you today?</div></div></div><div class="pt-4 border-t border-gray-200 flex space-x-2"><input type="text" id="copilot-input" placeholder="Ask me anything..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-green-600"><button onclick="handleCopilotChat()" class="bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-lg flex items-center justify-center transition"><i class="fa-solid fa-plus"></i></button></div></aside>
+    <script>function toggleCopilot(){const w=document.getElementById("copilot-widget");const t=document.getElementById("copilot-trigger");w.classList.toggle("active");if(w.classList.contains("active")){t.style.transform="scale(0)";}else{t.style.transform="scale(1)";}}function handleCopilotChat(){const i=document.getElementById("copilot-input");const c=document.getElementById("chat-container");if(i.value.trim()){c.innerHTML+=`<div class="flex gap-3 justify-end mb-4"><div class="bg-green-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${i.value}</div></div>`;c.innerHTML+=`<div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Analyzing your request...</div></div>`;c.scrollTop=c.scrollHeight;i.value="";}}</script>
 </body>
 </html>

@@ -126,18 +126,18 @@
     <header class="bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between z-50">
                 <div class="flex items-center">
-                    <div
-                        class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-base mr-3 rounded">
-                        <i class="fa-solid fa-magnifying-glass"></i></div>
+                    <img src="resource/IMG_1035.png" alt="HSBC" class="h-6 mr-3">
                     <h2 class="font-bold text-lg text-gray-800">Opportunity Discovery</h2>
                 </div>
                 <nav class="flex space-x-4 text-sm items-center">
-                    <a href="opportunity.html"
+                    <a href="rm_opportunity.html"
                         class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i
                             class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
-                    <a href="planning.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                    <a href="rm_planning.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
                             class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
-                    <a href="performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                    <a href="rm_investment.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                            class="fa-solid fa-chart-line md:mr-1"></i> <span class="hidden md:inline">Investment</span></a>
+                    <a href="rm_performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
                             class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
                     <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i
                             class="fa-solid fa-house"></i></a>
@@ -194,7 +194,7 @@
                         <a href="#" class="text-xs text-brand-red font-semibold hover:underline">View All History</a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <a href="planning.html?client=alice"
+                        <a href="rm_planning.html?client=alice"
                             class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
                             <div class="flex items-center gap-3 mb-3">
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice"
@@ -209,7 +209,7 @@
                             <div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Reviewing First
                                 Home Mortgage <i class="fa-solid fa-arrow-right ml-1"></i></div>
                         </a>
-                        <a href="planning.html?client=robert"
+                        <a href="rm_planning.html?client=robert"
                             class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
                             <div class="flex items-center gap-3 mb-3">
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
@@ -224,7 +224,7 @@
                             <div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Discussing Cash
                                 Drag Risk <i class="fa-solid fa-arrow-right ml-1"></i></div>
                         </a>
-                        <a href="planning.html?client=sarah"
+                        <a href="rm_planning.html?client=sarah"
                             class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
                             <div class="flex items-center gap-3 mb-3">
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
@@ -251,7 +251,7 @@
                                 class="fa-solid fa-xmark mr-1"></i> Clear Search</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <a href="planning.html?client=robert"
+                        <a href="rm_planning.html?client=robert"
                             class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
                             <div class="flex items-center gap-4">
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
@@ -268,7 +268,7 @@
                             <div class="px-4 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">High Liquidity
                                 (Cash Drag)</div>
                         </a>
-                        <a href="planning.html?client=sarah"
+                        <a href="rm_planning.html?client=sarah"
                             class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
                             <div class="flex items-center gap-4">
                                 <div
@@ -299,13 +299,8 @@
 
     <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-<<<<<<< HEAD
             <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
             <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
-=======
-            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
-            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
->>>>>>> weiming
         </div>
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
@@ -360,7 +355,7 @@
             const clients = {
                 robert: {
                     id: 'robert',
-                    href: 'planning.html?client=robert',
+                    href: 'rm_planning.html?client=robert',
                     title: 'Robert Chen',
                     subtitle: 'Business Owner (Tech) • Age 52',
                     category: 'Cash & Equivalents',
@@ -370,7 +365,7 @@
                 },
                 alice: {
                     id: 'alice',
-                    href: 'planning.html?client=alice',
+                    href: 'rm_planning.html?client=alice',
                     title: 'Alice Num',
                     subtitle: 'Premier Client • Age 57',
                     category: 'Reviewing First Home Mortgage',
@@ -380,7 +375,7 @@
                 },
                 sarah: {
                     id: 'sarah',
-                    href: 'planning.html?client=sarah',
+                    href: 'rm_planning.html?client=sarah',
                     title: 'Sarah Jenkins',
                     subtitle: 'Director @ GlobalTech • Age 48',
                     category: 'Investable Cash',

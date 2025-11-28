@@ -9,20 +9,33 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
         }
 
         .app-frame {
-            width: 393px;
-            height: 852px; /* iPhone 16 height approx */
+            width: 100%;
+            height: 100vh;
             background-color: #ffffff;
             position: relative;
-            overflow-y: auto;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 640px) {
+            body {
+                background-color: #f2f2f2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+            .app-frame {
+                max-width: 28rem;
+                height: 90vh;
+                border-radius: 1.5rem;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                border: 1px solid #e5e7eb;
+            }
         }
 
         /* Hide Scrollbar */
@@ -59,36 +72,42 @@
             color: white;
             border-color: #1f2937;
         }
+        .copilot-widget { position: fixed; bottom: 90px; right: 24px; width: 380px; height: 600px; max-height: 80vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
+        .copilot-widget.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+        .copilot-trigger { position: fixed; bottom: 24px; right: 24px; z-index: 49; transition: transform 0.2s; }
+        .copilot-trigger:hover { transform: scale(1.05); }
     </style>
 </head>
-<body>
+<body class="bg-white sm:bg-gray-100">
 
-    <div class="app-frame flex flex-col">
+    <div class="app-frame">
         
-        <header class="sticky top-0 bg-white z-20 px-5 pt-12 pb-4 border-b border-gray-100">
-            <div class="flex justify-between items-center mb-4">
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-hsbc-red text-white flex items-center justify-center font-bold text-lg">H</div>
-                    <span class="font-semibold text-lg tracking-tight">Wealth AI</span>
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <header class="sticky top-0 bg-white z-20 px-5 pt-12 pb-4 border-b border-gray-100">
+                <a href="index.html" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-xs transition">← Roles</a>
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center gap-2">
+                        <img src="resource/IMG_1035.png" alt="HSBC" class="h-6">
+                        <span class="font-semibold text-lg tracking-tight">Wealth AI</span>
+                    </div>
+                    <div class="flex gap-4 text-gray-600">
+                        <i class="far fa-bell text-lg"></i>
+                        <i class="far fa-user-circle text-lg"></i>
+                    </div>
                 </div>
-                <div class="flex gap-4 text-gray-600">
-                    <i class="far fa-bell text-lg"></i>
-                    <i class="far fa-user-circle text-lg"></i>
+                
+                <div>
+                    <p class="text-gray-500 text-xs uppercase tracking-wide">Total Assets (USD)</p>
+                    <div class="flex items-end gap-2">
+                        <h1 class="text-3xl font-bold text-gray-900">$1,245,800</h1>
+                        <span class="text-green-600 font-medium text-sm mb-1">
+                            <i class="fas fa-arrow-up"></i> +$3,420 (0.28%)
+                        </span>
+                    </div>
                 </div>
-            </div>
-            
-            <div>
-                <p class="text-gray-500 text-xs uppercase tracking-wide">Total Assets (USD)</p>
-                <div class="flex items-end gap-2">
-                    <h1 class="text-3xl font-bold text-gray-900">$1,245,800</h1>
-                    <span class="text-green-600 font-medium text-sm mb-1">
-                        <i class="fas fa-arrow-up"></i> +$3,420 (0.28%)
-                    </span>
-                </div>
-            </div>
-        </header>
+            </header>
 
-        <main class="flex-1 px-5 pt-6 pb-24 space-y-6 bg-gray-50">
+            <div class="px-5 pt-6 pb-24 space-y-6">
 
             <section>
                 <h2 class="text-sm font-bold text-gray-400 uppercase mb-3">Today's Market News (2025.11.26)</h2>
@@ -99,7 +118,7 @@
                         <span class="text-xs text-gray-400">07:00 AM</span>
                     </div>
                     <div class="bg-red-50 p-3 rounded-lg border border-red-100">
-                        <div class="mb-1"><span class="ai-badge"><i class="fas fa-robot"></i> AI Summary</span></div>
+                        <div class="mb-1"><span class="ai-badge"><i class="fas fa-sparkles"></i> AI Summary</span></div>
                         <p class="text-xs text-gray-700 leading-relaxed">
                             This development is favorable for long-term bond allocations. Conversely, it may precipitate a short-term correction in technology growth equities, such as those represented by the QQQ ETF.
                         </p>
@@ -166,7 +185,7 @@
                         <div class="text-2xl font-bold text-gray-900" id="buy-amount">$50,000</div>
                     </div>
 
-                    <button class="w-full bg-hsbc-red hover:bg-red-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-red-200 transition active:scale-95 flex justify-center items-center gap-2">
+                    <button onclick="executeRebalancing()" class="w-full bg-hsbc-red hover:bg-red-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-red-200 transition active:scale-95 flex justify-center items-center gap-2">
                         <i class="fas fa-fingerprint"></i> Execute Rebalancing
                     </button>
                     <p class="text-center text-[10px] text-gray-400 mt-2">Clicking represents your agreement to the AI Auto Trading Service Terms</p>
@@ -176,34 +195,33 @@
             <div class="text-center text-xs text-gray-400 pb-4">
                 HSBC AI Wealth Services &copy; 2025
             </div>
-
+            </div>
         </main>
 
-        <nav class="fixed bottom-0 w-full max-w-[393px] bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-30 pb-8">
-            <div class="flex flex-col items-center text-hsbc-red">
-                <i class="fas fa-home text-xl mb-1"></i>
-                <span class="text-[10px] font-medium">Home</span>
+        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-30 pb-8">
+        <a href="customer_portfolio.html" class="flex flex-col items-center text-hsbc-red">
+            <i class="fas fa-home text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a href="customer_portfolio.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-chart-pie text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Portfolio</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400">
+            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center -mt-6 border-4 border-gray-50 shadow-lg">
+                <i class="fas fa-magic text-white text-lg"></i>
             </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fas fa-chart-pie text-xl mb-1"></i>
-                <span class="text-[10px] font-medium">Portfolio</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center -mt-6 border-4 border-gray-50 shadow-lg">
-                    <i class="fas fa-magic text-white text-lg"></i>
-                </div>
-                <span class="text-[10px] font-medium mt-1">AI Advisor</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fas fa-newspaper text-xl mb-1"></i>
-                <span class="text-[10px] font-medium">News</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fas fa-cog text-xl mb-1"></i>
-                <span class="text-[10px] font-medium">Settings</span>
-            </div>
-        </nav>
-    </div>
+            <span class="text-[10px] font-medium mt-1">AI Advisor</span>
+        </div>
+        <a href="customer_lockscreen.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-newspaper text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">News</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-cog text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Settings</span>
+        </div>
+    </nav>
 
     <script>
         function setStrategy(type) {
@@ -243,6 +261,18 @@
             element.style.opacity = '0.5';
             setTimeout(() => element.style.opacity = '1', 200);
         }
+
+        function executeRebalancing() {
+            // Show confirmation
+            const confirmed = confirm('✅ Rebalancing Order Submitted\n\nYour portfolio will be updated within 2 hours.\nYou can track the progress in your Wealth page.');
+            if (confirmed) {
+                // Redirect to customer_portfolio.html
+                window.location.href = 'customer_portfolio.html';
+            }
+        }
     </script>
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i class="fa-solid fa-robot"></i></button>
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col p-4 border border-gray-200"><div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200"><h3 class="text-lg font-bold text-green-600 flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3><button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button></div><div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4"><div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">How can I help you today?</div></div></div><div class="pt-4 border-t border-gray-200 flex space-x-2"><input type="text" id="copilot-input" placeholder="Ask me anything..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-green-600"><button onclick="handleCopilotChat()" class="bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-lg flex items-center justify-center transition"><i class="fa-solid fa-plus"></i></button></div></aside>
+    <script>function toggleCopilot(){const w=document.getElementById("copilot-widget");const t=document.getElementById("copilot-trigger");w.classList.toggle("active");if(w.classList.contains("active")){t.style.transform="scale(0)";}else{t.style.transform="scale(1)";}}function handleCopilotChat(){const i=document.getElementById("copilot-input");const c=document.getElementById("chat-container");if(i.value.trim()){c.innerHTML+=`<div class="flex gap-3 justify-end mb-4"><div class="bg-green-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${i.value}</div></div>`;c.innerHTML+=`<div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Analyzing your request...</div></div>`;c.scrollTop=c.scrollHeight;i.value="";}}</script>
 </body>
 </html>
