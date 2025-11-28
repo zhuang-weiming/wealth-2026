@@ -20,47 +20,128 @@
 
 2. 示例：
    ```
+   # 处理最新视频文件
+   cd release
+   python3 ../transfer/split.py 20251128-1150.mp4
+   
+   # 其他示例
    python3 split.py bigfile.iso
+   cd release
+   python3 ../transfer/split.py 20251128-0101-4K.mp4
    ```
 
 3. 执行后会在当前目录生成：
    - `bigfile.iso.SHA256` - 包含原始文件SHA-256哈希值的校验文件
    - `bigfile.iso.000`, `bigfile.iso.001`, ... - 拆分后的文件块
-   - `➜  release git:(weiming) ✗ python ../transfer/split.py 20251128-0101-4K.mp4`
 
-4. 将生成的所有文件（包括.SHA256文件和所有分块文件）提交到GitHub仓库：
+4. 📁 **文件夹执行指南**：
+   - **release文件夹中的视频文件**：
+     ```bash
+     cd release                    # 进入release文件夹
+     python3 ../transfer/split.py 20251128-1150.mp4     # 分割新视频
+     python3 ../transfer/split.py 20251128-0101-4K.mp4  # 分割之前视频
+     ```
+   - **根目录中的其他文件**：
+     ```bash
+     cd /path/to/your/file         # 进入文件所在目录
+     python3 ../transfer/split.py yourfile.ext
+     ```
+   - **重要**：确保在包含要分割文件的目录中执行命令，或提供正确的相对路径
+
+5. 📝 **执行示例**：
+   ```
+   ➜  release git:(main) ✗ python3 ../transfer/split.py 20251128-1150.mp4
+   ➜  release git:(main) ✗ ls -la *.SHA256 *.00*
+   ```
+
+6. 将生成的所有文件（包括.SHA256文件和所有分块文件）提交到GitHub仓库：
    ```
    git add .
-   git commit -m "添加拆分文件"
+   git commit -m "添加拆分文件: 20251128-1150.mp4"
+   git push
+   ```
+   
+   **注意**：确保在包含拆分文件的目录中执行git命令
+   ```
+   # 如果在release文件夹中
+   git add .
+   git commit -m "添加视频分割文件"
    git push
    ```
 
 ### 内网（合并端）
 
-1. 从GitHub下载仓库的ZIP包：
+7. 从GitHub下载仓库的ZIP包：
    ```
-   wget https://github.com/xxx/xxx/archive/refs/heads/main.zip
+   wget https://github.com/zhuang-weiming/wealth-2026/archive/refs/heads/main.zip
    ```
 
-2. 解压ZIP包：
+8. 解压ZIP包：
    ```
    unzip main.zip
    ```
 
-3. 进入解压后的目录：
+9. 进入解压后的目录：
    ```
-   cd xxx-main
-   ```
-
-4. 运行合并脚本：
-   ```
-   python3 merge.py
+   cd wealth-2026-main
    ```
 
-5. 脚本会自动：
-   - 查找.SHA256文件和对应的分块文件
-   - 使用`cat`命令合并分块文件
-   - 校验合并后文件的SHA-256值
+10. 📁 **合并操作指南**：
+    - **合并release文件夹中的视频文件**：
+      ```bash
+      cd release                    # 进入release文件夹
+      python3 ../transfer/merge.py   # 合并所有视频分割文件
+      ```
+    - **合并其他文件**：
+      ```bash
+      cd /path/to/split/files       # 进入包含分割文件的目录
+      python3 ../transfer/merge.py   # 合并文件
+      ```
+
+11. 📝 **示例执行**：
+    ```
+    ➜  release git:(main) ✗ python3 ../transfer/merge.py
+    ➜  release git:(main) ✗ ls -la *.mp4
+    ```
+
+12. 脚本会自动：
+    - 查找.SHA256文件和对应的分块文件
+    - 使用`cat`命令合并分块文件
+    - 校验合并后文件的SHA-256值
+    - 在当前目录生成原始文件
+
+## 🚀 快速参考指南
+
+### 最新视频文件处理：
+```bash
+# 分割新视频 (2025-11-28 11:50发布)
+cd release
+python3 ../transfer/split.py 20251128-1150.mp4
+
+# 分割之前视频 (2025-11-28 01:01发布, 4K版本)
+cd release
+python3 ../transfer/split.py 20251128-0101-4K.mp4
+
+# 提交到GitHub
+git add .
+git commit -m "添加视频分割文件: 20251128-1150.mp4"
+git push
+```
+
+### 合并端操作：
+```bash
+# 下载并进入项目目录
+wget https://github.com/zhuang-weiming/wealth-2026/archive/refs/heads/main.zip
+unzip main.zip
+cd wealth-2026-main
+
+# 合并视频文件
+cd release
+python3 ../transfer/merge.py
+
+# 验证文件
+ls -la *.mp4
+```
 
 ## 注意事项
 
