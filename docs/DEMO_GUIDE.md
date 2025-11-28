@@ -67,11 +67,11 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 - Modal popup with detailed analysis
 - **Trigger Event:** SVB collapse, tech stocks plunged 60%
 - **Position Comparison Table:**
-  - Current: QQQ $200K (65%) | TLT $50K (15%) | Cash $50K (20%)
-  - Recommended: QQQ $100K (35%) | TLT $150K (50%) | Cash $50K (15%)
+  - Current: QQQ $200,000 (65%) | TLT $50,000 (15%) | Cash $50,000 (20%)
+  - Recommended: QQQ $100,000 (35%) | TLT $150,000 (50%) | Cash $50,000 (15%)
 - **Expected Results:**
   - Risk Reduction: **30%**
-  - Estimated Loss Avoided: **$30K**
+  - Estimated Loss Avoided: **$30,000**
 - **AI Analysis:** Explains rationale with historical data
 
 **Talking points:**
@@ -86,7 +86,7 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 **Action:** Click **"Accept Recommendation"** button
 
 **What to show:**
-- Confirmation alert: "✅ Recommendation Confirmed!"
+- Confirmation alert: "✅ Recommendation Confirmed"
 - Status: "Pending Investment Officer Review"
 - Expected completion: "within 2 hours"
 - Modal closes automatically
@@ -118,9 +118,9 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 **What to show:**
 - **"AI Rebalancing Review Queue"** card
 - Three pending requests with priority levels:
-  - 🔴 **Urgent:** Jennifer Wu | SVB Crisis Rebalancing | Risk 65% | AUM $300K
-  - 🟡 Important: Michael Chen | Fed Rate Hike Response | Risk 45% | AUM $500K
-  - 🟢 Normal: Sarah Lee | Gold Allocation Opportunity | Risk 20% | AUM $200K
+  - 🔴 **Urgent:** Jennifer Wu | SVB Crisis Rebalancing | Risk 65% | AUM $300,000
+  - 🟡 Important: Michael Chen | Fed Rate Hike Response | Risk 45% | AUM $500,000
+  - 🟢 Normal: Sarah Lee | Gold Allocation Opportunity | Risk 20% | AUM $200,000
 
 **Talking points:**
 - "Jennifer's request appears at the top with urgent priority"
@@ -137,7 +137,7 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 - **Client Information:**
   - Name: Jennifer Wu
   - Client Tier: Premier Customer
-  - AUM: $300K
+  - AUM: $300,000
 - **Trigger Event:** SVB collapse details
 - **Portfolio Comparison Table:** (same as customer view)
 - **AI Analysis Explanation:** Full rationale with historical backtest data
@@ -158,7 +158,7 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 **Action:** Click **"Approve"** button
 
 **What to show:**
-- Confirmation alert: "✅ Rebalancing advice approved!"
+- Confirmation alert: "✅ Rebalancing advice approved"
 - "Client will receive execution notification"
 - "Trade will complete within 2 hours"
 - Panel closes automatically
@@ -179,7 +179,7 @@ Customer Alert → AI Recommendation → Customer Accepts → Investment Officer
 ### Customer Journey (60 seconds)
 "Jennifer logs into her mobile app and navigates to her wealth dashboard. She has $1.2M in assets with 8.4% YTD returns. Suddenly, an AI alert appears - SVB has collapsed, and her portfolio has 65% exposure to tech stocks at risk.
 
-She clicks to view the AI recommendation. The system suggests reducing her tech ETF position by 50% and reallocating to Treasury bonds. Historical data shows this could reduce risk by 30% and avoid $30K in losses.
+She clicks to view the AI recommendation. The system suggests reducing her tech ETF position by 50% and reallocating to Treasury bonds. Historical data shows this could reduce risk by 30% and avoid $30,000 in losses.
 
 Jennifer reviews the recommendation and accepts with one click. No phone calls, no paperwork - just instant action."
 
@@ -243,9 +243,9 @@ python3 -m http.server 8000
 - **Improvement: 95% faster**
 
 **Risk Reduction:**
-- Without AI: Potential $30K loss
+- Without AI: Potential $30,000 loss
 - With AI: Risk reduced by 30%
-- **Value: $30K protected**
+- **Value: $30,000 protected**
 
 **Operational Efficiency:**
 - Manual steps: 15-20

@@ -184,6 +184,10 @@ python3 -m http.server 8000
 1. 双击时间线上的文字片段打开编辑模式
 2. 在预览窗口中输入必要的文字内容：
    - **示例文字**: "发现 Jennifer 的投资组合需要重新平衡"
+   - **AI Agent台词**: "AI Agent主动介入，协助关系经理为Jennifer提供更精准的投资建议"
+   - **优化版本**: "AI智能代理协助关系经理，为Jennifer提供个性化投资方案"
+   - **最终版本**: "AI智能代理协作，助关系经理为Jennifer提供个性化投资方案"
+   - **英文台词**: "AI-powered agent helps relationship managers in real-time"
    - 确保文字内容准确传达投资建议的关键信息
 
 #### 4.3 调整文字样式

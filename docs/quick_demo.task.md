@@ -16,9 +16,9 @@
     - 创建新的 `rebalancing-modal`（ID: `rebalancing-modal`）
     - 内容包含：
       - 标题："AI调仓建议 - SVB事件应对"
-      - 当前持仓：QQQ $200K (65%) | TLT $50K (15%) | 现金 $50K (20%)
-      - 建议持仓：QQQ $100K (35%) | TLT $150K (50%) | 现金 $50K (15%)
-      - 预期效果：风险降低30% | 预计避免损失 $30K
+      - 当前持仓：QQQ $200,000 (65%) | TLT $50,000 (15%) | 现金 $50,000 (20%)
+      - 建议持仓：QQQ $100,000 (35%) | TLT $150,000 (50%) | 现金 $50,000 (15%)
+      - 预期效果：风险降低30% | 预计避免损失 $30,000
       - AI解释："SVB倒闭引发科技股恐慌，建议减持科技ETF，增持美债避险"
       - 三个按钮：【一键采纳】【查看详情】【忽略】
   - **Verification**: 点击预警卡片的按钮，模态框弹出并显示完整内容
@@ -43,9 +43,9 @@
     - 在 `investment.html` 主面板中，现有的"Product Vetting Queue"卡片上方
     - 添加新卡片："AI调仓建议审核队列"
     - 内容：
-      - 🔴 紧急 | Jennifer Wu | SVB事件调仓 | 风险暴露65% | AUM $300K
-      - 🟡 重要 | Michael Chen | 美联储加息应对 | 风险暴露45% | AUM $500K
-      - 🟢 常规 | Sarah Lee | 黄金配置机会 | 风险暴露20% | AUM $200K
+      - 🔴 紧急 | Jennifer Wu | SVB事件调仓 | 风险暴露65% | AUM $300,000
+      - 🟡 重要 | Michael Chen | 美联储加息应对 | 风险暴露45% | AUM $500,000
+      - 🟢 常规 | Sarah Lee | 黄金配置机会 | 风险暴露20% | AUM $200,000
       - 每行添加按钮：【查看详情】
   - **Verification**: 打开investment.html，看到新的审核队列卡片
 
@@ -54,7 +54,7 @@
     - 在 `investment.html` 中添加隐藏的详情面板（ID: `advice-detail-panel`）
     - 点击【查看详情】时，使用JavaScript显示面板（`display: block`）
     - 面板内容：
-      - 客户信息：Jennifer Wu | Premier客户 | AUM $300K
+      - 客户信息：Jennifer Wu | Premier客户 | AUM $300,000
       - 触发事件：SVB倒闭，科技股暴跌60%
       - 当前持仓 vs 建议持仓（表格对比）
       - AI解释 + 历史回测数据（文字说明）

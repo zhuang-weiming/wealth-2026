@@ -101,7 +101,7 @@
                     <div class="bg-red-50 p-3 rounded-lg border border-red-100">
                         <div class="mb-1"><span class="ai-badge"><i class="fas fa-robot"></i> AI Summary</span></div>
                         <p class="text-xs text-gray-700 leading-relaxed">
-                            This news directly benefits your long-term bond holdings. However, it may also cause tech growth stocks (like your QQQ holdings) to be overvalued and pull back in the short term.
+                            This development is favorable for long-term bond allocations. Conversely, it may precipitate a short-term correction in technology growth equities, such as those represented by the QQQ ETF.
                         </p>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                     </div>
                     <p class="text-xs text-gray-500 mb-2">Although most companies exceeded earnings expectations, guidance was weak.</p>
                     <div class="flex items-center gap-2 text-xs font-medium text-amber-600">
-                        <i class="fas fa-exclamation-triangle"></i> Your tech stock exposure is currently too high (42%)
+                        <i class="fas fa-exclamation-triangle"></i> Your technology equity allocation is currently elevated at 42%, exceeding the recommended threshold for risk diversification.
                     </div>
                 </div>
             </section>
@@ -137,14 +137,14 @@
                             <span class="px-2 py-1 bg-gray-100 text-xs rounded text-gray-600">Risk exposure -12%</span>
                         </div>
                         <p class="text-sm text-gray-700 leading-relaxed">
-                            Given increased tech stock volatility and high Treasury yields, recommend locking in some tech stock profits and moving to defensive bonds to balance portfolio risk.
+                            In light of elevated volatility in technology equities and rising Treasury yields, it is prudent to realize gains on select technology positions and reallocate to defensive fixed-income securities to optimize portfolio risk-return profile.
                         </p>
                     </div>
 
                     <div class="mb-5">
                         <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Select Strategy (Control)</h3>
                         <div class="flex p-1 bg-gray-100 rounded-lg">
-                            <button onclick="setStrategy('conservative')" id="btn-conservative" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Conservative</button>
+                            <button onclick="setStrategy('defensive')" id="btn-defensive" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Defensive</button>
                             <button onclick="setStrategy('balanced')" id="btn-balanced" class="strategy-btn active flex-1 py-2 text-xs font-medium rounded-md bg-white shadow-sm text-gray-900 border border-gray-200">Balanced (Recommended)</button>
                             <button onclick="setStrategy('aggressive')" id="btn-aggressive" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Aggressive</button>
                         </div>
@@ -167,7 +167,7 @@
                     </div>
 
                     <button class="w-full bg-hsbc-red hover:bg-red-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-red-200 transition active:scale-95 flex justify-center items-center gap-2">
-                        <i class="fas fa-fingerprint"></i> Execute Rebalancing Now
+                        <i class="fas fa-fingerprint"></i> Execute Rebalancing
                     </button>
                     <p class="text-center text-[10px] text-gray-400 mt-2">Clicking represents your agreement to the AI Auto Trading Service Terms</p>
                 </div>
@@ -220,7 +220,7 @@
             const sellAmount = document.getElementById('sell-amount');
             const buyAmount = document.getElementById('buy-amount');
 
-            if (type === 'conservative') {
+            if (type === 'defensive') {
                 sellAmount.innerText = "$80,000";
                 buyAmount.innerText = "$80,000";
                 // Animation effect
