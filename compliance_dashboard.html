@@ -51,7 +51,7 @@
             <section>
                 <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                     <i class="fas fa-chart-line hsbc-red"></i>
-                    Real-time Monitoring (Today)
+                    Real-time Monitoring (<span id="current-date"></span>)
                 </h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -113,7 +113,7 @@
         const violations = [
             {
                 id: 1,
-                customer: 'Sarah Chen',
+                customer: 'Emily Thompson',
                 time: '09:23 AM',
                 ruleId: 'R003',
                 ruleName: 'Customs Evasion',
@@ -125,7 +125,7 @@
             },
             {
                 id: 2,
-                customer: 'John Liu',
+                customer: 'Raj Patel',
                 time: '08:45 AM',
                 ruleId: 'R001',
                 ruleName: 'Sanctioned Countries Investment',
@@ -244,8 +244,16 @@ ${v.aiResponse}
             }
         }
 
+        // Get Current Date
+        function getCurrentDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return today.toLocaleDateString('en-US', options);
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-date').textContent = getCurrentDate();
             renderViolations();
             renderRules();
         });
