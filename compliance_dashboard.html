@@ -114,6 +114,8 @@
             {
                 id: 1,
                 customer: 'Emily Thompson',
+                role: 'Relationship Manager',
+                roleColor: 'red',
                 time: '09:23 AM',
                 ruleId: 'R003',
                 ruleName: 'Customs Evasion',
@@ -126,6 +128,8 @@
             {
                 id: 2,
                 customer: 'Raj Patel',
+                role: 'Relationship Manager',
+                roleColor: 'red',
                 time: '08:45 AM',
                 ruleId: 'R001',
                 ruleName: 'Sanctioned Countries Investment',
@@ -138,6 +142,8 @@
             {
                 id: 3,
                 customer: 'Mike Wang',
+                role: 'Customer',
+                roleColor: 'green',
                 time: '07:12 AM',
                 ruleId: 'R002',
                 ruleName: 'Money Laundering / Tax Evasion',
@@ -167,6 +173,7 @@
                     <div class="flex justify-between items-start mb-3">
                         <div>
                             <span class="font-bold text-gray-900">${v.customer}</span>
+                            <span class="px-2 py-0.5 bg-${v.roleColor}-100 text-${v.roleColor}-700 text-xs rounded ml-2">${v.role}</span>
                             <span class="text-gray-400 text-sm ml-2">${v.time}</span>
                         </div>
                         <span class="px-3 py-1 bg-${v.riskColor}-100 text-${v.riskColor}-700 text-xs font-medium rounded-full">
