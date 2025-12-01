@@ -1,0 +1,77 @@
+ .brand-red {
+   color: #db0011;
+ }
+
+ .bg-brand-red {
+   background-color: #db0011;
+ }
+
+ .text-brand-red {
+   color: #db0011;
+ }
+
+ .card-shadow {
+   box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+ }
+
+ /* Style for the Chief Economist Card's blue elements */
+ .text-brand-blue {
+   color: #2563eb;
+ }
+
+ .border-blue-600 {
+   border-color: #2563eb;
+ }
+
+ .bg-blue-600 {
+   background-color: #2563eb;
+ }
+
+ .hover\:bg-blue-700:hover {
+   background-color: #1d4ed8;
+ }
+
+ /* Responsive override: when viewport is small, neutralize inline positioning
+       and make each promo li flow naturally. We try to achieve this with CSS
+       first; JS will remove the attributes themselves so markup is cleaned. */
+ @media (max-width: 767px) {
+
+   .fluid-sublayout__content,
+   .fluid-sublayout__content>li {
+     position: static !important;
+     display: block !important;
+     width: 100% !important;
+     max-width: 100% !important;
+     left: auto !important;
+     top: auto !important;
+     margin: 0 0 3rem 0 !important;
+     /* small spacing between blocks */
+     transform: none !important;
+   }
+
+   /* ensure any absolute children don't overflow */
+   .fluid-sublayout__content>li * {
+     max-width: 100% !important;
+     box-sizing: border-box !important;
+   }
+
+   /* For small screens ensure the third content block sits at 510px from the top */
+   .fluid-sublayout__content>li.content-block:nth-child(3) {
+     top: 510px !important;
+   }
+
+   .fluid-sublayout__content>li.content-block:nth-child(4) {
+     top: 620px !important;
+   }
+ }
+
+ /* Ensure hero/banner images cover their containers responsively
+       Original image is 1920x1080 — we want it to scale proportionally
+       and fill (crop) the banner area. */
+ .image-with-links__image {
+   width: 100% !important;
+   height: 100% !important;
+   object-fit: cover;
+   object-position: center;
+   display: block;
+ }
