@@ -1,80 +1,68 @@
  /* HSBC Design System Overrides */
  :root {
-     --hsbc-red: #a7000d;
-     --hsbc-green: #5cb85c;
-     --hsbc-warning: #f0ad4e;
-     --hsbc-dark: #2d2d2d;
-     --hsbc-gray: #5a5a5a;
-     --hsbc-light-gray: #f2f2f2;
-     --hsbc-border: #dcdcdc;
+   --hsbc-red: #a7000d;
+   --hsbc-green: #5cb85c;
+   --hsbc-warning: #f0ad4e;
+   --hsbc-dark: #2d2d2d;
+   --hsbc-gray: #5a5a5a;
+   --hsbc-light-gray: #f2f2f2;
+   --hsbc-border: #dcdcdc;
  }
 
 
  /* Custom Scrollbar */
  ::-webkit-scrollbar {
-     width: 8px;
+   width: 8px;
  }
 
  ::-webkit-scrollbar-track {
-     background: #f1f1f1;
+   background: #f1f1f1;
  }
 
  ::-webkit-scrollbar-thumb {
-     background: #888;
+   background: #888;
  }
 
  ::-webkit-scrollbar-thumb:hover {
-     background: #555;
+   background: #555;
  }
 
  /* Animation Utilities */
  .chat-bubble-in {
-     animation: slideIn 0.3s ease-out;
+   animation: slideIn 0.3s ease-out;
  }
 
  @keyframes slideIn {
-     from {
-         opacity: 0;
-         transform: translateY(10px);
-     }
-
-     to {
-         opacity: 1;
-         transform: translateY(0);
-     }
- }
-
- /* Copilot Widget Positioning */
- .copilot-widget {
-     position: fixed;
-     bottom: 90px;
-     right: 24px;
-     width: 380px;
-     height: 600px;
-     max-height: 80vh;
-     z-index: 50;
-     transform: translateY(20px) scale(0.95);
+   from {
      opacity: 0;
-     pointer-events: none;
-     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-     border: 1px solid #ddd;
-     background: white;
- }
+     transform: translateY(10px);
+   }
 
- .copilot-widget.active {
-     transform: translateY(0) scale(1);
+   to {
      opacity: 1;
-     pointer-events: auto;
+     transform: translateY(0);
+   }
  }
 
  /* Utility Classes for HSBC Style */
  .hsbc-header-border {
-     border-bottom: 2px solid var(--hsbc-red);
+   border-bottom: 2px solid var(--hsbc-red);
  }
 
  .hsbc-card {
-     background: white;
-     border: 1px solid #e5e5e5;
-     padding: 24px;
+   background: white;
+   border: 1px solid #e5e5e5;
+   padding: 24px;
+ }
+
+ .btn-group {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-end;
+ }
+
+ @media (min-width: 732px) {
+   .btn-group {
+     flex-direction: row;
+   }
  }

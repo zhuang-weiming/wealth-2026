@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="./css/hsbc.css" rel="stylesheet" />
+  <link href="./css/chatbot.css" rel="stylesheet" />
   <link href="./css/investment.css" rel="stylesheet" />
 </head>
 
@@ -236,7 +237,7 @@
             </div>
             <div class="space-y-4">
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">clean Energy Sector Outperformance</strong>
+                <strong class="text-[#2d2d2d] mb-1">Clean Energy Sector Outperformance</strong>
                 <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (lCLN) and peers beat Mscl World by 1.5%
                   YTD. **Action:** Flag forWealth Managers as a talking point.</p>
                 <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
@@ -365,7 +366,7 @@
               </div>
 
               <div class="p-5 bg-success">
-                <h4 class="text-text-green mb-2"><i class="fa-solid fa-shield-check mr-2"></i>COMPLIANCE PASS</h4>
+                <h4 class="mb-2">COMPLIANCE PASS</h4>
                 <ul class="text-success space-y-1">
                   <li>• Within Risk Profile (Moderate-Aggressive)</li>
                   <li>• HK SFC Regulation Compliant</li>
@@ -375,7 +376,7 @@
             </div>
           </div>
 
-          <div class="flex flex-col sm:flex-row justify-end gap-4 pt-6 border-t border-gray-200">
+          <div class="btn-group gap-4 pt-6 border-t border-gray-200">
             <button onclick="hideAdviceDetail()" class="btn btn-danger">Reject /
               Discuss</button>
             <button onclick="modifyRebalancing()" class="btn btn-info">Modify
@@ -411,12 +412,12 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap gap-2 pl-11">
+      <div class="flex flex-wrap gap-2 pl-11 justify-end">
         <button onclick="sendActionToAgent('Confirm Analyst Meeting')"
-          class="text-xs border border-gray-300 bg-white px-3 py-1 hover:bg-[#db0011] hover:text-white hover:border-[#db0011] transition-colors">Confirm
+          class="text-xs border border-gray-300 bg-white px-3 py-1 transition-colors">Confirm
           Meeting</button>
         <button onclick="sendActionToAgent('Generate Vetting Report')"
-          class="text-xs border border-gray-300 bg-white px-3 py-1 hover:bg-[#db0011] hover:text-white hover:border-[#db0011] transition-colors">Generate
+          class="text-xs border border-gray-300 bg-white px-3 py-1 transition-colors">Generate
           Report</button>
       </div>
     </div>
@@ -431,77 +432,8 @@
     </div>
   </aside>
 
+  <script src="./scripts/chatbot.js?v=1.0.0"></script>
   <script>
-    function sendActionToAgent(action) {
-      sendChatMessage(action, true);
-
-      // Simulate AI response
-      setTimeout(() => {
-        let botResp = `Confirmed: Task initiated for **${action}**. Results will appear shortly.`;
-        if (action.includes('ESG Report Summary') || action.includes('Report')) {
-          botResp = `**Top 3 Findings:**<br>1. **Renewables:** Funds >30% solar/wind exposure beat MSCI World (+1.5% YTD).<br>2. **Carbon Risk:** 2 reports flag excessive carbon in 4 funds.<br>3. **Compliance:** European ESG funds show higher regulation alignment.`;
-        }
-        sendChatMessage(botResp, false);
-      }, 800);
-    }
-
-    function sendChatMessage(message, isUser = true) {
-      const chatContainer = document.getElementById('chat-container');
-      const newChat = document.createElement('div');
-
-      // Styling differentiation
-      if (isUser) {
-        newChat.className = `flex gap-3 chat-bubble-in justify-end`;
-        newChat.innerHTML = `
-            <div class="bg-[#2d2d2d] text-white p-3 shadow-sm max-w-[85%]">
-                ${message}
-            </div>
-            <div class="bg-gray-400 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-user"></i></div>
-        `;
-      } else {
-        newChat.className = `flex gap-3 chat-bubble-in`;
-        newChat.innerHTML = `
-            <div class="bg-[#db0011] text-white flex items-center justify-center shrink-0">HSBC</div>
-            <div class="bg-white border border-gray-200 p-3 text-[#2d2d2d] shadow-sm max-w-[85%]">
-                ${message}
-            </div>
-        `;
-      }
-
-      chatContainer.appendChild(newChat);
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    function handleCopilotInput() {
-      const input = document.getElementById('copilot-input');
-      if (input.value.trim() !== '') {
-        const message = input.value.trim();
-        sendChatMessage(message, true);
-
-        setTimeout(() => {
-          sendChatMessage(`Search initiated for: **${message}**. Analyzing portfolio data...`, false);
-        }, 800);
-
-        input.value = '';
-      }
-    }
-
-    function toggleCopilot() {
-      const widget = document.getElementById('copilot-widget');
-      const trigger = document.getElementById('copilot-trigger');
-      widget.classList.toggle('active');
-
-      if (widget.classList.contains('active')) {
-        trigger.style.transform = 'scale(0)';
-        setTimeout(() => {
-          const input = document.getElementById('copilot-input');
-          if (input) input.focus();
-        }, 100);
-      } else {
-        trigger.style.transform = 'scale(1)';
-      }
-    }
-
     function showAdviceDetail(clientId) {
       const panel = document.getElementById('advice-detail-panel');
       panel.style.display = 'block';

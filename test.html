@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Native Wealth - Dashboard (HSBC Style)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* HSBC Brand Variables & Overrides */
+    :root {
+      --hsbc-red: #db0011;
+      --hsbc-red-dark: #b8000e;
+      --hsbc-black: #262626;
+      --hsbc-gray: #595959;
+      --hsbc-light-gray: #f6f6f6;
+      --hsbc-border: #dcdcdc;
+    }
+
+    body {
+      font-family: "Univers Next", "Helvetica Neue", Helvetica, Arial, "PingFang TC", sans-serif;
+      color: var(--hsbc-black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Simulation Frame */
+    .app-frame {
+      width: 100%;
+      height: 100vh;
+      background-color: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      body {
+        background-color: #e6e6e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      .app-frame {
+        max-width: 28rem;
+        /* Mobile width */
+        height: 90vh;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    /* Brand Utilities */
+    .text-hsbc-red {
+      color: var(--hsbc-red);
+    }
+
+    .bg-hsbc-red {
+      background-color: var(--hsbc-red);
+    }
+
+    .bg-hsbc-gray {
+      background-color: var(--hsbc-light-gray);
+    }
+
+    .hsbc-btn {
+      background-color: var(--hsbc-red);
+      color: white;
+      border-radius: 2px;
+      /* Sharper corners */
+      transition: background-color 0.2s;
+    }
+
+    .hsbc-btn:hover {
+      background-color: var(--hsbc-red-dark);
+    }
+
+    /* Cards - Sharper, cleaner */
+    .hsbc-card {
+      background: white;
+      border: 1px solid var(--hsbc-border);
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    /* Top red accent line often found in HSBC web components */
+    .hsbc-accent-top {
+      border-top: 3px solid var(--hsbc-red);
+    }
+
+    /* Strategy Toggle - Segmented Control Style */
+    .strategy-group {
+      display: flex;
+      border: 1px solid var(--hsbc-black);
+      background: white;
+    }
+
+    .strategy-btn {
+      flex: 1;
+      padding: 10px 0;
+      font-size: 13px;
+      color: var(--hsbc-black);
+      background: white;
+      border-right: 1px solid var(--hsbc-black);
+      transition: all 0.2s;
+    }
+
+    .strategy-btn:last-child {
+      border-right: none;
+    }
+
+    .strategy-btn.active {
+      background-color: var(--hsbc-black);
+      color: white;
+    }
+
+    /* Copilot Widget */
+    .copilot-widget {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 90%;
+      max-width: 360px;
+      height: 500px;
+      z-index: 50;
+      transform: translateY(20px) scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      border: 1px solid #ccc;
+    }
+
+    .copilot-widget.active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Hide scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+
+  <div class="app-frame">
+
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-20">
+      <div class="px-5 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="relative w-8 h-8">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+              <polygon points="0,0 50,50 0,100" fill="#db0011" />
+              <polygon points="100,0 50,50 100,100" fill="#db0011" />
+              <polygon points="50,0 25,25 75,25" fill="#db0011" />
+              <polygon points="50,100 25,75 75,75" fill="#db0011" />
+            </svg>
+          </div>
+          <span class="font-light text-xl tracking-tight text-gray-800">Wealth<span class="font-bold">AI</span></span>
+        </div>
+
+        <div class="flex gap-5 text-gray-600">
+          <i class="far fa-bell text-lg cursor-pointer hover:text-red-700"></i>
+          <i class="far fa-user text-lg cursor-pointer hover:text-red-700"></i>
+        </div>
+      </div>
+
+      <div class="px-5 pb-6 pt-2 bg-hsbc-gray border-b border-gray-200">
+        <p class="text-gray-600 text-xs mb-1">Total Relationship Balance</p>
+        <div class="flex items-baseline gap-2">
+          <span class="text-sm font-bold text-gray-500">USD</span>
+          <h1 class="text-3xl font-light text-gray-900">1,245,800.00</h1>
+        </div>
+        <div class="mt-2 flex items-center gap-2">
+          <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 border border-green-200">+0.28%</span>
+          <span class="text-xs text-gray-500">Last updated: Today</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto bg-white">
+      <div class="px-5 pt-6 pb-24">
+
+        <section class="mb-8">
+          <h2 class="text-lg font-light mb-4 border-l-4 border-[#db0011] pl-3 text-gray-900">Market Insights</h2>
+
+          <div class="hsbc-card p-4 hover:border-gray-400 transition-colors cursor-pointer">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-sm text-gray-800 pr-4">Fed Balance Sheet Policy Update</h3>
+              <span class="text-[10px] text-gray-400 whitespace-nowrap">07:00 AM</span>
+            </div>
+
+            <div class="flex gap-3 mt-3">
+              <div class="w-1 bg-[#db0011] shrink-0"></div>
+              <div>
+                <div class="text-[10px] font-bold text-gray-500 uppercase mb-1 tracking-wider">AI Analysis</div>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                  Favorable for long-term bonds. Potential short-term correction in technology equities (QQQ).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hsbc-card p-4 hover:border-gray-400 transition-colors cursor-pointer">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-sm text-gray-800">Portfolio Risk Alert</h3>
+              <span class="text-[10px] text-gray-400">07:15 AM</span>
+            </div>
+            <div class="flex items-start gap-2 mt-2">
+              <i class="fas fa-exclamation-circle text-amber-600 mt-0.5"></i>
+              <p class="text-sm text-gray-600">Tech allocation (42%) exceeds recommended threshold.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-6">
+          <h2 class="text-lg font-light mb-4 border-l-4 border-[#db0011] pl-3 text-gray-900">Portfolio Optimization</h2>
+
+          <div class="hsbc-card hsbc-accent-top shadow-sm">
+
+            <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 bg-black text-white flex items-center justify-center text-xs font-bold">AI</span>
+                <span class="font-bold text-gray-800 text-sm">Strategic Rebalance</span>
+              </div>
+              <span class="text-xs font-medium text-green-700">92% Match</span>
+            </div>
+
+            <div class="p-5">
+              <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+                To mitigate tech volatility, we recommend shifting exposure from Equities to Fixed Income.
+              </p>
+
+              <div class="mb-6">
+                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Select Strategy</label>
+                <div class="strategy-group">
+                  <button onclick="setStrategy('defensive')" id="btn-defensive" class="strategy-btn">Defensive</button>
+                  <button onclick="setStrategy('balanced')" id="btn-balanced"
+                    class="strategy-btn active">Balanced</button>
+                  <button onclick="setStrategy('aggressive')" id="btn-aggressive"
+                    class="strategy-btn">Aggressive</button>
+                </div>
+              </div>
+
+              <div class="border border-gray-200 mb-6 bg-white">
+                <div class="flex items-center p-3 border-b border-gray-100">
+                  <div class="w-8 text-center text-red-600 text-xs"><i class="fas fa-arrow-down"></i></div>
+                  <div class="flex-1">
+                    <div class="text-xs text-gray-500">Sell</div>
+                    <div class="font-bold text-sm">QQQ (Tech ETF)</div>
+                  </div>
+                  <div class="text-right font-bold text-gray-900" id="sell-amount">$50,000</div>
+                </div>
+                <div class="flex items-center p-3 bg-gray-50">
+                  <div class="w-8 text-center text-green-700 text-xs"><i class="fas fa-arrow-up"></i></div>
+                  <div class="flex-1">
+                    <div class="text-xs text-gray-500">Buy</div>
+                    <div class="font-bold text-sm">TLT (Treasury)</div>
+                  </div>
+                  <div class="text-right font-bold text-gray-900" id="buy-amount">$50,000</div>
+                </div>
+              </div>
+
+              <button onclick="executeRebalancing()"
+                class="w-full hsbc-btn py-4 text-sm font-bold uppercase tracking-wide">
+                Confirm Rebalance
+              </button>
+              <p class="mt-3 text-[10px] text-gray-400 text-center">
+                Subject to standard terms of business.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <nav
+      class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-300 px-6 pb-6 pt-3 flex justify-between items-end z-30">
+      <a href="#" class="flex flex-col items-center gap-1 group w-16">
+        <div class="h-0.5 w-6 bg-[#db0011] mb-1"></div>
+        <i class="fas fa-home text-lg text-[#db0011]"></i>
+        <span class="text-[10px] text-gray-900">Home</span>
+      </a>
+      <a href="#" class="flex flex-col items-center gap-1 group w-16 opacity-60 hover:opacity-100">
+        <div class="h-0.5 w-6 bg-transparent mb-1"></div>
+        <i class="fas fa-chart-pie text-lg text-gray-800"></i>
+        <span class="text-[10px] text-gray-800">Wealth</span>
+      </a>
+      <a href="#" class="flex flex-col items-center gap-1 group w-16 opacity-60 hover:opacity-100">
+        <div class="h-0.5 w-6 bg-transparent mb-1"></div>
+        <i class="far fa-newspaper text-lg text-gray-800"></i>
+        <span class="text-[10px] text-gray-800">News</span>
+      </a>
+      <a href="#" class="flex flex-col items-center gap-1 group w-16 opacity-60 hover:opacity-100">
+        <div class="h-0.5 w-6 bg-transparent mb-1"></div>
+        <i class="fas fa-bars text-lg text-gray-800"></i>
+        <span class="text-[10px] text-gray-800">More</span>
+      </a>
+    </nav>
+
+    <button id="copilot-trigger" onclick="toggleCopilot()"
+      class="absolute bottom-24 right-5 w-12 h-12 bg-[#262626] text-white flex items-center justify-center shadow-lg hover:bg-black transition-colors z-40">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col">
+      <div class="bg-[#262626] text-white p-4 flex justify-between items-center">
+        <h3 class="font-bold text-sm">Virtual Assistant</h3>
+        <button onclick="toggleCopilot()" class="text-white hover:text-gray-300"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+        <div class="flex gap-3">
+          <div
+            class="w-8 h-8 bg-white border border-gray-200 flex items-center justify-center text-[#db0011] text-xs font-bold shrink-0">
+            AI</div>
+          <div class="bg-white p-3 border border-gray-200 text-sm text-gray-800 shadow-sm max-w-[85%]">
+            Hello. I can help analyze your portfolio risks or explain the latest rebalancing suggestions.
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3 border-t border-gray-200 bg-white">
+        <div class="flex gap-2">
+          <input type="text" id="copilot-input" placeholder="Type your query..."
+            class="flex-1 border border-gray-300 p-2 text-sm focus:outline-none focus:border-[#db0011] rounded-none">
+          <button onclick="handleCopilotChat()"
+            class="bg-[#db0011] text-white px-4 text-sm font-bold hover:bg-[#b8000e]">SEND</button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script>
+    // Logic remains mostly the same, just updating classes where necessary
+    function setStrategy(type) {
+      // Reset all buttons
+      document.querySelectorAll('.strategy-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Activate clicked button
+      const activeBtn = document.getElementById('btn-' + type);
+      activeBtn.classList.add('active');
+
+      // Update values
+      const sellAmount = document.getElementById('sell-amount');
+      const buyAmount = document.getElementById('buy-amount');
+
+      if (type === 'defensive') {
+        updateValues(sellAmount, "$80,000");
+        updateValues(buyAmount, "$80,000");
+      } else if (type === 'balanced') {
+        updateValues(sellAmount, "$50,000");
+        updateValues(buyAmount, "$50,000");
+      } else if (type === 'aggressive') {
+        updateValues(sellAmount, "$15,000");
+        updateValues(buyAmount, "$15,000");
+      }
+    }
+
+    function updateValues(element, value) {
+      element.style.opacity = '0.2';
+      setTimeout(() => {
+        element.innerText = value;
+        element.style.opacity = '1';
+      }, 200);
+    }
+
+    function executeRebalancing() {
+      if (confirm('Please confirm that you wish to execute the rebalancing order as described.')) {
+        window.location.reload();
+      }
+    }
+
+    function toggleCopilot() {
+      const w = document.getElementById("copilot-widget");
+      const t = document.getElementById("copilot-trigger");
+      w.classList.toggle("active");
+      t.style.opacity = w.classList.contains("active") ? "0" : "1";
+    }
+
+    function handleCopilotChat() {
+      const input = document.getElementById("copilot-input");
+      const container = document.getElementById("chat-container");
+      if (!input.value.trim()) return;
+
+      // User Msg
+      container.innerHTML += `
+            <div class="flex gap-3 justify-end">
+                <div class="bg-[#db0011] text-white p-3 text-sm shadow-sm max-w-[85%]">
+                    ${input.value}
+                </div>
+            </div>`;
+
+      input.value = "";
+      container.scrollTop = container.scrollHeight;
+
+      // Bot Response Simulation
+      setTimeout(() => {
+        container.innerHTML += `
+            <div class="flex gap-3">
+                <div class="w-8 h-8 bg-white border border-gray-200 flex items-center justify-center text-[#db0011] text-xs font-bold shrink-0">AI</div>
+                <div class="bg-white p-3 border border-gray-200 text-sm text-gray-800 shadow-sm max-w-[85%]">
+                    I am processing your request based on current HSBC market data.
+                </div>
+             </div>`;
+        container.scrollTop = container.scrollHeight;
+      }, 800);
+    }
+  </script>
+</body>
+
+</html>
