@@ -167,14 +167,14 @@
                   <div class="w-2 h-2 rounded-full bg-primary"></div>
                   <strong>Jennifer Wu</strong>
                 </div>
-                <button onclick="showAdviceDetail('jennifer')"
-                  class="btn-link">View Details <i
+                <button onclick="showAdviceDetail('jennifer')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
               <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
                 <div>
                   <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-primary"><i class="fa-solid fa-arrow-trend-down"></i> SVB Crisis Exposure (65%)</strong>
+                  <strong class="text-primary"><i class="fa-solid fa-arrow-trend-down"></i> SVB Crisis Exposure
+                    (65%)</strong>
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
@@ -190,18 +190,17 @@
                   <div class="w-2 h-2 rounded-full bg-warning"></div>
                   <strong>Michael Chen</strong>
                 </div>
-                <button onclick="showAdviceDetail('michael')"
-                  class="btn-link">View Details <i
+                <button onclick="showAdviceDetail('michael')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
               <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
                 <div>
                   <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="hsbc-text-yellow">Fed Rate Hike Impact</strong>
+                  <strong class="text-warning">Fed Rate Hike Impact</strong>
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <span class="font-medium">$500,000</span>
+                  <strong>$500,000</strong>
                 </div>
               </div>
             </div>
@@ -213,8 +212,7 @@
                   <div class="w-2 h-2 rounded-full bg-success"></div>
                   <span class="font-bold text-[#2d2d2d]">Sarah Lee</span>
                 </div>
-                <button onclick="showAdviceDetail('sarah')"
-                  class="btn-link">View Details <i
+                <button onclick="showAdviceDetail('sarah')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
               <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
@@ -224,7 +222,7 @@
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <span class="font-medium">$200,000</span>
+                  <strong>$200,000</strong>
                 </div>
               </div>
             </div>
@@ -238,15 +236,15 @@
             </div>
             <div class="space-y-4">
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">Clean Energy Outperformance</strong>
-                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF > MSCI World by
-                  1.5% YTD.</p>
+                <strong class="text-[#2d2d2d] mb-1">clean Energy Sector Outperformance</strong>
+                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (lCLN) and peers beat Mscl World by 1.5%
+                  YTD. **Action:** Flag forWealth Managers as a talking point.</p>
                 <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
               </div>
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">FOMC Minutes Review</strong>
-                <p class="text-gray-600 mb-2">"Higher for longer" rates confirmed. Strategy
-                  meeting at 11:30.</p>
+                <strong class="text-[#2d2d2d] mb-1">Federal Reserve FoMc Minutes Review</strong>
+                <p class="text-gray-600 mb-2">Key emphasis on "higher for longer" rates. **Action:** Fixed income
+                  strategy meeting scheduled forTuesday 11:30 AM.</p>
                 <a href="#" class="text-[#db0011] hover:underline">View Minutes &rarr;</a>
               </div>
             </div>
@@ -258,16 +256,17 @@
             </div>
             <ul class="space-y-3">
               <li class="flex justify-between items-center">
-                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>Urgent: 4 Flagged SFDRDueFunds</strong>
+                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>Urgent: 4 Flagged
+                  SFDRDueFunds</strong>
                 <strong class="text-[#db0011] text-right">Due Today</strong>
               </li>
               <li class="flex justify-between items-center">
                 <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>New: Russell 2000 Growth</span>
-                <span class="text-gray-500">3 days</span>
+                <span class="text-gray-500">in 3 days</span>
               </li>
               <li class="flex justify-between items-center">
                 <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i> Rebal: JPM EM BondIndex</span>
-                <span class="text-gray-500">7 days</span>
+                <span class="text-gray-500">in 7 days</span>
               </li>
             </ul>
           </div>
@@ -338,6 +337,12 @@
                       <td>Cash</td>
                       <td>$50,000 (20%)</td>
                       <td>$50,000 (15%)</td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>Total</td>
+                      <td>$300,000</td>
+                      <td>$300,000</td>
                       <td>-</td>
                     </tr>
                   </tbody>
@@ -420,8 +425,7 @@
       <input type="text" id="copilot-input" placeholder="Ask AI..."
         class="flex-1 bg-gray-100 border-0 px-3 py-2 focus:ring-1 focus:ring-[#db0011] focus:outline-none"
         onkeypress="if(event.key === 'Enter') handleCopilotInput()">
-      <button onclick="handleCopilotInput()"
-        class="btn btn-info">
+      <button onclick="handleCopilotInput()" class="btn btn-info">
         <i class="fa-solid fa-paper-plane"></i>
       </button>
     </div>
