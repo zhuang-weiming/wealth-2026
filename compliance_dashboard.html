@@ -117,13 +117,13 @@
                 role: 'Relationship Manager',
                 roleColor: 'red',
                 time: '09:23 AM',
-                ruleId: 'R003',
-                ruleName: 'Customs Evasion',
+                ruleId: 'R005',
+                ruleName: 'High Leverage Product Promotion',
                 riskLevel: 'Critical',
                 riskColor: 'red',
-                question: 'I want to bring 5kg of gold back to my country. How can I avoid customs inspection?',
-                aiResponse: '⚠️ I cannot provide advice on evading customs regulations. According to international law, precious metals must be declared when crossing borders.\n\nI recommend consulting a professional customs broker for legal guidance.\n\n[This conversation has been flagged as high-risk and logged]',
-                action: 'Blocked + Flagged + Notified Compliance Officer'
+                question: 'Can I recommend 10x leveraged crypto ETFs to my conservative clients to boost my commission? They don\'t need to know the full risks.',
+                aiResponse: '⚠️ I cannot assist with recommending unsuitable products to clients. All product recommendations must align with client risk profiles and comply with suitability requirements.\n\nMisleading clients or prioritizing commission over their interests violates regulatory standards.\n\n[This conversation has been flagged and escalated to compliance]',
+                action: 'Blocked + Flagged + Notified Compliance Officer + RM Account Suspended'
             },
             {
                 id: 2,
@@ -131,13 +131,13 @@
                 role: 'Relationship Manager',
                 roleColor: 'red',
                 time: '08:45 AM',
-                ruleId: 'R001',
-                ruleName: 'Sanctioned Countries Investment',
+                ruleId: 'R004',
+                ruleName: 'Insider Trading',
                 riskLevel: 'High',
                 riskColor: 'orange',
-                question: 'I want to invest in Russian oil company stocks. Any recommendations?',
-                aiResponse: '⚠️ I apologize, but due to international sanctions regulations, I cannot provide investment advice regarding sanctioned countries. Please contact your relationship manager for further assistance.\n\n[This conversation has been logged and compliance has been notified]',
-                action: 'Blocked + Logged + Notified Compliance Officer'
+                question: 'I just heard from a client who works at TechCorp that they\'re announcing a merger next week. Should I buy their stock now before the news goes public?',
+                aiResponse: '⚠️ I cannot provide guidance on trading based on material non-public information. This constitutes insider trading, which is illegal and strictly prohibited.\n\nAny such activity will be reported to regulatory authorities.\n\n[This conversation has been logged and compliance has been notified]',
+                action: 'Blocked + Logged + Notified Compliance Officer + Legal Review Initiated'
             },
             {
                 id: 3,
@@ -159,9 +159,9 @@
         const rules = [
             { id: 'R001', name: 'Sanctioned Countries Investment', description: 'Block investment inquiries related to sanctioned nations', triggers: 8 },
             { id: 'R002', name: 'Money Laundering / Tax Evasion', description: 'Detect and block AML and tax evasion attempts', triggers: 3 },
-            { id: 'R003', name: 'Customs Evasion', description: 'Block advice on evading customs regulations', triggers: 1 },
-            { id: 'R004', name: 'Insider Trading', description: 'Prevent insider trading related inquiries', triggers: 0 },
-            { id: 'R005', name: 'High Leverage Product Promotion', description: 'Restrict high-risk product recommendations', triggers: 0 },
+            { id: 'R003', name: 'Customs Evasion', description: 'Block advice on evading customs regulations', triggers: 0 },
+            { id: 'R004', name: 'Insider Trading', description: 'Prevent insider trading related inquiries', triggers: 1 },
+            { id: 'R005', name: 'High Leverage Product Promotion', description: 'Restrict high-risk product recommendations', triggers: 1 },
             { id: 'R006', name: 'Minor Investment', description: 'Block investment services for underage clients', triggers: 0 }
         ];
 
@@ -201,7 +201,7 @@ ${v.aiResponse}
                         </div>
                         <div class="flex gap-2">
                             <button class="px-3 py-1.5 bg-gray-800 text-white text-xs rounded hover:bg-gray-700 transition">
-                                <i class="fas fa-user-shield mr-1"></i> Contact Customer
+                                <i class="fas fa-user-shield mr-1"></i> Contact User
                             </button>
                             <button class="px-3 py-1.5 border border-gray-300 text-gray-700 text-xs rounded hover:bg-gray-50 transition">
                                 <i class="fas fa-file-export mr-1"></i> Export Case
