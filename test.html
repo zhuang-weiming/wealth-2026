@@ -121,7 +121,7 @@
     <main class="max-w-[1400px] mx-auto p-6 pb-32">
       <!-- <div class="mb-8">
         <h1 class="text-3xl font-light text-[#2d2d2d] mb-2">Investment Overview</h1>
-        <p class="text-gray-600">Monitor critical market movements, portfolio risks, and compliance
+        <p class="text-gray-600 text-sm">Monitor critical market movements, portfolio risks, and compliance
           alerts.</p>
       </div> -->
       <div id="copilot-alert-card"
@@ -133,7 +133,7 @@
           <div class="flex items-center gap-3 mb-2">
             <!-- <span class="uppercase tracking-wide">Action
               Required</span> -->
-            <h3 class="text-[#2d2d2d]">Compliance Risk: SFDR Article 9 Violation</h3>
+            <h3 class="text-xl font-medium text-[#2d2d2d]">Compliance Risk: SFDR Article 9 Violation</h3>
           </div>
           <p>
             Two new ESG reports flag excessive carbon exposure in 4 currently-approved funds. Immediate
@@ -153,10 +153,11 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
         <div class="hsbc-card lg:col-span-2">
           <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
-            <h3>Rebalancing Review Queue</h3>
-            <span class="text-gray-500">AI Prioritized</span>
+            <h3 class="text-lg font-medium text-[#2d2d2d]">Rebalancing Review Queue</h3>
+            <span class="text-xs text-gray-500">AI Prioritized</span>
           </div>
 
           <div class="space-y-4">
@@ -164,21 +165,23 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-primary"></div>
-                  <strong>Jennifer Wu</strong>
+                  <div class="w-2 h-2 rounded-full bg-[#db0011]"></div>
+                  <span class="font-bold text-[#2d2d2d] text-base">Jennifer Wu</span>
+                  <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 border border-gray-300">Premier</span>
                 </div>
                 <button onclick="showAdviceDetail('jennifer')"
-                  class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
+                  class="text-sm text-[#db0011] font-medium hover:underline">View Details <i
+                    class="fa-solid fa-chevron-right text-xs ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="pl-5 text-sm text-gray-600 grid grid-cols-2 gap-4">
                 <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-primary"><i class="fa-solid fa-arrow-trend-down"></i> SVB Crisis Exposure (65%)</strong>
+                  <span class="block text-xs text-gray-400 uppercase">Trigger</span>
+                  <span class="text-[#db0011] font-medium"><i class="fa-solid fa-arrow-trend-down"></i> SVB Crisis
+                    Exposure (65%)</span>
                 </div>
                 <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <strong>$300,000</strong>
+                  <span class="block text-xs text-gray-400 uppercase">Total AUM</span>
+                  <span class="font-medium">$300,000</span>
                 </div>
               </div>
             </div>
@@ -187,20 +190,20 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-warning"></div>
-                  <strong>Michael Chen</strong>
+                  <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                  <span class="font-bold text-[#2d2d2d] text-base">Michael Chen</span>
                 </div>
                 <button onclick="showAdviceDetail('michael')"
-                  class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
+                  class="text-sm text-[#db0011] font-medium hover:underline">View Details <i
+                    class="fa-solid fa-chevron-right text-xs ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="pl-5 text-sm text-gray-600 grid grid-cols-2 gap-4">
                 <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="hsbc-text-yellow">Fed Rate Hike Impact</strong>
+                  <span class="block text-xs text-gray-400 uppercase">Trigger</span>
+                  <span class="text-yellow-600 font-medium">Fed Rate Hike Impact</span>
                 </div>
                 <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
+                  <span class="block text-xs text-gray-400 uppercase">Total AUM</span>
                   <span class="font-medium">$500,000</span>
                 </div>
               </div>
@@ -210,20 +213,20 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-success"></div>
-                  <span class="font-bold text-[#2d2d2d]">Sarah Lee</span>
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span class="font-bold text-[#2d2d2d] text-base">Sarah Lee</span>
                 </div>
                 <button onclick="showAdviceDetail('sarah')"
-                  class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
+                  class="text-sm text-[#db0011] font-medium hover:underline">View Details <i
+                    class="fa-solid fa-chevron-right text-xs ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="pl-5 text-sm text-gray-600 grid grid-cols-2 gap-4">
                 <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-success">Gold Allocation Opp</strong>
+                  <span class="block text-xs text-gray-400 uppercase">Trigger</span>
+                  <span class="text-green-700 font-medium">Gold Allocation Opp</span>
                 </div>
                 <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
+                  <span class="block text-xs text-gray-400 uppercase">Total AUM</span>
                   <span class="font-medium">$200,000</span>
                 </div>
               </div>
@@ -234,40 +237,44 @@
         <div class="space-y-6">
           <div class="hsbc-card">
             <div class="hsbc-header-border pb-3 mb-4">
-              <h3 class="text-[#2d2d2d]">Market Research Synthesis (Last 24hrs)</h3>
+              <h3 class="text-lg font-medium text-[#2d2d2d]">Market Insights</h3>
             </div>
             <div class="space-y-4">
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">Clean Energy Outperformance</strong>
-                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF > MSCI World by
+                <p class="font-bold text-sm text-[#2d2d2d] mb-1">Clean Energy Outperformance</p>
+                <p class="text-xs text-gray-600 mb-2">iShares Global Clean Energy ETF > MSCI World by
                   1.5% YTD.</p>
-                <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
+                <a href="#" class="text-xs text-[#db0011] hover:underline">Read Analysis &rarr;</a>
               </div>
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">FOMC Minutes Review</strong>
-                <p class="text-gray-600 mb-2">"Higher for longer" rates confirmed. Strategy
+                <p class="font-bold text-sm text-[#2d2d2d] mb-1">FOMC Minutes Review</p>
+                <p class="text-xs text-gray-600 mb-2">"Higher for longer" rates confirmed. Strategy
                   meeting at 11:30.</p>
-                <a href="#" class="text-[#db0011] hover:underline">View Minutes &rarr;</a>
+                <a href="#" class="text-xs text-[#db0011] hover:underline">View Minutes &rarr;</a>
               </div>
             </div>
           </div>
 
           <div class="hsbc-card bg-gray-50 border-gray-200">
             <div class="hsbc-header-border pb-3 mb-4 flex justify-between">
-              <h3 class="text-[#2d2d2d]">Product Vetting Queue</h3>
+              <h3 class="text-lg font-medium text-[#2d2d2d]">Product Vetting</h3>
+              <span class="bg-[#2d2d2d] text-white text-xs px-2 py-1 rounded-full">3 Pending</span>
             </div>
             <ul class="space-y-3">
-              <li class="flex justify-between items-center">
-                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>Urgent: 4 Flagged SFDRDueFunds</strong>
-                <strong class="text-[#db0011] text-right">Due Today</strong>
+              <li class="flex justify-between items-center text-sm">
+                <span class="text-[#db0011] font-medium"><i class="fa-solid fa-circle-exclamation mr-2"></i>SFDR
+                  Audit</span>
+                <span class="text-xs font-bold text-[#db0011]">Due Today</span>
               </li>
-              <li class="flex justify-between items-center">
-                <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>New: Russell 2000 Growth</span>
-                <span class="text-gray-500">3 days</span>
+              <li class="flex justify-between items-center text-sm">
+                <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>Russell 2000
+                  Growth</span>
+                <span class="text-xs text-gray-500">3 days</span>
               </li>
-              <li class="flex justify-between items-center">
-                <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i> Rebal: JPM EM BondIndex</span>
-                <span class="text-gray-500">7 days</span>
+              <li class="flex justify-between items-center text-sm">
+                <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i>JPM EM Bond
+                  Rebal</span>
+                <span class="text-xs text-gray-500">7 days</span>
               </li>
             </ul>
           </div>
@@ -287,58 +294,58 @@
         <div class="p-8">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-200">
             <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">Client Name</span>
-              <strong class="text-[#2d2d2d]">Jennifer Wu</strong>
+              <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Client Name</span>
+              <span class="text-lg font-bold text-[#2d2d2d]">Jennifer Wu</span>
             </div>
             <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">Status</span>
-              <span class="text-[#2d2d2d]">Premier Customer</span>
+              <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Status</span>
+              <span class="text-lg text-[#2d2d2d]">Premier Customer</span>
             </div>
             <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">Portfolio
+              <span class="block text-xs text-gray-500 uppercase tracking-wider mb-1">Portfolio
                 Value</span>
-              <span class="text-[#2d2d2d]">$300,000.00</span>
+              <span class="text-lg font-mono text-[#2d2d2d]">$300,000.00</span>
             </div>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             <div class="lg:col-span-2 space-y-6">
-              <div class="bg-danger border-l-4 border-[#a7000d] p-4">
-                <h4 class="text-[#db0011] font-bold mb-2">TRIGGER EVENT</h4>
-                <p class="text-gray-800">SVB collapse contributed to a 60% decline in tech
+              <div class="bg-red-50 border-l-4 border-[#db0011] p-4">
+                <h4 class="text-[#db0011] font-bold text-sm mb-2">TRIGGER EVENT</h4>
+                <p class="text-sm text-gray-800">SVB collapse contributed to a 60% decline in tech
                   stocks. Portfolio risk exposure exceeded limit (65%). Immediate rebalancing
                   recommended.</p>
               </div>
 
               <div>
                 <h4 class="font-bold text-[#2d2d2d] mb-4">Proposed Allocation Changes</h4>
-                <table class="table dataTable">
+                <table class="w-full text-sm border-collapse">
                   <thead>
-                    <tr>
-                      <th>Asset</th>
-                      <th>Current</th>
-                      <th>Proposed</th>
-                      <th>Delta</th>
+                    <tr class="bg-gray-100 text-left border-b border-gray-300">
+                      <th class="p-3 font-semibold text-gray-600">Asset</th>
+                      <th class="p-3 font-semibold text-gray-600 text-right">Current</th>
+                      <th class="p-3 font-semibold text-gray-600 text-right">Proposed</th>
+                      <th class="p-3 font-semibold text-gray-600 text-right">Delta</th>
                     </tr>
                   </thead>
-                  <tbody id="portfolio-body">
-                    <tr>
-                      <td>QQQ (Tech ETF)</td>
-                      <td>$200,000 (65%)</td>
-                      <td>$100,000 (35%)</td>
-                      <td>- $100,000</td>
+                  <tbody>
+                    <tr class="border-b border-gray-200">
+                      <td class="p-3">QQQ (Tech ETF)</td>
+                      <td class="p-3 text-right text-gray-500">$200,000 (65%)</td>
+                      <td class="p-3 text-right font-bold text-[#2d2d2d]">$100,000 (35%)</td>
+                      <td class="p-3 text-right text-[#db0011] font-bold">- $100,000</td>
+                    </tr>
+                    <tr class="border-b border-gray-200">
+                      <td class="p-3">TLT (Treasury Bond)</td>
+                      <td class="p-3 text-right text-gray-500">$50,000 (15%)</td>
+                      <td class="p-3 text-right font-bold text-[#2d2d2d]">$150,000 (50%)</td>
+                      <td class="p-3 text-right text-green-700 font-bold">+ $100,000</td>
                     </tr>
                     <tr>
-                      <td>TLT (Treasury Bond)</td>
-                      <td>$50,000 (15%)</td>
-                      <td>$150,000 (50%)</td>
-                      <td>+ $100,000</td>
-                    </tr>
-                    <tr>
-                      <td>Cash</td>
-                      <td>$50,000 (20%)</td>
-                      <td>$50,000 (15%)</td>
-                      <td>-</td>
+                      <td class="p-3">Cash</td>
+                      <td class="p-3 text-right text-gray-500">$50,000 (20%)</td>
+                      <td class="p-3 text-right font-bold text-[#2d2d2d]">$50,000 (15%)</td>
+                      <td class="p-3 text-right text-gray-400">-</td>
                     </tr>
                   </tbody>
                 </table>
@@ -346,22 +353,23 @@
             </div>
 
             <div class="space-y-6">
-              <div class="bg-gray-50 p-5  border-gray-200">
-                <h4 class="mb-3 border-b border-gray-300 pb-2">
+              <div class="bg-gray-50 p-5 border border-gray-200">
+                <h4 class="font-bold text-[#2d2d2d] text-sm mb-3 border-b border-gray-300 pb-2">
                   PROJECTED IMPACT</h4>
                 <div class="mb-4">
-                  <span class="block text-gray-500">Risk Reduction</span>
-                  <strong class="text-success">-30%</strong>
+                  <span class="block text-xs text-gray-500">Risk Reduction</span>
+                  <span class="text-2xl font-bold text-green-700">-30%</span>
                 </div>
                 <div>
-                  <span class="block text-gray-500">Est. Loss Avoided</span>
+                  <span class="block text-xs text-gray-500">Est. Loss Avoided</span>
                   <span class="text-2xl font-bold text-[#2d2d2d]">$30,000</span>
                 </div>
               </div>
 
-              <div class="p-5 bg-success">
-                <h4 class="text-text-green mb-2"><i class="fa-solid fa-shield-check mr-2"></i>COMPLIANCE PASS</h4>
-                <ul class="text-success space-y-1">
+              <div class="p-5 border border-green-200 bg-green-50/50">
+                <h4 class="font-bold text-green-800 text-sm mb-2"><i class="fa-solid fa-shield-check mr-2"></i>
+                  COMPLIANCE PASS</h4>
+                <ul class="text-xs text-green-900 space-y-1">
                   <li>• Within Risk Profile (Moderate-Aggressive)</li>
                   <li>• HK SFC Regulation Compliant</li>
                   <li>• No Concentration Limits Breached</li>
@@ -371,11 +379,11 @@
           </div>
 
           <div class="flex flex-col sm:flex-row justify-end gap-4 pt-6 border-t border-gray-200">
-            <button onclick="hideAdviceDetail()" class="btn btn-danger">Reject /
+            <button onclick="hideAdviceDetail()" class="hsbc-btn-secondary px-6 py-3 font-bold text-sm">Reject /
               Discuss</button>
-            <button onclick="modifyRebalancing()" class="btn btn-info">Modify
+            <button onclick="modifyRebalancing()" class="hsbc-btn-secondary px-6 py-3 font-bold text-sm">Modify
               Parameters</button>
-            <button onclick="approveRebalancing()" class="btn btn-success">
+            <button onclick="approveRebalancing()" class="hsbc-btn-primary px-8 py-3 font-bold text-sm shadow-md">
               Approve & Notify Client
             </button>
           </div>
@@ -386,11 +394,11 @@
   </div>
 
   <button id="copilot-trigger" onclick="toggleCopilot()"
-    class="fixed bottom-6 right-6 z-40 bg-[#cccccc] text-white w-14 h-14 shadow-2xl flex items-center justify-center text-2xl hover:bg-[#db0011] transition-colors duration-300">
+    class="fixed bottom-6 right-6 z-40 bg-[#2d2d2d] text-white w-14 h-14 shadow-2xl flex items-center justify-center text-2xl hover:bg-[#db0011] transition-colors duration-300">
     <i class="fa-solid fa-robot"></i>
   </button>
 
-  <aside id="copilot-widget" class="copilot-widget flex flex-col space-between" style="display: flex;">
+  <aside id="copilot-widget" class="copilot-widget flex flex-col">
     <div class="bg-[#2d2d2d] text-white p-4 flex justify-between items-center shrink-0">
       <h3 class="font-bold flex items-center gap-2"><i class="fa-solid fa-robot"></i> Investment Assistant</h3>
       <button onclick="toggleCopilot()" class="text-gray-400 hover:text-white"><i
@@ -399,9 +407,9 @@
 
     <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
       <div class="flex gap-3 chat-bubble-in">
-        <div class="bg-primary text-white flex items-center justify-center shrink-0">HSBC
+        <div class="w-8 h-8 bg-[#db0011] text-white flex items-center justify-center text-xs shrink-0">HSBC
         </div>
-        <div class="bg-white border border-gray-200 p-3 text-[#2d2d2d] shadow-sm max-w-[85%]">
+        <div class="bg-white border border-gray-200 p-3 text-sm text-[#2d2d2d] shadow-sm max-w-[85%]">
           <p>Welcome. A critical risk (SFDR) is flagged. What is your next action?</p>
         </div>
       </div>
@@ -416,13 +424,13 @@
       </div>
     </div>
 
-    <div class="p-3 bg-white border-t flex border-gray-200 gap-2">
+    <div class="p-3 bg-white border-t border-gray-200 flex gap-2">
       <input type="text" id="copilot-input" placeholder="Ask AI..."
-        class="flex-1 bg-gray-100 border-0 px-3 py-2 focus:ring-1 focus:ring-[#db0011] focus:outline-none"
+        class="flex-1 bg-gray-100 border-0 px-3 py-2 text-sm focus:ring-1 focus:ring-[#db0011] focus:outline-none"
         onkeypress="if(event.key === 'Enter') handleCopilotInput()">
       <button onclick="handleCopilotInput()"
-        class="btn btn-info">
-        <i class="fa-solid fa-paper-plane"></i>
+        class="bg-[#2d2d2d] text-white w-10 h-10 hover:bg-[#db0011] transition-colors">
+        <i class="fa-solid fa-paper-plane text-xs"></i>
       </button>
     </div>
   </aside>
@@ -449,16 +457,16 @@
       if (isUser) {
         newChat.className = `flex gap-3 chat-bubble-in justify-end`;
         newChat.innerHTML = `
-            <div class="bg-[#2d2d2d] text-white p-3 shadow-sm max-w-[85%]">
+            <div class="bg-[#2d2d2d] text-white p-3 text-sm shadow-sm max-w-[85%]">
                 ${message}
             </div>
-            <div class="bg-gray-400 text-white flex items-center justify-center shrink-0"><i class="fa-solid fa-user"></i></div>
+            <div class="w-8 h-8 bg-gray-400 text-white flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-user"></i></div>
         `;
       } else {
         newChat.className = `flex gap-3 chat-bubble-in`;
         newChat.innerHTML = `
-            <div class="bg-[#db0011] text-white flex items-center justify-center shrink-0">HSBC</div>
-            <div class="bg-white border border-gray-200 p-3 text-[#2d2d2d] shadow-sm max-w-[85%]">
+            <div class="w-8 h-8 bg-[#db0011] text-white flex items-center justify-center text-xs shrink-0">HSBC</div>
+            <div class="bg-white border border-gray-200 p-3 text-sm text-[#2d2d2d] shadow-sm max-w-[85%]">
                 ${message}
             </div>
         `;
