@@ -82,3 +82,51 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.copilot-widget {
+  position: absolute;
+  bottom: 240px;
+  right: 16px;
+  width: 340px;
+  height: 500px;
+  max-height: 60vh;
+  z-index: 50;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  display: flex;
+}
+
+.copilot-widget.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.copilot-trigger {
+  position: absolute;
+  bottom: 150px;
+  right: 16px;
+  z-index: 49;
+  transition: transform 0.2s;
+}
+
+.copilot-trigger:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 640px) {
+  .copilot-trigger {
+    bottom: 150px;
+    right: 16px;
+  }
+
+  .copilot-widget {
+    bottom: 210px;
+    right: 16px;
+    width: 340px;
+  }
+}
