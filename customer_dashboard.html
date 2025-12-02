@@ -72,10 +72,14 @@
             color: white;
             border-color: #1f2937;
         }
-        .copilot-widget { position: fixed; bottom: 90px; right: 24px; width: 380px; height: 600px; max-height: 80vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
+        .copilot-widget { position: absolute; bottom: 240px; right: 16px; width: 340px; height: 500px; max-height: 60vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
         .copilot-widget.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-        .copilot-trigger { position: fixed; bottom: 24px; right: 24px; z-index: 49; transition: transform 0.2s; }
+        .copilot-trigger { position: absolute; bottom: 150px; right: 16px; z-index: 49; transition: transform 0.2s; }
         .copilot-trigger:hover { transform: scale(1.05); }
+        @media (min-width: 640px) {
+            .copilot-trigger { bottom: 150px; right: 16px; }
+            .copilot-widget { bottom: 210px; right: 16px; width: 340px; }
+        }
     </style>
 </head>
 <body class="bg-white sm:bg-gray-100">
@@ -88,7 +92,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center gap-2">
                         <img src="resource/IMG_1035.png" alt="HSBC" class="h-6">
-                        <span class="font-semibold text-lg tracking-tight">Wealth AI</span>
+                        <span class="font-semibold text-lg tracking-tight"> AI-Native Wealth </span>
                     </div>
                     <div class="flex gap-4 text-gray-600">
                         <i class="far fa-bell text-lg"></i>
