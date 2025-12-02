@@ -176,7 +176,7 @@
     </nav>
 
     <button id="copilot-trigger" onclick="toggleCopilot()"
-      class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i
+      class="copilot-trigger bg-[#cccccc] text-white w-14 h-14 shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i
         class="fa-solid fa-robot"></i></button>
     <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col p-4 border border-gray-200">
       <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
@@ -196,8 +196,7 @@
       <div class="pt-4 border-t border-gray-200 flex space-x-2 flex items-center">
         <input type="text" id="copilot-input" placeholder="Ask me anything..."
           class="flex-1 border border-gray-300 p-3 focus:outline-none" />
-        <button onclick="handleCopilotChat()"
-          class="btn-success w-16 h-16 flex items-center justify-center transition">
+        <button onclick="handleCopilotChat()" class="btn-success w-16 h-16 flex items-center justify-center transition">
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
