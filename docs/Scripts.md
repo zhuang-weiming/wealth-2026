@@ -4,6 +4,8 @@
 https://ttsmaker.com/
 34 / 35 # voice
 
+Jennifer's portfolio needs rebalancing
+
 "This is the Compliance Dashboard,
 capturing the full review process of our AI recommendation."
 
@@ -15,7 +17,6 @@ and regulatory requirements."
 "Every compliance check
 is backed by clear evidence and conclusions."
 
-"Finally, the system confirms
-full compliance with suitability principles."
+The Relationship-Agent has automatically executed the rebalancing. Jennifer now reviews the results.
 
-"This is the power of AI-Native Compliance."
+Obtain professional advice from HSBC

@@ -124,27 +124,28 @@
           alerts.</p>
       </div> -->
       <div id="copilot-alert-card"
-        class="bg-white border-l-[6px] border-[#db0011] shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+        class="bg-danger border-l-[6px] border-[#db0011] shadow-sm p-6 pb-10 pt-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
         <!-- <div class="text-[#db0011] text-3xl pt-1">
           <i class="fa-solid fa-triangle-exclamation"></i>
         </div> -->
-        <div>
+        <div class="text-danger">
           <div class="flex items-center gap-3 mb-2">
             <!-- <span class="uppercase tracking-wide">Action
               Required</span> -->
-            <h3 class="text-[#2d2d2d]">Compliance Risk: SFDR Article 9 Violation</h3>
+            <span class="bg-primary text-white font-bold px-2 py-0.5 animate-pulse-slow">High
+              Priority</span>
+            <div class="text-4xl">Compliance Risk: SFDR Article 9 Violation</div>
           </div>
           <p>
-            Two new ESG reports flag excessive carbon exposure in 4 currently-approved funds. Immediate
-            Product Vetting review is required to maintain SFDR Article 9 classification.
+            Two new ESG reports indicate excessive carbon exposure in 4 currently-approved funds. Immediate Product Vetting review is required to maintain SFDR Article 9 classification.
           </p>
           <div class="flex gap-3">
             <button
               onclick="sendActionToAgent('Review Flagged Funds for Article 9 Compliance in Product Vetting Queue')"
-              class="btn-primary px-5 py-2">
+              class="btn-danger px-5 py-2">
               Review Compliance
             </button>
-            <button onclick="sendActionToAgent('View ESG Report Summary')" class="btn-primary px-5 py-2">
+            <button onclick="sendActionToAgent('View ESG Report Summary')" class="btn-danger px-5 py-2">
               View Report Summary
             </button>
           </div>
@@ -154,7 +155,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="hsbc-card lg:col-span-2">
           <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
-            <h3>Rebalancing Review Queue</h3>
+            <h3>AI Rebalancing Review Queue</h3>
             <span class="text-gray-500">AI Prioritized</span>
           </div>
 
@@ -163,17 +164,20 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                  <span class="bg-primary text-white px-2 py-0.5 text-xl">High Priority</span>
                   <strong>Jennifer Wu</strong>
                 </div>
                 <button onclick="showAdviceDetail('jennifer')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="text-gray-600 grid grid-cols-3 gap-4">
                 <div>
                   <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-primary"><i class="fa-solid fa-arrow-trend-down"></i> SVB Crisis Exposure
-                    (65%)</strong>
+                  <strong class="text-primary">SVB Crisis Rebalancing</strong>
+                </div>
+                <div>
+                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                  <strong class="text-primary">65%</strong>
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
@@ -186,16 +190,20 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-warning"></div>
+                  <span class="bg-warning text-warning px-2 py-0.5 text-xl">Important</span>
                   <strong>Michael Chen</strong>
                 </div>
                 <button onclick="showAdviceDetail('michael')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="text-gray-600 grid grid-cols-3 gap-4">
                 <div>
                   <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-warning">Fed Rate Hike Impact</strong>
+                  <strong class="text-warning"> Fed Rate Hike Response</strong>
+                </div>
+                <div>
+                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                  <strong class="text-warning">45%</strong>
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
@@ -208,16 +216,20 @@
               class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
               <div class="flex justify-between items-start mb-2">
                 <div class="flex items-center gap-3">
-                  <div class="w-2 h-2 rounded-full bg-success"></div>
+                  <span class="bg-success text-success px-2 py-0.5 text-xl">Normal</span>
                   <span class="font-bold text-[#2d2d2d]">Sarah Lee</span>
                 </div>
                 <button onclick="showAdviceDetail('sarah')" class="btn-link">View Details <i
                     class="fa-solid fa-chevron-right ml-1"></i></button>
               </div>
-              <div class="pl-5 text-gray-600 grid grid-cols-2 gap-4">
+              <div class="text-gray-600 grid grid-cols-3 gap-4">
                 <div>
                   <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-success">Gold Allocation Opp</strong>
+                  <strong class="text-success">Gold Allocation Opportunity </strong>
+                </div>
+                <div>
+                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                  <strong class="text-success">20%</strong>
                 </div>
                 <div>
                   <span class="block text-gray-400 uppercase">Total AUM</span>
@@ -236,14 +248,13 @@
             <div class="space-y-4">
               <div class="pb-3 border-b border-gray-100 last:border-0">
                 <strong class="text-[#2d2d2d] mb-1">Clean Energy Sector Outperformance</strong>
-                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (lCLN) and peers beat Mscl World by 1.5%
-                  YTD. **Action:** Flag forWealth Managers as a talking point.</p>
+                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (ICLN) and peers beat MSCI World by 1.5% YTD. **Action:** Highlight for Wealth Managers as a key point.</p>
                 <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
               </div>
               <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">Federal Reserve FoMc Minutes Review</strong>
+                <strong class="text-[#2d2d2d] mb-1">Federal Reserve FOMC Minutes Review</strong>
                 <p class="text-gray-600 mb-2">Key emphasis on "higher for longer" rates. **Action:** Fixed income
-                  strategy meeting scheduled forTuesday 11:30 AM.</p>
+                  strategy meeting scheduled for Tuesday 11:30 AM.</p>
                 <a href="#" class="text-[#db0011] hover:underline">View Minutes &rarr;</a>
               </div>
             </div>
@@ -255,17 +266,17 @@
             </div>
             <ul class="space-y-3">
               <li class="flex justify-between items-center">
-                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>Urgent: 4 Flagged
+                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>High Priority: 4 Flagged
                   SFDRDueFunds</strong>
                 <strong class="text-[#db0011] text-right">Due Today</strong>
               </li>
               <li class="flex justify-between items-center">
                 <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>New: Russell 2000 Growth</span>
-                <span class="text-gray-500">in 3 days</span>
+                <span class="text-gray-500">Due in 3 days</span>
               </li>
               <li class="flex justify-between items-center">
-                <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i> Rebal: JPM EM BondIndex</span>
-                <span class="text-gray-500">in 7 days</span>
+                <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i>Rebal: JPM EM Bond Index</span>
+                <span class="text-gray-500">Due in 7 days</span>
               </li>
             </ul>
           </div>

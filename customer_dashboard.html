@@ -79,22 +79,30 @@
         </section>
 
         <section class="mb-6">
-          <h5 class="mb-4 border-l-4 border-[#da0011] pl-3 text-gray-900">AI Investment Advice</h5>
+          <div class="flex justify-between items-center mb-2">
+            <h5 class="mb-4 border-l-4 border-[#da0011] pl-3 text-gray-900">AI Investment Advice</h5>
+            <span class="text-success bg-success text-lg p-2">92% Confidence Score</span>
+          </div>
 
           <div class="hsbc-card hsbc-accent-top shadow-sm">
 
             <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 mr-4">
                 <!-- <span class="w-6 h-6 bg-black text-white flex items-center justify-center  font-bold">AI</span> -->
                 <strong class="text-gray-800">Real-time Optimization based on volatility and macro data</strong>
               </div>
-              <span class="text-success bg-success">92% Recommendation</span>
             </div>
 
             <div class="p-5">
-              <strong class="text-gray-600 mb-5 leading-relaxed">
+              <strong class="text-gray-600 uppercase leading-relaxed">
                 Decision Basis (Transparency)
               </strong>
+              <div class="flex gap-2 mb-2 mt-3">
+                <span class="px-2 py-1 bg-gray-100 text-gray-600">Historical backtest success rate
+                  78%</span>
+                <span class="px-2 py-1 bg-gray-100 text-gray-600">Risk exposure: -12% (indicating a
+                  hedging benefit)</span>
+              </div>
               <p class="text-gray-500">In light of elevated volatility in technology equities and rising Treasury
                 yields, it is prudent to
                 realize gains on select technology positions and reallocate to defensive fixed-income securities to
@@ -117,7 +125,8 @@
                   <div class="w-8 text-center text-red-600 "><i class="fas fa-arrow-down"></i></div>
                   <div class="flex-1">
                     <div class=" text-gray-500">Sell</div>
-                    <strong>QQQ (Tech ETF)</strong>
+                    <strong>QQQ (NASDAQ ETF)
+                    </strong>
                   </div>
                   <div class="text-right font-bold text-gray-900" id="sell-amount">$50,000</div>
                 </div>
@@ -125,7 +134,7 @@
                   <div class="w-8 text-center text-green-700 "><i class="fas fa-arrow-up"></i></div>
                   <div class="flex-1">
                     <div class=" text-gray-500">Buy</div>
-                    <strong>TLT (Treasury)</strong>
+                    <strong>TLT (20-Year Treasury)</strong>
                   </div>
                   <div class="text-right font-bold text-gray-900" id="buy-amount">$50,000</div>
                 </div>
