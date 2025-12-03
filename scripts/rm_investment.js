@@ -36,7 +36,7 @@ function generateRebalancingProposal() {
                             <p class="text-green-700">• Risk reduction: <strong>30%</strong></p>
                             <p class="text-green-700">• Estimated loss avoided: <strong>$30,000</strong></p>
                         </div>
-                        <button onclick="viewFullDetails()" class="w-full btn-success text-sm py-2 rounded transition">
+                        <button onclick="viewFullDetails()" class="w-full btn-success py-2 rounded transition">
                             <i class="fa-solid fa-eye mr-1"></i>View Full Details
                         </button>
                     </div>
@@ -140,7 +140,6 @@ function hideAdviceDetail() {
 }
 
 function approveRebalancing() {
-  const viewCustomer = confirm('✅ Rebalancing advice approved\n\nClient Jennifer Wu will receive notification.\nTrade will complete within 2 hours.\n\nWould you like to view customer notification?');
   showComplianceReview();
 }
 
@@ -149,45 +148,45 @@ function showComplianceReview() {
   modal.id = 'compliance-modal';
   modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
   modal.innerHTML = `
-                <div class="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4">
+                <div class="bg-white p-6 max-w-3xl w-full mx-4">
                     <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 bg-info flex items-center justify-center mx-auto mb-4">
                             <i class="fa-solid fa-shield-halved text-info text-3xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Compliance Agent Review</h3>
-                        <p class="text-sm text-gray-600">Automated compliance verification in progress...</p>
+                        <h4 class="font-bold text-gray-900 mb-2">Compliance Agent Review</h4>
+                        <p class="text-gray-600 text-xl">Automated compliance verification in progress...</p>
                     </div>
                     
                     <div id="compliance-checks" class="space-y-3 mb-6">
                         <div id="check-1" class="flex items-center p-3 bg-gray-50 rounded-lg">
-                            <div class="animate-spin mr-3 text-info"><i class="fa-solid fa-spinner"></i></div>
-                            <span class="text-sm text-gray-700">Verifying client risk profile...</span>
+                            <div class="animate-spin mr-3 text-blue-600"><i class="fa-solid fa-spinner"></i></div>
+                            <span class="text-gray-700">Verifying client risk profile...</span>
                         </div>
                         <div id="check-2" class="flex items-center p-3 bg-gray-50 rounded-lg opacity-50">
                             <div class="mr-3 text-gray-400"><i class="fa-solid fa-clock"></i></div>
-                            <span class="text-sm text-gray-500">Checking regulatory requirements...</span>
+                            <span class="text-gray-500">Checking regulatory requirements...</span>
                         </div>
                         <div id="check-3" class="flex items-center p-3 bg-gray-50 rounded-lg opacity-50">
                             <div class="mr-3 text-gray-400"><i class="fa-solid fa-clock"></i></div>
-                            <span class="text-sm text-gray-500">Validating position limits...</span>
+                            <span class="text-gray-500">Validating position limits...</span>
                         </div>
                         <div id="check-4" class="flex items-center p-3 bg-gray-50 rounded-lg opacity-50">
                             <div class="mr-3 text-gray-400"><i class="fa-solid fa-clock"></i></div>
-                            <span class="text-sm text-gray-500">Assessing suitability...</span>
+                            <span class="text-gray-500">Assessing suitability...</span>
                         </div>
                     </div>
                     
                     <div id="compliance-result" class="hidden">
-                        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                        <div class="bg-success p-4 mb-4">
                             <div class="flex items-start">
-                                <div class="text-success text-2xl mr-3"><i class="fa-solid fa-check-circle"></i></div>
+                                <div class="text-success mr-3"><i class="fa-solid fa-check-circle"></i></div>
                                 <div>
-                                    <h4 class="font-bold text-green-900 mb-1">Compliance Approved</h4>
-                                    <p class="text-sm text-green-800">All regulatory requirements have been met. The rebalancing recommendation is fully compliant.</p>
+                                    <strong class="text-success mb-1">Compliance Approved</strong>
+                                    <p class="text-success">All regulatory requirements have been met. The rebalancing recommendation is fully compliant.</p>
                                 </div>
                             </div>
                         </div>
-                        <button onclick="finalizeApproval()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg transition">
+                        <button onclick="finalizeApproval()" class="w-full btn-success py-3 transition">
                             <i class="fa-solid fa-check mr-2"></i>Proceed to Client Notification
                         </button>
                     </div>
@@ -205,10 +204,10 @@ function showComplianceReview() {
 function completeCheck(checkNum, message) {
   const check = document.getElementById(`check-${checkNum}`);
   if (check) {
-    check.className = 'flex items-center p-3 bg-green-50 rounded-lg border border-green-200';
+    check.className = 'flex items-center p-3 bg-success';
     check.innerHTML = `
                     <div class="mr-3 text-success"><i class="fa-solid fa-check-circle"></i></div>
-                    <span class="text-sm text-green-800 font-medium">${message}</span>
+                    <span class="text-success font-medium">${message}</span>
                 `;
   }
 
@@ -217,7 +216,7 @@ function completeCheck(checkNum, message) {
     nextCheck.className = 'flex items-center p-3 bg-gray-50 rounded-lg';
     nextCheck.querySelector('div').className = 'animate-spin mr-3 text-info';
     nextCheck.querySelector('div').innerHTML = '<i class="fa-solid fa-spinner"></i>';
-    nextCheck.querySelector('span').className = 'text-sm text-gray-700';
+    nextCheck.querySelector('span').className = 'text-gray-700';
   }
 }
 

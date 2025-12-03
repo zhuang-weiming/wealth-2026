@@ -157,7 +157,7 @@
           style="display: flex;">
           <button class="text-primary flex flex-col items-center"><i
               class="fa-solid fa-house text-xl mb-1"></i>Home</button>
-          <button onclick="showScreen('screen-wealth')"class="btn-link flex flex-col items-center font-semibold"><i
+          <button onclick="showScreen('screen-wealth')" class="btn-link flex flex-col items-center font-semibold"><i
               class="fa-solid fa-chart-line text-xl mb-1"></i>Wealth</button>
           <button class="btn-link flex flex-col items-center"><i
               class="fa-solid fa-credit-card text-xl mb-1"></i>Cards</button>
@@ -185,7 +185,7 @@
           </button>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
+        <div class="flex-1 overflow-y-auto p-4 bg-gray-50 mb-30">
           <div class="bg-danger p-4 border-primary animate-slide-in">
             <strong class="text-3xl">Market Alert</strong>
             <p class="mb-1">Silicon Valley Bank (SVB) Collapse</p>
@@ -308,7 +308,8 @@
             </div>
           </div>
 
-          <div class="flex flex-col justify-between items-center space-y-2 border-t border-gray-200 absolute bottom-0 left-0 right-0 bg-white p-4">
+          <div
+            class="flex flex-col justify-between items-center space-y-2 border-t border-gray-200 absolute bottom-0 left-0 right-0 bg-white p-4">
             <button onclick="confirmRebalancing()"
               class="w-full btn-primary py-3 transition flex items-center justify-center">
               <i class="fa-solid fa-check-circle mr-2"></i> Accept Recommendation
@@ -342,19 +343,18 @@
             <h4 class="font-bold text-gray-700 flex items-center">Recommended Actions:</h4>
             <div class="flex flex-wrap gap-2">
               <button onclick="sendActionFromChip('Book Meeting with Relationship Manager')"
-                class="px-4 py-2 btn-success flex items-center"><i
-                  class="fa-solid fa-calendar-check mr-2"></i> Book Meeting with Relationship Manager</button>
+                class="px-4 py-2 btn-success flex items-center"><i class="fa-solid fa-calendar-check mr-2"></i> Book
+                Meeting with Relationship Manager</button>
 
               <button onclick="sendActionFromChip('Analyze recent Gold price movements')"
-                class="px-4 py-2 btn-default border flex items-center"><i
-                  class="fa-solid fa-coins mr-2"></i> Analyze recent Gold price movements</button>
+                class="px-4 py-2 btn-default border flex items-center"><i class="fa-solid fa-coins mr-2"></i> Analyze
+                recent Gold price movements</button>
 
             </div>
           </div>
 
           <div class="relative flex items-center mt-3">
-            <button class="text-gray-400 hover:text-brand-green mr-2 text-lg"><i
-                class="fa-solid fa-microphone"></i>
+            <button class="text-gray-400 hover:text-brand-green mr-2 text-lg"><i class="fa-solid fa-microphone"></i>
             </button>
             <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()"
               placeholder="Type a query or ask for a transaction..."
