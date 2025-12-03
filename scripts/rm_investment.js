@@ -84,7 +84,7 @@ function sendChatMessage(message, isUser = true) {
   const newChat = document.createElement('div');
   newChat.className = `flex gap-3 chat-bubble-in mb-4 ${isUser ? 'justify-end' : ''}`;
 
-  const messageContent = `<div class="p-3 rounded-lg shadow-sm border w-full max-w-xs ${isUser ? 'bg-info text-info rounded-tr-none' : 'bg-white text-gray-700 rounded-tl-none border-gray-200'}">${message}</div>`;
+  const messageContent = `<div class="p-3 shadow-sm w-full max-w-xs ${isUser ? 'bg-info text-info ' : 'bg-white text-gray-700 rounded-tl-none border-gray-200'}">${message}</div>`;
   const avatar = `<div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-white ${isUser ? 'bg-gray-400' : 'bg-gray-900'}"><i class="fa-solid ${isUser ? 'fa-user' : 'fa-robot'}"></i></div>`;
 
   if (isUser) {

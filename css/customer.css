@@ -96,7 +96,6 @@
   pointer-events: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
   display: flex;
 }
 
@@ -108,7 +107,7 @@
 
 .copilot-trigger {
   position: absolute;
-  bottom: 150px;
+  bottom: 100px;
   right: 16px;
   z-index: 49;
   transition: transform 0.2s;
@@ -120,7 +119,7 @@
 
 @media (min-width: 640px) {
   .copilot-trigger {
-    bottom: 150px;
+    bottom: 100px;
     right: 16px;
   }
 
