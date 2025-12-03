@@ -1,270 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSBC Wealth AI - Compliance Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-        .hsbc-red { color: #db0011; }
-        .bg-hsbc-red { background-color: #db0011; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSBC Wealth AI - Compliance Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="./css/hsbc.css" rel="stylesheet" />
+  <link href="./css/compliance.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .hsbc-red {
+      color: #db0011;
+    }
+
+    .bg-hsbc-red {
+      background-color: #db0011;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-50">
 
-    <div class="min-h-screen">
-        <!-- Header -->
-        <header class="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
-            <div class="max-w-7xl mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                        <a href="index.html" class="text-gray-400 hover:text-gray-600 transition">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
-                        <img src="resource/IMG_1035.png" alt="HSBC" class="h-8">
-                        <div>
-                            <h1 class="text-xl font-bold text-gray-900">Compliance Dashboard</h1>
-                            <p class="text-xs text-gray-500">AI Conversation Monitoring & Audit</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                            <i class="fas fa-download mr-2"></i>Export Report
-                        </button>
-                        <button class="text-gray-400 hover:text-gray-600 text-lg">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-                </div>
+  <div class="min-h-screen">
+
+    <header class="header fixed" role="banner">
+      <div class="header__content">
+        <a href="./index.html" class="logo empty" aria-label="Go to home page" title="Home">
+          <img src="./assets/hsbc-logo-200x25.svg?la=en-GB&amp;h=25&amp;hash=EFB19274CD17649AE659D3351B595180"
+            alt="HSBC logo" height="25">
+        </a>
+        <nav role="navigation" aria-label="Main Navigation" class="nav__wrapper" data-nav="wrapper" id="nav__wrapper">
+          <ul class="nav font-size-smaller" data-nav="nav" itemscope=""
+            itemtype="http://www.schema.org/SiteNavigationElement">
+
+            <li class="nav__item" itemprop="name" content="Compliance Dashboard">
+              <!-- data-href added to allow navigation without changing button styles -->
+              <button class="nav__link" itemprop="url" aria-expanded="false" aria-current="true">
+                <span>Compliance Dashboard</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+    <!-- banner start -->
+    <div class="sublayout full-bleed-sublayout crop-400">
+      <div class="hero-banner" data-component="HeroBanner">
+        <div
+          class="hero-banner__inner-container hero-banner--size-large hero-banner--background-dark-grey hero-banner--dark-block-opacity-40">
+          <div class="hero-banner__media-container ">
+
+            <div class="image-with-links">
+              <div class="image-with-links__image-container">
+                <picture>
+                  <source media="(max-width:768px)" srcset="./assets/investing-in-hsbc-768x432.jpg">
+                  <source srcset="./assets/investing-in-hsbc-1600x400.jpg">
+                  <img src="./assets/investing-in-hsbc-1600x400.jpg"
+                    class="image-with-links__image image-with-links__image--without-media-info no-zoom" alt=""
+                    style="width: auto">
+                </picture>
+
+              </div>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
-
-            <!-- Real-time Monitoring -->
-            <section>
-                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fas fa-chart-line hsbc-red"></i>
-                    Real-time Monitoring (<span id="current-date"></span>)
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                        <div class="text-3xl font-bold text-gray-900">1,247</div>
-                        <div class="text-sm text-gray-500 mt-1">Total Requests</div>
-                        <div class="text-xs text-green-600 mt-2">
-                            <i class="fas fa-arrow-up"></i> +8.2% vs yesterday
+          </div>
+          <div class="hero-banner--alignment-left">
+            <div class="hero-banner-fluid">
+              <div class="container-fluid">
+                <div class="hero-banner__body">
+                  <div class="row">
+                    <div class="hero-banner__responsive-body">
+                      <div class="hero-banner__content-container">
+                        <div class="hero-banner__content">
+                          <h1 class="h5 hero-banner__category">AI Conversation Monitoring & Audit
+                          </h1>
+                          <p class="hero-banner__title h1">Compliance Dashboard</p>
                         </div>
+                      </div>
                     </div>
-                    <div class="bg-amber-50 p-6 rounded-lg shadow-sm border border-amber-200">
-                        <div class="text-3xl font-bold text-amber-600">12</div>
-                        <div class="text-sm text-gray-500 mt-1">Blocked Requests</div>
-                        <div class="text-xs text-amber-600 mt-2">0.96% block rate</div>
-                    </div>
-                    <div class="bg-orange-50 p-6 rounded-lg shadow-sm border border-orange-200">
-                        <div class="text-3xl font-bold text-orange-600">3</div>
-                        <div class="text-sm text-gray-500 mt-1">High Risk</div>
-                        <div class="text-xs text-orange-600 mt-2">Requires review</div>
-                    </div>
-                    <div class="bg-red-50 p-6 rounded-lg shadow-sm border border-red-200">
-                        <div class="text-3xl font-bold text-red-600">1</div>
-                        <div class="text-sm text-gray-500 mt-1">Critical Risk</div>
-                        <div class="text-xs text-red-600 mt-2">Immediate action needed</div>
-                    </div>
+                  </div>
                 </div>
-            </section>
-
-            <!-- Recent Violations -->
-            <section>
-                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fas fa-exclamation-triangle hsbc-red"></i>
-                    Recent Violations (Last 24h)
-                </h2>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <div id="violations-list" class="divide-y divide-gray-200">
-                        <!-- Violations will be rendered here by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Compliance Rules -->
-            <section>
-                <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <i class="fas fa-shield-alt hsbc-red"></i>
-                    Compliance Rules (6 Active)
-                </h2>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                    <div id="rules-list" class="space-y-3">
-                        <!-- Rules will be rendered here by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-        </main>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- banner end -->
+    <!-- Main Content -->
 
-    <script>
-        // Violation Cases Data
-        const violations = [
-            {
-                id: 1,
-                customer: 'Emily Thompson',
-                role: 'Relationship Manager',
-                roleColor: 'red',
-                time: '09:23 AM',
-                ruleId: 'R005',
-                ruleName: 'High Leverage Product Promotion',
-                riskLevel: 'Critical',
-                riskColor: 'red',
-                question: 'Can I recommend 10x leveraged crypto ETFs to my conservative clients to boost my commission? They don\'t need to know the full risks.',
-                aiResponse: '⚠️ I cannot assist with recommending unsuitable products to clients. All product recommendations must align with client risk profiles and comply with suitability requirements.\n\nMisleading clients or prioritizing commission over their interests violates regulatory standards.\n\n[This conversation has been flagged and escalated to compliance]',
-                action: 'Blocked + Flagged + Notified Compliance Officer + RM Account Suspended'
-            },
-            {
-                id: 2,
-                customer: 'Raj Patel',
-                role: 'Relationship Manager',
-                roleColor: 'red',
-                time: '08:45 AM',
-                ruleId: 'R004',
-                ruleName: 'Insider Trading',
-                riskLevel: 'High',
-                riskColor: 'orange',
-                question: 'I just heard from a client who works at TechCorp that they\'re announcing a merger next week. Should I buy their stock now before the news goes public?',
-                aiResponse: '⚠️ I cannot provide guidance on trading based on material non-public information. This constitutes insider trading, which is illegal and strictly prohibited.\n\nAny such activity will be reported to regulatory authorities.\n\n[This conversation has been logged and compliance has been notified]',
-                action: 'Blocked + Logged + Notified Compliance Officer + Legal Review Initiated'
-            },
-            {
-                id: 3,
-                customer: 'Mike Wang',
-                role: 'Customer',
-                roleColor: 'green',
-                time: '07:12 AM',
-                ruleId: 'R002',
-                ruleName: 'Money Laundering / Tax Evasion',
-                riskLevel: 'Critical',
-                riskColor: 'red',
-                question: 'How can I transfer assets through Cayman Islands offshore accounts to avoid domestic tax audits?',
-                aiResponse: '⚠️ I cannot provide advice on tax evasion or asset concealment. HSBC strictly adheres to Anti-Money Laundering (AML) and tax compliance requirements.\n\nFor legitimate tax planning services, please schedule an appointment with our wealth planning advisors.\n\n[This conversation has been logged and escalated]',
-                action: 'Blocked + AI Service Suspended + Manual Review Required'
-            }
-        ];
+    <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
+      <main class="max-w-[1400px] mx-auto p-6 pb-32">
+        <div class="grid grid-cols-1 gap-6">
+          <div class="hsbc-card lg:col-span-2">
+            <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
+              <h3>Real-time Monitoring</h3>
+              <span class="text-gray-500" id="current-date"></span>
+            </div>
 
-        // Compliance Rules Data
-        const rules = [
-            { id: 'R001', name: 'Sanctioned Countries Investment', description: 'Block investment inquiries related to sanctioned nations', triggers: 8 },
-            { id: 'R002', name: 'Money Laundering / Tax Evasion', description: 'Detect and block AML and tax evasion attempts', triggers: 3 },
-            { id: 'R003', name: 'Customs Evasion', description: 'Block advice on evading customs regulations', triggers: 0 },
-            { id: 'R004', name: 'Insider Trading', description: 'Prevent insider trading related inquiries', triggers: 1 },
-            { id: 'R005', name: 'High Leverage Product Promotion', description: 'Restrict high-risk product recommendations', triggers: 1 },
-            { id: 'R006', name: 'Minor Investment', description: 'Block investment services for underage clients', triggers: 0 }
-        ];
+            <div class="space-y-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div id="copilot-alert-card"
+                class="bg-white border-l-[6px] border-success shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                <div>
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3 class="text-[#2d2d2d]">1,247</h3>
+                  </div>
+                  <p>
+                    Total Requests
+                  </p>
+                  <p class="text-success"><i class="fas fa-arrow-up"></i> +8.2% vs yesterday</p>
+                </div>
+              </div>
+              <div id="copilot-alert-card"
+                class="bg-white border-l-[6px] border-warning shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                <div>
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3 class="text-[#2d2d2d]">12</h3>
+                  </div>
+                  <p>
+                    Blocked Requests
+                  </p>
+                  <p class="text-warning">0.96% block rate</p>
+                </div>
+              </div>
+              <div id="copilot-alert-card"
+                class="bg-white border-l-[6px] border-danger shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                <div>
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3 class="text-[#2d2d2d]">3</h3>
+                  </div>
+                  <p>
+                    High Risk
+                  </p>
+                  <p class="text-danger">Requires review</p>
+                </div>
+              </div>
+              <div id="copilot-alert-card"
+                class="bg-white border-l-[6px] border-primary shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                <div>
+                  <div class="flex items-center gap-3 mb-2">
+                    <h3 class="text-[#2d2d2d]">1</h3>
+                  </div>
+                  <p>
+                    Critical Risk
+                  </p>
+                  <p class="text-primary">Immediate action needed</p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        // Render Violations
-        function renderViolations() {
-            const container = document.getElementById('violations-list');
-            container.innerHTML = violations.map(v => `
-                <div class="p-5 hover:bg-gray-50 transition cursor-pointer" onclick="toggleDetails(${v.id})">
+          <div class="hsbc-card lg:col-span-2">
+            <div class="hsbc-header-border pb-3 mb-4">
+              <h3 class="text-[#2d2d2d]">Recent Violations (Last 24h)</h3>
+            </div>
+            <div class="space-y-4">
+              <div id="violations-list" class="divide-y divide-gray-200">
+                <!-- Violations will be rendered here by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <div class="hsbc-card lg:col-span-2">
+            <div class="pb-3 mb-4 flex justify-between">
+              <h3 class="text-[#2d2d2d]">Compliance Rules(6 Active)</h3>
+            </div>
+            <table class="table dataTable">
+              <thead></thead>
+              <tbody id="rules-list">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Violation Cases Data
+    const violations = [
+      {
+        id: 1,
+        customer: 'Emily Thompson',
+        role: 'Relationship Manager',
+        roleColor: 'danger',
+        time: '09:23 AM',
+        ruleId: 'R005',
+        ruleName: 'High Leverage Product Promotion',
+        riskLevel: 'Critical',
+        riskColor: 'primary',
+        question: 'Can I recommend 10x leveraged crypto ETFs to my conservative clients to boost my commission? They don\'t need to know the full risks.',
+        aiResponse: 'I cannot assist with recommending unsuitable products to clients. All product recommendations must align with client risk profiles and comply with suitability requirements.\n\nMisleading clients or prioritizing commission over their interests violates regulatory standards.\n\n[This conversation has been flagged and escalated to compliance]',
+        action: 'Blocked + Flagged + Notified Compliance Officer + RM Account Suspended'
+      },
+      {
+        id: 2,
+        customer: 'Raj Patel',
+        role: 'Relationship Manager',
+        roleColor: 'danger',
+        time: '08:45 AM',
+        ruleId: 'R004',
+        ruleName: 'Insider Trading',
+        riskLevel: 'High',
+        riskColor: 'warning',
+        question: 'I just heard from a client who works at TechCorp that they\'re announcing a merger next week. Should I buy their stock now before the news goes public?',
+        aiResponse: 'I cannot provide guidance on trading based on material non-public information. This constitutes insider trading, which is illegal and strictly prohibited.\n\nAny such activity will be reported to regulatory authorities.\n\n[This conversation has been logged and compliance has been notified]',
+        action: 'Blocked + Logged + Notified Compliance Officer + Legal Review Initiated'
+      },
+      {
+        id: 3,
+        customer: 'Mike Wang',
+        role: 'Customer',
+        roleColor: 'success',
+        time: '07:12 AM',
+        ruleId: 'R002',
+        ruleName: 'Money Laundering / Tax Evasion',
+        riskLevel: 'Critical',
+        riskColor: 'primary',
+        question: 'How can I transfer assets through Cayman Islands offshore accounts to avoid domestic tax audits?',
+        aiResponse: 'I cannot provide advice on tax evasion or asset concealment. HSBC strictly adheres to Anti-Money Laundering (AML) and tax compliance requirements.\n\nFor legitimate tax planning services, please schedule an appointment with our wealth planning advisors.\n\n[This conversation has been logged and escalated]',
+        action: 'Blocked + AI Service Suspended + Manual Review Required'
+      }
+    ];
+
+    // Compliance Rules Data
+    const rules = [
+      { id: 'R001', name: 'Sanctioned Countries Investment', description: 'Block investment inquiries related to sanctioned nations', triggers: 8 },
+      { id: 'R002', name: 'Money Laundering / Tax Evasion', description: 'Detect and block AML and tax evasion attempts', triggers: 3 },
+      { id: 'R003', name: 'Customs Evasion', description: 'Block advice on evading customs regulations', triggers: 0 },
+      { id: 'R004', name: 'Insider Trading', description: 'Prevent insider trading related inquiries', triggers: 1 },
+      { id: 'R005', name: 'High Leverage Product Promotion', description: 'Restrict high-risk product recommendations', triggers: 1 },
+      { id: 'R006', name: 'Minor Investment', description: 'Block investment services for underage clients', triggers: 0 }
+    ];
+
+    // Render Violations
+    function renderViolations() {
+      const container = document.getElementById('violations-list');
+      container.innerHTML = violations.map(v => `
+                <div class="p-5 border border-gray-200 hover:border-gray-400 transition-colors transition cursor-pointer mb-5" onclick="toggleDetails(${v.id})">
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <span class="font-bold text-gray-900">${v.customer}</span>
-                            <span class="px-2 py-0.5 bg-${v.roleColor}-100 text-${v.roleColor}-700 text-xs rounded ml-2">${v.role}</span>
-                            <span class="text-gray-400 text-sm ml-2">${v.time}</span>
+                            <strong class=" text-gray-900">${v.customer}</strong>
+                            <span class="px-2 py-0.5 bg-${v.roleColor} text-${v.roleColor} rounded ml-2">${v.role}</span>
+                            <span class="text-gray-400 ml-2">${v.time}</span>
                         </div>
-                        <span class="px-3 py-1 bg-${v.riskColor}-100 text-${v.riskColor}-700 text-xs font-medium rounded-full">
+                        <div class="px-3 py-1 bg-${v.riskColor} text-${v.riskColor}">
                             ${v.riskLevel}
-                        </span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                    <div class="flex items-center gap-2 text-gray-600 mb-2">
                         <span class="font-medium">${v.ruleId}</span>
                         <span class="text-gray-400">•</span>
                         <span>${v.ruleName}</span>
                     </div>
-                    <div class="text-sm bg-gray-100 p-3 rounded-lg text-gray-700 mb-2">
+                    <div class="bg-gray-100 p-3 text-gray-700 mb-2">
                         "${v.question}"
                     </div>
                     <div id="details-${v.id}" class="hidden mt-4 space-y-3 border-t border-gray-200 pt-4">
                         <div>
-                            <div class="text-xs font-bold text-gray-500 uppercase mb-1">AI Response</div>
-                            <div class="text-sm bg-red-50 p-3 rounded-lg text-gray-700 whitespace-pre-line border border-red-200">
-${v.aiResponse}
+                            <div class=" text-gray-500 uppercase mb-2">AI Response</div>
+                            <div class=" bg-danger p-3 text-gray-700 whitespace-pre-line">${v.aiResponse}
                             </div>
                         </div>
                         <div>
-                            <div class="text-xs font-bold text-gray-500 uppercase mb-1">Action Taken</div>
-                            <div class="text-sm text-gray-700">${v.action}</div>
+                            <div class=" text-gray-500 uppercase mb-2">Action Taken</div>
+                            <div class= text-gray-700">${v.action}</div>
                         </div>
-                        <div class="flex gap-2">
-                            <button class="px-3 py-1.5 bg-gray-800 text-white text-xs rounded hover:bg-gray-700 transition">
+                        
+                    </div>
+                    <div class="flex justify-between items-center mt-4 items-end">
+                      <button class="btn-link mt-2 transition">
+                        <span id="toggle-text-${v.id}">View Full Conversation →</span>
+                    </button>
+                      <div class="flex gap-2 btn-group">
+                            <button class="px-3 py-1.5 border border-gray-300 text-gray-700  hover:bg-gray-50 transition ">
                                 <i class="fas fa-user-shield mr-1"></i> Contact User
                             </button>
-                            <button class="px-3 py-1.5 border border-gray-300 text-gray-700 text-xs rounded hover:bg-gray-50 transition">
+                            <button class="px-3 py-1.5 border border-gray-300 text-gray-700  hover:bg-gray-50 transition">
                                 <i class="fas fa-file-export mr-1"></i> Export Case
                             </button>
                         </div>
                     </div>
-                    <button class="text-blue-600 text-sm mt-2 hover:text-blue-800 transition">
-                        <span id="toggle-text-${v.id}">View Full Conversation →</span>
-                    </button>
+                    
+
                 </div>
             `).join('');
-        }
+    }
 
-        // Render Rules
-        function renderRules() {
-            const container = document.getElementById('rules-list');
-            container.innerHTML = rules.map(r => `
-                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                    <div class="flex items-center gap-4">
-                        <span class="font-bold text-gray-900 text-sm">${r.id}</span>
-                        <div>
-                            <div class="font-medium text-gray-900 text-sm">${r.name}</div>
-                            <div class="text-xs text-gray-500">${r.description}</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-sm text-gray-500">Triggered: <span class="font-bold">${r.triggers}x</span></span>
-                        <span class="text-green-600 text-sm font-medium flex items-center gap-1">
-                            <i class="fas fa-check-circle"></i> Active
-                        </span>
-                    </div>
-                </div>
-            `).join('');
-        }
+    // Render Rules
+    function renderRules() {
+      const container = document.getElementById('rules-list');
+      container.innerHTML = rules.map(r => `
+        <tr>
+          <td>${r.id}</td>
+          <td>
+            <div>
+              <div class="font-medium text-gray-900">${r.name}</div>
+              <div class=" text-gray-500">${r.description}</div>
+            </div>
+          </td>
+          <td>
+            <span class="text-gray-500">Triggered:  
+              <strong class="font-bold">${r.triggers}x</strong>
+            </span>
+          </td>
+          <td>
+            <span class="text-success font-medium flex items-center gap-1">
+              <i class="fas fa-check-circle"></i>
+              Active
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
 
-        // Toggle Details
-        function toggleDetails(id) {
-            const details = document.getElementById(`details-${id}`);
-            const toggleText = document.getElementById(`toggle-text-${id}`);
-            
-            if (details.classList.contains('hidden')) {
-                details.classList.remove('hidden');
-                toggleText.textContent = 'Hide Details ↑';
-            } else {
-                details.classList.add('hidden');
-                toggleText.textContent = 'View Full Conversation →';
-            }
-        }
+    // Toggle Details
+    function toggleDetails(id) {
+      const details = document.getElementById(`details-${id}`);
+      const toggleText = document.getElementById(`toggle-text-${id}`);
 
-        // Get Current Date
-        function getCurrentDate() {
-            const today = new Date();
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return today.toLocaleDateString('en-US', options);
-        }
+      if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        toggleText.textContent = 'Hide Details ↑';
+      } else {
+        details.classList.add('hidden');
+        toggleText.textContent = 'View Full Conversation →';
+      }
+    }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('current-date').textContent = getCurrentDate();
-            renderViolations();
-            renderRules();
-        });
-    </script>
+    // Get Current Date
+    function getCurrentDate() {
+      const today = new Date();
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return today.toLocaleDateString('en-US', options);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('current-date').textContent = getCurrentDate();
+      renderViolations();
+      renderRules();
+    });
+  </script>
 
 </body>
+
 </html>

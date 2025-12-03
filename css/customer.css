@@ -32,7 +32,7 @@
   .app-frame {
     max-width: 45rem;
     /* Mobile width */
-    height: 90vh;
+    height: 65vh;
     border: 1px solid #ccc;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
