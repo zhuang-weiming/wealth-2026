@@ -12,7 +12,12 @@ index.html (Entry Point)
 │   │
 │   ├─→ customer_dashboard.html
 │   │   ├─→ Execute Rebalancing → customer_portfolio.html
-│   │   └─→ Bottom nav → customer_portfolio.html
+│   │   ├─→ Bottom nav → customer_portfolio.html
+│   │   └─→ [AI Features] button → ai_features_hub.html
+│   │       ├─→ AI Product Q&A
+│   │       ├─→ Portfolio Health Check
+│   │       ├─→ AI Academy
+│   │       └─→ Trending Assets
 │   │
 │   └─→ customer_portfolio.html
 │       ├─→ Login → screen-wealth (default)
@@ -28,6 +33,9 @@ index.html (Entry Point)
 │   │   ├─→ Top nav: Investment → rm_investment.html
 │   │   ├─→ Top nav: Performance → rm_performance.html
 │   │   ├─→ Top nav: Home → index.html
+│   │   ├─→ [AI Tools] menu → ai_features_hub.html
+│   │   │   ├─→ Smart Money Flow
+│   │   │   └─→ Gold Forecast
 │   │   ├─→ Client card: Robert → rm_planning.html?client=robert
 │   │   ├─→ Client card: Alice → rm_planning.html?client=alice
 │   │   └─→ Client card: Sarah → rm_planning.html?client=sarah
@@ -60,6 +68,9 @@ index.html (Entry Point)
     │
     └─→ research_portal.html
         ├─→ Top nav: Home → index.html
+        ├─→ [AI Research] section → ai_features_hub.html
+        │   ├─→ Gold Forecast
+        │   └─→ Smart Money Flow
         └─→ Research reports (static content)
 ```
 
@@ -97,6 +108,7 @@ index.html (Entry Point)
 |---------|--------|-------|
 | "Execute Rebalancing" | customer_portfolio.html | After confirmation |
 | Bottom nav: Home | customer_portfolio.html | Portfolio view |
+| "AI Features" button | ai_features_hub.html | AI tools access |
 | "← Roles" link | index.html | Top left |
 
 ### From RM Platform (opportunity, planning, investment, performance)
@@ -129,7 +141,15 @@ index.html (Entry Point)
 
 | Element | Target | Notes |
 |---------|--------|-------|
+| "AI Research" section | ai_features_hub.html | AI research tools |
 | Home icon | index.html | Top right |
+
+### From ai_features_hub.html
+
+| Element | Target | Notes |
+|---------|--------|-------|
+| "← Back" button | Previous page | Dynamic return |
+| Feature cards | Modal/panel | Same page interaction |
 
 ---
 
@@ -287,7 +307,7 @@ Home | Wealth | Cards | Profile
 
 ## 📊 Link Statistics
 
-### Total Pages: 9
+### Total Pages: 10
 - index.html (hub)
 - customer_portfolio.html (3 screens)
 - customer_lockscreen.html
@@ -297,6 +317,7 @@ Home | Wealth | Cards | Profile
 - rm_investment.html
 - rm_performance.html
 - research_portal.html
+- ai_features_hub.html (AI tools)
 
 ### Total Unique Links: ~30
 - Navigation links: 20

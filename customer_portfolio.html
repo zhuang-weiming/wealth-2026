@@ -23,10 +23,11 @@
             animation: slide-in 0.5s ease-out;
         }
         .chat-bubble-in { animation: slide-in 0.3s ease-out; }
-        .copilot-widget { position: fixed; bottom: 90px; right: 24px; width: 380px; height: 600px; max-height: 80vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
-        .copilot-widget.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-        .copilot-trigger { position: fixed; bottom: 24px; right: 24px; z-index: 49; transition: transform 0.2s; }
+        .copilot-modal { transition: transform 0.3s ease-out; transform: translateY(100%); }
+        .copilot-modal.active { transform: translateY(0); }
+        .copilot-trigger { position: absolute; bottom: 80px; right: 16px; z-index: 49; transition: all 0.2s; display: none; }
         .copilot-trigger:hover { transform: scale(1.05); }
+        .copilot-trigger.hidden { opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body class="bg-white sm:bg-gray-100 h-screen flex items-center justify-center p-0">
@@ -69,7 +70,7 @@
                         <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-arrow-up-right-dots text-xl mb-1"></i> Transfer</button>
                         <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-wallet text-xl mb-1"></i> Pay Bills</button>
                         <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-qrcode text-xl mb-1"></i> Scan to Pay</button>
-                        <button onclick="toggleCopilot(true)" class="flex flex-col items-center text-brand-green hover:text-green-700 font-bold"><i class="fa-solid fa-sparkles text-xl mb-1"></i> Ask AI Agent</button>
+                        <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-sparkles text-xl mb-1"></i> More</button>
                     </div>
                 </div>
 
@@ -113,9 +114,7 @@
                     <span class="text-green-600 font-bold text-sm">YTD: +8.4%</span>
                 </div>
                 <h3 class="text-4xl font-bold text-gray-900 mt-1">$1,245,890</h3>
-                <button onclick="toggleCopilot(true)" class="mt-4 w-full bg-green-50 hover:bg-green-100 text-brand-green font-bold py-3 rounded-lg transition">
-                    <i class="fa-solid fa-sparkles mr-2"></i> Ask AI Agent
-                </button>
+
             </div>
             
             <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
@@ -242,6 +241,7 @@
             </div>
         </div>
 
+        <!-- AI Agent Modal -->
         <div id="copilot-modal" class="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-end copilot-modal">
             <div class="bg-white w-full rounded-t-3xl p-6 shadow-2xl h-3/4 flex flex-col">
                 <div class="flex justify-between items-center mb-4">
@@ -250,25 +250,35 @@
                 </div>
                 
                 <div id="copilot-chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
-                    </div>
+                </div>
 
                 <div class="flex-shrink-0 space-y-3">
-                    <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-brand-green"></i> Recommended Actions:</h4>
+                    <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-brand-green"></i> Quick Actions:</h4>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="sendActionFromChip('Book Meeting with Relationship Manager')" class="px-4 py-2 text-sm rounded-full brand-green text-white hover:bg-green-700 shadow-md flex items-center"><i class="fa-solid fa-calendar-check mr-2"></i> Book Meeting with Relationship Manager</button>
-                        
-                        <button onclick="sendActionFromChip('Analyze recent Gold price movements')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center"><i class="fa-solid fa-coins mr-2"></i> Analyze recent Gold price movements</button>
-                        
-                        </div>
+                        <button onclick="sendActionFromChip('Book Meeting with Relationship Manager')" class="px-4 py-2 text-sm rounded-full brand-green text-white hover:bg-green-700 shadow-md flex items-center">
+                            <i class="fa-solid fa-calendar-check mr-2"></i> Book RM Meeting
+                        </button>
+                        <button onclick="sendActionFromChip('Analyze recent Gold price movements')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                            <i class="fa-solid fa-coins mr-2"></i> Gold Analysis
+                        </button>
+                        <button onclick="sendActionFromChip('Review portfolio performance')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                            <i class="fa-solid fa-chart-line mr-2"></i> Portfolio Review
+                        </button>
+                    </div>
                 </div>
 
                 <div class="relative flex items-center mt-3">
                     <button class="text-gray-400 hover:text-brand-green mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
-                    <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type a query or ask for a transaction..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-green shadow-sm">
+                    <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Ask about your wealth..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-green shadow-sm">
                     <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-green hover:text-green-700"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
+
+        <!-- AI Agent Trigger Button -->
+        <button id="copilot-trigger" onclick="toggleCopilot(true)" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors">
+            <i class="fa-solid fa-robot"></i>
+        </button>
 
     </div>
 
@@ -285,6 +295,7 @@
             </div>`;
 
         function showScreen(screenId) {
+            const trigger = document.getElementById('copilot-trigger');
             screens.forEach(id => {
                 const screen = document.getElementById(id);
                 if (screen) {
@@ -297,19 +308,29 @@
                 activeScreen.classList.add('active-screen');
                 activeScreen.style.display = 'flex';
             }
+            
+            // Hide robot on login screen, show on other screens
+            if (screenId === 'screen-login') {
+                trigger.style.display = 'none';
+            } else {
+                trigger.style.display = 'flex';
+            }
         }
 
         function toggleCopilot(show) {
             const modal = document.getElementById('copilot-modal');
             const chat = document.getElementById('copilot-chat-container');
+            const trigger = document.getElementById('copilot-trigger');
             if (show) {
                 // Reset chat content on open
                 chat.innerHTML = initialCopilotChat;
                 modal.classList.add('active');
-                // Ensure scroll to bottom on open, important for mobile UX
+                trigger.classList.add('hidden');
+                // Ensure scroll to bottom on open
                 setTimeout(() => chat.scrollTop = chat.scrollHeight, 10); 
             } else {
                 modal.classList.remove('active');
+                trigger.classList.remove('hidden');
             }
         }
 
@@ -337,6 +358,8 @@
                  response = 'Confirmed: I have checked your Relationship Manager\'s schedule and booked a call for you tomorrow at 11:00 AM. A calendar invite has been sent. Your Relationship Manager will be ready to discuss your mortgage rate or gold alert.';
             } else if (action.includes('Analyze recent Gold price movements')) {
                 response = 'The recent price surge is driven by increased geopolitical uncertainty and inflation fears. The AI Agent forecasts short-term stability, but recommends reviewing your portfolio for potential overexposure to precious metals.';
+            } else if (action.includes('Review portfolio performance')) {
+                response = 'Your portfolio is performing well with +8.4% YTD returns. Current allocation: 65% stocks, 25% bonds, 10% alternatives. The AI suggests maintaining current strategy while monitoring tech sector exposure.';
             } 
             
             setTimeout(() => {
@@ -372,10 +395,13 @@
 
         function toggleRebalancingModal(show) {
             const modal = document.getElementById('rebalancing-modal');
+            const trigger = document.getElementById('copilot-trigger');
             if (show) {
                 modal.classList.add('active');
+                trigger.classList.add('hidden');
             } else {
                 modal.classList.remove('active');
+                trigger.classList.remove('hidden');
             }
         }
 
@@ -393,8 +419,7 @@
         // Initialize view
         showScreen('screen-login');
     </script>
-    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i class="fa-solid fa-robot"></i></button>
-    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col p-4 border border-gray-200"><div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200"><h3 class="text-lg font-bold text-green-600 flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3><button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button></div><div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4"><div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">How can I help you today?</div></div></div><div class="pt-4 border-t border-gray-200 flex space-x-2"><input type="text" id="copilot-input" placeholder="Ask me anything..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-green-600"><button onclick="handleCopilotChat()" class="bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-lg flex items-center justify-center transition"><i class="fa-solid fa-plus"></i></button></div></aside>
-    <script>function toggleCopilot(){const w=document.getElementById("copilot-widget");const t=document.getElementById("copilot-trigger");w.classList.toggle("active");if(w.classList.contains("active")){t.style.transform="scale(0)";}else{t.style.transform="scale(1)";}}function handleCopilotChat(){const i=document.getElementById("copilot-input");const c=document.getElementById("chat-container");if(i.value.trim()){c.innerHTML+=`<div class="flex gap-3 justify-end mb-4"><div class="bg-green-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${i.value}</div></div>`;c.innerHTML+=`<div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Analyzing your request...</div></div>`;c.scrollTop=c.scrollHeight;i.value="";}}</script>
+
+
 </body>
 </html>
