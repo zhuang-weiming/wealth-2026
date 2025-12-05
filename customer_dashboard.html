@@ -72,14 +72,19 @@
             color: white;
             border-color: #1f2937;
         }
-        .copilot-widget { position: absolute; bottom: 240px; right: 16px; width: 340px; height: 500px; max-height: 60vh; z-index: 50; transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-radius: 1rem; }
-        .copilot-widget.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
-        .copilot-trigger { position: absolute; bottom: 150px; right: 16px; z-index: 49; transition: transform 0.2s; }
+        .copilot-modal { transition: transform 0.3s ease-out; transform: translateY(100%); }
+        .copilot-modal.active { transform: translateY(0); }
+        .copilot-trigger { position: absolute; bottom: 80px; right: 16px; z-index: 49; transition: all 0.2s; }
         .copilot-trigger:hover { transform: scale(1.05); }
-        @media (min-width: 640px) {
-            .copilot-trigger { bottom: 150px; right: 16px; }
-            .copilot-widget { bottom: 210px; right: 16px; width: 340px; }
+        .copilot-trigger.hidden { opacity: 0; pointer-events: none; }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out;
+        }
+        .chat-bubble-in { animation: slide-in 0.3s ease-out; }
     </style>
 </head>
 <body class="bg-white sm:bg-gray-100">
@@ -227,7 +232,57 @@
         </div>
     </nav>
 
+    <!-- AI Agent Modal -->
+    <div id="copilot-modal" class="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-end copilot-modal">
+        <div class="bg-white w-full rounded-t-3xl p-6 shadow-2xl h-3/4 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-green-600 flex items-center"><i class="fa-solid fa-sparkles mr-2"></i> Wealth AI Agent</h2>
+                <button onclick="toggleCopilot(false)" class="text-gray-500 hover:text-gray-800 text-xl" title="Close chat"><i class="fa-solid fa-times"></i></button>
+            </div>
+            
+            <div id="copilot-chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+            </div>
+
+            <div class="flex-shrink-0 space-y-3">
+                <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-green-600"></i> Quick Actions:</h4>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="sendActionFromChip('Execute rebalancing recommendation')" class="px-4 py-2 text-sm rounded-full bg-green-600 text-white hover:bg-green-700 shadow-md flex items-center">
+                        <i class="fa-solid fa-chart-line mr-2"></i> Execute Rebalancing
+                    </button>
+                    <button onclick="sendActionFromChip('Analyze market volatility impact')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                        <i class="fa-solid fa-chart-area mr-2"></i> Market Analysis
+                    </button>
+                    <button onclick="sendActionFromChip('Review portfolio risk exposure')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                        <i class="fa-solid fa-shield-alt mr-2"></i> Risk Review
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative flex items-center mt-3">
+                <button class="text-gray-400 hover:text-green-600 mr-2 text-lg" title="Voice input"><i class="fa-solid fa-microphone"></i></button>
+                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Ask about your investments..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-green-600 shadow-sm">
+                <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-green-600 hover:text-green-700" title="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Agent Trigger Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot(true)" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors" title="Open AI Assistant">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    </div>
+
     <script>
+        // Initial AI Agent conversation data
+        const initialCopilotChat = `
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div class="w-8 h-8 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">
+                    Hello! I'm your AI Investment Assistant. I can help you understand the rebalancing recommendation or answer questions about your portfolio.
+                </div>
+            </div>`;
+
         function setStrategy(type) {
             // Update Buttons
             document.querySelectorAll('.strategy-btn').forEach(btn => {
@@ -274,9 +329,71 @@
                 window.location.href = 'customer_portfolio.html';
             }
         }
+
+        function toggleCopilot(show) {
+            const modal = document.getElementById('copilot-modal');
+            const chat = document.getElementById('copilot-chat-container');
+            const trigger = document.getElementById('copilot-trigger');
+            if (show) {
+                // Reset chat content on open
+                chat.innerHTML = initialCopilotChat;
+                modal.classList.add('active');
+                trigger.classList.add('hidden');
+                // Ensure scroll to bottom on open
+                setTimeout(() => chat.scrollTop = chat.scrollHeight, 10); 
+            } else {
+                modal.classList.remove('active');
+                trigger.classList.remove('hidden');
+            }
+        }
+
+        function sendChatMessage(message, isUser = true) {
+            const chatContainer = document.getElementById('copilot-chat-container');
+            
+            if (isUser) {
+                // User message bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-blue-600 text-white p-3 rounded-xl rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+            } else {
+                // AI response bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">${message}</div></div>`;
+            }
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendActionFromChip(action) {
+            sendChatMessage(action, true);
+            
+            let response = '';
+            
+            if (action.includes('Execute rebalancing recommendation')) {
+                response = 'The AI recommendation suggests selling $50,000 of QQQ (tech ETF) and buying $50,000 of TLT (Treasury bonds) to reduce portfolio risk by 30%. This is based on current market volatility and Fed policy changes. Would you like me to proceed with execution?';
+            } else if (action.includes('Analyze market volatility impact')) {
+                response = 'Current VIX is elevated at 28.5, indicating high market uncertainty. Your tech allocation at 42% is above the recommended 35% threshold. The AI suggests reducing exposure to mitigate downside risk during this volatile period.';
+            } else if (action.includes('Review portfolio risk exposure')) {
+                response = 'Your current portfolio risk score is 7.2/10 (High). Tech sector concentration and rising interest rates are the primary risk factors. The recommended rebalancing would reduce this to 5.1/10 (Moderate), improving your risk-adjusted returns.';
+            }
+            
+            setTimeout(() => {
+                sendChatMessage(response, false);
+            }, 500);
+        }
+
+        function handleCopilotInput() {
+            const input = document.getElementById('copilot-input');
+            if (input.value.trim() !== '') {
+                const message = input.value.trim();
+                sendChatMessage(message, true);
+                
+                // Simulate AI response based on generic text input
+                setTimeout(() => {
+                    sendChatMessage(`I've received your query: ${message}. I am processing that request now and will respond shortly.`, false);
+                }, 500);
+                
+                input.value = '';
+            }
+        }
     </script>
-    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors"><i class="fa-solid fa-robot"></i></button>
-    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col p-4 border border-gray-200"><div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200"><h3 class="text-lg font-bold text-green-600 flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3><button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button></div><div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4"><div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">How can I help you today?</div></div></div><div class="pt-4 border-t border-gray-200 flex space-x-2"><input type="text" id="copilot-input" placeholder="Ask me anything..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-green-600"><button onclick="handleCopilotChat()" class="bg-green-600 hover:bg-green-700 text-white w-10 h-10 rounded-lg flex items-center justify-center transition"><i class="fa-solid fa-plus"></i></button></div></aside>
-    <script>function toggleCopilot(){const w=document.getElementById("copilot-widget");const t=document.getElementById("copilot-trigger");w.classList.toggle("active");if(w.classList.contains("active")){t.style.transform="scale(0)";}else{t.style.transform="scale(1)";}}function handleCopilotChat(){const i=document.getElementById("copilot-input");const c=document.getElementById("chat-container");if(i.value.trim()){c.innerHTML+=`<div class="flex gap-3 justify-end mb-4"><div class="bg-green-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${i.value}</div></div>`;c.innerHTML+=`<div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Analyzing your request...</div></div>`;c.scrollTop=c.scrollHeight;i.value="";}}</script>
 </body>
 </html>
