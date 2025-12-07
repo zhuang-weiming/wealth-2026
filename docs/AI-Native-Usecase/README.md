@@ -17,6 +17,9 @@ This collection contains 9 AI-Native use cases designed for HSBC Wealth Manageme
 | 6 | [Trending Assets Ranking](./06-Trending-Assets.md) | Real-time user behavior tracking | 📝 Design |
 | 7 | [Smart Money Flow Monitor](./07-Smart-Money-Flow.md) | Institutional capital flow tracking | 📝 Design |
 | 8 | [Stable Wealth](./08-Stable-Wealth.md) | Dynamic portfolio adjustment | 📝 Design |
+| 9 | [Real-time Investment Notifications](./09-Real-time-Investment-Notifications.md) | AI-driven opportunity alerts | 📝 Design |
+| 10 | [Life-Stage Intelligence Navigator](./UC-11-Life-Stage-Intelligence-Wealth-Navigator.md) | AI-powered life event detection and investment planning | 📝 Design |
+| Mega | [Life-Goal Achievement Engine](./UC-Mega-Life-Goal-Achievement-Engine.md) | $20M investment grade AI-Native wealth management platform | 📝 Strategic Planning |
 
 ## Design Principles
 
