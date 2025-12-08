@@ -1,478 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WealthOS | Financial Planning</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Open Sans', sans-serif; }
-        .brand-red { color: #db0011; }
-        .bg-brand-red { background-color: #db0011; }
-        .border-brand-red { border-color: #db0011; }
-        .text-brand-red { color: #db0011; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
-        .chat-bubble-in { animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .blur-sm-text { color: transparent; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
-
-        /* Floating Copilot Widget Styling */
-        .copilot-widget {
-            position: fixed;
-            bottom: 90px;
-            right: 24px;
-            width: 380px;
-            height: 600px;
-            max-height: 80vh;
-            z-index: 40;
-            transform: translateY(20px) scale(0.95);
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-radius: 1rem;
-        }
-        .copilot-widget.active {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            pointer-events: auto;
-        }
-        @media (max-width: 640px) {
-            .copilot-widget {
-                width: 100%;
-                right: 0;
-                bottom: 0;
-                border-radius: 1rem 1rem 0 0;
-                max-height: 50vh;
-            }
-        }
-        .copilot-trigger {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 30;
-            transition: transform 0.2s;
-        }
-        .copilot-trigger:hover {
-            transform: scale(1.05);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WealthOS | Financial Planning</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="./css/hsbc.css" rel="stylesheet" />
+  <link href="./css/investment.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 text-gray-800 h-screen flex flex-col overflow-hidden">
 
-    <div class="flex-1 flex flex-col overflow-y-auto">
-        
-        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <div class="flex items-center">
-                    <img src="resource/IMG_1035.png" alt="HSBC" class="h-6 mr-3">
-                    <h2 class="font-bold text-lg text-gray-800" id="header-title">Financial Planning: Robert Chen</h2>
-                </div>
-                <nav class="flex space-x-4 text-sm items-center">
-                    <a href="rm_opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
-                    <a href="rm_planning.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
-                    <a href="rm_investment.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-chart-line md:mr-1"></i> <span class="hidden md:inline">Investment</span></a>
-                    <a href="rm_performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
-                    <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i class="fa-solid fa-house"></i></a>
-                </nav>
+<body>
+  <!-- header section start-->
+  <div class="header__shell">
+    <header class="header fixed" role="banner">
+      <div class="header__content">
+        <a href="./index.html" class="logo empty" aria-label="Go to home page" title="Home">
+          <img src="./assets/hsbc-logo-200x25.svg?la=en-GB&amp;h=25&amp;hash=EFB19274CD17649AE659D3351B595180"
+            alt="HSBC logo" height="25">
+        </a>
+        <button type="button" class="nav__button" aria-expanded="false" aria-controls="nav__wrapper">
+          <span class="hsbc-menu" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+        <nav role="navigation" aria-label="Main Navigation" class="nav__wrapper" data-nav="wrapper" id="nav__wrapper">
+          <ul class="nav font-size-smaller" data-nav="nav" itemscope=""
+            itemtype="http://www.schema.org/SiteNavigationElement">
+
+            <li class="nav__item" itemprop="name" content="Opportunity">
+              <!-- data-href added to allow navigation without changing button styles -->
+              <button class="nav__link" itemprop="url" aria-expanded="false" aria-current="true"
+                data-href="./rm_opportunity.html">
+                <span>Opportunity</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+
+            </li>
+            <li class="nav__item nav__item--current" itemprop="name" content="Planning">
+              <button class="nav__link" itemprop="url" aria-expanded="true" aria-current="true"
+                data-href="./rm_planning.html">
+                <span>Planning</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li class="nav__item" itemprop="name" content="Investment">
+              <button class="nav__link" itemprop="url" aria-expanded="false" aria-current="true"
+                data-href="./rm_investment.html">
+                <span>Investment</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li class="nav__item" itemprop="name" content="Performance">
+              <button class="nav__link" itemprop="url" aria-expanded="true" aria-current="true"
+                data-href="./rm_performance.html">
+                <span>Performance</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- navigation behavior: wire buttons with data-href to perform navigation
+        without changing visual styles. -->
+        <script src="./scripts/nav-links.js?v=1.0.0"></script>
+
+      </div>
+    </header>
+  </div>
+  <!-- header section end -->
+  <!-- banner start -->
+  <div class="sublayout full-bleed-sublayout crop-400">
+    <div class="hero-banner" data-component="HeroBanner">
+      <div
+        class="hero-banner__inner-container hero-banner--size-large hero-banner--background-dark-grey hero-banner--dark-block-opacity-40">
+        <div class="hero-banner__media-container ">
+
+          <div class="image-with-links">
+            <div class="image-with-links__image-container">
+              <picture>
+                <source media="(max-width:768px)" srcset="./assets/investing-in-hsbc-768x432.jpg">
+                <source srcset="./assets/investing-in-hsbc-1600x400.jpg">
+                <img src="./assets/investing-in-hsbc-1600x400.jpg"
+                  class="image-with-links__image image-with-links__image--without-media-info no-zoom" alt=""
+                  style="width: auto">
+              </picture>
+
             </div>
-        </header>
-
-        <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
-            <div class="max-w-5xl mx-auto space-y-6">
-                
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex flex-col sm:flex-row items-start gap-6">
-                    <img id="p-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert" class="w-24 h-24 rounded-lg bg-gray-100 flex-shrink-0">
-                    <div class="flex-1 w-full">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h2 class="text-2xl font-bold text-gray-900" id="p-name">Robert Chen</h2>
-                                <p class="text-gray-500 text-sm mt-1" id="p-status">Premier Elite Customer <span class="mx-2 text-gray-300">|</span> Client since 2014</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-gray-400 font-bold uppercase mb-1">Risk Profile</p>
-                                <span id="p-risk" class="bg-gray-900 text-white px-3 py-1.5 rounded text-sm font-semibold tracking-wide whitespace-nowrap">Balanced</span>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-100">
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Age / Family</p><p class="font-medium text-gray-800" id="p-demographics">52 / Married, 1 Child (16yo)</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Occupation</p><p class="font-medium text-gray-800" id="p-job">Business Owner (Tech)</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Total AUM</p><p class="font-medium text-gray-800" id="p-aum">$5,250,000</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Timeline</p><p class="font-medium text-gray-800" id="p-timeline">8 Yrs to Retirement</p></div>
-                        </div>
+          </div>
+        </div>
+        <div class="hero-banner--alignment-left">
+          <div class="hero-banner-fluid">
+            <div class="container-fluid">
+              <div class="hero-banner__body">
+                <div class="row">
+                  <div class="hero-banner__responsive-body">
+                    <div class="hero-banner__content-container">
+                      <div class="hero-banner__content">
+                        <!-- <h1 class="h5 hero-banner__category">Search across 12,000+ client records using natural
+                          language.
+                        </h1> -->
+                        <p class="hero-banner__title h1" id="header-title">Financial Planning: Robert Chen</p>
+                      </div>
                     </div>
+                  </div>
                 </div>
-
-                <div id="copilot-insight-main-card" class="rounded-xl shadow-lg transition duration-300">
-                    </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    
-                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center"><i class="fa-solid fa-chart-pie mr-2 text-gray-500"></i> Portfolio Allocation</h3>
-                        <div id="p-holdings" class="space-y-3">
-                            </div>
-                        <div id="p-holdings-msg" class="mt-4 text-center text-sm text-gray-500 pt-4 border-t border-gray-100">
-                            </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center"><i class="fa-solid fa-bullseye-arrow mr-2 text-gray-500"></i> Financial Goals</h3>
-                        <div id="p-goals">
-                            </div>
-                    </div>
-
-                </div>
-
+              </div>
             </div>
-        </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- banner end -->
+  <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
+      <div class="max-w-[1630px] mx-auto p-6 pb-32">
+        <div class="bg-white p-6 border border-gray-200 flex flex-col sm:flex-row items-start gap-6 max-w-3/4">
+          <img id="p-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
+            class="w-24 h-24 rounded-lg bg-gray-100 flex-shrink-0">
+          <div class="flex-1 w-full">
+            <div class="flex justify-between items-start">
+              <div>
+                <h2 class="font-bold text-gray-900" id="p-name">Robert Chen</h2>
+                <p class="text-gray-500 mt-1" id="p-status">Premier Elite Customer <span
+                    class="mx-2 text-gray-300">|</span> Client since 2014</p>
+              </div>
+              <div class="text-right">
+                <p class="text-gray-400 font-bold uppercase mb-1">Risk Profile</p>
+                <span id="p-risk"
+                  class="bg-gray-900 text-white px-3 py-1.5 rounded font-semibold tracking-wide whitespace-nowrap">Balanced</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-100">
+              <div>
+                <p class="text-gray-400 uppercase font-semibold">Age / Family</p>
+                <p class="font-medium text-gray-800" id="p-demographics">52 / Married, 1 Child (16yo)</p>
+              </div>
+              <div>
+                <p class="text-gray-400 uppercase font-semibold">Occupation</p>
+                <p class="font-medium text-gray-800" id="p-job">Business Owner (Tech)</p>
+              </div>
+              <div>
+                <p class="text-gray-400 uppercase font-semibold">Total AUM</p>
+                <p class="font-medium text-gray-800" id="p-aum">$5,250,000</p>
+              </div>
+              <div>
+                <p class="text-gray-400 uppercase font-semibold">Timeline</p>
+                <p class="font-medium text-gray-800" id="p-timeline">8 Yrs to Retirement</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="copilot-insight-main-card" class="transition duration-300">
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
+          <div class="bg-white p-6 shadow-sm border border-gray-200">
+            <h3 class="font-bold text-gray-800 mb-4 flex items-center"> Portfolio Allocation</h3>
+            <div id="p-holdings" class="space-y-3">
+            </div>
+            <div id="p-holdings-msg" class="mt-4 text-center text-gray-500 pt-4 border-t border-gray-100">
+            </div>
+          </div>
+
+          <div class="bg-white p-6 border border-gray-200">
+            <h3 class="font-bold text-gray-800 mb-4 flex items-center"><i
+                class="fa-solid fa-bullseye-arrow mr-2 text-gray-500"></i> Financial Goals</h3>
+            <div id="p-goals">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+
+
+  <!-- Floating Action Button -->
+  <button id="copilot-trigger" onclick="toggleCopilot()"
+    class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center hover:bg-red-700 focus:outline-none transition-colors">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+
+  <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
+    <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
+      <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent
+      </h3>
+      <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i
+          class="fa-solid fa-xmark text-xl"></i></button>
+    </div>
+    <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+      <div class="flex gap-3 chat-bubble-in mb-4">
+        <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-gray-700 w-full">
+          Welcome. I have loaded Robert Chen's Financial Planning profile.</div>
+      </div>
+      <div id="copilot-initial-insight">
+      </div>
+      <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+      </div>
     </div>
 
-    <!-- Floating Action Button -->
-    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-red-700 focus:outline-none transition-colors">
-        <i class="fa-solid fa-robot"></i>
-    </button>
+    <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2">
+      <input type="text" id="copilot-input" placeholder="Add a note or action for Robert..."
+        class="flex-1 border border-gray-300 rounded-lg p-3 focus:outline-none focus:border-brand-red"
+        onkeypress="if(event.key === 'Enter') handleChat()">
+      <button onclick="handleChat()"
+        class="bg-brand-red hover:bg-red-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i
+          class="fa-solid fa-plus"></i></button>
+    </div>
+  </aside>
 
-    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
-        <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
-            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
-        </div>
-        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
-            <div class="flex gap-3 chat-bubble-in mb-4">
-                <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. I have loaded Robert Chen's Financial Planning profile.</div>
-            </div>
-            <div id="copilot-initial-insight">
-                </div>
-            <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
-                </div>
-        </div>
-        
-        <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2">
-            <input type="text" id="copilot-input" placeholder="Add a note or action for Robert..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-red" onkeypress="if(event.key === 'Enter') handleChat()">
-            <button onclick="handleChat()" class="bg-brand-red hover:bg-red-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i class="fa-solid fa-plus"></i></button>
-        </div>
-    </aside>
-
-    <script>
-        // Client data structure (Model)
-        const clients = {
-            robert: {
-                name: "Robert Chen",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
-                status: "Premier Elite Customer | Client since 2014",
-                risk: "Balanced",
-                demographics: "52 / Married, 1 Child (16yo)",
-                job: "Business Owner (Tech)",
-                aum: "$5,254,100",
-                timeline: "8 Yrs to Retirement",
-                allocation: [
-                    { label: "Cash & Equivalents", value: "60%", color: "bg-red-600", note: "High Liquidity for Business" },
-                    { label: "Equities", value: "30%", color: "bg-gray-600", note: "Underweight" },
-                    { label: "Fixed Income", value: "10%", color: "bg-gray-400", note: "Stable" }
-                ],
-                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Short-term Liquidity Focus</span></p><p class='text-xs'>Client holds $3.14M in Money Market Funds</p></div>",
-                copilotInit: {
-                    color: 'red',
-                    icon: 'fa-solid fa-circle-exclamation',
-                    title: 'ALERT: Cash Drag Risk',
-                    message: "I've analyzed Robert's portfolio. He is holding **60% in Cash ($3.14M)**. As he plans to retire in 8 years, this cash drag will miss his $8M target.",
-                    actionText: "Run Retirement Projection",
-                    action: "funds"
-                },
-                chips: [
-                    { label: "Suggest Growth Funds", action: "funds" },
-                    { label: "Show Florida Property", action: "property" }
-                ],
-                // Robert's Goals (Original structure)
-                goalsHtml: `
-                    <div class="border-b pb-3">
-                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">Retirement (Age 60) <span class="text-xs font-normal px-2 py-0.5 bg-green-100 text-green-700 rounded-full">On Track</span></p>
-                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-green-600 h-1.5 rounded-full" style="width: 75%"></div></div>
-                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
-                            <span>Target: $8.0M</span>
-                            <span>Current Projection: $6.1M</span>
-                        </p>
-                    </div>
-                    <div class="border-b pb-3">
-                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">Education Fund (Child Age 18) <span class="text-xs font-normal px-2 py-0.5 bg-red-100 text-red-700 rounded-full">Behind</span></p>
-                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-red-600 h-1.5 rounded-full" style="width: 25%"></div></div>
-                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
-                            <span>Target: $450,000</span>
-                            <span>Current: $124K</span>
-                        </p>
-                    </div>
-                    <div>
-                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">New Property (Florida) <span class="text-xs font-normal px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded-full">Review</span></p>
-                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-yellow-600 h-1.5 rounded-full" style="width: 60%"></div></div>
-                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
-                            <span>Target: $1.2M</span>
-                            <span>Available: $755K</span>
-                        </p>
-                    </div>
-                `
-            },
-            sarah: {
-                name: "Sarah Jenkins",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-                status: "New Premier Client | Onboarding",
-                risk: "Undetermined",
-                demographics: "48 / Married, 2 Children (8yo, 12yo)",
-                job: "Director @ GlobalTech",
-                aum: "$1,850,400",
-                // Updated timeline for new client discovery focus
-                timeline: "Focus on Wealth Discovery", 
-                // Updated allocation to reflect Unknown status
-                allocation: [
-                    { label: "Temporary Holdings (Pre-Allocation)", value: "100%", color: "bg-yellow-400", note: "Waiting for Risk Profile" },
-                ],
-                holdingsMsg: "<div class='text-center'><p>Status: <span class='font-bold text-red-700'>Portfolio Allocation Unknown</span></p><p class='text-sm text-gray-500'>Initial AUM is in a temporary Holding Account pending risk profiling and goal setting. Only insurance needs are confirmed.</p></div>",
-                copilotInit: {
-                    color: 'purple',
-                    icon: 'fa-solid fa-handshake',
-                    title: 'Actionable: Complete Discovery',
-                    message: "We've gathered all static data. Use the conversation starters to confirm her risk appetite and long-term goals.",
-                    actionText: "Generate Discovery Questions",
-                    action: "talking_points"
-                },
-                chips: [
-                    { label: "Generate Discovery Questions", action: "talking_points" },
-                ],
-                // New Goals HTML for newly onboarded client
-                goalsHtml: `
-                    <div class="py-10 text-center bg-gray-50 rounded-lg">
-                        <i class="fa-solid fa-flag-checkered text-3xl text-gray-400 mb-3"></i>
-                        <p class="text-md font-semibold text-gray-700">Financial Goal Discovery In Progress</p>
-                        <p class="text-sm text-gray-500">Use AI Agent for conversation starters to determine goals.</p>
-                    </div>
-                `
-            },
-            alice: {
-                name: "Alice Num",
-                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
-                status: "Premier Client | Client since 2022",
-                risk: "Growth",
-                demographics: "31 / Single",
-                job: "Software Engineer (Startup)",
-                aum: "$452,100",
-                // Updated timeline for Singapore home focus
-                timeline: "Focus on First Home (Singapore)", 
-                // Updated allocation for home purchase focus
-                allocation: [
-                    { label: "Equities (Growth)", value: "60%", color: "bg-green-600", note: "Long-term growth" },
-                    { label: "Fixed Income (Short Term)", value: "30%", color: "bg-blue-400", note: "Liquidity for downpayment" },
-                    { label: "Cash & Equivalents", value: "10%", color: "bg-gray-400", note: "Emergency fund" }
-                ],
-                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>First Home Capital Accumulation</span></p><p class='text-xs'>Focus on low-cost global ETFs and liquid assets.</p></div>",
-                copilotInit: {
-                    color: 'green',
-                    icon: 'fa-solid fa-circle-check',
-                    title: 'Actionable Insight',
-                    message: "Alice's portfolio is **on track** for her Singapore home goal. Review her mortgage options and loan-to-value ratio.",
-                    actionText: "Check Mortgage Pre-Approval",
-                    action: "mortgage"
-                },
-                chips: [
-                    { label: "Review Mortgage Pre-Approval", action: "mortgage" },
-                    { label: "Introduce new ETF", action: "etf" }
-                ],
-                // New Goals HTML: Only First Home goal
-                goalsHtml: `
-                    <div>
-                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">First Home (Singapore) <span class="text-xs font-normal px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">On Track</span></p>
-                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-blue-600 h-1.5 rounded-full" style="width: 70%"></div></div>
-                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
-                            <span>Target: $1.0M SGD</span>
-                            <span>Saved: $712K SGD</span>
-                        </p>
-                    </div>
-                `
-            }
-        };
-
-        let currentClient = 'robert';
-
-        // Helper function to get URL parameter
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-
-        // View Rendering Logic
-        function renderClientData(client) {
-            document.getElementById('header-title').textContent = `Financial Planning: ${client.name}`;
-            document.getElementById('p-img').src = client.img;
-            document.getElementById('p-name').textContent = client.name;
-            document.getElementById('p-status').textContent = client.status;
-            document.getElementById('p-risk').textContent = client.risk;
-            document.getElementById('p-demographics').textContent = client.demographics;
-            document.getElementById('p-job').textContent = client.job;
-            document.getElementById('p-aum').textContent = client.aum;
-            document.getElementById('p-timeline').textContent = client.timeline;
-            document.getElementById('p-holdings-msg').innerHTML = client.holdingsMsg;
-            document.getElementById('p-goals').innerHTML = client.goalsHtml; // Renders the dynamic goals
-
-            // Render Allocation
-            const holdingsContainer = document.getElementById('p-holdings');
-            holdingsContainer.innerHTML = client.allocation.map(item => `
-                <div class="flex justify-between items-center text-sm">
-                    <p class="font-medium text-gray-700">${item.label}</p>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs text-gray-500">${item.note}</span>
-                        <span class="font-bold text-gray-900">${item.value}</span>
-                        <div class="w-2.5 h-2.5 rounded-full ${item.color}"></div>
-                    </div>
-                </div>
-            `).join('');
-
-            // Render Copilot Insight Card (Main)
-            const insightCard = document.getElementById('copilot-insight-main-card');
-            const insight = client.copilotInit;
-            const insightColor = insight.color; // 'red', 'purple', or 'green'
-            
-            insightCard.innerHTML = `
-                <div class="bg-${insightColor}-50 p-5 shadow-xl border-l-8 border-${insightColor}-500 transition duration-300">
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl text-${insightColor}-700"><i class="${insight.icon}"></i></div>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-xl text-${insightColor}-800 mb-2 flex items-center">
-                                <span class="bg-${insightColor}-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">ACTION</span> ${insight.title}
-                            </h3>
-                            <p class="text-sm text-gray-700">${insight.message}</p>
-                            <div class="flex gap-3 mt-3">
-                                <button onclick="chatAction('${insight.action}')" class="text-sm font-semibold text-${insightColor}-700 hover:underline flex items-center">
-                                    ${insight.actionText} <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                                </button>
-                                <a href="rm_investment.html" class="text-sm font-semibold text-${insightColor}-700 hover:underline flex items-center">
-                                    View Investment Options <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // Render Action Chips (Copilot Panel)
-            const chipsContainer = document.getElementById('action-chips');
-            chipsContainer.innerHTML = client.chips.map(chip => `
-                <button onclick="chatAction('${chip.action}')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">${chip.label}</button>
-            `).join('');
-
-            // Reset Chat and set client welcome
-            const chatContainer = document.getElementById('chat-container');
-            chatContainer.innerHTML = `
-                <div class="flex gap-3 chat-bubble-in mb-4">
-                    <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. I have loaded ${client.name}'s Financial Planning profile.</div>
-                </div>
-                <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
-                    </div>
-            `;
-            // Re-render chips into the newly cleared chat container
-            document.getElementById('action-chips').innerHTML = client.chips.map(chip => `
-                <button onclick="chatAction('${chip.action}')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">${chip.label}</button>
-            `).join('');
-
-        }
-
-        // Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            const clientFromUrl = getUrlParameter('client');
-            if (clientFromUrl && clients[clientFromUrl]) {
-                currentClient = clientFromUrl;
-            }
-            renderClientData(clients[currentClient]);
-        });
-
-
-        // Copilot Chat Functions
-        function sendChatMessage(message, isUser) {
-            const chatContainer = document.getElementById('chat-container');
-            
-            if (isUser) {
-                // User message bubble
-                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
-            } else {
-                // AI response bubble
-                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${message}</div></div>`;
-            }
-
-            // Scroll to bottom
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        function chatAction(action) {
-            let userText = '';
-            let botResp = '';
-
-            if (currentClient === 'robert') {
-                if (action === 'funds') {
-                    userText = "Run Retirement Projection";
-                    botResp = `**Projection Run:** If Robert maintains 60% cash, he will miss his $8M target by **$2.0M**. Recommended action: Reallocate $1.5M of cash to Growth Strategy Funds.`;
-                } else if (action === 'property') {
-                    userText = "Show Florida Property Details";
-                    botResp = `**Florida Property:** Estimated value $1.2M. Robert has a pre-approved $450,000 bridge loan. The current strategy is to use $750,000 from his liquidity cash.`;
-                }
-            } else if (currentClient === 'sarah') {
-                if(action === 'talking_points') {
-                    userText = "Generate Discovery Questions";
-                    // Updated QnA for new client discovery
-                    botResp = `**Discovery Conversation Starters for Sarah Jenkins:**<br><br> <ul class="list-disc pl-4 space-y-1"> <li>"Given your high focus on protection products, is your main goal capital preservation or wealth transfer to the next generation?"</li> <li>"How comfortable are you with market volatility for the portion of your portfolio outside of insurance products?"</li> <li>"What are your top 3 non-negotiable financial priorities over the next five years?"</li> </ul>`;
-                }
-                // No other actions defined for Sarah
-            } else if (currentClient === 'alice') {
-                if(action === 'mortgage') {
-                    userText = "Check Mortgage Pre-Approval";
-                    botResp = `Alice's pre-approval for a loan up to **$600,000 SGD** is valid until Jan 2026. Current best fixed rate is **3.1% for 3 years**. Advise her to utilize her liquid assets for the downpayment.`;
-                } else if (action === 'etf') {
-                    userText = "Suggest new low-cost global ETF";
-                    botResp = `The Vanguard FTSE Global All Cap UCITS ETF (VWRA) is a suitable, low-cost (**0.22% OCF**) option to diversify her core holdings.`;
-                }
-            }
-
-            // Append User Msg
-            sendChatMessage(userText, true);
-
-            // Append Bot Msg
-            setTimeout(() => {
-                sendChatMessage(botResp, false);
-            }, 600);
-        }
-
-        function handleChat() {
-            const input = document.getElementById('copilot-input');
-            if(input.value) {
-                const txt = input.value;
-                sendChatMessage(txt, true);
-                input.value = '';
-                setTimeout(() => {
-                     sendChatMessage("I've noted that in the meeting minutes.", false);
-                }, 500);
-            }
-        }
-
-        function toggleCopilot() {
-            const widget = document.getElementById('copilot-widget');
-            const trigger = document.getElementById('copilot-trigger');
-            widget.classList.toggle('active');
-            
-            if (widget.classList.contains('active')) {
-                trigger.style.transform = 'scale(0)';
-                setTimeout(() => {
-                    const input = document.getElementById('copilot-input');
-                    if(input) input.focus();
-                }, 100);
-            } else {
-                trigger.style.transform = 'scale(1)';
-            }
-        }
-    </script>
+  <script src="./scripts/rm_planning.js"></script>
 </body>
+
 </html>

@@ -2,640 +2,336 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wealth | Opportunity Discovery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wealth | Opportunity Discovery</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="./css/hsbc.css" rel="stylesheet" />
+  <link href="./css/investment.css" rel="stylesheet" />
 
-        .brand-red {
-            color: #db0011;
-        }
+</head>
 
-        .bg-brand-red {
-            background-color: #db0011;
-        }
+<body class="bg-gray-100 text-gray-800">
+  <!-- header section start-->
+  <div class="header__shell">
+    <header class="header fixed" role="banner">
+      <div class="header__content">
+        <a href="./index.html" class="logo empty" aria-label="Go to home page" title="Home">
+          <img src="./assets/hsbc-logo-200x25.svg?la=en-GB&amp;h=25&amp;hash=EFB19274CD17649AE659D3351B595180"
+            alt="HSBC logo" height="25">
+        </a>
+        <button type="button" class="nav__button" aria-expanded="false" aria-controls="nav__wrapper">
+          <span class="hsbc-menu" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
 
-        .border-brand-red {
-            border-color: #db0011;
-        }
+        <nav role="navigation" aria-label="Main Navigation" class="nav__wrapper" data-nav="wrapper" id="nav__wrapper">
+          <ul class="nav font-size-smaller" data-nav="nav" itemscope=""
+            itemtype="http://www.schema.org/SiteNavigationElement">
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
+            <li class="nav__item  nav__item--current" itemprop="name" content="Opportunity">
+              <!-- data-href added to allow navigation without changing button styles -->
+              <button class="nav__link" itemprop="url" aria-expanded="false" aria-current="true"
+                data-href="./rm_opportunity.html">
+                <span>Opportunity</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+            </li>
+            <li class="nav__item" itemprop="name" content="Planning">
+              <button class="nav__link" itemprop="url" aria-expanded="true" aria-current="true"
+                data-href="./rm_planning.html">
+                <span>Planning</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li class="nav__item" itemprop="name" content="Investment">
+              <button class="nav__link" itemprop="url" aria-expanded="false" aria-current="true"
+                data-href="./rm_investment.html">
+                <span>Investment</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li class="nav__item" itemprop="name" content="Performance">
+              <button class="nav__link" itemprop="url" aria-expanded="true" aria-current="true"
+                data-href="./rm_performance.html">
+                <span>Performance</span>
+                <span class="hsbc-right-chevron" aria-hidden="true"></span>
+              </button>
+            </li>
+          </ul>
+        </nav>
 
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e0;
-            border-radius: 3px;
-        }
+        <!-- navigation behavior: wire buttons with data-href to perform navigation
+        without changing visual styles. -->
+        <script src="./scripts/nav-links.js?v=1.0.0"></script>
 
-        .chat-bubble-in {
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-                /* Floating Copilot Widget Styling */
-                .copilot-widget {
-                    position: fixed;
-                    bottom: 90px;
-                    right: 24px;
-                    width: 380px;
-                    height: 600px;
-                    max-height: 80vh;
-                    z-index: 50;
-                    transform: translateY(20px) scale(0.95);
-                    opacity: 0;
-                    pointer-events: none;
-                    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-                    border-radius: 1rem;
-                }
-                .copilot-widget.active {
-                    transform: translateY(0) scale(1);
-                    opacity: 1;
-                    pointer-events: auto;
-                }
-                @media (max-width: 640px) {
-                    .copilot-widget {
-                        width: 100%;
-                        right: 0;
-                        bottom: 0;
-                        border-radius: 1rem 1rem 0 0;
-                        max-height: 50vh;
-                    }
-                }
-                .copilot-trigger {
-                    position: fixed;
-                    bottom: 24px;
-                    right: 24px;
-                    z-index: 49;
-                    transition: transform 0.2s;
-                }
-                .copilot-trigger:hover {
-                    transform: scale(1.05);
-                }
-                /* Search suggestions dropdown */
-                .suggestions-list {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: calc(100% + 0.5rem);
-                    background: white;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 0.5rem;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-                    z-index: 40;
-                    padding: 0.25rem;
-                }
-                .suggestion-item {
-                    padding: 0.5rem 0.75rem;
-                    font-size: 0.9rem;
-                    color: #374151;
-                    cursor: pointer;
-                    border-radius: 0.375rem;
-                }
-                .suggestion-item:hover, .suggestion-item.active {
-                    background: #f3f4f6;
-                }
-            </style>
-
-        </head>
-
-        <body class="bg-gray-100 text-gray-800">
-
-    <header class="bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between z-50">
-                <div class="flex items-center">
-                    <img src="resource/IMG_1035.png" alt="HSBC" class="h-6 mr-3">
-                    <h2 class="font-bold text-lg text-gray-800">Opportunity Discovery</h2>
-                </div>
-                <nav class="flex space-x-4 text-sm items-center">
-                    <a href="rm_opportunity.html"
-                        class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i
-                            class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
-                    <a href="rm_planning.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
-                            class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
-                    <a href="rm_investment.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
-                            class="fa-solid fa-chart-line md:mr-1"></i> <span class="hidden md:inline">Investment</span></a>
-                    <a href="rm_performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
-                            class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
-                    <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i
-                            class="fa-solid fa-house"></i></a>
-                </nav>
-            </div>
+      </div>
     </header>
+  </div>
+  <!-- header section end -->
+  <!-- banner start -->
+  <div class="sublayout full-bleed-sublayout crop-400">
+    <div class="hero-banner" data-component="HeroBanner">
+      <div
+        class="hero-banner__inner-container hero-banner--size-large hero-banner--background-dark-grey hero-banner--dark-block-opacity-40">
+        <div class="hero-banner__media-container ">
 
-    <main class="pt-20 p-4 sm:p-6 lg:p-8 pb-32">
-            <div class="max-w-5xl mx-auto space-y-8">
+          <div class="image-with-links">
+            <div class="image-with-links__image-container">
+              <picture>
+                <source media="(max-width:768px)" srcset="./assets/investing-in-hsbc-768x432.jpg">
+                <source srcset="./assets/investing-in-hsbc-1600x400.jpg">
+                <img src="./assets/investing-in-hsbc-1600x400.jpg"
+                  class="image-with-links__image image-with-links__image--without-media-info no-zoom" alt=""
+                  style="width: auto">
+              </picture>
 
-                <div class="text-center mb-10 mt-6">
-                    <h1 class="text-xl sm:text-3xl font-bold text-gray-900 mb-2">Discover Opportunity?</h1>
-                    <p class="text-sm sm:text-base text-gray-500">Search across 12,000+ client records using natural
-                        language.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-banner--alignment-left">
+          <div class="hero-banner-fluid">
+            <div class="container-fluid">
+              <div class="hero-banner__body">
+                <div class="row">
+                  <div class="hero-banner__responsive-body">
+                    <div class="hero-banner__content-container">
+                      <div class="hero-banner__content">
+                        <h1 class="h5 hero-banner__category">Search across 12,000+ client records using natural
+                          language.
+                        </h1>
+                        <p class="hero-banner__title h1">Discover Opportunity</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- banner end -->
+  <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
+      <div class="max-w-[1630px] mx-auto p-6 pb-32">
+        <div
+          class="bg-white border border-gray-200 flex items-center mb-10 z-10 relative h-28 relative">
+          <input type="text" id="crm-search-input"
+            placeholder="e.g. 'Clients age 50-60, Technology Sector, >$1.5M Liquidity'..."
+            class="flex-1 p-4 h-full text-gray-700 focus:outline-none">
+          <button onclick="triggerSearch()" class="h-full btn-primary px-8 py-3 font-semibold">Search</button>
 
+          <!-- Suggestions dropdown (hidden by default) -->
+          <div id="suggestions-list" class="suggestions-list hidden" aria-hidden="true"></div>
+        </div>
+
+        <div id="copilot-insight-card"
+          class="bg-danger border-l-[6px] border-[#db0011] shadow-sm p-6 pb-10 pt-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+          <div>
+            <div class="flex items-center gap-3 mb-2">
+              <!-- <span class="uppercase tracking-wide">Action
+              Required</span> -->
+              <span class="bg-primary text-white font-bold px-2 py-0.5 animate-pulse-slow">NUDGE</span>
+              <div class="text-4xl text-danger">Liquidity Event Opportunity</div>
+            </div>
+            <p>
+              Two of your premier clients have maturing fixed-income
+              assets next week. This is an opportunity for a portfolio review.
+            </p>
+            <div class="flex gap-3">
+              <button onclick="fillSearch('Clients with maturing fixed-income next week')" class="btn-link">
+                View Clients
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="recent-contacts-section">
+          <div class="flex justify-between items-center mb-4 px-2">
+            <h3 class="font-bold text-gray-700">Recently Contacted</h3>
+            <a href="#" class="btn-link mt-5">View All History</a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div
+              class="bg-white p-4 border border-gray-200 hover:border-gray-400 transition-colors transition cursor-pointer flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice"
+                    class="w-10 h-10 rounded-full bg-blue-50">
+                  <h4 class="font-bold text-gray-800 text-sm">Alice Num
+                  </h4>
+                </div>
+                <p class="text-gray-500">Premier Client</p>
+                <div class="text-gray-500">Contacted: Today (2:15 PM)</div>
+              </div>
+
+              <a href="rm_planning.html?client=alice" class="link-with-right-chevron mt-10"
+                aria-label="Read more about Global businesses adapting to trade uncertainty"> <span>
+                  <span class="hsbc-right-chevron" aria-hidden="true"></span>
+                  <span>Reviewing First Home Mortgage</span>
+                  <span class="empty" aria-hidden="true"></span>
+                </span>
+              </a>
+            </div>
+            <div
+              class="bg-white p-4 border border-gray-200 hover:border-gray-400 transition-colors cursor-pointer flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
+                    class="w-10 h-10 rounded-full bg-red-50">
+                  <h4 class="font-bold text-gray-800">Robert Chen
+                  </h4>
+                </div>
+                <p class="text-gray-500">Premier Elite Client</p>
+                <div class="text-gray-500">Contacted: Yesterday (11:00 AM)</div>
+              </div>
+              <a href="rm_planning.html?client=robert" class="link-with-right-chevron mt-10"
+                aria-label="Read more about Global businesses adapting to trade uncertainty"> <span>
+                  <span class="hsbc-right-chevron" aria-hidden="true"></span>
+                  <span>Discussing Cash
+                    Drag Risk</span>
+                  <span class="empty" aria-hidden="true"></span>
+                </span>
+              </a>
+            </div>
+            <div
+              class="bg-white p-4 border border-gray-200 hover:border-gray-400 transition-colors cursor-pointer flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-3">
+                  <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
+                    class="w-10 h-10 rounded-full bg-purple-50">
+                  <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-red">Sarah Jenkins
+                  </h4>
+                </div>
+                <p class="text-gray-500">New Client</p>
+                <div class="text-gray-500">Contacted: 2 days ago</div>
+              </div>
+
+              <a href="rm_planning.html?client=sarah" class="link-with-right-chevron mt-10"
+                aria-label="Read more about Global businesses adapting to trade uncertainty"> <span>
+                  <span class="hsbc-right-chevron" aria-hidden="true"></span>
+                  <span>Setting Up
+                    Education Fund</span>
+                  <span class="empty" aria-hidden="true"></span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div id="opportunity-results" class="hidden">
+          <div class="flex justify-between items-end mb-4 px-2">
+            <h3 class="font-bold text-gray-700 flex items-center"><i
+                class="fa-solid fa-chart-line mr-2 text-brand-red"></i> Search Results (2)</h3>
+            <button onclick="clearSearch()" class="btn-link flex items-center"><i class="fa-solid fa-xmark mr-1"></i>
+              Clear Search</button>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div
+              class="bg-white p-4 border border-gray-200 hover:border-gray-400 transition-colors cursor-pointer flex flex-col justify-between">
+              <div class="flex items-center gap-4">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
+                  class="w-10 h-10 rounded-full bg-red-50 flex-shrink-0">
+                <div>
+                  <h4 class="font-bold text-lg">Robert Chen</h4>
+                  <p class="text-sm text-gray-500">Business Owner (Tech) • Age 52</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-gray-500 uppercase">Cash & Equivalents</p>
+                <p class="font-bold text-gray-800">$3,145,200</p>
+              </div>
+              <div class="px-4 py-1 bg-red-100 text-red-600 rounded-full font-bold"></div>
+              <a href="rm_planning.html?client=robert" class="link-with-right-chevron mt-10"
+                aria-label="Read more about Global businesses adapting to trade uncertainty"> <span>
+                  <span class="hsbc-right-chevron" aria-hidden="true"></span>
+                  <span>High Liquidity
+                    (Cash Drag)</span>
+                  <span class="empty" aria-hidden="true"></span>
+                </span>
+              </a>
+            </div>
+            <div
+              class="bg-white p-4 border border-gray-200 hover:border-gray-400 transition-colors cursor-pointer flex flex-col justify-between">
+              <div class="flex items-center gap-4">
                 <div
-                    class="bg-white p-2 rounded-full shadow-lg border border-gray-200 flex items-center max-w-3xl mx-auto mb-10 z-10 relative">
-                    <div class="pl-6 text-gray-400"><i class="fa-solid fa-sparkles"></i></div>
-                    <input type="text" id="crm-search-input"
-                        placeholder="e.g. 'Clients age 50-60, Technology Sector, >$1.5M Liquidity'..."
-                        class="flex-1 p-4 text-gray-700 focus:outline-none rounded-full">
-                    <button onclick="triggerSearch()"
-                        class="bg-brand-red hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition-all">Search</button>
-
-                    <!-- Suggestions dropdown (hidden by default) -->
-                    <div id="suggestions-list" class="suggestions-list hidden" aria-hidden="true"></div>
-                </div>
-
-                <div id="copilot-insight-card"
-                    class="max-w-4xl mx-auto bg-red-50 border-l-4 border-brand-red p-5 rounded-xl shadow-lg transition duration-300 hidden">
-                    <div class="flex items-start gap-4">
-                        <div class="text-4xl text-brand-red"><i class="fa-solid fa-bell"></i></div>
-                        <div class="flex-1">
-                            <h3 class="font-bold text-xl text-red-800 mb-2 flex items-center">
-                                <span
-                                    class="bg-brand-red text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">NUDGE</span>
-                                Liquidity Event Opportunity
-                            </h3>
-                            <p class="text-sm text-gray-700">Two of your premier clients have maturing fixed-income
-                                assets next week. This is an opportunity for a portfolio review.</p>
-                            <button onclick="fillSearch('Clients with maturing fixed-income next week')"
-                                class="mt-3 text-sm font-semibold text-brand-red hover:underline flex items-center">
-                                View Clients <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="recent-contacts-section" class="max-w-5xl mx-auto">
-                    <div class="flex justify-between items-end mb-4 px-2">
-                        <h3 class="font-bold text-gray-700"><i
-                                class="fa-solid fa-clock-rotate-left mr-2 text-gray-400"></i>Recently Contacted</h3>
-                        <a href="#" class="text-xs text-brand-red font-semibold hover:underline">View All History</a>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <a href="rm_planning.html?client=alice"
-                            class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice"
-                                    class="w-10 h-10 rounded-full bg-blue-50">
-                                <div>
-                                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-red">Alice Num
-                                    </h4>
-                                    <p class="text-xs text-gray-500">Premier Client</p>
-                                </div>
-                            </div>
-                            <div class="text-xs text-gray-500">Contacted: Today (2:15 PM)</div>
-                            <div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Reviewing First
-                                Home Mortgage <i class="fa-solid fa-arrow-right ml-1"></i></div>
-                        </a>
-                        <a href="rm_planning.html?client=robert"
-                            class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
-                                    class="w-10 h-10 rounded-full bg-red-50">
-                                <div>
-                                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-red">Robert Chen
-                                    </h4>
-                                    <p class="text-xs text-gray-500">Premier Elite Client</p>
-                                </div>
-                            </div>
-                            <div class="text-xs text-gray-500">Contacted: Yesterday (11:00 AM)</div>
-                            <div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Discussing Cash
-                                Drag Risk <i class="fa-solid fa-arrow-right ml-1"></i></div>
-                        </a>
-                        <a href="rm_planning.html?client=sarah"
-                            class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
-                            <div class="flex items-center gap-3 mb-3">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-                                    class="w-10 h-10 rounded-full bg-purple-50">
-                                <div>
-                                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-brand-red">Sarah Jenkins
-                                    </h4>
-                                    <p class="text-xs text-gray-500">New Client</p>
-                                </div>
-                            </div>
-                            <div class="text-xs text-gray-500">Contacted: 2 days ago</div>
-                            <div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Setting Up
-                                Education Fund <i class="fa-solid fa-arrow-right ml-1"></i></div>
-                        </a>
-                    </div>
-                </div>
-
-                <div id="opportunity-results" class="max-w-5xl mx-auto hidden">
-                    <div class="flex justify-between items-end mb-4 px-2">
-                        <h3 class="font-bold text-gray-700 flex items-center"><i
-                                class="fa-solid fa-chart-line mr-2 text-brand-red"></i> Search Results (2)</h3>
-                        <button onclick="clearSearch()"
-                            class="text-xs text-gray-500 hover:text-gray-700 font-semibold hover:underline flex items-center"><i
-                                class="fa-solid fa-xmark mr-1"></i> Clear Search</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <a href="rm_planning.html?client=robert"
-                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
-                            <div class="flex items-center gap-4">
-                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
-                                    class="w-10 h-10 rounded-full bg-red-50 flex-shrink-0">
-                                <div>
-                                    <h4 class="font-bold text-lg">Robert Chen</h4>
-                                    <p class="text-sm text-gray-500">Business Owner (Tech) • Age 52</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-gray-500 uppercase">Cash & Equivalents</p>
-                                <p class="font-bold text-gray-800">$3,145,200</p>
-                            </div>
-                            <div class="px-4 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">High Liquidity
-                                (Cash Drag)</div>
-                        </a>
-                        <a href="rm_planning.html?client=sarah"
-                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg group-hover:bg-purple-700 transition">
-                                    SJ</div>
-                                <div>
-                                    <h4 class="font-bold text-lg">Sarah Jenkins</h4>
-                                    <p class="text-sm text-gray-500">Director @ GlobalTech • Age 48</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-gray-500 uppercase">Investable Cash</p>
-                                <p class="font-bold text-gray-800">$1,152,430</p>
-                            </div>
-                            <div class="px-4 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-bold">High Income
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
+                  class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg group-hover:bg-purple-700 transition">
+                  SJ</div>
+                <h4 class="font-bold text-lg">Sarah Jenkins</h4>
+                <p class="text-gray-500">Director @ GlobalTech • Age 48</p>
+              </div>
+              <div class="text-right">
+                <p class="text-gray-500 uppercase">Investable Cash</p>
+                <p class="font-bold text-gray-800">$1,152,430</p>
+              </div>
+              <a href="rm_planning.html?client=sarah" class="link-with-right-chevron mt-10"
+                aria-label="Read more about Global businesses adapting to trade uncertainty">
+                <span>
+                  <span class="hsbc-right-chevron" aria-hidden="true"></span>
+                  <span>High Income</span>
+                  <span class="empty" aria-hidden="true"></span>
+                </span>
+              </a>
+              </a>
             </div>
-        </main>
-
-    <!-- Floating Action Button -->
-    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-red-700 focus:outline-none transition-colors">
-        <i class="fa-solid fa-robot"></i>
-    </button>
-
-    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
-        <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
-            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+          </div>
         </div>
-        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
-            <div class="flex gap-3 chat-bubble-in mb-4">
-                <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome. I am monitoring your top client segments for new opportunities.</div>
-            </div>
-            <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
-                <button onclick="fillSearch('Clients with maturing fixed-income next week')"
-                    class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Liquidity
-                    Events Next Week</button>
-                <button onclick="fillSearch('Clients age 50-60, Technology Sector, >$1.5M Liquidity')"
-                    class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">High
-                    Cash/Tech Sector</button>
-                <button onclick="fillSearch('Show clients missing an Education Fund')"
-                    class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Missing
-                    Key Goal</button>
-            </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Floating Action Button -->
+  <button id="copilot-trigger" onclick="toggleCopilot()"
+    class="fixed bottom-6 right-6 z-40 bg-[#cccccc] text-white w-14 h-14 shadow-2xl flex items-center justify-center text-2xl hover:bg-[#db0011] transition-colors duration-300">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+
+  <aside id="copilot-widget" class="copilot-widget flex flex-col space-between" style="display: flex;">
+    <div class="bg-[#2d2d2d] text-white p-4 flex justify-between items-center shrink-0">
+      <h3 class="font-bold flex items-center gap-2"><i class="fa-solid fa-robot"></i> AI Agent
+      </h3>
+      <button onclick="toggleCopilot()" class="text-gray-400 hover:text-white"><i
+          class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <div class="flex gap-3 chat-bubble-in mb-4">
+        <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center text-white bg-gray-900">
+          <i class="fa-solid fa-robot"></i>
         </div>
+        <div class="bg-white p-3 shadow-sm border border-gray-200 text-gray-700 w-full">
+          Welcome. I am monitoring your top client segments for new opportunities.</div>
+      </div>
+      <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+        <button onclick="fillSearch('Clients with maturing fixed-income next week')"
+          class="text-xs px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Liquidity
+          Events Next Week</button>
+        <button onclick="fillSearch('Clients age 50-60, Technology Sector, >$1.5M Liquidity')"
+          class="text-xs px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">High
+          Cash/Tech Sector</button>
+        <button onclick="fillSearch('Show clients missing an Education Fund')"
+          class="text-xs px-3 py-1 bg-gray-200 text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Missing
+          Key Goal</button>
+      </div>
+    </div>
 
-        <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2">
-            <input type="text" id="copilot-input" placeholder="Ask a question about your opportunities..."
-                class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-red"
-                onkeypress="if(event.key === 'Enter') handleCopilotInput()">
-            <button onclick="handleCopilotInput()"
-                class="bg-brand-red hover:bg-red-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i
-                    class="fa-solid fa-plus"></i></button>
-        </div>
-    </aside>
+    <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2 bg-white p-4">
+      <input type="text" id="copilot-input" placeholder="Ask a question about your opportunities..."
+        class="flex-1 border border-gray-300 p-3 focus:outline-none"
+        onkeypress="if(event.key === 'Enter') handleCopilotInput()">
+      <button onclick="handleCopilotInput()"
+        class="btn-info w-16 flex items-center justify-center flex-shrink-0 transition"><i
+          class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </aside>
 
-    <script>
-        // Helper function to render messages in the chat panel
-        function sendChatMessage(message, isUser = false) {
-            const chatContainer = document.getElementById('chat-container');
-            const newChat = document.createElement('div');
-            newChat.className = `flex gap-3 chat-bubble-in mb-4 ${isUser ? 'justify-end' : ''}`;
+  <script src="./scripts/rm_opportunity.js">
 
-            const messageContent = `<div class="p-3 rounded-lg shadow-sm border text-sm w-full max-w-xs ${isUser ? 'bg-brand-red text-white rounded-tr-none border-brand-red' : 'bg-white text-gray-700 rounded-tl-none border-gray-200'}">${message}</div>`;
-            const avatar = `<div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs ${isUser ? 'bg-gray-400' : 'bg-gray-900'}"><i class="fa-solid ${isUser ? 'fa-user' : 'fa-robot'}"></i></div>`;
-
-            if (isUser) {
-                newChat.innerHTML = `${messageContent}${avatar}`;
-            } else {
-                newChat.innerHTML = `${avatar}${messageContent}`;
-            }
-
-            chatContainer.appendChild(newChat);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // Search logic — render results based on simple keyword matching
-        (function () {
-            const clients = {
-                robert: {
-                    id: 'robert',
-                    href: 'rm_planning.html?client=robert',
-                    title: 'Robert Chen',
-                    subtitle: 'Business Owner (Tech) • Age 52',
-                    category: 'Cash & Equivalents',
-                    amount: '$3,145,200',
-                    tagHtml: '<div class="px-4 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">High Liquidity (Cash Drag)</div>',
-                    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Robert'
-                },
-                alice: {
-                    id: 'alice',
-                    href: 'rm_planning.html?client=alice',
-                    title: 'Alice Num',
-                    subtitle: 'Premier Client • Age 57',
-                    category: 'Reviewing First Home Mortgage',
-                    amount: '',
-                    tagHtml: '<div class="text-xs text-brand-red mt-1 font-semibold flex items-center">Reviewing First Home Mortgage <i class="fa-solid fa-arrow-right ml-1"></i></div>',
-                    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice'
-                },
-                sarah: {
-                    id: 'sarah',
-                    href: 'rm_planning.html?client=sarah',
-                    title: 'Sarah Jenkins',
-                    subtitle: 'Director @ GlobalTech • Age 48',
-                    category: 'Investable Cash',
-                    amount: '$1,152,430',
-                    tagHtml: '<div class="px-4 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-bold">High Income</div>',
-                    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah'
-                }
-            };
-
-            function renderCard(c) {
-                // Use the same card structure as other result cards
-                return `
-                    <a href="${c.href}"
-                        class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
-                        <div class="flex items-center gap-4">
-                            <img src="${c.avatar}" class="w-10 h-10 rounded-full bg-red-50 flex-shrink-0">
-                            <div>
-                                <h4 class="font-bold text-lg">${c.title}</h4>
-                                <p class="text-sm text-gray-500">${c.subtitle}</p>
-                            </div>
-                        </div>
-                        <div class="text-right mt-3">
-                            <p class="text-xs text-gray-500 uppercase">${c.category}</p>
-                            <p class="font-bold text-gray-800">${c.amount}</p>
-                        </div>
-                        <div class="mt-3">${c.tagHtml}</div>
-                    </a>
-                `;
-            }
-
-            function showResults(clientIds, searchText) {
-                const container = document.getElementById('opportunity-results');
-
-                // Build results header (keeps same structure as original)
-                const headerHtml = `
-                    <div class="flex justify-between items-end mb-4 px-2">
-                        <h3 class="font-bold text-gray-700 flex items-center"><i class="fa-solid fa-chart-line mr-2 text-brand-red"></i> Search Results (${clientIds.length})</h3>
-                        <button onclick="clearSearch()" class="text-xs text-gray-500 hover:text-gray-700 font-semibold hover:underline flex items-center"><i class="fa-solid fa-xmark mr-1"></i> Clear Search</button>
-                    </div>
-                `;
-
-                // Build grid wrapper and cards
-                let cardsHtml = '';
-                for (const id of clientIds) {
-                    if (clients[id]) cardsHtml += renderCard(clients[id]);
-                }
-
-                const gridHtml = `<div class="grid grid-cols-1 md:grid-cols-2 gap-5">${cardsHtml}</div>`;
-
-                // Replace container content entirely to avoid leftover blocks
-                container.innerHTML = headerHtml + gridHtml;
-                container.classList.remove('hidden');
-
-                // chat feedback
-                sendChatMessage(`Searching for: ${searchText}`, true);
-                setTimeout(() => {
-                    sendChatMessage(`Found ${clientIds.length} client${clientIds.length > 1 ? 's' : ''} matching your criteria.`, false);
-                }, 500);
-            }
-
-            window.triggerSearch = function () {
-                const searchText = document.getElementById('crm-search-input').value.trim();
-                if (searchText === '') return;
-
-                // Hide recent contacts and nudge card
-                document.getElementById('recent-contacts-section').classList.add('hidden');
-                document.getElementById('copilot-insight-card').classList.add('hidden');
-
-                const q = searchText.toLowerCase();
-
-                // Case 2: maturing fixed-income next week -> Robert + Alice
-                if (q.includes('maturing') && q.includes('fixed') || q.includes('fixed-income') || q.includes('fixed income') || q.includes('next week')) {
-                    showResults(['robert', 'alice'], searchText);
-                    return;
-                }
-
-                // Case 3: missing an Education Fund -> Sarah
-                if (q.includes('education') || (q.includes('missing') && q.includes('education'))) {
-                    showResults(['sarah'], searchText);
-                    return;
-                }
-
-                // Case 1: Clients over 50 in Tech sector with >$1M cash -> Robert
-                const isOver50 = q.includes('over 50') || q.includes('age 50') || q.includes('50-60') || /\b50\b/.test(q) || /\b52\b/.test(q);
-                const isTech = q.includes('tech') || q.includes('technology');
-                const hasMillion = q.includes('1m') || q.includes('$1') || q.includes('1 million') || q.includes('> $1');
-                if ((isOver50 && isTech && hasMillion) || (isTech && hasMillion && q.includes('age'))) {
-                    showResults(['robert'], searchText);
-                    return;
-                }
-
-                // Default: if query contains 'tech' show Robert, if contains 'education' show Sarah, otherwise fall back to a generic response
-                if (q.includes('tech')) {
-                    showResults(['robert'], searchText);
-                    return;
-                }
-
-                if (q.includes('education')) {
-                    showResults(['sarah'], searchText);
-                    return;
-                }
-
-                // Fallback: no results
-                const container = document.getElementById('opportunity-results');
-                container.innerHTML = `<div class="px-2">\n<div class=\"text-sm text-gray-600\">No clients matched your search. Try different criteria.</div>\n</div>`;
-                container.classList.remove('hidden');
-                sendChatMessage(`No clients matched '${searchText}'.`, false);
-            };
-
-            window.fillSearch = function (query) {
-                document.getElementById('crm-search-input').value = query;
-                triggerSearch();
-            };
-
-            window.clearSearch = function () {
-                document.getElementById('recent-contacts-section').classList.remove('hidden');
-                // Ensure nudge is visible when clearing search
-                document.getElementById('copilot-insight-card').classList.remove('hidden');
-                const container = document.getElementById('opportunity-results');
-                container.classList.add('hidden');
-                // remove any dynamic results content so we don't leak old cards
-                const innerGrid = container.querySelector('.grid');
-                if (innerGrid) innerGrid.remove();
-                document.getElementById('crm-search-input').value = '';
-            };
-        })();
-
-        function handleCopilotInput() {
-            const input = document.getElementById('copilot-input');
-            if (input.value.trim() !== '') {
-                const message = input.value.trim();
-                sendChatMessage(message, true);
-
-                // Simulate AI response
-                setTimeout(() => {
-                    sendChatMessage(`Analysis requested for: ${message}. Please wait for the results.`, false);
-                }, 800);
-
-                input.value = '';
-            }
-        }
-
-        function toggleCopilot() {
-            const widget = document.getElementById('copilot-widget');
-            const trigger = document.getElementById('copilot-trigger');
-            widget.classList.toggle('active');
-            
-            if (widget.classList.contains('active')) {
-                trigger.style.transform = 'scale(0)';
-                setTimeout(() => {
-                    const input = document.getElementById('copilot-input');
-                    if(input) input.focus();
-                }, 100);
-            } else {
-                trigger.style.transform = 'scale(1)';
-            }
-        }
-
-        // Suggestions logic: show recommended search criteria when user types 'client'
-        (function() {
-            const input = document.getElementById('crm-search-input');
-            const suggestionsEl = document.getElementById('suggestions-list');
-            const suggestions = [
-                {
-                    label: 'Clients over 50 in Tech sector with >$1M cash',
-                    query: "Clients over 50 in Tech sector with >$1M cash"
-                },
-                {
-                    label: 'Clients with maturing fixed-income next week',
-                    query: 'Clients with maturing fixed-income next week'
-                },
-                {
-                    label: 'Show clients missing an Education Fund',
-                    query: 'Show clients missing an Education Fund'
-                }
-            ];
-
-            let activeIndex = -1;
-
-            function renderSuggestions(filtered) {
-                if (!filtered || filtered.length === 0) {
-                    suggestionsEl.classList.add('hidden');
-                    suggestionsEl.setAttribute('aria-hidden', 'true');
-                    return;
-                }
-
-                suggestionsEl.innerHTML = '';
-                filtered.forEach((s, i) => {
-                    const item = document.createElement('div');
-                    item.className = 'suggestion-item';
-                    item.setAttribute('role', 'button');
-                    item.setAttribute('tabindex', '0');
-                    item.innerText = s.label;
-                    item.addEventListener('click', () => {
-                        fillSearch(s.query);
-                        hideSuggestions();
-                    });
-                    item.addEventListener('keydown', (ev) => {
-                        if (ev.key === 'Enter') {
-                            fillSearch(s.query);
-                            hideSuggestions();
-                        }
-                    });
-                    suggestionsEl.appendChild(item);
-                });
-
-                activeIndex = -1;
-                suggestionsEl.classList.remove('hidden');
-                suggestionsEl.setAttribute('aria-hidden', 'false');
-            }
-
-            function hideSuggestions() {
-                suggestionsEl.classList.add('hidden');
-                suggestionsEl.setAttribute('aria-hidden', 'true');
-                activeIndex = -1;
-            }
-
-            function filterSuggestions(q) {
-                // only show suggestions when user types the word 'client' (or 'clients')
-                if (!q) return [];
-                const lower = q.toLowerCase();
-                if (lower.includes('client')) return suggestions;
-                // also show if user typed only 'c' or 'cl' to be helpful
-                if (/^c(l)?(i)?/.test(lower)) return suggestions;
-                return [];
-            }
-
-            input.addEventListener('input', (e) => {
-                const q = e.target.value || '';
-                const filtered = filterSuggestions(q);
-                renderSuggestions(filtered);
-            });
-
-            input.addEventListener('keydown', (e) => {
-                const items = Array.from(suggestionsEl.querySelectorAll('.suggestion-item'));
-                if (items.length === 0) return;
-
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    activeIndex = Math.min(activeIndex + 1, items.length - 1);
-                    items.forEach((it, idx) => it.classList.toggle('active', idx === activeIndex));
-                    items[activeIndex].focus();
-                } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    activeIndex = Math.max(activeIndex - 1, 0);
-                    items.forEach((it, idx) => it.classList.toggle('active', idx === activeIndex));
-                    items[activeIndex].focus();
-                } else if (e.key === 'Escape') {
-                    hideSuggestions();
-                }
-            });
-
-            // hide suggestions when clicking outside
-            document.addEventListener('click', (ev) => {
-                if (!suggestionsEl.contains(ev.target) && ev.target !== input) {
-                    hideSuggestions();
-                }
-            });
-        })();
-    </script>
+  </script>
 </body>
 
 </html>

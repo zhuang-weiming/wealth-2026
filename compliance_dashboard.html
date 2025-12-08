@@ -84,91 +84,94 @@
     <!-- Main Content -->
 
     <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
-      <main class="max-w-[1400px] mx-auto p-6 pb-32">
-        <div class="grid grid-cols-1 gap-6">
-          <div class="hsbc-card lg:col-span-2">
-            <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
-              <h3>Real-time Monitoring</h3>
-              <span class="text-gray-500" id="current-date"></span>
+      <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
+        <div class="max-w-[1630px] mx-auto p-6 pb-32">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="hsbc-card lg:col-span-2">
+              <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
+                <h3>Real-time Monitoring</h3>
+                <span class="text-gray-500" id="current-date"></span>
+              </div>
+
+              <div class="space-y-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div id="copilot-alert-card"
+                  class="bg-white border-l-[6px] border-success shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-[#2d2d2d]">1,247</h3>
+                    </div>
+                    <p>
+                      Total Requests
+                    </p>
+                    <p class="text-success"><i class="fas fa-arrow-up"></i> +8.2% vs yesterday</p>
+                  </div>
+                </div>
+                <div id="copilot-alert-card"
+                  class="bg-white border-l-[6px] border-warning shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-[#2d2d2d]">12</h3>
+                    </div>
+                    <p>
+                      Blocked Requests
+                    </p>
+                    <p class="text-warning">0.96% block rate</p>
+                  </div>
+                </div>
+                <div id="copilot-alert-card"
+                  class="bg-white border-l-[6px] border-danger shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-[#2d2d2d]">3</h3>
+                    </div>
+                    <p>
+                      High Risk
+                    </p>
+                    <p class="text-danger">Requires review</p>
+                  </div>
+                </div>
+                <div id="copilot-alert-card"
+                  class="bg-white border-l-[6px] border-primary shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-[#2d2d2d]">1</h3>
+                    </div>
+                    <p>
+                      Critical Risk
+                    </p>
+                    <p class="text-primary">Immediate action needed</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="space-y-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div id="copilot-alert-card"
-                class="bg-white border-l-[6px] border-success shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
-                <div>
-                  <div class="flex items-center gap-3 mb-2">
-                    <h3 class="text-[#2d2d2d]">1,247</h3>
-                  </div>
-                  <p>
-                    Total Requests
-                  </p>
-                  <p class="text-success"><i class="fas fa-arrow-up"></i> +8.2% vs yesterday</p>
+            <div class="hsbc-card lg:col-span-2">
+              <div class="hsbc-header-border pb-3 mb-4">
+                <h3 class="text-[#2d2d2d]">Recent Violations (Last 24h)</h3>
+              </div>
+              <div class="space-y-4">
+                <div id="violations-list" class="divide-y divide-gray-200">
+                  <!-- Violations will be rendered here by JavaScript -->
                 </div>
               </div>
-              <div id="copilot-alert-card"
-                class="bg-white border-l-[6px] border-warning shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
-                <div>
-                  <div class="flex items-center gap-3 mb-2">
-                    <h3 class="text-[#2d2d2d]">12</h3>
-                  </div>
-                  <p>
-                    Blocked Requests
-                  </p>
-                  <p class="text-warning">0.96% block rate</p>
-                </div>
+            </div>
+
+            <div class="hsbc-card lg:col-span-2">
+              <div class="pb-3 mb-4 flex justify-between">
+                <h3 class="text-[#2d2d2d]">Compliance Rules(6 Active)</h3>
               </div>
-              <div id="copilot-alert-card"
-                class="bg-white border-l-[6px] border-danger shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
-                <div>
-                  <div class="flex items-center gap-3 mb-2">
-                    <h3 class="text-[#2d2d2d]">3</h3>
-                  </div>
-                  <p>
-                    High Risk
-                  </p>
-                  <p class="text-danger">Requires review</p>
-                </div>
-              </div>
-              <div id="copilot-alert-card"
-                class="bg-white border-l-[6px] border-primary shadow-sm p-6 pt-0 pb-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
-                <div>
-                  <div class="flex items-center gap-3 mb-2">
-                    <h3 class="text-[#2d2d2d]">1</h3>
-                  </div>
-                  <p>
-                    Critical Risk
-                  </p>
-                  <p class="text-primary">Immediate action needed</p>
-                </div>
-              </div>
+              <table class="table dataTable">
+                <thead></thead>
+                <tbody id="rules-list">
+
+                </tbody>
+              </table>
             </div>
           </div>
 
-          <div class="hsbc-card lg:col-span-2">
-            <div class="hsbc-header-border pb-3 mb-4">
-              <h3 class="text-[#2d2d2d]">Recent Violations (Last 24h)</h3>
-            </div>
-            <div class="space-y-4">
-              <div id="violations-list" class="divide-y divide-gray-200">
-                <!-- Violations will be rendered here by JavaScript -->
-              </div>
-            </div>
-          </div>
-
-          <div class="hsbc-card lg:col-span-2">
-            <div class="pb-3 mb-4 flex justify-between">
-              <h3 class="text-[#2d2d2d]">Compliance Rules(6 Active)</h3>
-            </div>
-            <table class="table dataTable">
-              <thead></thead>
-              <tbody id="rules-list">
-
-              </tbody>
-            </table>
-          </div>
         </div>
-
       </main>
+
     </div>
   </div>
 

@@ -5,16 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Investment Portfolio - HSBC RM Dashboard</title>
-
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="./css/hsbc.css" rel="stylesheet" />
   <link href="./css/investment.css" rel="stylesheet" />
 </head>
 
-<body class="">
-
+<body>
   <!-- header section start-->
   <div class="header__shell">
     <header class="header fixed" role="banner">
@@ -117,292 +114,289 @@
   </div>
   <!-- banner end -->
   <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
-    <main class="max-w-[1400px] mx-auto p-6 pb-32">
-      <!-- <div class="mb-8">
-        <h1 class="text-3xl font-light text-[#2d2d2d] mb-2">Investment Overview</h1>
-        <p class="text-gray-600">Monitor critical market movements, portfolio risks, and compliance
-          alerts.</p>
-      </div> -->
-      <div id="copilot-alert-card"
-        class="bg-danger border-l-[6px] border-[#db0011] shadow-sm p-6 pb-10 pt-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
-        <!-- <div class="text-[#db0011] text-3xl pt-1">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-        </div> -->
-        <div class="text-danger">
-          <div class="flex items-center gap-3 mb-2">
-            <!-- <span class="uppercase tracking-wide">Action
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
+      <div class="max-w-[1630px] mx-auto p-6 pb-32">
+        <div id="copilot-alert-card"
+          class="bg-danger border-l-[6px] border-[#db0011] shadow-sm p-6 pb-10 pt-10 mb-8 flex flex-col md:flex-row gap-6 items-start">
+          <div class="text-danger">
+            <div class="flex items-center gap-3 mb-2">
+              <!-- <span class="uppercase tracking-wide">Action
               Required</span> -->
-            <span class="bg-primary text-white font-bold px-2 py-0.5 animate-pulse-slow">High
-              Priority</span>
-            <div class="text-4xl">Compliance Risk: SFDR Article 9 Violation</div>
-          </div>
-          <p>
-            Two new ESG reports indicate excessive carbon exposure in 4 currently-approved funds. Immediate Product
-            Vetting review is required to maintain SFDR Article 9 classification.
-          </p>
-          <div class="flex gap-3">
-            <button
-              onclick="sendActionToAgent('Review Flagged Funds for Article 9 Compliance in Product Vetting Queue')"
-              class="btn-danger px-5 py-2">
-              Review Compliance
-            </button>
-            <button onclick="sendActionToAgent('View ESG Report Summary')" class="btn-danger px-5 py-2">
-              View Report Summary
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="hsbc-card lg:col-span-2">
-          <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
-            <h3>AI Rebalancing Review Queue</h3>
-            <span class="text-gray-500">AI Prioritized</span>
-          </div>
-
-          <div class="space-y-4">
-            <div
-              class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
-              <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center gap-3">
-                  <span class="bg-primary text-white px-2 py-0.5 text-xl">High Priority</span>
-                  <strong>Jennifer Wu</strong>
-                </div>
-                <button onclick="showAdviceDetail('jennifer')" class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
-              </div>
-              <div class="text-gray-600 grid grid-cols-3 gap-4">
-                <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-primary">SVB Crisis Rebalancing</strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
-                  <strong class="text-primary">65%</strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <strong>$300,000</strong>
-                </div>
-              </div>
+              <span class="bg-primary text-white font-bold px-2 py-0.5 animate-pulse-slow">High
+                Priority</span>
+              <div class="text-4xl">Compliance Risk: SFDR Article 9 Violation</div>
             </div>
-
-            <div
-              class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
-              <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center gap-3">
-                  <span class="bg-warning text-warning px-2 py-0.5 text-xl">Important</span>
-                  <strong>Michael Chen</strong>
-                </div>
-                <button onclick="showAdviceDetail('michael')" class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
-              </div>
-              <div class="text-gray-600 grid grid-cols-3 gap-4">
-                <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-warning"> Fed Rate Hike Response</strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
-                  <strong class="text-warning">45%</strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <strong>$500,000</strong>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
-              <div class="flex justify-between items-start mb-2">
-                <div class="flex items-center gap-3">
-                  <span class="bg-success text-success px-2 py-0.5 text-xl">Normal</span>
-                  <span class="font-bold text-[#2d2d2d]">Sarah Lee</span>
-                </div>
-                <button onclick="showAdviceDetail('sarah')" class="btn-link">View Details <i
-                    class="fa-solid fa-chevron-right ml-1"></i></button>
-              </div>
-              <div class="text-gray-600 grid grid-cols-3 gap-4">
-                <div>
-                  <span class="block text-gray-400 uppercase">Trigger</span>
-                  <strong class="text-success">Gold Allocation Opportunity </strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Risk Exposure</span>
-                  <strong class="text-success">20%</strong>
-                </div>
-                <div>
-                  <span class="block text-gray-400 uppercase">Total AUM</span>
-                  <strong>$200,000</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-6">
-          <div class="hsbc-card">
-            <div class="hsbc-header-border pb-3 mb-4">
-              <h3 class="text-[#2d2d2d]">Market Research Synthesis (Last 24hrs)</h3>
-            </div>
-            <div class="space-y-4">
-              <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">Clean Energy Sector Outperformance</strong>
-                <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (ICLN) and peers beat MSCI World by 1.5%
-                  YTD. **Action:** Highlight for Wealth Managers as a key point.</p>
-                <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
-              </div>
-              <div class="pb-3 border-b border-gray-100 last:border-0">
-                <strong class="text-[#2d2d2d] mb-1">Federal Reserve FOMC Minutes Review</strong>
-                <p class="text-gray-600 mb-2">Key emphasis on "higher for longer" rates. **Action:** Fixed income
-                  strategy meeting scheduled for Tuesday 11:30 AM.</p>
-                <a href="#" class="text-[#db0011] hover:underline">View Minutes &rarr;</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="hsbc-card bg-gray-50 border-gray-200">
-            <div class="hsbc-header-border pb-3 mb-4 flex justify-between">
-              <h3 class="text-[#2d2d2d]">Product Vetting Queue</h3>
-            </div>
-            <ul class="space-y-3">
-              <li class="flex justify-between items-center">
-                <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>High Priority: 4
-                  Flagged
-                  SFDRDueFunds</strong>
-                <strong class="text-[#db0011] text-right">Due Today</strong>
-              </li>
-              <li class="flex justify-between items-center">
-                <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>New: Russell 2000 Growth</span>
-                <span class="text-gray-500">Due in 3 days</span>
-              </li>
-              <li class="flex justify-between items-center">
-                <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i>Rebal: JPM EM Bond Index</span>
-                <span class="text-gray-500">Due in 7 days</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <div id="advice-detail-panel" style="display: none;"
-        class="mt-8 bg-white border border-gray-300 shadow-lg animate-fade-in-up">
-
-        <div class="bg-[#333] text-white p-6 flex justify-between items-center">
-          <h2 class="text-xl font-light">Rebalancing Advice Details</h2>
-          <button onclick="hideAdviceDetail()" class="text-gray-400 hover:text-white text-xl"><i
-              class="fa-solid fa-xmark"></i></button>
-        </div>
-
-        <div class="p-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-200">
-            <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">Client Name</span>
-              <strong class="text-[#2d2d2d]">Jennifer Wu</strong>
-            </div>
-            <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">Client Tier</span>
-              <span class="text-[#2d2d2d]">Premier Customer</span>
-            </div>
-            <div>
-              <span class="block text-gray-500 uppercase tracking-wider mb-1">AUM</span>
-              <span class="text-[#2d2d2d]">$300,000.00</span>
-            </div>
-          </div>
-
-          <div class="mb-8">
-            <div class="bg-danger border-l-4 border-[#a7000d] p-4">
-              <h4 class="text-[#db0011] font-bold mb-2">TRIGGER EVENT</h4>
-              <p class="text-gray-800">SVB collapse contributed to a 60% decline in tech stocks, client portfolio risk
-                exposure reached 65%, immediate rebalancing recommended to reduce risk.</p>
-            </div>
-
-            <div class="mt-8">
-              <h4 class="font-bold text-[#2d2d2d] mb-4">Portfolio Comparison Analysis</h4>
-              <table class="table dataTable">
-                <thead>
-                  <tr>
-                    <th>Asset</th>
-                    <th class="text-right">Current Position</th>
-                    <th class="text-right">Recommended Ppsition</th>
-                    <th class="text-right">Change</th>
-                  </tr>
-                </thead>
-                <tbody id="portfolio-body">
-                  <tr>
-                    <td>QQQ (Tech ETF)</td>
-                    <td class="text-right text-primary">$200,000 (65%)</td>
-                    <td class="text-right text-success">$100,000 (35%)</td>
-                    <td class="text-right text-primary">- $100,000(-30%)</td>
-                  </tr>
-                  <tr>
-                    <td>TLT (Treasury ETF)</td>
-                    <td class="text-right">$50,000 (15%)</td>
-                    <td class="text-right text-success">$150,000 (50%)</td>
-                    <td class="text-right text-success">+ $100,000(+35%)</td>
-                  </tr>
-                  <tr>
-                    <td>Cash</td>
-                    <td class="text-right">$50,000 (20%)</td>
-                    <td class="text-right">$50,000 (15%)</td>
-                    <td class="text-right">$0(0%)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Total</strong></td>
-                    <td class="text-right"><strong>$300,000</strong></td>
-                    <td class="text-right"><strong>$300,000</strong></td>
-                    <td class="text-right"><strong>-</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-3 mb-4">
-            <div class="bg-success p-3">
-              <p class="text-success mb-1">Risk Reduction</p>
-              <p class="text-2xl font-bold text-green-800">30%</p>
-            </div>
-            <div class="bg-info p-3">
-              <p class="text-info">Estimated Loss Avoided</p>
-              <p class="text-2xl font-bold text-info">$30,000</p>
-            </div>
-          </div>
-          <div class="bg-gray-50 p-4 border border-gray-200 mb-4">
-            <strong class="text-2xl text-gray-800 mb-2 flex items-center"><i
-                class="fa-solid fa-robot mr-2 text-gray-600"></i> AI Analysis</strong>
-            <p class="text-gray-700 leading-relaxed">
-              SVB collapse triggered tech stock panic, market risk-off sentiment rising. Recommend reducing Tech ETF
-              (QQQ) by 50%, reallocating to Treasury ETF (TLT) to lower volatility risk.
+            <p>
+              Two new ESG reports indicate excessive carbon exposure in 4 currently-approved funds. Immediate Product
+              Vetting review is required to maintain SFDR Article 9 classification.
             </p>
-            <p class="text-gray-700"><strong>Historical Backtest Data:</strong> Clients implementing this strategy after
-              similar events
-              reduced downside risk by 30% on average while maintaining liquidity. Strategy outperformed market
-              benchmarks by 15-20% during 2008 financial crisis and 2020 pandemic.</p>
-          </div>
-
-          <div class="p-5 bg-success">
-            <div class="mb-4">
-              <strong class="text-success text-3xl">Compliance Check</strong>
+            <div class="flex gap-3">
+              <button
+                onclick="sendActionToAgent('Review Flagged Funds for Article 9 Compliance in Product Vetting Queue')"
+                class="btn-danger px-5 py-2">
+                Review Compliance
+              </button>
+              <button onclick="sendActionToAgent('View ESG Report Summary')" class="btn-danger px-5 py-2">
+                View Report Summary
+              </button>
             </div>
-            <ul class="text-success space-y-1">
-              <li>Complies with client risk level (moderate to aggressive)</li>
-              <li>No position limit conflicts</li>
-              <li>Meets regulatory requirements (Hong Kong SFC)</li>
-            </ul>
           </div>
         </div>
 
-        <div class="btn-group gap-4 pt-6 border-t border-gray-200 mb-4 mr-6">
-          <button onclick="approveRebalancing()" class="btn btn-success">Approve</button>
-          <button onclick="modifyRebalancing()" class="btn btn-info">Modify</button>
-          <button onclick="hideAdviceDetail()" class="btn btn-danger">Reject</button>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="hsbc-card lg:col-span-2">
+            <div class="hsbc-header-border pb-3 mb-5 flex justify-between items-center">
+              <h3>AI Rebalancing Review Queue</h3>
+              <span class="text-gray-500">AI Prioritized</span>
+            </div>
+
+            <div class="space-y-4">
+              <div
+                class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
+                <div class="flex justify-between items-start mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="bg-primary text-white px-2 py-0.5 text-xl">High Priority</span>
+                    <strong>Jennifer Wu</strong>
+                  </div>
+                  <button onclick="showAdviceDetail('jennifer')" class="btn-link">View Details <i
+                      class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="text-gray-600 grid grid-cols-3 gap-4">
+                  <div>
+                    <span class="block text-gray-400 uppercase">Trigger</span>
+                    <strong class="text-primary">SVB Crisis Rebalancing</strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                    <strong class="text-primary">65%</strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Total AUM</span>
+                    <strong>$300,000</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
+                <div class="flex justify-between items-start mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="bg-warning text-warning px-2 py-0.5 text-xl">Important</span>
+                    <strong>Michael Chen</strong>
+                  </div>
+                  <button onclick="showAdviceDetail('michael')" class="btn-link">View Details <i
+                      class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="text-gray-600 grid grid-cols-3 gap-4">
+                  <div>
+                    <span class="block text-gray-400 uppercase">Trigger</span>
+                    <strong class="text-warning"> Fed Rate Hike Response</strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                    <strong class="text-warning">45%</strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Total AUM</span>
+                    <strong>$500,000</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="border border-gray-200 hover:border-gray-400 transition-colors p-4 bg-white group cursor-pointer">
+                <div class="flex justify-between items-start mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="bg-success text-success px-2 py-0.5 text-xl">Normal</span>
+                    <span class="font-bold text-[#2d2d2d]">Sarah Lee</span>
+                  </div>
+                  <button onclick="showAdviceDetail('sarah')" class="btn-link">View Details <i
+                      class="fa-solid fa-chevron-right ml-1"></i></button>
+                </div>
+                <div class="text-gray-600 grid grid-cols-3 gap-4">
+                  <div>
+                    <span class="block text-gray-400 uppercase">Trigger</span>
+                    <strong class="text-success">Gold Allocation Opportunity </strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Risk Exposure</span>
+                    <strong class="text-success">20%</strong>
+                  </div>
+                  <div>
+                    <span class="block text-gray-400 uppercase">Total AUM</span>
+                    <strong>$200,000</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="hsbc-card">
+              <div class="hsbc-header-border pb-3 mb-4">
+                <h3 class="text-[#2d2d2d]">Market Research Synthesis (Last 24hrs)</h3>
+              </div>
+              <div class="space-y-4">
+                <div class="pb-3 border-b border-gray-100 last:border-0">
+                  <strong class="text-[#2d2d2d] mb-1">Clean Energy Sector Outperformance</strong>
+                  <p class="text-gray-600 mb-2">iShares Global Clean Energy ETF (ICLN) and peers beat MSCI World by 1.5%
+                    YTD. **Action:** Highlight for Wealth Managers as a key point.</p>
+                  <a href="#" class="text-[#db0011] hover:underline">Read Analysis &rarr;</a>
+                </div>
+                <div class="pb-3 border-b border-gray-100 last:border-0">
+                  <strong class="text-[#2d2d2d] mb-1">Federal Reserve FOMC Minutes Review</strong>
+                  <p class="text-gray-600 mb-2">Key emphasis on "higher for longer" rates. **Action:** Fixed income
+                    strategy meeting scheduled for Tuesday 11:30 AM.</p>
+                  <a href="#" class="text-[#db0011] hover:underline">View Minutes &rarr;</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="hsbc-card bg-gray-50 border-gray-200">
+              <div class="hsbc-header-border pb-3 mb-4 flex justify-between">
+                <h3 class="text-[#2d2d2d]">Product Vetting Queue</h3>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex justify-between items-center">
+                  <strong class="text-[#db0011]"><i class="fa-solid fa-circle-exclamation mr-2"></i>High Priority: 4
+                    Flagged
+                    SFDRDueFunds</strong>
+                  <strong class="text-[#db0011] text-right">Due Today</strong>
+                </li>
+                <li class="flex justify-between items-center">
+                  <span class="text-gray-700"><i class="fa-solid fa-plus mr-2"></i>New: Russell 2000 Growth</span>
+                  <span class="text-gray-500">Due in 3 days</span>
+                </li>
+                <li class="flex justify-between items-center">
+                  <span class="text-gray-700"><i class="fa-solid fa-rotate mr-2"></i>Rebal: JPM EM Bond Index</span>
+                  <span class="text-gray-500">Due in 7 days</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="advice-detail-panel" style="display: none;"
+          class="mt-8 bg-white border border-gray-300 shadow-lg animate-fade-in-up">
+
+          <div class="bg-[#333] text-white p-6 flex justify-between items-center">
+            <h2 class="text-xl font-light">Rebalancing Advice Details</h2>
+            <button onclick="hideAdviceDetail()" class="text-gray-400 hover:text-white text-xl"><i
+                class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 pb-8 border-b border-gray-200">
+              <div>
+                <span class="block text-gray-500 uppercase tracking-wider mb-1">Client Name</span>
+                <strong class="text-[#2d2d2d]">Jennifer Wu</strong>
+              </div>
+              <div>
+                <span class="block text-gray-500 uppercase tracking-wider mb-1">Client Tier</span>
+                <span class="text-[#2d2d2d]">Premier Customer</span>
+              </div>
+              <div>
+                <span class="block text-gray-500 uppercase tracking-wider mb-1">AUM</span>
+                <span class="text-[#2d2d2d]">$300,000.00</span>
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <div class="bg-danger border-l-4 border-[#a7000d] p-4">
+                <h4 class="text-[#db0011] font-bold mb-2">TRIGGER EVENT</h4>
+                <p class="text-gray-800">SVB collapse contributed to a 60% decline in tech stocks, client portfolio risk
+                  exposure reached 65%, immediate rebalancing recommended to reduce risk.</p>
+              </div>
+
+              <div class="mt-8">
+                <h4 class="font-bold text-[#2d2d2d] mb-4">Portfolio Comparison Analysis</h4>
+                <table class="table dataTable">
+                  <thead>
+                    <tr>
+                      <th>Asset</th>
+                      <th class="text-right">Current Position</th>
+                      <th class="text-right">Recommended Ppsition</th>
+                      <th class="text-right">Change</th>
+                    </tr>
+                  </thead>
+                  <tbody id="portfolio-body">
+                    <tr>
+                      <td>QQQ (Tech ETF)</td>
+                      <td class="text-right text-primary">$200,000 (65%)</td>
+                      <td class="text-right text-success">$100,000 (35%)</td>
+                      <td class="text-right text-primary">- $100,000(-30%)</td>
+                    </tr>
+                    <tr>
+                      <td>TLT (Treasury ETF)</td>
+                      <td class="text-right">$50,000 (15%)</td>
+                      <td class="text-right text-success">$150,000 (50%)</td>
+                      <td class="text-right text-success">+ $100,000(+35%)</td>
+                    </tr>
+                    <tr>
+                      <td>Cash</td>
+                      <td class="text-right">$50,000 (20%)</td>
+                      <td class="text-right">$50,000 (15%)</td>
+                      <td class="text-right">$0(0%)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Total</strong></td>
+                      <td class="text-right"><strong>$300,000</strong></td>
+                      <td class="text-right"><strong>$300,000</strong></td>
+                      <td class="text-right"><strong>-</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div class="bg-success p-3">
+                <p class="text-success mb-1">Risk Reduction</p>
+                <p class="text-2xl font-bold text-green-800">30%</p>
+              </div>
+              <div class="bg-info p-3">
+                <p class="text-info">Estimated Loss Avoided</p>
+                <p class="text-2xl font-bold text-info">$30,000</p>
+              </div>
+            </div>
+            <div class="bg-gray-50 p-4 border border-gray-200 mb-4">
+              <strong class="text-2xl text-gray-800 mb-2 flex items-center"><i
+                  class="fa-solid fa-robot mr-2 text-gray-600"></i> AI Analysis</strong>
+              <p class="text-gray-700 leading-relaxed">
+                SVB collapse triggered tech stock panic, market risk-off sentiment rising. Recommend reducing Tech ETF
+                (QQQ) by 50%, reallocating to Treasury ETF (TLT) to lower volatility risk.
+              </p>
+              <p class="text-gray-700"><strong>Historical Backtest Data:</strong> Clients implementing this strategy
+                after
+                similar events
+                reduced downside risk by 30% on average while maintaining liquidity. Strategy outperformed market
+                benchmarks by 15-20% during 2008 financial crisis and 2020 pandemic.</p>
+            </div>
+
+            <div class="p-5 bg-success">
+              <div class="mb-4">
+                <strong class="text-success text-3xl">Compliance Check</strong>
+              </div>
+              <ul class="text-success space-y-1">
+                <li>Complies with client risk level (moderate to aggressive)</li>
+                <li>No position limit conflicts</li>
+                <li>Meets regulatory requirements (Hong Kong SFC)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="btn-group gap-4 pt-6 border-t border-gray-200 mb-4 mr-6">
+            <button onclick="approveRebalancing()" class="btn btn-success">Approve</button>
+            <button onclick="modifyRebalancing()" class="btn btn-info">Modify</button>
+            <button onclick="hideAdviceDetail()" class="btn btn-danger">Reject</button>
+          </div>
         </div>
       </div>
+    </main>
+
   </div>
 
-  </main>
+
   </div>
 
   <button id="copilot-trigger" onclick="toggleCopilot()"
@@ -424,7 +418,7 @@
         <div class="bg-white p-3 shadow-sm border border-gray-200 text-gray-700 w-full">
           Welcome. Critical risk is flagged in the main dashboard. What is your next action?</div>
       </div>
-      <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+      <div id="action-chips" class="flex flex-wrap gap-2 p-2 border-t border-gray-100 bg-white">
         <button onclick="generateRebalancingProposal()"
           class="text-xs px-3 py-1.5 btn-info  transition whitespace-nowrap font-medium"><i
             class="fa-solid fa-chart-line mr-1"></i> Generate Rebalancing for Jennifer Wu</button>

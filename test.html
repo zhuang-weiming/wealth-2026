@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sales Performance</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="./css/hsbc.css" rel="stylesheet" />
   <link href="./css/investment.css" rel="stylesheet" />
+
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-800">
   <!-- header section start-->
   <div class="header__shell">
     <header class="header fixed" role="banner">
@@ -20,10 +21,6 @@
           <img src="./assets/hsbc-logo-200x25.svg?la=en-GB&amp;h=25&amp;hash=EFB19274CD17649AE659D3351B595180"
             alt="HSBC logo" height="25">
         </a>
-        <button type="button" class="nav__button" aria-expanded="false" aria-controls="nav__wrapper">
-          <span class="hsbc-menu" aria-hidden="true"></span>
-          <span class="sr-only">Menu</span>
-        </button>
 
         <nav role="navigation" aria-label="Main Navigation" class="nav__wrapper" data-nav="wrapper" id="nav__wrapper">
           <ul class="nav font-size-smaller" data-nav="nav" itemscope=""
@@ -116,19 +113,17 @@
   <!-- banner end -->
 
   <div class="flex-1 overflow-y-auto bg-[#f6f6f6]">
+
     <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
-      <div class="max-w-[1630px] mx-auto p-6 pb-32">
+      <div class="max-w-[1800px] mx-auto p-6 pb-32">
 
         <div id="copilot-insight-card" class="border-l-8 border-warning bg-warning p-5 transition duration-300 mb-8">
           <div class="flex items-start gap-4">
             <div class="flex-1">
-              <div class="flex flex-row items-center">
-                <span class="bg-yellow-600 text-white font-bold mr-2 px-2">INSIGHT</span>
-                <h4 class="font-bold text-warning mb-2 flex items-center">
-                  Coaching Opportunity
-                </h4>
-              </div>
-
+              <h3 class="font-bold text-warning mb-2 flex items-center">
+                <span class="bg-yellow-600 text-white font-bold px-2 py-0.5  mr-2">INSIGHT</span>
+                Coaching Opportunity
+              </h3>
               <p class="text-gray-700">Pacific Northwest's success rate on ESG mandate referrals is 15%
                 below the national average. Suggest a brief training session.</p>
               <button onclick="handleCopilotInput('Pacific Northwest ESG coaching plan')"
@@ -160,7 +155,7 @@
         </div>
 
         <div class="bg-white p-6 border border-gray-200 mb-8">
-          <h3 class="font-bold mb-4 pb-2">Top Sales Reps (QTD)</h3>
+          <h3 class="font-bold mb-4 border-b pb-2">Top Sales Reps (QTD)</h3>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="flex items-center justify-between p-3 bg-green-50">
               <div class="flex items-center">
@@ -234,14 +229,12 @@
                     -10.5%</td>
                   <td class="px-6 py-4 whitespace-nowrap text-gray-700 flex items-center">
                     ESG mandate struggling.
-                    <button onclick="toggleCopilot(); handleCopilotInput('Pacific Northwest struggling')"
-                      class="ml-3 btn-info px-2">Ask
+                    <button onclick="toggleCopilot(); handleCopilotInput('Pacific Northwest struggling')" class="ml-3 btn-info px-2">Ask
                       AI</button>
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Midwest Region
-                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Midwest Region</td>
                   <td class="px-6 py-4 whitespace-nowrap text-gray-500">$508,000</td>
                   <td class="px-6 py-4 whitespace-nowrap text-gray-500 font-semibold">71.0%</td>
                   <td class="px-6 py-4 whitespace-nowrap text-gray-500">0%</td>
@@ -306,7 +299,10 @@
       </div>
     </div>
   </aside>
+
+  <script src="./scripts/rm_performance.js">
+
+  </script>
 </body>
-<script src="./scripts/rm_performance.js"></script>
 
 </html>
