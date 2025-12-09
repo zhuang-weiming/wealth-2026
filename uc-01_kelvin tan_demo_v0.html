@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: Wealth Compass Demo</title>
+    <style>
+        /* --- 核心视觉变量 --- */
+        :root {
+            --bg-dark: #1e1e1e;
+            --panel-bg: #252526;
+            --term-text: #cccccc;
+            --gold: #c6a87c;
+            --term-green: #4caf50;
+            --term-blue: #2196f3;
+            --term-red: #f44336;
+            --term-warning: #ff9800;
+            --hsbc-red: #db0011;
+            --app-bg: #f2f2f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--term-text);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--gold); border: 1px solid var(--gold); }
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--gold);
+            background: linear-gradient(90deg, rgba(198, 168, 124, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--term-green); }
+        .term-key { color: var(--term-blue); }
+        .term-alert { color: var(--term-red); }
+        .term-warn { color: var(--term-warning); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Screen 1: Dashboard (Inertia State) */
+        .hsbc-header { background: #db0011; color: white; padding: 60px 20px 20px; font-size: 1.2rem; font-weight: bold; }
+        .dashboard-content { padding: 20px; }
+        .asset-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .ac-label { font-size: 0.8rem; color: #666; margin-bottom: 5px; }
+        .ac-value { font-size: 1.8rem; font-weight: bold; color: #333; }
+        .ac-sub { font-size: 0.8rem; color: #999; margin-top: 5px; }
+        
+        .chart-box { height: 150px; background: #f9f9f9; border-radius: 8px; margin-top: 15px; position: relative; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 10px; }
+        .bar { width: 30px; background: #ddd; border-radius: 4px 4px 0 0; position: relative; transition: height 1s ease; }
+        .bar.cash { background: #db0011; opacity: 0.2; }
+        .bar.inflation { background: #333; }
+
+        /* Screen 2: Chat */
+        .chat-app-header { background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); z-index: 10; }
+        .rm-avatar { width: 40px; height: 40px; background: #db0011; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; }
+        .chat-body-light { flex: 1; background: #f2f2f7; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+
+        .chat-input-bar { position: absolute; bottom: 0; left: 0; right: 0; background: #fff; padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; }
+        .chat-input-field { flex: 1; background: #f0f0f0; border-radius: 20px; padding: 10px 15px; font-size: 0.9rem; color: #666; text-align: center; }
+
+        .bubble-light { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333; border-bottom-left-radius: 4px; }
+        .bubble-light.user { align-self: flex-end; background: #db0011; color: white; border-bottom-right-radius: 4px; }
+        
+        /* Widget: Yield Comparison */
+        .clean-widget { background: #fff; border-radius: 12px; padding: 15px; margin-top: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .cw-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; color: #666; align-items: center; }
+        .cw-val { color: #000; font-weight: bold; }
+        .cw-val.pos { color: #008a3c; }
+        .cw-btn { width: 100%; padding: 12px; background: #333; color: white; border: none; border-radius: 8px; margin-top: 10px; font-weight: 600; cursor: pointer; text-align: center; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -100px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+        }
+        .clean-notification.show { top: 10px; }
+
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+        /* Face ID Styles */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 80px; height: 80px; margin-bottom: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Premier SG</span>
+        <span class="header-badge">WEALTH COMPASS PILOT</span>
+    </div>
+    </div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>12:30</span>
+            <span>Singtel 5G</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <div style="background:#db0011; width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">H</div>
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>HSBC Wealth</span> <span style="font-weight:normal; color:#888;">Now</span>
+                </div>
+                <div style="font-size:0.85rem; color:#333; margin-top:4px;">
+                    <strong>Inflation Alert:</strong> Your portfolio efficiency has dropped.<br>
+                    <span style="color:#555;">Tap to view purchasing power analysis.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-dashboard">
+            <div class="hsbc-header">My Portfolio</div>
+            <div class="dashboard-content">
+                <div class="asset-card">
+                    <div class="ac-label">Total Wealth (SGD)</div>
+                    <div class="ac-value">4,200,000</div>
+                    <div class="ac-sub">+0.1% vs last month</div>
+                    
+                    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:15px;">
+                        <div class="ac-label">Cash (Savings)</div>
+                        <div class="ac-value" style="font-size:1.2rem;">1,500,000</div>
+                        <div class="ac-sub" style="color:#db0011;">⚠️ High Allocation (35%)</div>
+                    </div>
+
+                    <div class="chart-box">
+                        <div style="text-align:center;">
+                            <div class="bar cash" style="height: 10px; width:40px; margin:0 auto;"></div>
+                            <div style="font-size:0.7rem; margin-top:5px;">Yield<br>0.05%</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div class="bar inflation" style="height: 100px; width:40px; margin:0 auto;"></div>
+                            <div style="font-size:0.7rem; margin-top:5px;">Inflation<br>3.2%</div>
+                        </div>
+                        <div style="position:absolute; top:40%; left:35%; font-size:0.8rem; color:#db0011; font-weight:bold;">GAP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">WC</div>
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Wealth Compass</div>
+                    <div style="font-size:0.7rem; color:#27c93f;">● AI Agent Active</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <div class="chat-input-field">Select an option...</div>
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/ffffff/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:white; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#aaa; font-size:0.9rem; margin-top:5px;">Verifying Kelvin Tan</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Simulation</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "SCENE 1: INERTIA",
+            title: "The Sleeping Giant",
+            desc: "Kelvin hasn't touched his portfolio in 18 months. He is holding too much cash (SGD 1.5M) in a low-yield account, and his old bonds are bleeding value.",
+            log: `> MONITORING_SYSTEM:
+  - USER: KELVIN_TAN
+  - LAST_INTERACTION: >180_DAYS
+  - CASH_DRAG_INDEX: <span class="term-alert">CRITICAL (35%)</span>
+  - PORTFOLIO_REAL_YIELD: -1.8% (Post-Inflation)`,
+            screen: "scr-dashboard"
+        },
+        {
+            phase: "SCENE 2: THE PROVOCATION",
+            title: "Inflation Alert",
+            desc: "Instead of a generic greeting, the AI sends a 'Loss Aversion' trigger. It frames the inaction as a direct loss of purchasing power.",
+            log: `> TRIGGER_ENGINE:
+  - TYPE: INFLATION_GAP_ALERT
+  - TONE: URGENT / FACTUAL
+  - GOAL: PROVOKE_LOGIN`,
+            action: "show_notif"
+        },
+        {
+            phase: "SCENE 3: REALITY CHECK",
+            title: "Visualizing the Gap",
+            desc: "Kelvin taps the alert. He sees the dashboard highlights the massive gap between his Cash Yield (0.05%) and Inflation (3.2%). The red 'GAP' is hard to ignore.",
+            log: `> DASHBOARD_RENDER:
+  - HIGHLIGHT: CASH_VS_CPI
+  - USER_REACTION_MODEL: SHOCK / KIASU`,
+            action: "simulate_entry" // Triggers FaceID then Chat
+        },
+        {
+            phase: "SCENE 4: DIAGNOSIS",
+            title: "Macro Attribution",
+            desc: "AI initiates conversation. It validates Kelvin's feelings: 'It's not your fault, it's the cycle.' This lowers his defense mechanism.",
+            log: `> AGENT_STRATEGY:
+  - MODE: EMPATHY + DATA
+  - ATTRIBUTION: EXTERNAL_FACTORS (Interest Rates)`,
+            action: "msg_1"
+        },
+        {
+            phase: "SCENE 5: THE CONFLICT",
+            title: "The Skeptic",
+            desc: "Kelvin pushes back. He thinks cash is safe. He is afraid of losing more money like he did with his bonds.",
+            log: `> USER_INTENT:
+  - TYPE: OBJECTION
+  - KEYWORD: "SAFE" / "LOSS"
+  - SENTIMENT: DEFENSIVE`,
+            action: "msg_user_skeptic"
+        },
+        {
+            phase: "SCENE 6: THE TRUTH",
+            title: "The Cost of Safety",
+            desc: "AI reframes 'Safety'. In 2025, Cash is guaranteed loss. It quantifies the loss: SGD 45,000 per year.",
+            log: `> CALCULATION_ENGINE:
+  - PRINCIPAL: 1.5M SGD
+  - REAL_RATE: -2.8%
+  - ANNUAL_LOSS: ~42k-45k SGD`,
+            action: "msg_ai_truth"
+        },
+        {
+            phase: "SCENE 7: THE SOLUTION",
+            title: "Cash Activation",
+            desc: "AI proposes a low-friction solution. Don't sell the old bonds (painful). Just move the *Idle Cash* to T-Bills/Money Market Funds (easy).",
+            log: `> RECOMMENDATION:
+  - ACTION: CASH_OPTIMIZATION
+  - INSTRUMENT: SG_T_BILLS / MONEY_MARKET
+  - LIQUIDITY: HIGH (T+1)`,
+            action: "msg_ai_solution"
+        },
+        {
+            phase: "SCENE 8: SIMULATION",
+            title: "Yield Comparison",
+            desc: "AI shows a widget comparing current 0.05% vs optimized 3.2%. The numbers speak for themselves.",
+            log: `> WIDGET_GEN:
+  - COMPARISON: YIELD_UPLIFT
+  - DELTA: +3.15%
+  - RISK_PROFILE: CONSERVATIVE`,
+            action: "msg_widget"
+        },
+        {
+            phase: "SCENE 9: DIGITAL HANDSHAKE",
+            title: "Pilot Execution",
+            desc: "Kelvin agrees to try with SGD 500k. AI drafts the order but routes it to RM David for 'Compliance Review'. This adds a layer of trust and safety.",
+            log: `> EXECUTION_PROTOCOL:
+  - AMOUNT: 500,000 SGD
+  - MODE: DIGITAL_HANDSHAKE
+  - APPROVER: RM_DAVID_LEE`,
+            action: "msg_handshake"
+        },
+        {
+            phase: "SCENE 10: CONFIRMATION",
+            title: "Order Routed",
+            desc: "The order is sent. Kelvin feels smart (he fixed the problem) and safe (David checks it).",
+            log: `> SYSTEM_STATUS:
+  - ORDER_ID: #SG-9921
+  - ROUTING: COMPLIANCE_QUEUE
+  - NOTIFICATION_SENT: DAVID_LEE`,
+            action: "msg_confirm"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const btn = document.getElementById('nextBtn');
+        const panel = document.getElementById('storyPanel');
+
+        // Render Narrative Card
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // Logic Switcher
+        if (data.action === "show_notif") {
+            setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        }
+        
+        if (data.action === "simulate_entry") {
+            // Trigger FaceID then go to Chat
+            const overlay = document.getElementById('faceidOverlay');
+            overlay.classList.add('show');
+            setTimeout(() => {
+                overlay.classList.remove('show');
+                document.getElementById('scr-dashboard').classList.remove('active');
+                document.getElementById('scr-chat').classList.add('active');
+            }, 2000);
+        }
+
+        if (data.action === "msg_1") {
+            addChat("ai", "Hello Kelvin. I noticed you haven't viewed your portfolio in a while. <br><br>While your 2020 bond setup was prudent back then, the current high-inflation environment is aggressively eroding your purchasing power.");
+        }
+        
+        if (data.action === "msg_user_skeptic") {
+            setTimeout(() => addChat("user", "I know the bonds are down. That's why I'm keeping cash now. Cash is safe."), 800);
+        }
+        
+        if (data.action === "msg_ai_truth") {
+            setTimeout(() => addChat("ai", "In 2020, cash was safe. In 2025, with Singapore Core Inflation at ~3%, your cash earning 0.05% is effectively <strong>losing ~SGD 45,000 in value every year</strong>.<br><br>It is a guaranteed loss."), 1000);
+        }
+
+        if (data.action === "msg_ai_solution") {
+            setTimeout(() => addChat("ai", "You don't need to take high risks to fix this. We can deploy your <strong>Idle Cash</strong> into high-grade Liquid T-Bills or Money Market Funds.<br><br>This keeps your liquidity but jumps your yield to ~3.2%."), 1200);
+        }
+
+        if (data.action === "msg_widget") {
+            setTimeout(() => addChat("ai", `
+                <div class="clean-widget">
+                    <div style="font-weight:bold; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">Cash Optimization Simulator</div>
+                    <div class="cw-row">
+                        <span>Current Yield (Savings)</span>
+                        <span class="cw-val" style="color:#db0011">0.05%</span>
+                    </div>
+                    <div class="cw-row">
+                        <span>Optimized Yield (MMF)</span>
+                        <span class="cw-val pos">3.25%</span>
+                    </div>
+                    <div class="cw-row" style="margin-top:10px; background:#f9f9f9; padding:8px; border-radius:4px;">
+                        <span>Extra Income / Year</span>
+                        <span class="cw-val pos">+ SGD 48,000</span>
+                    </div>
+                </div>
+            `), 800);
+            setTimeout(() => addChat("user", "Okay, that difference is huge. But I want to be safe. Let's try with 500k first."), 2500);
+        }
+
+        if (data.action === "msg_handshake") {
+            setTimeout(() => addChat("ai", `
+                Wise choice. I have drafted an order for <strong>SGD 500k</strong> into the <em>HSBC Global Money Market Fund (SGD)</em>.<br><br>
+                For your security, <strong>RM David Lee</strong> will personally review this order before execution.
+                <button class="cw-btn">Approve & Send to David</button>
+            `), 1000);
+        }
+
+        if (data.action === "msg_confirm") {
+            setTimeout(() => {
+                const body = document.getElementById('chatBody');
+                const sysDiv = document.createElement('div');
+                sysDiv.style.textAlign = 'center';
+                sysDiv.style.fontSize = '0.75rem';
+                sysDiv.style.color = '#888';
+                sysDiv.style.margin = '15px 0';
+                sysDiv.innerHTML = "🔒 Order #SG-9921 routed to David Lee for compliance check.";
+                body.appendChild(sysDiv);
+                
+                addChat("ai", "Done. David will notify you once the allocation is complete (usually within 2 hours).");
+            }, 500);
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo (Remove last bubble)
+        const chatBody = document.getElementById('chatBody');
+        if (script[currentStep-1].action && script[currentStep-1].action.startsWith("msg_")) {
+            if(chatBody.lastElementChild) chatBody.lastElementChild.remove();
+            // Sometimes we add two bubbles (User response), remove again if needed
+            if(script[currentStep-1].action === "msg_widget") {
+                 if(chatBody.lastElementChild) chatBody.lastElementChild.remove();
+            }
+        }
+
+        // Screen State Reset
+        if (currentStep <= 3) {
+            // Reset to Dashboard if we go back before Chat
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('scr-dashboard').classList.add('active');
+            document.getElementById('notif').classList.remove('show');
+        }
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "End of Demo" : (currentStep === 0 ? "Start Simulation" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        setTimeout(() => {
+            // Manually simulate entry logic
+             const overlay = document.getElementById('faceidOverlay');
+            overlay.classList.add('show');
+            setTimeout(() => {
+                overlay.classList.remove('show');
+                document.getElementById('scr-dashboard').classList.remove('active');
+                document.getElementById('scr-chat').classList.add('active');
+            }, 1500);
+        }, 300);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
