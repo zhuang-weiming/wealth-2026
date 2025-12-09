@@ -189,8 +189,6 @@
         .faceid-icon {
             width: 120px;
             height: 120px;
-            border: 3px solid #007AFF;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -198,9 +196,9 @@
             position: relative;
             animation: pulse 2s infinite;
         }
-        .faceid-icon::after {
-            content: '👁️';
-            font-size: 48px;
+        .faceid-icon img {
+            width: 80px;
+            height: 80px;
         }
         .faceid-text {
             color: white;
@@ -314,7 +312,7 @@
         </div>
 
         <div class="faceid-overlay" id="faceidOverlay">
-            <div class="faceid-icon"></div>
+            <div class="faceid-icon"><img src="resource/face_id.png" alt="Face ID"></div>
             <div class="faceid-text">Face ID</div>
             <div class="faceid-subtext">Secure authentication for HSBC Jade</div>
             <button class="faceid-cancel" onclick="cancelFaceID()">Cancel</button>
