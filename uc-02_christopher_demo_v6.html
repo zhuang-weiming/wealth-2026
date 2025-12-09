@@ -134,6 +134,10 @@
         .rm-avatar { width: 100px; height: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .chat-body-light { flex: 1; background: #f9f9f9; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
 
+        .chat-input-bar { position: absolute; bottom: 0; left: 0; right: 0; background: #fff; padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; }
+        .chat-input-bar img { width: 28px; height: 28px; cursor: pointer; }
+        .chat-input-field { flex: 1; background: #f0f0f0; border-radius: 20px; padding: 10px 15px; font-size: 0.9rem; color: #666; text-align: center; }
+
         .bubble-light { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         .bubble-light.ai { align-self: flex-start; background: #ffffff; border: 1px solid #e0e0e0; color: #333; border-bottom-left-radius: 4px; }
         .bubble-light.user { align-self: flex-end; background: var(--hsbc-red); color: white; border-bottom-right-radius: 4px; }
@@ -165,7 +169,7 @@
         .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
         .next-btn { padding: 12px 30px; background: var(--gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; }
         .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
-        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
         .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
 
         /* Face ID Styles */
@@ -244,10 +248,10 @@
         <div class="notch"></div>
 
         <div class="clean-notification" id="notif" onclick="userClicksNotification()">
-            <div style="width:40px; height:40px; background:var(--hsbc-red); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">H</div>
+            <img src="resource/IMG_1035.png" style="width:40px; height:40px; object-fit: contain;" alt="HSBC">
             <div style="flex:1;">
                 <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
-                    <span>HSBC Jade</span> <span style="font-weight:normal; color:#888;">Now</span>
+                    <span>HSBC Premier</span> <span style="font-weight:normal; color:#888;">Now</span>
                 </div>
                 <div style="font-size:0.85rem; color:#555; margin-top:4px;">
                     Cross-Border Insight: UK Property.<br>
@@ -302,6 +306,13 @@
             </div>
             <div class="chat-body-light" id="chatBody"></div>
             
+            <div class="chat-input-bar">
+                <img src="resource/photo.png" alt="Photo">
+                <div class="chat-input-field">Hold to Talk</div>
+                <img src="resource/jianpan.png" alt="Keyboard">
+                <img src="resource/jiahao.png" alt="More">
+            </div>
+            
             <div class="feedback-overlay" id="feedbackModal">
                 <div style="text-align:center; font-weight:bold; color:#333;">Session Compliance Log</div>
                 <div style="font-size:0.8rem; color:#666; margin:10px 0 20px;">
@@ -323,7 +334,7 @@
     
 <div class="control-bar">
     <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>< Previous Scene</button>
-    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Private Banking Demo</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Premier Wealth Agent Demo</button>
 </div>
 
 <script>
