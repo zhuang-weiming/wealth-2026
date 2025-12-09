@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: Global Private Banking Edition</title>
+    <style>
+        /* --- 核心视觉变量 (保持不变) --- */
+        :root {
+            --bg-dark: #1e1e1e;
+            --panel-bg: #252526;
+            --term-text: #cccccc;
+            --gold: #c6a87c;
+            --term-green: #4caf50;
+            --term-blue: #2196f3;
+            --term-red: #f44336;
+            --term-warning: #ff9800;
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --app-bg: #ffffff;
+            --app-surface: #f4f4f4;
+            --app-border: #e0e0e0;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--term-text);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--gold); border: 1px solid var(--gold); }
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--gold);
+            background: linear-gradient(90deg, rgba(198, 168, 124, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .log-section { margin-bottom: 8px; border-bottom: 1px dashed #333; padding-bottom: 8px; }
+        .term-val { color: var(--term-green); }
+        .term-key { color: var(--term-blue); }
+        .term-alert { color: var(--term-red); }
+        .term-warn { color: var(--term-warning); }
+        .term-gold { color: var(--gold); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Screen 1: Settings */
+        .hsbc-nav { height: 60px; padding-top: 40px; background: #fff; border-bottom: 1px solid var(--app-border); display: flex; align-items: center; justify-content: center; position: relative; }
+        .settings-content { padding: 20px; background: #fafafa; height: 100%; }
+        .legal-box { background: #fff; border: 1px solid #e0e0e0; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .legal-title { font-size: 0.9rem; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .legal-text { font-size: 0.7rem; color: #666; line-height: 1.4; margin-bottom: 15px; }
+        .toggle-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; }
+        .toggle-label { font-size: 0.85rem; font-weight: 600; color: #333; }
+        .toggle-sub { font-size: 0.7rem; color: #888; }
+        .ios-toggle { width: 50px; height: 30px; background: #e0e0e0; border-radius: 15px; position: relative; transition: 0.3s; cursor: pointer; }
+        .ios-toggle.on { background: #34c759; }
+        .ios-toggle::after { content:''; position: absolute; top:2px; left:2px; width:26px; height:26px; background:#fff; border-radius:50%; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .ios-toggle.on::after { left: 22px; }
+
+        /* Screen 2: Safari */
+        .safari-chrome { background: #f0f0f0; padding: 50px 0 10px; border-bottom: 1px solid #ccc; text-align: center; }
+        .url-field { background: #dedede; width: 60%; margin: 0 auto; padding: 8px; border-radius: 10px; font-size: 0.8rem; color: #333; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .gov-uk-page { background: #fff; padding: 20px; text-align: center; font-family: sans-serif; }
+        .gov-logo { font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 3px solid #003078; padding-bottom: 10px; display: inline-block; }
+
+        /* Screen 3: Chat */
+        .chat-app-header { background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); z-index: 10; }
+        .rm-avatar { width: 100px; height: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .chat-body-light { flex: 1; background: #f9f9f9; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+
+        .bubble-light { max-width: 85%; padding: 14px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; border: 1px solid #e0e0e0; color: #333; border-bottom-left-radius: 4px; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-red); color: white; border-bottom-right-radius: 4px; }
+        
+        .clean-widget { background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .cw-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; color: #666; }
+        .cw-val { color: #000; font-weight: bold; font-family: -apple-system; }
+        .cw-btn { width: 100%; padding: 12px; background: #333; color: white; border: none; border-radius: 8px; margin-top: 10px; font-weight: 600; cursor: pointer; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -100px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+        }
+        .clean-notification.show { top: 10px; }
+
+        /* Feedback Modal */
+        .feedback-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: white; padding: 30px 20px; border-radius: 20px 20px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); transform: translateY(100%); transition: transform 0.4s ease; z-index: 500; box-sizing: border-box; }
+        .feedback-overlay.show { transform: translateY(0); }
+        .stars { display: flex; justify-content: center; gap: 10px; margin: 20px 0; font-size: 1.5rem; color: #ddd; cursor: pointer; }
+        .stars span.selected { color: #ffb400; }
+
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; }
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+        /* Face ID Styles */
+        .faceid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000; /* High Z-Index to cover everything */
+            backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show {
+            display: flex;
+        }
+        .faceid-icon {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #007AFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        .faceid-icon::after {
+            content: '👁️';
+            font-size: 48px;
+        }
+        .faceid-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .faceid-subtext {
+            color: #999;
+            font-size: 14px;
+        }
+        .faceid-cancel {
+            position: absolute;
+            bottom: 50px;
+            background: transparent;
+            border: none;
+            color: #007AFF;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Global Private Banking</span>
+        <span class="header-badge">AI PILOT</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>09:41</span>
+            <span>HSBC 5G</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <div style="width:40px; height:40px; background:var(--hsbc-red); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">H</div>
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>HSBC Jade</span> <span style="font-weight:normal; color:#888;">Now</span>
+                </div>
+                <div style="font-size:0.85rem; color:#555; margin-top:4px;">
+                    Cross-Border Insight: UK Property.<br>
+                    <span style="color:#000; font-weight:600;">Tap for liquidity analysis.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-settings">
+            <div class="hsbc-nav"><img src="resource/IMG_1035.png" style="height: 30px;" alt="HSBC"></div>
+            <div class="settings-content">
+                <div style="font-size:1.2rem; font-weight:bold; margin-bottom:20px; color:#333;">Privacy & Governance</div>
+                <div class="legal-box">
+                    <div class="legal-title">Global Liquidity Monitoring</div>
+                    <div class="legal-text">
+                        Enabling this allows our AI to correlate your <strong>Global Assets (HK/US)</strong> with your <strong>Liability Needs (UK/Canada)</strong> to propose tax-efficient liquidity solutions.
+                        <br><br>
+                        • <strong>Jurisdiction:</strong> Data processed in compliance with HKMA & UK FCA standards.<br>
+                        • <strong>Transparency:</strong> No automated execution. All credit lines require RM finalization.
+                    </div>
+                    <div class="toggle-row">
+                        <div>
+                            <div class="toggle-label">Cross-Border Insights</div>
+                            <div class="toggle-sub">Connect Global View portfolios</div>
+                        </div>
+                        <div class="ios-toggle on"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="scr-safari">
+            <div class="safari-chrome">
+                <div class="url-field">🔒 rightmove.co.uk/london/canary-wharf</div>
+            </div>
+            <div class="gov-uk-page">
+                <div class="gov-logo">Rightmove</div>
+                <h2 style="margin:20px 0;">Property Enquiry Sent</h2>
+                <p>Agent: Knight Frank London</p>
+                <div style="margin-top:20px; color:#666;">Asking Price: £1,500,000</div>
+                <div style="margin-top:40px; color:green; font-weight:bold;">✓ Enquiry Logged</div>
+            </div>
+        </div>
+
+        <div class="screen" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar"><img src="resource/IMG_1035.png" style="width: 100px; height: 28px; object-fit: contain;" alt="HSBC"></div>
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Wealth Assistant</div>
+                    <div style="font-size:0.7rem; color:#27c93f;">● Connected: Global View</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            
+            <div class="feedback-overlay" id="feedbackModal">
+                <div style="text-align:center; font-weight:bold; color:#333;">Session Compliance Log</div>
+                <div style="font-size:0.8rem; color:#666; margin:10px 0 20px;">
+                    This interaction has been archived for audit.<br>Term Sheet ID: #TS-9921-UK
+                </div>
+                <div class="cw-btn" style="text-align:center;" onclick="document.getElementById('feedbackModal').classList.remove('show')">Close</div>
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <div class="faceid-icon"></div>
+            <div class="faceid-text">Face ID</div>
+            <div class="faceid-subtext">Secure authentication for HSBC Jade</div>
+            <button class="faceid-cancel" onclick="cancelFaceID()">Cancel</button>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>< Previous Scene</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Private Banking Demo</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "SCENE 1: SETUP",
+            title: "Global View Integration",
+            desc: "Christopher authorizes AI to look across borders. He is a 'Global Private Banking' client with assets in HK/US and needs in the UK.",
+            log: `> DATA_LAKE:
+  - SOURCE: HSBC_GLOBAL_VIEW
+  - ASSETS: HKD, USD (Equities)
+  - INTENT_SIGNAL: UK_PROPERTY_SEARCH`,
+            screen: "scr-settings"
+        },
+        {
+            phase: "SCENE 2: THE TRIGGER",
+            title: "Cross-Border Signal",
+            desc: "He is looking at a £1.5M property in London on Rightmove. The AI connects this 'Life Event' with his 'Asset Mismatch' (Rich in HK, Poor in UK).",
+            log: `> EVENT_BUS:
+  - ACTION: ENQUIRY_SENT (London)
+  - VALUE: ~£1.5M
+  - LIQUIDITY_CHECK_GBP: <span class="term-red">INSUFFICIENT</span>`,
+            screen: "scr-safari"
+        },
+        {
+            phase: "SCENE 3: ANALYSIS",
+            title: "The Friction Point",
+            desc: "AI identifies the problem: To buy in London, he needs to sell Tencent/Nvidia. <br><strong>Pain Points:</strong> 1. FX Conversion cost. 2. Capital Gains Tax. 3. Loss of market position.",
+            log: `> STRATEGY_ENGINE:
+  - OPTION_A: SELL_EQUITIES (Tax Event: High)
+  - OPTION_B: CROSS_BORDER_LOMBARD (Tax Event: None)
+> RECOMMENDATION: OPTION_B`,
+            action: "show_notif"
+        },
+        {
+            phase: "SCENE 4: ENTRY",
+            title: "The Hook",
+            desc: "Notification is framed as 'Liquidity Analysis', not a sales pitch.",
+            log: `> NOTIFICATION:
+  - CONTEXT: ASSET_LIABILITY_MATCHING
+  - PRIORITY: HIGH`,
+            action: "simulate_entry"
+        },
+        {
+            phase: "SCENE 5: CONTEXT",
+            title: "Wealth Overview",
+            desc: "AI demonstrates it knows his whole picture, not just his credit card.",
+            log: `> CHAT_INIT:
+  - TONE: ADVISORY
+  - DATA_REF: PORTFOLIO_VALUATION_REALTIME`,
+            action: "msg_1"
+        },
+        {
+            phase: "SCENE 6: ENGAGEMENT",
+            title: "Confirmation",
+            desc: "Christopher confirms the need. He is direct.",
+            log: `> USER_INTENT:
+  - CONFIRMED: UK_PROPERTY_ACQUISITION
+  - TIMELINE: IMMEDIATE`,
+            action: "msg_user_yes"
+        },
+        {
+            phase: "SCENE 7: THE PROPOSAL",
+            title: "Cross-Border Solution",
+            desc: "AI proposes a <strong>GBP Facility</strong> secured by <strong>HKD/USD Assets</strong>. This is the key value prop.",
+            log: `> PRODUCT_MATCH:
+  - TYPE: MULTI_CURRENCY_FACILITY
+  - COLLATERAL: GLOBAL_EQUITIES
+  - DRAWDOWN: GBP (Sterling)`,
+            action: "msg_ai_proposal"
+        },
+        {
+            phase: "SCENE 8: THE NUMBERS",
+            title: "Term Sheet Preview",
+            desc: "Visualizing the offer. Note the 'Relationship Pricing'.",
+            log: `> TERM_GEN:
+  - AMOUNT: £600,000
+  - RATE: 3.85% (SOFR + JADE_SPREAD)
+  - LTV: 50% (Standard Cap)`,
+            action: "msg_widget"
+        },
+        {
+            phase: "SCENE 9: THE CHALLENGE",
+            title: "Sophisticated Pushback",
+            desc: "Christopher spots the <strong>FX Risk</strong>. <br>'My assets are USD. The loan is GBP. If GBP strengthens, my LTV spikes even if stocks are flat.'",
+            log: `> OBJECTION_HANDLE:
+  - TYPE: FX_RISK + VOLATILITY_CORRELATION
+  - RISK_LEVEL: COMPLEX`,
+            action: "msg_user_challenge"
+        },
+        {
+            phase: "SCENE 10: SIMULATION",
+            title: "Dual-Factor Stress Test",
+            desc: "AI runs a correlation stress test. <br>Scenario: Stocks down 20% <strong>AND</strong> GBP up 10%.",
+            log: `> SIMULATION_RUN:
+  - VAR_1: TECH_CORRECTION (-20%)
+  - VAR_2: GBP_STRENGTHENS (+10%)
+  - RESULTING_LTV: <span class="term-warn">68% (NEAR_BREACH)</span>`,
+            action: "msg_ai_simulation"
+        },
+        {
+            phase: "SCENE 11: THE SOLUTION",
+            title: "Smart Guardrail (Auto-Hedge)",
+            desc: "AI proposes a <strong>Dynamic De-leveraging Protocol</strong>. <br>'If LTV hits 60%, we auto-swap 15% of assets to Cash to floor the risk.'",
+            log: `> PROTOCOL_DESIGN:
+  - NAME: SMART_GUARDRAIL
+  - TRIGGER: LTV >= 60%
+  - ACTION: PARTIAL_LIQUIDATION_TO_CASH
+  - BENEFIT: PREVENT_FORCED_CLOSEOUT`,
+            action: "msg_ai_guardrail"
+        },
+        {
+            phase: "SCENE 12: AGREEMENT",
+            title: "Acceptance",
+            desc: "Christopher agrees to the logic. The Guardrail makes the risk acceptable.",
+            log: `> CONVERSION:
+  - STATUS: AGREED_IN_PRINCIPLE
+  - CONDITION: GUARDRAIL_ACTIVE`,
+            action: "msg_user_accept"
+        },
+        {
+            phase: "SCENE 13: DOCUMENTATION",
+            title: "Term Sheet Generation",
+            desc: "AI generates the draft document instantly.",
+            log: `> DOC_GEN:
+  - TEMPLATE: PREMIER_LOMBARD_INTL
+  - WATERMARK: DRAFT_FOR_REVIEW
+  - STATUS: READY`,
+            action: "msg_ai_termsheet"
+        },
+        {
+            phase: "SCENE 14: HANDOFF",
+            title: "RM Execution",
+            desc: "The final step is human. Sarah (RM) handles the Cross-Border Tax & Compliance.",
+            log: `> WORKFLOW_ROUTING:
+  - DESTINATION: SARAH_JENKINS (DIR_UK_DESK)
+  - CONTEXT_PACK: ATTACHED
+  - SLA: < 30_MINS`,
+            action: "msg_handoff"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const btn = document.getElementById('nextBtn');
+        const panel = document.getElementById('storyPanel');
+
+        // Render Narrative
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // Screen Switch (Basic Logic)
+        if (data.screen) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(data.screen).classList.add('active');
+        }
+
+        // Actions
+        if (data.action === "show_notif") setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        
+        if (data.action === "simulate_entry") {
+            // Show Face ID first, then proceed to chat
+            showFaceID();
+        }
+
+        if (data.action === "msg_1") addChat("ai", "Good evening, Christopher. I noticed your enquiry for the Canary Wharf property (£1.5M).<br><br>Based on your <strong>Global View</strong>, your GBP liquidity is low, but your USD/HKD equity portfolio is substantial.");
+        
+        if (data.action === "msg_user_yes") setTimeout(() => addChat("user", "Correct. I intend to buy, but I don't want to liquidate my Tech positions to raise the Sterling."), 800);
+        
+        if (data.action === "msg_ai_proposal") addChat("ai", "Understood. Selling now would trigger Capital Gains Tax and lose your market position.<br><br>Proposal: Use your HKD/USD portfolio as collateral for a <strong>GBP Revolving Facility</strong>. This keeps your assets invested while providing the cash for London.");
+
+        if (data.action === "msg_widget") {
+            setTimeout(() => addChat("ai", `
+                <div class="clean-widget">
+                    <div style="border-bottom:1px solid #eee; padding-bottom:10px; margin-bottom:10px; font-weight:bold; color:#000;">HSBC Cross-Border Facility</div>
+                    <div class="cw-row"><span>Collateral</span><span class="cw-val">Global Equities (HK/US)</span></div>
+                    <div class="cw-row"><span>Facility Currency</span><span class="cw-val">GBP (£)</span></div>
+                    <div class="cw-row"><span>Limit</span><span class="cw-val">£600,000</span></div>
+                    <div class="cw-row"><span>Rate</span><span class="cw-val" style="color:#27c93f">3.85% (Tier 1)</span></div>
+                </div>
+            `), 600);
+        }
+
+        if (data.action === "msg_user_challenge") {
+            setTimeout(() => addChat("user", "Hold on. This is a currency mismatch. If Sterling strengthens against the Dollar AND Tech stocks drop, my LTV will explode. 50% initial LTV feels too risky."), 1000);
+        }
+
+        if (data.action === "msg_ai_simulation") {
+            setTimeout(() => addChat("ai", `
+                <strong>Stress Test Analysis (Dual-Factor):</strong><br>
+                Scenario: <strong>Tech -20%</strong> AND <strong>GBP +10%</strong>.<br>
+                Resulting LTV: <strong>68%</strong> (Approaching Margin Call at 70%).<br><br>
+                You are right. Passive holding is risky here.
+            `), 1000);
+        }
+
+        if (data.action === "msg_ai_guardrail") {
+            setTimeout(() => addChat("ai", `
+                To mitigate this, I recommend enabling the <strong>Smart Guardrail Protocol</strong>:<br><br>
+                If LTV touches <strong>60%</strong> (due to FX or Price), we automatically swap 15% of your collateral into <strong>USD Cash</strong>.<br><br>
+                This "Circuit Breaker" prevents you from ever hitting the 70% forced liquidation line.
+            `), 1500);
+        }
+
+        if (data.action === "msg_user_accept") {
+            setTimeout(() => addChat("user", "Okay, the auto-deleveraging makes it acceptable. Let's proceed with the Guardrail enabled."), 1000);
+        }
+
+        if (data.action === "msg_ai_termsheet") {
+            setTimeout(() => addChat("ai", `
+                <div class="clean-widget" style="background:#fcfcfc; border:1px dashed #ccc;">
+                    <div style="font-size:0.8rem; color:#888;">DOCUMENT GENERATED</div>
+                    <div style="font-weight:bold; margin:5px 0;">Indicative Term Sheet.pdf</div>
+                    <div style="font-size:0.75rem;">• Cross-Border Risk Disclosure included</div>
+                    <div style="font-size:0.75rem;">• Guardrail Protocol: <span style="color:green">ACTIVE</span></div>
+                </div>
+            `), 800);
+        }
+
+        if (data.action === "msg_handoff") {
+            setTimeout(() => addChat("ai", `
+                I have forwarded this Term Sheet to <strong>Sarah Jenkins (Relationship Manager, UK Desk)</strong>.<br><br>
+                She will call you shortly to verify the Cross-Border Tax implications and finalize the facility signature.
+            `), 1500);
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // 1. Remove Logic: Undo the last step's Visuals
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) { // Keep header
+            panel.lastElementChild.remove();
+        }
+        
+        // Make the NEW last card active
+        const remainingCards = panel.querySelectorAll('.scene-card');
+        if (remainingCards.length > 0) {
+            remainingCards[remainingCards.length - 1].classList.add('active');
+        }
+
+        // 2. Chat Logic: Remove the last bubble if we are backtracking in chat
+        const prevAction = script[currentStep-1].action;
+        if (prevAction && (prevAction.startsWith("msg_") || prevAction === "simulate_entry")) {
+            const chatBody = document.getElementById('chatBody');
+            if (chatBody.lastElementChild) {
+                chatBody.lastElementChild.remove();
+            }
+        }
+        
+        // 3. State Restoration: Decrement Step
+        currentStep--;
+
+        // 4. Screen Logic: Determine which screen should be active
+        // Logic: Scan backwards from currentStep to find the last defined 'screen'.
+        // Special Case: If we are >= Scene 4, we are in Chat. If < Scene 4, we use the defined screen.
+        
+        let targetScreenId = 'scr-settings'; // Default
+        
+        if (currentStep >= 4) {
+             // Scenes 4 to 14 are all Chat based
+            targetScreenId = 'scr-chat';
+        } else {
+            // Scenes 0 to 3 use specific screens (settings, safari)
+            for (let i = currentStep; i >= 0; i--) {
+                if (script[i].screen) {
+                    targetScreenId = script[i].screen;
+                    break;
+                }
+            }
+        }
+
+        // Apply Screen Switch
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(targetScreenId).classList.add('active');
+
+        // 5. Cleanup Overlay Artifacts
+        document.getElementById('notif').classList.remove('show');
+        document.getElementById('feedbackModal').classList.remove('show');
+        document.getElementById('faceidOverlay').classList.remove('show');
+        
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        if (nextBtn) {
+            if (currentStep >= script.length) {
+                nextBtn.innerText = "Demo Complete";
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.innerText = currentStep === 0 ? "Start Private Banking Demo" : "Next Scene >";
+                nextBtn.disabled = false;
+            }
+        }
+        
+        if (prevBtn) {
+            prevBtn.disabled = currentStep <= 0;
+        }
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        setTimeout(() => {
+            // Manually triggering entry if user clicks notif
+            showFaceID();
+        }, 300);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+
+    function showFaceID() {
+        const faceidOverlay = document.getElementById('faceidOverlay');
+        const notif = document.getElementById('notif');
+        
+        // 1. Show FaceID, Hide Notification
+        faceidOverlay.classList.add('show');
+        if(notif) notif.classList.remove('show');
+        
+        // 2. Simulate FaceID Process
+        setTimeout(() => {
+            faceidOverlay.classList.remove('show');
+            
+            // 3. SWITCH SCREEN: Safari -> Chat
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('scr-chat').classList.add('active');
+            
+        }, 2000);
+    }
+
+    function cancelFaceID() {
+        const faceidOverlay = document.getElementById('faceidOverlay');
+        faceidOverlay.classList.remove('show');
+        // Return to safari screen if Face ID is cancelled
+        setTimeout(() => {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('scr-safari').classList.add('active');
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
