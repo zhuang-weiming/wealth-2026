@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The Smart Entry (Lucas)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #f4f4f4;
+            --hsbc-white: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-green: #008a3c;
+            --accent-gold: #c6a87c; /* Premier/Jade Gold */
+            --bg-dark: #1e1e1e;
+            --app-bg: #f5f5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--accent-gold); border: 1px solid var(--accent-gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-alert { color: var(--hsbc-red); }
+        .term-warn { color: var(--accent-gold); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+
+
+        /* Screen: Chat Interface */
+        .chat-app-header { 
+            background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); z-index: 10; 
+        }
+        .rm-avatar { width: 100px; height: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .rm-avatar img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .chat-body-light { flex: 1; background: var(--app-bg); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+        
+        .chat-input-bar { 
+            position: absolute; bottom: 0; left: 0; right: 0; background: #fff; 
+            padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; 
+        }
+        .chat-input-bar img { width: 28px; height: 28px; cursor: pointer; }
+        .chat-input-field { 
+            flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; 
+            font-size: 0.95rem; color: #999; 
+        }
+
+        /* Bubbles */
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: var(--text-primary); border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
+        
+        /* Interactive Widgets */
+        .stock-card {
+            background: #fff; border-radius: 12px; border: 1px solid #e0e0e0; overflow: hidden; margin-top: 5px;
+        }
+        .sc-header {
+            padding: 12px 15px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center;
+        }
+        .sc-ticker { font-weight: 800; font-size: 1rem; color: #000; }
+        .sc-price { color: var(--accent-green); font-weight: 600; }
+        
+        .sc-body { padding: 15px; display: flex; gap: 10px; }
+        .sc-metric { flex: 1; text-align: center; background: #f9f9f9; padding: 10px; border-radius: 8px; }
+        .metric-label { font-size: 0.7rem; color: #666; margin-bottom: 4px; text-transform: uppercase; }
+        .metric-val { font-weight: bold; font-size: 0.9rem; }
+        
+        /* RSI Meter */
+        .rsi-bar { height: 4px; width: 100%; background: linear-gradient(90deg, green, yellow, red); margin-top: 5px; border-radius: 2px; position: relative; }
+        .rsi-marker { position: absolute; top: -3px; width: 10px; height: 10px; background: #000; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+        .order-draft {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .draft-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; border-bottom: 1px dashed #eee; }
+        .draft-row:last-child { border-bottom: none; }
+        .draft-tag { background: #eee; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; color: #555; font-weight: bold; }
+        
+        .btn-action {
+            width: 100%; padding: 12px; background: var(--hsbc-red); color: white; border: none; 
+            border-radius: 8px; margin-top: 10px; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-action:hover { opacity: 0.9; }
+
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Face ID */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--accent-gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Global Wealth Banking</span>
+        <span class="header-badge">PREMIER ELITE</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>22:30</span>
+            <span>Singtel 5G</span>
+        </div>
+        <div class="notch"></div>
+
+
+
+        <div class="screen active" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">
+                    <img src="resource/IMG_1035.png" alt="HSBC">
+                </div>
+                <div style="margin-left: 15px;">
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Wealth Compass</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● AI Investment Assistant</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <img src="resource/photo.png" alt="Photo">
+                <div class="chat-input-field">Type a message...</div>
+                <img src="resource/jianpan.png" alt="Keyboard">
+                <img src="resource/jiahao.png" alt="More">
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Lucas Lim</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Simulation</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "SCENE 1: THE INQUIRY",
+            title: "FOMO Trigger",
+            desc: "Lucas主动发起对话。他想要立即投入 SGD 50k 到AI-X ETF，寻求银行的验证和建议。",
+            log: `> USER_INTENT:
+  - SOURCE: ACTIVE_CHAT_INITIATION
+  - ASSET: AI-X (ETF)
+  - INTENT: BUY (SGD 50,000)
+  - SENTIMENT: URGENT / FOMO`,
+            action: "msg_validation"
+        },
+        {
+            phase: "SCENE 2: VALIDATION",
+            title: "House View Alignment",
+            desc: "HSBC AI doesn't block him. Instead, it validates his choice using the 'House View' to build rapport and trust.",
+            log: `> AGENT_RESPONSE:
+  - STRATEGY: VALIDATION + CONTEXT
+  - HOUSE_VIEW: <span class="term-val">OVERWEIGHT (AI & SEMI)</span>
+  - CIO_NOTE: "Structural Growth Theme"`,
+            action: "msg_validation"
+        },
+        {
+            phase: "SCENE 3: REALITY CHECK",
+            title: "Data-Driven Insight",
+            desc: "The pivot: 'Great view, but let's check the price.' AI shows Technical Indicators (RSI) to highlight the short-term overheating risk.",
+            log: `> MARKET_DATA:
+  - PRICE: $142.50 (ATH)
+  - RSI (14D): <span class="term-alert">82 (OVERBOUGHT)</span>
+  - VOLATILITY: HIGH
+  - ADVISORY: PROCEED_WITH_CAUTION`,
+            action: "msg_analysis"
+        },
+        {
+            phase: "SCENE 4: THE STRATEGY",
+            title: "Smart Entry Proposal",
+            desc: "Lucas hesitates ('Should I wait?'). AI proposes a solution: Don't wait (FOMO), but don't go all-in (Prudence). Use a 'Smart Accumulation' strategy.",
+            log: `> STRATEGY_ENGINE:
+  - MODE: EXECUTION_OPTIMIZATION
+  - PROPOSAL: SPLIT_ORDER (MARKET + LIMITS)
+  - OBJECTIVE: CAPTURE_UPSIDE + HEDGE_DOWNSIDE`,
+            action: "msg_strategy_offer"
+        },
+        {
+            phase: "SCENE 5: EXECUTION DRAFT",
+            title: "Structuring the Trade",
+            desc: "AI drafts a Multi-Leg Order. <br>1. Market Buy (30%) for immediate exposure.<br>2. Limit Buy (70%) to catch dips.",
+            log: `> ORDER_DRAFT:
+  - LEG_1: MARKET (SGD 15k)
+  - LEG_2: LIMIT @ -5% (SGD 15k)
+  - LEG_3: LIMIT @ -8% (SGD 20k)
+  - STATUS: AWAITING_CONFIRMATION`,
+            action: "msg_draft"
+        },
+        {
+            phase: "SCENE 6: CONFIRMATION",
+            title: "Secure Execution",
+            desc: "Lucas executes the strategy. He feels like a sophisticated investor, not a gambler. Bank ensures proper risk disclosure.",
+            log: `> EXECUTION:
+  - AUTH: BIOMETRIC_VERIFIED
+  - ORDERS_ROUTED: 3
+  - DISCLOSURE: EQUITY_RISK_ACCEPTED`,
+            action: "msg_confirm"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const panel = document.getElementById('storyPanel');
+
+        // Render Narrative Card
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // Interaction Logic - No notification needed for active chat
+
+        if (data.action === "msg_validation") {
+            // User simulated input
+            addChat("user", "AI-X is flying! I want to drop SGD 50k in right now. Good idea?");
+            
+            // AI Response
+            setTimeout(() => addChat("ai", "<strong>Great sector choice, Lucas.</strong><br><br>Our Global CIO Office maintains an <span style='color:#008a3c; font-weight:bold;'>'Overweight'</span> stance on the AI & Semiconductor theme for 2025. We believe the structural growth story is strong."), 1500);
+        }
+
+        if (data.action === "msg_analysis") {
+            setTimeout(() => addChat("ai", `
+                However, let's look at the timing efficiency.<br>
+                <div class="stock-card">
+                    <div class="sc-header">
+                        <span class="sc-ticker">AI-X ETF</span>
+                        <span class="sc-price">$142.50 (+5.2%)</span>
+                    </div>
+                    <div class="sc-body">
+                        <div class="sc-metric">
+                            <div class="metric-label">HSBC View</div>
+                            <div class="metric-val" style="color:#008a3c">Positive</div>
+                        </div>
+                        <div class="sc-metric">
+                            <div class="metric-label">RSI (14D)</div>
+                            <div class="metric-val" style="color:#db0011">82.0</div>
+                            <div class="rsi-bar">
+                                <div class="rsi-marker" style="right:0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:10px 15px; font-size:0.75rem; color:#666; background:#f9f9f9; border-top:1px solid #f0f0f0;">
+                        ⚠️ <strong>Technical Note:</strong> RSI > 80 signals "Overbought". Probability of short-term pullback is high.
+                    </div>
+                </div>
+            `), 1000);
+        }
+
+        if (data.action === "msg_strategy_offer") {
+            setTimeout(() => addChat("user", "So I should wait? I hate missing the rally."), 1000);
+            setTimeout(() => addChat("ai", "You don't have to wait fully. Entering 'All-in' at the peak is risky, but staying out is painful.<br><br>I suggest a <strong>Smart Accumulation Strategy</strong>: Enter partially now to capture upside, and set limit orders to catch any dips."), 2500);
+        }
+
+        if (data.action === "msg_draft") {
+            setTimeout(() => addChat("user", "That sounds smarter. Can you draft that for me?"), 1000);
+            setTimeout(() => addChat("ai", `
+                Here is a draft for your SGD 50,000 allocation:
+                <div class="order-draft">
+                    <div class="draft-row">
+                        <span>1. Market Buy (Immediate)</span>
+                        <span class="sc-val">SGD 15,000</span>
+                    </div>
+                    <div class="draft-row">
+                        <span>2. Limit Buy @ -5%</span>
+                        <span class="sc-val">SGD 15,000</span>
+                    </div>
+                    <div class="draft-row">
+                        <span>3. Limit Buy @ -8%</span>
+                        <span class="sc-val">SGD 20,000</span>
+                    </div>
+                    <div style="margin-top:10px; font-size:0.75rem; color:#666;">
+                        <span class="draft-tag">Algo Order</span> This strategy lowers your average cost if volatility occurs.
+                    </div>
+                    <button class="btn-action" onclick="triggerFaceID()">Execute Strategy</button>
+                </div>
+            `), 2500);
+        }
+
+        if (data.action === "msg_confirm") {
+             const body = document.getElementById('chatBody');
+             const log = document.createElement('div');
+             log.style.textAlign = 'center'; log.style.color = '#999'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+             log.innerHTML = "🔒 Authenticated via Face ID";
+             body.appendChild(log);
+
+             addChat("ai", "<strong>Orders Placed.</strong><br>You have immediate exposure to the rally, and safety nets in place for volatility.<br><br>I will notify you if your Limit Orders are triggered.");
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo
+        const chatBody = document.getElementById('chatBody');
+        // Simple logic: remove last few nodes based on step
+        if (currentStep > 1) { 
+             if(chatBody.lastElementChild) chatBody.lastElementChild.remove(); // AI
+             if(chatBody.lastElementChild && chatBody.lastElementChild.classList.contains('user')) chatBody.lastElementChild.remove(); // User
+        }
+        
+        // No notification to reset for active chat
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "Demo Complete" : (currentStep === 0 ? "Start Simulation" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+
+
+    function triggerFaceID() {
+        const overlay = document.getElementById('faceidOverlay');
+        overlay.classList.add('show');
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            if (currentStep === 5) nextScene();
+        }, 1500);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
