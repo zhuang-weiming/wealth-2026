@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The GBA Commuter (Patrick Wang)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #f4f4f4;
+            --hsbc-white: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-green: #008a3c;
+            --accent-gold: #c6a87c;
+            --bg-dark: #1e1e1e;
+            --app-bg: #f5f5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--accent-gold); border: 1px solid var(--accent-gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-key { color: #2196f3; }
+        .term-alert { color: var(--hsbc-red); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -140px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+            max-height: 110px; overflow: hidden;
+        }
+        .clean-notification.show { top: 20px; }
+
+        /* Chat Interface */
+        .chat-app-header { 
+            background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); z-index: 10; 
+        }
+        .rm-avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .rm-avatar img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .chat-body-light { flex: 1; background: var(--app-bg); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+        
+        .chat-input-bar { 
+            position: absolute; bottom: 0; left: 0; right: 0; background: #fff; 
+            padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; 
+        }
+        .chat-input-bar img { width: 28px; height: 28px; cursor: pointer; }
+        .chat-input-field { 
+            flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; 
+            font-size: 0.95rem; color: #999; 
+        }
+
+        /* Bubbles */
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333333; border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
+        
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Widget: GBA One View (Assets) */
+        .gba-asset-card {
+            background: #fff; border-radius: 12px; padding: 15px; margin-top: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .gba-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #eee; }
+        .gba-row:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .gba-label { display: flex; align-items: center; gap: 8px; font-weight: bold; color: #333; }
+        .gba-flag { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; border: 1px solid #eee; }
+        .gba-amount { font-family: monospace; font-size: 1rem; color: #333; }
+        .gba-total { margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; text-align: right; color: var(--hsbc-red); font-weight: bold; font-size: 0.85rem; }
+
+        /* Widget: WMC Setup */
+        .wmc-card {
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%); border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .wmc-header { font-size: 0.85rem; font-weight: bold; color: #333; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .wmc-step { display: flex; align-items: center; font-size: 0.8rem; margin-bottom: 8px; color: #666; }
+        .wmc-check { color: var(--accent-green); margin-right: 8px; font-weight: bold; }
+        .wmc-badge { background: #e8f5e9; color: var(--accent-green); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: auto; }
+
+        /* Widget: Fund Product */
+        .fund-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 0; overflow: hidden; margin-top: 5px;
+        }
+        .fund-header { background: var(--hsbc-black); color: white; padding: 10px 15px; font-size: 0.8rem; font-weight: bold; }
+        .fund-body { padding: 15px; }
+        .fund-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 5px; }
+        .fund-val { font-weight: bold; color: var(--accent-green); }
+
+        /* Widget: Transfer */
+        .transfer-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .tc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .tc-label { font-size: 0.75rem; color: #666; text-transform: uppercase; }
+        .tc-amount { font-size: 1.2rem; font-weight: bold; color: #333; }
+        .tc-arrow { text-align: center; color: var(--hsbc-red); margin: 5px 0; font-size: 1.2rem; }
+        .tc-info { background: #f9f9f9; padding: 8px; border-radius: 6px; font-size: 0.75rem; color: #555; display: flex; justify-content: space-between; }
+        .highlight-text { color: var(--accent-green); font-weight: bold; }
+
+        .btn-action { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer; }
+
+        /* Face ID */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--accent-gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Premier GBA</span>
+        <span class="header-badge">WEALTH CONNECTOR</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>10:30</span>
+            <span>China Unicom</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <img src="resource/IMG_1035.png" style="width:40px; height:40px; border-radius:8px; object-fit: contain;" alt="HSBC Logo" title="HSBC Logo">
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>HSBC China</span> <span style="font-weight:normal; color:#888;">Now</span>
+                </div>
+                <div style="font-size:0.85rem; color:#333; margin-top:4px;">
+                    <strong>Market Alert:</strong> Hang Seng Tech Index up +4.2%.<br>
+                    <span style="color:#555;">Tap to view GBA investment opportunities.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">
+                    <img src="resource/IMG_1035.png" alt="HSBC Logo" title="HSBC Logo">
+                </div>
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">GBA Connector</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● AI Wealth Assistant</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <img src="resource/photo.png" alt="Photo">
+                <div class="chat-input-field">输入消息...</div>
+                <img src="resource/jianpan.png" alt="Keyboard">
+                <img src="resource/jiahao.png" alt="More">
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Patrick Wang</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "SCENE 1: THE OPPORTUNITY",
+            title: "Market Rally Alert",
+            desc: "Patrick sees the HK Tech Index rallying via a push notification. He wants to invest, but his funds are stuck in CNY (Shenzhen).",
+            log: `> MARKET_EVENT:
+  - INDEX: HANG SENG TECH
+  - CHANGE: +4.2%
+  - USER_STATUS: DUAL_PREMIER (CN/HK)
+  - ACTION: PUSH_NOTIFICATION`,
+            action: "show_notif"
+        },
+        {
+            phase: "SCENE 2: WAKE UP",
+            title: "GBA Asset View",
+            desc: "Patrick opens the app. AI presents 'GBA One View', visualizing the imbalance: Heavy CNY cash, empty HKD account. This highlights his pain point.",
+            log: `> DASHBOARD_LOAD:
+  - VIEW: GBA_UNIFIED_VIEW
+  - CN_ASSET: ¥ 2,000,000 (IDLE)
+  - HK_ASSET: $ 50,000 (LOW)
+  - INSIGHT: CROSS_BORDER_GAP`,
+            action: "msg_welcome"
+        },
+        {
+            phase: "SCENE 3: THE GAP",
+            title: "Compliance Anxiety",
+            desc: "Patrick asks about transferring 500k RMB. He fears FX controls. AI introduces 'Wealth Management Connect' (Southbound) as the compliant solution.",
+            log: `> USER_QUERY:
+  - INTENT: TRANSFER_CNY_TO_HK
+  - CONCERN: COMPLIANCE / FX_QUOTA
+  - AI_RESPONSE: RECOMMEND_WMC_SOUTHBOUND`,
+            action: "msg_compliance"
+        },
+        {
+            phase: "SCENE 4: SOLUTION",
+            title: "Digital Pairing",
+            desc: "AI explains no branch visit is needed. It initiates digital account pairing between his Shenzhen and Hong Kong accounts.",
+            log: `> PROCESS_INIT:
+  - FLOW: WMC_ACCOUNT_PAIRING
+  - CHECK: GBA_RESIDENCY (PASS)
+  - CHECK: DUAL_PREMIER (PASS)
+  - ACTION: CREATE_CLOSED_LOOP`,
+            action: "msg_setup"
+        },
+        {
+            phase: "SCENE 5: ACTIVATION",
+            title: "Closed-Loop Transfer",
+            desc: "Patrick approves the pairing. 500k RMB is moved to the 'Southbound Investment Account'. It allows investment without leaving the banking ecosystem.",
+            log: `> TRANSACTION:
+  - FROM: CN_SAVINGS
+  - TO: HK_WMC_INVESTMENT
+  - AMOUNT: 500,000 CNY
+  - TYPE: CLOSED_LOOP_REMITTANCE`,
+            action: "msg_transfer"
+        },
+        {
+            phase: "SCENE 6: INVEST",
+            title: "Executing the Strategy",
+            desc: "Funds arrived. AI recommends a compliant 'Greater China Tech Fund' (not individual stock). Patrick executes the trade using his RMB funds.",
+            log: `> INVESTMENT_EXEC:
+  - PRODUCT: HSBC_CHINA_NEW_ECONOMY_FUND
+  - CURRENCY: CNY / HKD
+  - STATUS: ORDER_PLACED`,
+            action: "msg_invest"
+        },
+        {
+            phase: "SCENE 7: FINISH",
+            title: "Investment Complete",
+            desc: "Order submitted. AI confirms regulatory compliance and sets up ongoing monitoring.",
+            log: `> EXECUTION_COMPLETE:
+  - COMPLIANCE_CHECK: PASS
+  - MONITORING: ENABLED
+  - NEXT_ACTION: PORTFOLIO_REVIEW`,
+            action: "msg_finish"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const panel = document.getElementById('storyPanel');
+
+        // 1. Update Left Panel
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // 2. Simulator Logic
+        if (data.action === "show_notif") {
+            setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        }
+
+        if (data.action === "msg_welcome") {
+             const body = document.getElementById('chatBody');
+             body.innerHTML = ''; // Clean start
+             
+             // Simulate User opening app
+             setTimeout(() => {
+                 addChat("ai", `
+                    <strong>Good Morning, Patrick.</strong><br>
+                    Welcome to your GBA Wealth View.<br>
+                    <div class="gba-asset-card">
+                        <div class="gba-row">
+                            <div class="gba-label">
+                                <img src="https://flagcdn.com/w20/cn.png" class="gba-flag">
+                                HSBC China
+                            </div>
+                            <div class="gba-amount">¥ 2,000,000</div>
+                        </div>
+                        <div class="gba-row">
+                            <div class="gba-label">
+                                <img src="https://flagcdn.com/w20/hk.png" class="gba-flag">
+                                HSBC HK
+                            </div>
+                            <div class="gba-amount" style="color:#999">$ 50,000</div>
+                        </div>
+                        <div class="gba-total">
+                            Total: ~¥ 2,045,000
+                        </div>
+                    </div>
+                    Market Update: HK Tech stocks are rallying. Your HK liquidity is currently low.
+                 `);
+             }, 500);
+        }
+
+        if (data.action === "msg_compliance") {
+            addChat("user", "我想转 50万人民币去香港买科技基金。但我不想去柜台填购汇单，怕被外管局问询。有什么合规的办法吗？");
+            setTimeout(() => addChat("ai", `
+                <strong>Patrick，我有完美的解决方案。</strong><br><br>
+                作为大湾区居民，您可以使用 <strong>“跨境理财通 - 南向通 (Southbound WMC)”</strong>。<br><br>
+                ✅ <strong>完全合规</strong>：这是国家支持的官方投资通道。<br>
+                ✅ <strong>额度独立</strong>：拥有 300万人民币专属额度，<strong>不占用</strong>您每年5万美元的个人购汇额度。<br>
+                ✅ <strong>资金闭环</strong>：资金在您的同名账户间封闭流转，无需复杂的用途证明。
+            `), 1500);
+        }
+
+        if (data.action === "msg_setup") {
+            addChat("user", "听起来不错。但我现在人在深圳，不需要去香港柜台开户吧？");
+            setTimeout(() => addChat("ai", `
+                <strong>完全不需要。</strong><br>
+                鉴于您已是双重卓越理财客户，我们可以进行<strong>全数字化配对</strong>。<br><br>
+                <div class="wmc-card">
+                    <div class="wmc-header">
+                        <span>Southbound WMC Setup</span>
+                        <span class="wmc-badge">Digital Fast-Track</span>
+                    </div>
+                    <div class="wmc-step">
+                        <span class="wmc-check">✓</span> Verify GBA Residency
+                    </div>
+                    <div class="wmc-step">
+                        <span class="wmc-check">✓</span> Verify Assets (>1M RMB)
+                    </div>
+                    <div class="wmc-step">
+                        <span class="wmc-check">✓</span> Pair CN & HK Accounts
+                    </div>
+                    <button class="btn-action" onclick="triggerFaceID()">Activate Now</button>
+                </div>
+            `), 1000);
+        }
+
+        if (data.action === "msg_transfer") {
+            const body = document.getElementById('chatBody');
+            const log = document.createElement('div');
+            log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+            log.innerHTML = "✓ Account Paired Successfully";
+            body.appendChild(log);
+            
+            setTimeout(() => addChat("ai", "账户配对成功！<br>现在，您可以直接将人民币划转至您的<strong>香港投资专户</strong>。<br>请输入金额进行划转："), 800);
+            
+            setTimeout(() => addChat("user", "转入 ¥500,000。"), 1500);
+            
+            setTimeout(() => {
+                 // Simulate Transfer Widget
+                 addChat("ai", `
+                    <div class="transfer-card">
+                        <div class="tc-row">
+                            <div class="tc-label">From: CN Savings</div>
+                            <div class="tc-amount">¥ 500,000</div>
+                        </div>
+                        <div class="tc-arrow">↓</div>
+                        <div class="tc-row">
+                            <div class="tc-label">To: HK WMC Invest</div>
+                            <div class="tc-amount">¥ 500,000</div>
+                        </div>
+                        <div class="tc-info">
+                            <span class="highlight-text">Closed Loop Transfer</span>
+                        </div>
+                        <button class="btn-action" onclick="triggerFaceID()">Confirm Transfer</button>
+                    </div>
+                 `);
+            }, 2500);
+        }
+
+        if (data.action === "msg_invest") {
+            const body = document.getElementById('chatBody');
+            const log = document.createElement('div');
+            log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+            log.innerHTML = "💸 ¥500,000 Transferred to HK Investment A/C";
+            body.appendChild(log);
+
+            setTimeout(() => addChat("ai", `
+                资金已到账。<br>
+                注意：南向通不支持直接买卖个股。基于您关注的科技板块，我为您筛选了符合资格的<strong>科技主题基金</strong>：
+                <div class="fund-card">
+                    <div class="fund-header">HSBC Greater China New Economy</div>
+                    <div class="fund-body">
+                        <div class="fund-row">
+                            <span>Sector</span>
+                            <span>Tech & Internet</span>
+                        </div>
+                        <div class="fund-row">
+                            <span>1Y Return</span>
+                            <span class="fund-val">+12.4%</span>
+                        </div>
+                        <div class="fund-row">
+                            <span>Risk Level</span>
+                            <span>Medium-High (4)</span>
+                        </div>
+                        <button class="btn-action" onclick="triggerFaceID()">Invest ¥500,000</button>
+                    </div>
+                </div>
+            `), 1500);
+        }
+
+        if (data.action === "msg_finish") {
+             const body = document.getElementById('chatBody');
+             const log = document.createElement('div');
+             log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+             log.innerHTML = "✓ Investment Order Placed";
+             body.appendChild(log);
+
+             addChat("ai", "<strong>投资已成功提交。</strong><br><br>您的投资组合现在覆盖了大湾区两地。我会为您启用<strong>智能组合监控</strong>，并在市场波动时提供再平衡建议。");
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo
+        const chatBody = document.getElementById('chatBody');
+        // Simple heuristic: Remove last AI message group
+        if (currentStep > 1) { 
+             let count = 0;
+             while (chatBody.lastElementChild && count < 3) {
+                 // Stop if we hit the welcome message in scene 2 to avoid clearing too much
+                 if (currentStep === 2 && chatBody.children.length <= 1) break;
+                 chatBody.lastElementChild.remove();
+                 count++;
+             }
+        }
+        
+        if (currentStep === 1) document.getElementById('notif').classList.remove('show');
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "End of Scenario" : (currentStep === 0 ? "Start Scenario" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        if (currentStep === 0) nextScene();
+    }
+
+    function triggerFaceID() {
+        const overlay = document.getElementById('faceidOverlay');
+        overlay.classList.add('show');
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            if (currentStep === 4 || currentStep === 5 || currentStep === 6) nextScene();
+        }, 1500);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

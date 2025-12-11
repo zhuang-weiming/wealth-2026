@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The Global Guardian (Ms. Li)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #f4f4f4;
+            --hsbc-white: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-green: #008a3c;
+            --accent-gold: #c6a87c;
+            --bg-dark: #1e1e1e;
+            --app-bg: #f5f5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--accent-gold); border: 1px solid var(--accent-gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-key { color: #2196f3; }
+        .term-alert { color: var(--hsbc-red); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -140px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+            max-height: 110px; overflow: hidden;
+        }
+        .clean-notification.show { top: 20px; }
+
+        /* Chat Interface */
+        .chat-app-header { 
+            background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); z-index: 10; 
+        }
+        .rm-avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .rm-avatar img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .chat-body-light { flex: 1; background: var(--app-bg); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+        
+        .chat-input-bar { 
+            position: absolute; bottom: 0; left: 0; right: 0; background: #fff; 
+            padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; 
+        }
+        .chat-input-bar img { width: 28px; height: 28px; cursor: pointer; }
+        .chat-input-field { 
+            flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; 
+            font-size: 0.95rem; color: #999; 
+        }
+
+        /* Bubbles */
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333333; border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
+        
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Widget: Transfer */
+        .transfer-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .tc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .tc-label { font-size: 0.75rem; color: #666; text-transform: uppercase; }
+        .tc-amount { font-size: 1.2rem; font-weight: bold; color: #333; }
+        .tc-arrow { text-align: center; color: var(--hsbc-red); margin: 5px 0; font-size: 1.2rem; }
+        .tc-info { background: #f9f9f9; padding: 8px; border-radius: 6px; font-size: 0.75rem; color: #555; display: flex; justify-content: space-between; }
+        .highlight-text { color: var(--accent-green); font-weight: bold; }
+        
+        /* Widget: Form Input */
+        .form-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .form-header { font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; color: #333; }
+        .form-group { margin-bottom: 10px; }
+        .form-label { font-size: 0.75rem; color: #666; margin-bottom: 4px; display: block; }
+        .form-input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; box-sizing: border-box; background: #f9f9f9; }
+        .form-check { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #333; margin-top: 10px; }
+
+        .btn-action { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer; }
+
+        /* Face ID */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--accent-gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Premier Family</span>
+        <span class="header-badge">GLOBAL EDUCATION</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>22:15</span>
+            <span>China Mobile</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <div style="background:#00c853; width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-size:24px;">
+               💬
+            </div>
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>Leo (Son)</span> <span style="font-weight:normal; color:#888;">Now</span>
+                </div>
+                <div style="font-size:0.85rem; color:#333; margin-top:4px;">
+                    Mom, emergency! Landlord needs deposit (£2,000) tonight or I lose the flat! 😭
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">
+                    <img src="resource/IMG_1035.png" alt="HSBC Logo" title="HSBC Logo">
+                </div>
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Family Link</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● Global Guardian AI</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <img src="resource/photo.png" alt="Photo">
+                <div class="chat-input-field">输入消息...</div>
+                <img src="resource/jianpan.png" alt="Keyboard">
+                <img src="resource/jiahao.png" alt="More">
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Ms. Li</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "场景1：紧急求助",
+            title: "来自伦敦的紧急电话",
+            desc: "晚上10:15分上海。李女士接到儿子Leo的紧急消息。他急需用钱付房租，但银行已关门。",
+            log: `> 外部触发事件:
+  - 来源: 微信
+  - 发送者: LEO_LI (儿子)
+  - 内容: "紧急租£2000"
+  - 时间: 22:15 (中国) / 14:15 (英国)`,
+            action: "show_notif"
+        },
+        {
+            phase: "场景2：身份识别",
+            title: "情境感知",
+            desc: "李女士打开汇丰App。AI检测到深夜登录+子女海外档案。AI向她解释GVGT转账速度。",
+            log: `> 上下文引擎:
+  - 用户: 李女士 (卓越理财)
+  - 地点: 上海 (深夜)
+  - 预测: 紧急汇款
+  - AI响应: GVGT解释`,
+            action: "msg_welcome"
+        },
+        {
+            phase: "场景3：解决方案",
+            title: "即时连通性",
+            desc: "AI展示GVGT转账组件。关键特点：实时到账+零手续费。李女士立即执行转账。",
+            log: `> 解决方案匹配:
+  - 产品: GVGT (环球转账)
+  - 速度: <span class="term-val">实时</span>
+  - 手续费: <span class="term-val">0.00</span>
+  - 认证: FACE_ID验证`,
+            action: "msg_solution"
+        },
+        {
+            phase: "场景4：痛点暴露",
+            title: "日常生活摩擦",
+            desc: "转账完成。李女士提出问题：Leo没有本地卡坐地铁/买东西。AI认同这个痛点。",
+            log: `> 用户反馈:
+  - 痛点: 无本地卡
+  - 需求: 日常消费解决方案
+  - 背景: 无现金社会 (英国)`,
+            action: "msg_pain"
+        },
+        {
+            phase: "场景5：增值推销",
+            title: "附属信用卡",
+            desc: "AI推荐卓越理财附属信用卡。亮点：数字优先(Apple Pay)、家长管控、积分共享。",
+            log: `> 下一步最佳行动:
+  - 推荐: 卓越理财附属信用卡
+  - 好处: 数字卡、监控、积分
+  - 合规: 责任披露`,
+            action: "msg_upsell"
+        },
+        {
+            phase: "场景6：关键吸引点",
+            title: "实时监控",
+            desc: "李女士喜欢'家长管控'。AI确认实时提醒和数字钱包使用(NFC)。她决定申请。",
+            log: `> 价值主张被接受:
+  - 触发因素: 消费透明度
+  - 技术: NFC / Apple Pay设置
+  - 意向: 立即申请`,
+            action: "msg_monitoring"
+        },
+        {
+            phase: "场景7：申请过程",
+            title: "数据收集",
+            desc: "AI收集必要信息：电话、地址、年龄检查。无需收入证明（关联主账户）。",
+            log: `> 表单填写:
+  - 数据: 英国手机、英国地址
+  - 检查: 年龄 >= 18
+  - 用户体验: 聊天内表单`,
+            action: "msg_form"
+        },
+        {
+            phase: "场景8：提交完成",
+            title: "处理与生态",
+            desc: "申请已提交。AI设定预期（1-2天审核）但强调数字速度。家庭生态锁定。",
+            log: `> 申请提交:
+  - 状态: 审核中
+  - 服务级别: 1-2个工作日
+  - 提醒: 已启用
+  - 生态: 已激活`,
+            action: "msg_finish"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const panel = document.getElementById('storyPanel');
+
+        // 1. Update Left Panel
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // 2. Simulator Logic
+        if (data.action === "show_notif") {
+            setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        }
+
+        if (data.action === "msg_welcome") {
+             const body = document.getElementById('chatBody');
+             body.innerHTML = ''; // Clean start
+             
+             addChat("user", "我儿子在伦敦急需付房租押金，大概 2000 英镑。我现在转过去，他什么时候能收到？这可是晚上十点。");
+             
+             setTimeout(() => addChat("ai", "李女士，请放心。基于 HSBC 的全球网络优势，您和 Leo 都是 Premier 客户，通过 <strong>Global View Global Transfer (GVGT)</strong> 通道，这笔资金可即时到账 Leo 在英国的 HSBC 账户，同时无需跨境手续费。通常到账预计为几秒到几分钟。<br><br><em>（屏幕显示预计到账时间：立即 / 几分钟内）</em>"), 1000);
+        }
+
+        if (data.action === "msg_solution") {
+            addChat("user", "真的吗？太好了！那我马上转。");
+            
+            setTimeout(() => addChat("ai", `
+                <div class="transfer-card">
+                    <div class="tc-row">
+                        <div class="tc-label">From: CN Savings</div>
+                        <div class="tc-amount">¥ 18,450.00</div>
+                    </div>
+                    <div class="tc-arrow">↓</div>
+                    <div class="tc-row">
+                        <div class="tc-label">To: Leo Li (UK)</div>
+                        <div class="tc-amount">£ 2,000.00</div>
+                    </div>
+                    <div class="tc-info">
+                        <span>Rate: 9.225</span>
+                        <span class="highlight-text">Fee: £0.00</span>
+                    </div>
+                    <button class="btn-action" onclick="triggerFaceID()">Confirm Transfer</button>
+                </div>
+            `), 800);
+        }
+
+        if (data.action === "msg_pain") {
+            const body = document.getElementById('chatBody');
+            const log = document.createElement('div');
+            log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+            log.innerHTML = "✓ £2,000.00 Transferred Successfully";
+            body.appendChild(log);
+
+            setTimeout(() => addChat("user", "这次算是解决了。但他在那边没有英国本地的银行卡，平时坐地铁、超市买东西都很不方便，总不能天天带现金吧？"), 1000);
+        }
+
+        if (data.action === "msg_upsell") {
+            setTimeout(() => addChat("ai", `
+                这是留学生的常见痛点。您可以为 Leo 申请 <strong>HSBC Premier 附属信用卡</strong>。虽然不同地区权益略有差异，但典型功能包括：<br><br>
+                1. <strong>即时数字卡 (Digital Card)</strong> — 审批通过后，可立即添加到 Apple Pay/Google Pay，手机支付。<br>
+                2. <strong>交易提醒 & 可见账单</strong> — 您作为主卡持有人可在 App 上查看所有消费明细。<br>
+                3. <strong>积分共享</strong> — 附属卡消费为主账户累积积分。<br><br>
+                <span style="font-size:0.75rem; color:#666;">注意：附属卡持有人需年满 18 岁，且主卡持有人对所有消费承担连带责任。</span>
+            `), 1000);
+        }
+
+        if (data.action === "msg_monitoring") {
+            addChat("user", "那太好了！我最担心他乱花钱，我想随时看到消费情况，这个功能是实时的吗？");
+            
+            setTimeout(() => addChat("ai", "是的，所有附属卡的消费交易会即时显示在您的 HSBC App 中。审批通过后，他可以在英国用手机刷 Apple Pay 坐地铁、超市购物，非常方便。"), 1500);
+            
+            setTimeout(() => addChat("user", "好，我要办！怎么操作？"), 3000);
+        }
+
+        if (data.action === "msg_form") {
+            setTimeout(() => addChat("ai", `
+                我已为您准备好申请表。无需 Leo 提供收入证明。请确认以下信息：
+                <div class="form-card">
+                    <div class="form-header">Supplementary Card Application</div>
+                    <div class="form-group">
+                        <label class="form-label">Leo's UK Mobile</label>
+                        <input type="text" class="form-input" value="+44 7700 900000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">UK Address</label>
+                        <input type="text" class="form-input" value="UCL Hall, London">
+                    </div>
+                    <div class="form-check">
+                        <span>☑ Confirmed: Leo is over 18</span>
+                    </div>
+                    <button class="btn-action" onclick="triggerFaceID()">Submit Application</button>
+                </div>
+            `), 1000);
+        }
+
+        if (data.action === "msg_finish") {
+             const body = document.getElementById('chatBody');
+             const log = document.createElement('div');
+             log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+             log.innerHTML = "✓ Application Submitted";
+             body.appendChild(log);
+
+             addChat("ai", "谢谢您提交资料。附属卡申请已发送至后台审核，通常需要 <strong>1–2 个工作日</strong>。审批通过后，电子卡可立即使用。<br><br>我也为您开启了消费提醒，您将实时追踪他的每一笔开支。");
+             
+             setTimeout(() => addChat("user", "你们真是想得周到。看来以后还是要多用汇丰。"), 2000);
+             
+             setTimeout(() => addChat("ai", "我们的目标是让您的全球生活更无缝。我们也提供全球紧急支援服务，包括紧急现金支援。请放心。"), 3500);
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo
+        const chatBody = document.getElementById('chatBody');
+        if (currentStep > 1) { 
+             let count = 0;
+             // Remove messages associated with the step
+             while (chatBody.lastElementChild && count < 3) {
+                 if (chatBody.lastElementChild.classList.contains('bubble-light') && chatBody.lastElementChild.classList.contains('ai') && currentStep === 2) break; // Don't delete Welcome msg if backing from scene 3
+                 chatBody.lastElementChild.remove();
+                 count++;
+             }
+        }
+        
+        if (currentStep === 1) document.getElementById('notif').classList.remove('show');
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "End of Scenario" : (currentStep === 0 ? "Start Scenario" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        if (currentStep === 0) nextScene();
+    }
+
+    function triggerFaceID() {
+        const overlay = document.getElementById('faceidOverlay');
+        overlay.classList.add('show');
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            if (currentStep === 3 || currentStep === 7) nextScene();
+        }, 1500);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
