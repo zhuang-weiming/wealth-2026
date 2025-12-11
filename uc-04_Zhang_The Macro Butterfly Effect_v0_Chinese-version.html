@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSBC AI-Agent: Macro Butterfly Effect (Mr. Zhang)</title>
+    <title>汇丰AI智能体：宏观蝴蝶效应（张先生）</title>
     <style>
         /* --- 核心视觉变量 (HSBC Theme) --- */
         :root {
@@ -107,6 +107,7 @@
         .clean-notification {
             position: absolute; top: -100px; left: 10px; right: 10px;
             background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 14px; padding: 15px; z-index: 2000;
             box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
             display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
@@ -130,9 +131,16 @@
         .chat-input-field { flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; font-size: 0.95rem; color: #999; }
 
         /* Bubbles */
-        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: var(--text-primary); border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333333; border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
         .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
+        
+        @keyframes popUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         
         /* Insight Card (Logic Flow) */
         .insight-card {
@@ -154,7 +162,7 @@
         .pc-val { font-weight: bold; }
         .pc-val.up { color: var(--accent-green); }
         .pc-val.down { color: var(--hsbc-red); }
-        .btn-invest { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; }
+        .btn-invest { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer;}
 
         /* Face ID */
         .faceid-overlay {
@@ -162,6 +170,7 @@
             background: rgba(255, 255, 255, 0.95); display: none;
             flex-direction: column; justify-content: center; align-items: center;
             z-index: 3000; backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
         .faceid-overlay.show { display: flex; }
         .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
@@ -180,8 +189,8 @@
 
 <div class="story-panel" id="storyPanel">
     <div class="header-title">
-        <span>HSBC Global Private Banking</span>
-        <span class="header-badge">PREMIER CHINA</span>
+        <span>汇丰环球私人银行</span>
+        <span class="header-badge">中国私人银行</span>
     </div>
 </div>
 
@@ -189,15 +198,15 @@
     <div class="phone-frame">
         <div class="status-bar">
             <span>Dec 11</span>
-            <span>China Mobile</span>
+            <span>中国移动</span>
         </div>
         <div class="notch"></div>
 
         <div class="clean-notification" id="notif" onclick="userClicksNotification()">
-            <img src="https://companieslogo.com/img/orig/HSBC-2a33615a.png?t=1633075252" style="width:40px; height:40px; border-radius:8px; object-fit: contain;">
+            <img src="resource/IMG_1035.png" style="width:40px; height:40px; border-radius:8px; object-fit: contain;" alt="HSBC Logo" title="HSBC Logo">
             <div style="flex:1;">
                 <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
-                    <span>Global Viewpoint</span> <span style="font-weight:normal; color:#888;">8:45 AM</span>
+                    <span>环球观点</span> <span style="font-weight:normal; color:#888;">8:45 AM</span>
                 </div>
                 <div style="font-size:0.85rem; color:#333; margin-top:4px;">
                     <strong>美联储宣布降息 25bp：</strong> 这对您的 A 股科技持仓意味着什么？<br>
@@ -209,97 +218,97 @@
         <div class="screen active" id="scr-chat">
             <div class="chat-app-header">
                 <div class="rm-avatar">
-                    <img src="https://companieslogo.com/img/orig/HSBC-2a33615a.png?t=1633075252" alt="HSBC">
+                    <img src="resource/IMG_1035.png" alt="HSBC Logo" title="HSBC Logo">
                 </div>
                 <div>
-                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Global Viewpoint</div>
-                    <div style="font-size:0.7rem; color:#008a3c;">● AI Macro Analyst</div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">环球观点</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● AI宏观分析师</div>
                 </div>
             </div>
             <div class="chat-body-light" id="chatBody"></div>
             <div class="chat-input-bar">
-                <div class="chat-input-field">Type a message...</div>
+                <div class="chat-input-field">输入消息...</div>
             </div>
         </div>
 
         <div class="faceid-overlay" id="faceidOverlay">
             <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
-            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
-            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Zhang Wei</div>
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">面部识别</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">正在验证张先生</div>
         </div>
 
     </div>
 </div>
     
 <div class="control-bar">
-    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
-    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; 上一场景</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">开始场景</button>
 </div>
 
 <script>
     const script = [
         {
-            phase: "SCENE 1: THE TRIGGER",
-            title: "News Break: Fed Cuts Rates",
-            desc: "Dec 11, Morning. The Fed cuts rates. Mr. Zhang is confused about how this global event affects his local A-shares (Tech/EV).",
-            log: `> MACRO_EVENT:
-  - SOURCE: FED_FOMC
-  - ACTION: RATE_CUT (-25bps)
-  - MARKET_REACTION: USD_DOWN, EMERGING_MARKETS_UP
-  - CLIENT_IMPACT: HIGH_RELEVANCE (A-SHARE TECH)`,
+            phase: "场景 1: 触发事件",
+            title: "突发新闻：美联储降息",
+            desc: "12月11日早晨。美联储宣布降息。张先生对这个全球事件如何影响他的A股持仓（科技/新能源）感到困惑。",
+            log: `> 宏观事件:
+  - 来源: 美联储FOMC
+  - 行动: 降息(-25基点)
+  - 市场反应: 美元下跌, 新兴市场上涨
+  - 客户影响: 高相关性(A股科技)`,
             action: "show_notif"
         },
         {
-            phase: "SCENE 2: THE INQUIRY",
-            title: "Bridging the Gap",
-            desc: "Zhang clicks the notification. He wants to confirm his intuition: 'Is this good for my portfolio?'",
-            log: `> USER_INQUIRY:
-  - TOPIC: FED_RATE_CUT
-  - TARGET: A_SHARE_PORTFOLIO
-  - SENTIMENT: UNCERTAIN
-  - ASSETS: CNY_EQUITY + USD_CASH`,
+            phase: "场景 2: 询问",
+            title: "填补认知差距",
+            desc: "张先生点击通知。他想确认自己的直觉：“这对我们的投资组合有利吗？”",
+            log: `> 用户询问:
+  - 主题: 美联储降息
+  - 目标: A股投资组合
+  - 情绪: 不确定
+  - 资产: 人民币股票 + 美元现金`,
             action: "msg_inquiry"
         },
         {
-            phase: "SCENE 3: THE INSIGHT",
-            title: "Mechanism Decode",
-            desc: "AI explains the 'Butterfly Effect': Weak USD -> Strong CNY -> PBOC Policy Space -> Good for Growth Stocks (Valuation Repair).",
-            log: `> ANALYSIS_ENGINE:
-  - LOGIC_CHAIN: USD_WEAKENS -> LIQUIDITY_EASING
-  - SECTOR_IMPACT: GROWTH_STOCKS (POSITIVE)
-  - VERDICT: INDIRECT_BULLISH`,
+            phase: "场景 3: 洞察",
+            title: "机制解析",
+            desc: "AI解释“蝴蝶效应”：美元疲软 → 人民币坚挺 → 央行政策空间 → 对成长股有利（估值修复）。",
+            log: `> 分析引擎:
+  - 逻辑链: 美元疲软 -> 流动性放松
+  - 行业影响: 成长股(积极)
+  - 结论: 间接看涨`,
             action: "msg_analysis"
         },
         {
-            phase: "SCENE 4: THE PIVOT",
-            title: "The Sleeping Cash",
-            desc: "Zhang asks about his USD 500k sitting idle in HSBC. AI warns: 'Rate cut means your deposit interest is about to drop.'",
-            log: `> PORTFOLIO_SCAN:
-  - USD_CASH: $500,000 (IDLE)
-  - CURRENT_YIELD: 4.8% (SAVINGS)
-  - FORECAST_YIELD: <span class="term-alert">DECLINING (to 3.5%)</span>
-  - OPPORTUNITY: BOND_PRICE_APPRECIATION`,
+            phase: "场景 4: 转折点",
+            title: "沉睡的现金",
+            desc: "张先生询问他在汇丰的50万美元闲置现金。AI警告：“降息意味着您的存款利息即将下降。”",
+            log: `> 投资组合扫描:
+  - 美元现金: $500,000(闲置)
+  - 当前收益率: 4.8%(存款)
+  - 预测收益率: <span class="term-alert">下降(至3.5%)</span>
+  - 机会: 债券价格上滋`,
             action: "msg_pivot"
         },
         {
-            phase: "SCENE 5: THE SOLUTION",
-            title: "Global-Local Barbell",
-            desc: "AI proposes a strategy: Keep A-shares for growth, move USD cash to Investment Grade Bonds to lock in yield + capital gains.",
-            log: `> RECOMMENDATION:
-  - STRATEGY: BARBELL_APPROACH
-  - LEG_1 (CNY): HOLD_GROWTH_EQUITY
-  - LEG_2 (USD): BUY_IG_BOND_FUND
-  - RATIONALE: LOCK_YIELD + CAPITAL_GAIN`,
+            phase: "场景 5: 解决方案",
+            title: "全球-本土杠铃策略",
+            desc: "AI提出策略：保留A股获取成长，将美元现金转入投资级债券以锁定收益 + 资本利得。",
+            log: `> 推荐策略:
+  - 策略: 杠铃策略
+  - 第一部分(人民币): 持有成长股
+  - 第二部分(美元): 购买IG债券基金
+  - 原理: 锁定收益 + 资本利得`,
             action: "msg_proposal"
         },
         {
-            phase: "SCENE 6: EXECUTION",
-            title: "Activating Wealth",
-            desc: "Zhang executes the bond fund purchase. He feels covered on both sides of the ocean.",
-            log: `> EXECUTION:
-  - PRODUCT: HSBC_GLOBAL_IG_BOND_FUND
-  - AMOUNT: USD 500,000
-  - STATUS: SUBMITTED_TO_RM`,
+            phase: "场景 6: 执行",
+            title: "激活财富",
+            desc: "张先生执行债券基金购买。他感受到了海洋两岸的全面覆盖。",
+            log: `> 执行:
+  - 产品: 汇丰环球IG债券基金
+  - 金额: 美元500,000
+  - 状态: 已提交客户经理`,
             action: "msg_confirm"
         }
     ];
@@ -312,7 +321,7 @@
         const data = script[currentStep];
         const panel = document.getElementById('storyPanel');
 
-        // Render Narrative Card
+        // 1. Update Left Panel (Narrative)
         document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
         const card = document.createElement('div');
         card.className = 'scene-card active';
@@ -325,88 +334,92 @@
         panel.appendChild(card);
         card.scrollIntoView({behavior: 'smooth'});
 
-        // Interaction Logic
+        // 2. Execute Actions (Simulator Logic)
         if (data.action === "show_notif") {
             setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+            setTimeout(() => {
+                const notif = document.getElementById('notif');
+                if (notif.classList.contains('show')) notif.classList.remove('show');
+            }, 5000);
         }
 
         if (data.action === "msg_inquiry") {
             const body = document.getElementById('chatBody');
             body.innerHTML = ''; 
-            
-            // Simulate User asking
             addChat("user", "看到新闻了。美联储降息，这对我的 A 股账户（特别是新能源和科技股）是利好吗？");
+            setTimeout(() => addChat("ai", "我正在为您分析这个重要消息的市场影响，请稍候..."), 800);
         }
 
         if (data.action === "msg_analysis") {
-            setTimeout(() => addChat("ai", `
+            // Clear the "typing/loading" message if you want, or just append
+            addChat("ai", `
                 <strong>张先生，早上好。</strong><br>
                 HSBC 环球研究团队认为：这对您的 A 股持仓是 <span style="color:#008a3c; font-weight:bold;">“间接利好”</span>。<br><br>
                 让我为您梳理一下<strong>传导逻辑</strong>：
                 <div class="insight-card">
                     <div class="insight-title">
-                        <span>Fed Policy Transmission</span>
-                        <span>HSBC View</span>
+                        <span>美联储政策传导</span>
+                        <span>汇丰观点</span>
                     </div>
                     <div class="flow-row">
-                        <div class="flow-box">Fed Cuts Rate</div>
+                        <div class="flow-box">美联储降息</div>
                         <div class="flow-arrow">➜</div>
-                        <div class="flow-box">USD Weakens</div>
+                        <div class="flow-box">美元走弱</div>
                     </div>
                     <div class="flow-row">
-                        <div class="flow-box">CNY Stabilizes</div>
+                        <div class="flow-box">人民币稳定</div>
                         <div class="flow-arrow">➜</div>
-                        <div class="flow-box">PBOC Easing Space</div>
+                        <div class="flow-box">央行放松空间</div>
                     </div>
                     <div style="border-top:1px dashed #eee; margin:10px 0;"></div>
                     <div class="flow-row">
-                        <div>Result:</div>
-                        <div class="highlight-green">Valuation Repair (Tech/Growth)</div>
+                        <div>结果:</div>
+                        <div class="highlight-green">估值修复(科技/成长)</div>
                     </div>
                 </div>
                 <div style="margin-top:10px; font-size:0.85rem;">
                     成长型板块（如新能源）对利率最敏感。全球流动性改善有助于提振估值。建议<strong>持有观察</strong>。
                 </div>
-            `), 1500);
+            `);
         }
 
         if (data.action === "msg_pivot") {
-            setTimeout(() => addChat("user", "懂了，那我就先拿着。但是我账上还有 50万美金闲着，降息了是不是存款利息要变少了？"), 1000);
-            setTimeout(() => addChat("ai", "您的直觉很敏锐。<br>随着降息周期开启，<strong>活期和定存利息即将下行</strong>。<br><br>但是，降息同时也意味着<strong>债券价格上涨</strong>。这是配置固定收益资产的黄金窗口。"), 2500);
+            addChat("user", "懂了，那我就先拿着。但是我账上还有 50万美金闲着，降息了是不是存款利息要变少了？");
+            setTimeout(() => addChat("ai", "您的直觉很敏锐。<br>随着降息周期开启，<strong>活期和定存利息即将下行</strong>。<br><br>但是，降息同时也意味着<strong>债券价格上涨</strong>。这是配置固定收益资产的黄金窗口。"), 1500);
         }
 
         if (data.action === "msg_proposal") {
-            setTimeout(() => addChat("ai", `
+            addChat("ai", `
                 我们建议您采用<strong>“全球-本土”杠铃策略</strong>：<br>
                 1. 国内账户：享受 A 股反弹。<br>
                 2. 汇丰账户：配置 <strong>投资级别债券基金</strong>。
                 <div class="product-card">
-                    <div class="pc-header">HSBC Global IG Bond Fund</div>
+                    <div class="pc-header">汇丰环球IG债券基金</div>
                     <div class="pc-body">
                         <div class="pc-row">
-                            <span>Current Yield (Yield to Maturity)</span>
-                            <span class="pc-val up">~5.2% p.a.</span>
+                            <span>当前收益率(到期收益率)</span>
+                            <span class="pc-val up">~5.2% 年化</span>
                         </div>
                         <div class="pc-row">
-                            <span>Price Trend (Rate Cut Cycle)</span>
-                            <span class="pc-val up">↗ Potential Gain</span>
+                            <span>价格趋势</span>
+                            <span class="pc-val up">↗ 潜在收益</span>
                         </div>
                         <div class="pc-row" style="color:#999; font-size:0.8rem;">
-                            vs. Cash Deposit (Forecast)
+                            vs 现金存款(预测)
                             <span class="pc-val down">↘ 3.5%</span>
                         </div>
-                        <button class="btn-invest" onclick="triggerFaceID()">Lock in 5.2% Yield</button>
+                        <button class="btn-invest" onclick="executeInvestment()">锁定5.2%收益率</button>
                     </div>
                 </div>
                 这样既锁定了高息，又能博取资本利得。
-            `), 1500);
+            `);
         }
 
         if (data.action === "msg_confirm") {
              const body = document.getElementById('chatBody');
              const log = document.createElement('div');
-             log.style.textAlign = 'center'; log.style.color = '#999'; log.style.fontSize='0.7rem'; log.style.margin='15px';
-             log.innerHTML = "🔒 Authenticated via Face ID";
+             log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+             log.innerHTML = "✓ 投资指令已提交";
              body.appendChild(log);
 
              addChat("ai", "<strong>认购指令已提交。</strong><br>您成功激活了闲置美元，并构建了跨市场的互补组合。<br><br>您的客户经理 Sarah 将在稍后与您确认最终份额。");
@@ -425,11 +438,13 @@
         const cards = panel.querySelectorAll('.scene-card');
         if (cards.length > 0) cards[cards.length-1].classList.add('active');
 
-        // Chat Undo
+        // Chat Undo (Remove the last few bubbles added by the current step)
         const chatBody = document.getElementById('chatBody');
-        if (currentStep > 1) { 
-             if(chatBody.lastElementChild) chatBody.lastElementChild.remove();
-             if(chatBody.lastElementChild && chatBody.lastElementChild.classList.contains('user')) chatBody.lastElementChild.remove();
+        // Logic: Try to remove last User+AI combo or just last bubble
+        // Simple heuristic: Remove last 1 or 2 nodes depending on step type
+        if (currentStep > 1) {
+             if(chatBody.lastElementChild) chatBody.lastElementChild.remove(); // AI
+             if(chatBody.lastElementChild && chatBody.lastElementChild.classList.contains('user')) chatBody.lastElementChild.remove(); // User
         }
         
         if (currentStep === 1) document.getElementById('notif').classList.remove('show');
@@ -442,7 +457,7 @@
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
         
-        nextBtn.innerText = currentStep >= script.length ? "End of Scenario" : (currentStep === 0 ? "Start Scenario" : "Next Scene >");
+        nextBtn.innerText = currentStep >= script.length ? "场景结束" : (currentStep === 0 ? "开始场景" : "下一场景 >");
         nextBtn.disabled = currentStep >= script.length;
         prevBtn.disabled = currentStep <= 0;
     }
@@ -450,6 +465,10 @@
     function userClicksNotification() {
         document.getElementById('notif').classList.remove('show');
         if (currentStep === 0) nextScene();
+    }
+
+    function executeInvestment() {
+        if (currentStep === 5) nextScene();
     }
 
     function triggerFaceID() {
