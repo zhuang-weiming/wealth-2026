@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: Macro Butterfly Effect (Mr. Zhang)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #f4f4f4;
+            --hsbc-white: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-green: #008a3c;
+            --accent-gold: #c6a87c;
+            --bg-dark: #1e1e1e;
+            --app-bg: #f5f5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--accent-gold); border: 1px solid var(--accent-gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-key { color: #2196f3; }
+        .term-alert { color: var(--hsbc-red); }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -100px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+        }
+        .clean-notification.show { top: 10px; }
+
+        /* Chat Interface */
+        .chat-app-header { 
+            background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); z-index: 10; 
+        }
+        .rm-avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .rm-avatar img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .chat-body-light { flex: 1; background: var(--app-bg); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+        
+        .chat-input-bar { 
+            position: absolute; bottom: 0; left: 0; right: 0; background: #fff; 
+            padding: 15px 20px 30px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; 
+        }
+        .chat-input-field { flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; font-size: 0.95rem; color: #999; }
+
+        /* Bubbles */
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: var(--text-primary); border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
+        
+        /* Insight Card (Logic Flow) */
+        .insight-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .insight-title { font-size: 0.8rem; font-weight: bold; color: #333; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 10px; display:flex; justify-content:space-between;}
+        .flow-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px; }
+        .flow-box { background: #f5f5f7; padding: 6px 10px; border-radius: 6px; font-weight: 500; color: #333; }
+        .flow-arrow { color: #999; font-size: 1rem; }
+        .highlight-green { color: var(--accent-green); font-weight: bold; }
+        
+        /* Product Card */
+        .product-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; margin-top: 5px;
+        }
+        .pc-header { background: #333; color: white; padding: 10px 15px; font-size: 0.85rem; font-weight: bold; }
+        .pc-body { padding: 15px; }
+        .pc-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .pc-val { font-weight: bold; }
+        .pc-val.up { color: var(--accent-green); }
+        .pc-val.down { color: var(--hsbc-red); }
+        .btn-invest { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; }
+
+        /* Face ID */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--accent-gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Global Private Banking</span>
+        <span class="header-badge">PREMIER CHINA</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>Dec 11</span>
+            <span>China Mobile</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <img src="https://companieslogo.com/img/orig/HSBC-2a33615a.png?t=1633075252" style="width:40px; height:40px; border-radius:8px; object-fit: contain;">
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>Global Viewpoint</span> <span style="font-weight:normal; color:#888;">8:45 AM</span>
+                </div>
+                <div style="font-size:0.85rem; color:#333; margin-top:4px;">
+                    <strong>美联储宣布降息 25bp：</strong> 这对您的 A 股科技持仓意味着什么？<br>
+                    <span style="color:#555;">点击查看汇丰独家传导分析。</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">
+                    <img src="https://companieslogo.com/img/orig/HSBC-2a33615a.png?t=1633075252" alt="HSBC">
+                </div>
+                <div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Global Viewpoint</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● AI Macro Analyst</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <div class="chat-input-field">Type a message...</div>
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Zhang Wei</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
+</div>
+
+<script>
+    const script = [
+        {
+            phase: "SCENE 1: THE TRIGGER",
+            title: "News Break: Fed Cuts Rates",
+            desc: "Dec 11, Morning. The Fed cuts rates. Mr. Zhang is confused about how this global event affects his local A-shares (Tech/EV).",
+            log: `> MACRO_EVENT:
+  - SOURCE: FED_FOMC
+  - ACTION: RATE_CUT (-25bps)
+  - MARKET_REACTION: USD_DOWN, EMERGING_MARKETS_UP
+  - CLIENT_IMPACT: HIGH_RELEVANCE (A-SHARE TECH)`,
+            action: "show_notif"
+        },
+        {
+            phase: "SCENE 2: THE INQUIRY",
+            title: "Bridging the Gap",
+            desc: "Zhang clicks the notification. He wants to confirm his intuition: 'Is this good for my portfolio?'",
+            log: `> USER_INQUIRY:
+  - TOPIC: FED_RATE_CUT
+  - TARGET: A_SHARE_PORTFOLIO
+  - SENTIMENT: UNCERTAIN
+  - ASSETS: CNY_EQUITY + USD_CASH`,
+            action: "msg_inquiry"
+        },
+        {
+            phase: "SCENE 3: THE INSIGHT",
+            title: "Mechanism Decode",
+            desc: "AI explains the 'Butterfly Effect': Weak USD -> Strong CNY -> PBOC Policy Space -> Good for Growth Stocks (Valuation Repair).",
+            log: `> ANALYSIS_ENGINE:
+  - LOGIC_CHAIN: USD_WEAKENS -> LIQUIDITY_EASING
+  - SECTOR_IMPACT: GROWTH_STOCKS (POSITIVE)
+  - VERDICT: INDIRECT_BULLISH`,
+            action: "msg_analysis"
+        },
+        {
+            phase: "SCENE 4: THE PIVOT",
+            title: "The Sleeping Cash",
+            desc: "Zhang asks about his USD 500k sitting idle in HSBC. AI warns: 'Rate cut means your deposit interest is about to drop.'",
+            log: `> PORTFOLIO_SCAN:
+  - USD_CASH: $500,000 (IDLE)
+  - CURRENT_YIELD: 4.8% (SAVINGS)
+  - FORECAST_YIELD: <span class="term-alert">DECLINING (to 3.5%)</span>
+  - OPPORTUNITY: BOND_PRICE_APPRECIATION`,
+            action: "msg_pivot"
+        },
+        {
+            phase: "SCENE 5: THE SOLUTION",
+            title: "Global-Local Barbell",
+            desc: "AI proposes a strategy: Keep A-shares for growth, move USD cash to Investment Grade Bonds to lock in yield + capital gains.",
+            log: `> RECOMMENDATION:
+  - STRATEGY: BARBELL_APPROACH
+  - LEG_1 (CNY): HOLD_GROWTH_EQUITY
+  - LEG_2 (USD): BUY_IG_BOND_FUND
+  - RATIONALE: LOCK_YIELD + CAPITAL_GAIN`,
+            action: "msg_proposal"
+        },
+        {
+            phase: "SCENE 6: EXECUTION",
+            title: "Activating Wealth",
+            desc: "Zhang executes the bond fund purchase. He feels covered on both sides of the ocean.",
+            log: `> EXECUTION:
+  - PRODUCT: HSBC_GLOBAL_IG_BOND_FUND
+  - AMOUNT: USD 500,000
+  - STATUS: SUBMITTED_TO_RM`,
+            action: "msg_confirm"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const panel = document.getElementById('storyPanel');
+
+        // Render Narrative Card
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // Interaction Logic
+        if (data.action === "show_notif") {
+            setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        }
+
+        if (data.action === "msg_inquiry") {
+            const body = document.getElementById('chatBody');
+            body.innerHTML = ''; 
+            
+            // Simulate User asking
+            addChat("user", "看到新闻了。美联储降息，这对我的 A 股账户（特别是新能源和科技股）是利好吗？");
+        }
+
+        if (data.action === "msg_analysis") {
+            setTimeout(() => addChat("ai", `
+                <strong>张先生，早上好。</strong><br>
+                HSBC 环球研究团队认为：这对您的 A 股持仓是 <span style="color:#008a3c; font-weight:bold;">“间接利好”</span>。<br><br>
+                让我为您梳理一下<strong>传导逻辑</strong>：
+                <div class="insight-card">
+                    <div class="insight-title">
+                        <span>Fed Policy Transmission</span>
+                        <span>HSBC View</span>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box">Fed Cuts Rate</div>
+                        <div class="flow-arrow">➜</div>
+                        <div class="flow-box">USD Weakens</div>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box">CNY Stabilizes</div>
+                        <div class="flow-arrow">➜</div>
+                        <div class="flow-box">PBOC Easing Space</div>
+                    </div>
+                    <div style="border-top:1px dashed #eee; margin:10px 0;"></div>
+                    <div class="flow-row">
+                        <div>Result:</div>
+                        <div class="highlight-green">Valuation Repair (Tech/Growth)</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px; font-size:0.85rem;">
+                    成长型板块（如新能源）对利率最敏感。全球流动性改善有助于提振估值。建议<strong>持有观察</strong>。
+                </div>
+            `), 1500);
+        }
+
+        if (data.action === "msg_pivot") {
+            setTimeout(() => addChat("user", "懂了，那我就先拿着。但是我账上还有 50万美金闲着，降息了是不是存款利息要变少了？"), 1000);
+            setTimeout(() => addChat("ai", "您的直觉很敏锐。<br>随着降息周期开启，<strong>活期和定存利息即将下行</strong>。<br><br>但是，降息同时也意味着<strong>债券价格上涨</strong>。这是配置固定收益资产的黄金窗口。"), 2500);
+        }
+
+        if (data.action === "msg_proposal") {
+            setTimeout(() => addChat("ai", `
+                我们建议您采用<strong>“全球-本土”杠铃策略</strong>：<br>
+                1. 国内账户：享受 A 股反弹。<br>
+                2. 汇丰账户：配置 <strong>投资级别债券基金</strong>。
+                <div class="product-card">
+                    <div class="pc-header">HSBC Global IG Bond Fund</div>
+                    <div class="pc-body">
+                        <div class="pc-row">
+                            <span>Current Yield (Yield to Maturity)</span>
+                            <span class="pc-val up">~5.2% p.a.</span>
+                        </div>
+                        <div class="pc-row">
+                            <span>Price Trend (Rate Cut Cycle)</span>
+                            <span class="pc-val up">↗ Potential Gain</span>
+                        </div>
+                        <div class="pc-row" style="color:#999; font-size:0.8rem;">
+                            vs. Cash Deposit (Forecast)
+                            <span class="pc-val down">↘ 3.5%</span>
+                        </div>
+                        <button class="btn-invest" onclick="triggerFaceID()">Lock in 5.2% Yield</button>
+                    </div>
+                </div>
+                这样既锁定了高息，又能博取资本利得。
+            `), 1500);
+        }
+
+        if (data.action === "msg_confirm") {
+             const body = document.getElementById('chatBody');
+             const log = document.createElement('div');
+             log.style.textAlign = 'center'; log.style.color = '#999'; log.style.fontSize='0.7rem'; log.style.margin='15px';
+             log.innerHTML = "🔒 Authenticated via Face ID";
+             body.appendChild(log);
+
+             addChat("ai", "<strong>认购指令已提交。</strong><br>您成功激活了闲置美元，并构建了跨市场的互补组合。<br><br>您的客户经理 Sarah 将在稍后与您确认最终份额。");
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo
+        const chatBody = document.getElementById('chatBody');
+        if (currentStep > 1) { 
+             if(chatBody.lastElementChild) chatBody.lastElementChild.remove();
+             if(chatBody.lastElementChild && chatBody.lastElementChild.classList.contains('user')) chatBody.lastElementChild.remove();
+        }
+        
+        if (currentStep === 1) document.getElementById('notif').classList.remove('show');
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "End of Scenario" : (currentStep === 0 ? "Start Scenario" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        if (currentStep === 0) nextScene();
+    }
+
+    function triggerFaceID() {
+        const overlay = document.getElementById('faceidOverlay');
+        overlay.classList.add('show');
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            if (currentStep === 5) nextScene();
+        }, 1500);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
