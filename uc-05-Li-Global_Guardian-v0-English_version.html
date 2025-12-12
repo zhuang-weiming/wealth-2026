@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSBC AI-Agent: The Global Guardian (Ms. Li)</title>
+    <title>HSBC AI-Agent: Global Guardian (Ms. Li)</title>
     <style>
-        /* --- 核心视觉变量 (HSBC Theme) --- */
+        /* --- Core Visual Variables (HSBC Theme) --- */
         :root {
             --hsbc-red: #db0011;
             --hsbc-black: #2d2d2d;
@@ -29,7 +29,7 @@
             overflow: hidden;
         }
 
-        /* --- 左侧：剧本与后台 (Governance View) --- */
+        /* --- Left: Governance View --- */
         .story-panel {
             width: 55%;
             padding: 40px 40px 100px 40px;
@@ -78,7 +78,7 @@
         .term-key { color: #2196f3; }
         .term-alert { color: var(--hsbc-red); }
 
-        /* --- 右侧：手机模拟器 (User View) --- */
+        /* --- Right: Phone Simulator (User View) --- */
         .device-stage {
             width: 45%;
             background: #e5e5e5;
@@ -138,7 +138,7 @@
         /* Bubbles */
         .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: relative; z-index: 100; }
         .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333333; border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
-        .bubble-light.user { align-self: flex-end; background: var(--hsbc-red); color: white; border-bottom-right-radius: 4px; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-black); color: white; border-bottom-right-radius: 4px; }
         
         @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
         
@@ -209,10 +209,10 @@
             </div>
             <div style="flex:1;">
                 <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
-                    <span>Leo（儿子）</span> <span style="font-weight:normal; color:#888;">刚刚</span>
+                    <span>Leo (Son)</span> <span style="font-weight:normal; color:#888;">Now</span>
                 </div>
                 <div style="font-size:0.85rem; color:#333; margin-top:4px;">
-                    妈妈，紧急情况！房东今晚要押金（2000英镑），不然我就失去这套房子了！😭
+                    Mom, emergency! Landlord needs deposit (£2,000) tonight or I lose the flat! 😭
                 </div>
             </div>
         </div>
@@ -223,14 +223,14 @@
                     <img src="resource/IMG_1035.png" alt="HSBC Logo" title="HSBC Logo">
                 </div>
                 <div>
-                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">家庭互联</div>
-                    <div style="font-size:0.7rem; color:#008a3c;">● 全球守护AI</div>
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Family Link</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● Global Guardian AI</div>
                 </div>
             </div>
             <div class="chat-body-light" id="chatBody"></div>
             <div class="chat-input-bar">
-                <img src="resource/rm.jpeg" alt="RM" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
-                <div class="chat-input-field">输入消息...</div>
+                <img src="resource/photo.png" alt="Photo">
+                <div class="chat-input-field">Type a message...</div>
                 <img src="resource/jianpan.png" alt="Keyboard">
                 <img src="resource/jiahao.png" alt="More">
             </div>
@@ -238,102 +238,102 @@
 
         <div class="faceid-overlay" id="faceidOverlay">
             <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
-            <div style="color:#333; font-size:1.1rem; font-weight:bold;">面容ID</div>
-            <div style="color:#999; font-size:0.9rem; margin-top:5px;">正在验证李女士</div>
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Face ID</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Verifying Ms. Li</div>
         </div>
 
     </div>
 </div>
     
 <div class="control-bar">
-    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>< Previous</button>
     <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
 </div>
 
 <script>
     const script = [
         {
-            phase: "场景1：紧急求助",
-            title: "来自伦敦的紧急电话",
-            desc: "晚上10:15分上海。李女士接到儿子Leo的紧急消息。他急需用钱付房租，但银行已关门。",
-            log: `> 外部触发事件:
-  - 来源: 微信
-  - 发送者: LEO_LI (儿子)
-  - 内容: "紧急租£2000"
-  - 时间: 22:15 (中国) / 14:15 (英国)`,
+            phase: "Scene 1: Emergency SOS",
+            title: "Emergency Call from London",
+            desc: "10:15 PM Shanghai. Ms. Li receives an urgent message from her son Leo. He needs money for rent deposit immediately, but the bank is closed.",
+            log: `> External Trigger Event:
+  - Source: WeChat
+  - Sender: LEO_LI (Son)
+  - Content: "Urgent Rent £2000"
+  - Time: 22:15 (CN) / 14:15 (UK)`,
             action: "show_notif"
         },
         {
-            phase: "场景2：身份识别",
-            title: "情境感知",
-            desc: "李女士打开汇丰App。AI检测到深夜登录+子女海外档案。AI向她解释GVGT转账速度。",
-            log: `> 上下文引擎:
-  - 用户: 李女士 (卓越理财)
-  - 地点: 上海 (深夜)
-  - 预测: 紧急汇款
-  - AI响应: GVGT解释`,
+            phase: "Scene 2: Identity Recognition",
+            title: "Context Awareness",
+            desc: "Ms. Li opens the HSBC App. AI detects late-night login + overseas child profile. AI explains GVGT transfer speed to her.",
+            log: `> Context Engine:
+  - User: Ms. Li (Premier)
+  - Location: Shanghai (Late Night)
+  - Prediction: Urgent Remittance
+  - AI Response: GVGT Explanation`,
             action: "msg_welcome"
         },
         {
-            phase: "场景3：解决方案",
-            title: "即时连通性",
-            desc: "AI展示GVGT转账组件。关键特点：实时到账+零手续费。李女士立即执行转账。",
-            log: `> 解决方案匹配:
-  - 产品: GVGT (环球转账)
-  - 速度: <span class="term-val">实时</span>
-  - 手续费: <span class="term-val">0.00</span>
-  - 认证: FACE_ID验证`,
+            phase: "Scene 3: Solution",
+            title: "Instant Connectivity",
+            desc: "AI displays GVGT transfer widget. Key features: Real-time + Zero Fees. Ms. Li executes transfer immediately.",
+            log: `> Solution Matching:
+  - Product: GVGT (Global Transfers)
+  - Speed: <span class="term-val">Real-time</span>
+  - Fee: <span class="term-val">0.00</span>
+  - Auth: FACE_ID Verification`,
             action: "msg_solution"
         },
         {
-            phase: "场景4：痛点暴露",
-            title: "日常生活摩擦",
-            desc: "转账完成。李女士提出问题：Leo没有本地卡坐地铁/买东西。AI认同这个痛点。",
-            log: `> 用户反馈:
-  - 痛点: 无本地卡
-  - 需求: 日常消费解决方案
-  - 背景: 无现金社会 (英国)`,
+            phase: "Scene 4: Pain Point Exposed",
+            title: "Daily Life Friction",
+            desc: "Transfer complete. Ms. Li raises an issue: Leo has no local card for tube/groceries. AI acknowledges this pain point.",
+            log: `> User Feedback:
+  - Pain Point: No Local Card
+  - Need: Daily Spending Solution
+  - Context: Cashless Society (UK)`,
             action: "msg_pain"
         },
         {
-            phase: "场景5：增值推销",
-            title: "附属信用卡",
-            desc: "AI推荐卓越理财附属信用卡。亮点：数字优先(Apple Pay)、家长管控、积分共享。",
-            log: `> 下一步最佳行动:
-  - 推荐: 卓越理财附属信用卡
-  - 好处: 数字卡、监控、积分
-  - 合规: 责任披露`,
+            phase: "Scene 5: Value-Added Upsell",
+            title: "Supplementary Credit Card",
+            desc: "AI recommends Premier Supplementary Credit Card. Highlights: Digital First (Apple Pay), Parental Control, Points Sharing.",
+            log: `> Next Best Action:
+  - Recommendation: Premier Supplementary Card
+  - Benefits: Digital Card, Monitoring, Points
+  - Compliance: Liability Disclosure`,
             action: "msg_upsell"
         },
         {
-            phase: "场景6：关键吸引点",
-            title: "实时监控",
-            desc: "李女士喜欢'家长管控'。AI确认实时提醒和数字钱包使用(NFC)。她决定申请。",
-            log: `> 价值主张被接受:
-  - 触发因素: 消费透明度
-  - 技术: NFC / Apple Pay设置
-  - 意向: 立即申请`,
+            phase: "Scene 6: Key Attraction",
+            title: "Real-time Monitoring",
+            desc: "Ms. Li likes 'Parental Control'. AI confirms real-time alerts and digital wallet usage (NFC). She decides to apply.",
+            log: `> Value Proposition Accepted:
+  - Trigger: Spending Transparency
+  - Tech: NFC / Apple Pay Setup
+  - Intent: Apply Immediately`,
             action: "msg_monitoring"
         },
         {
-            phase: "场景7：申请过程",
-            title: "数据收集",
-            desc: "AI收集必要信息：电话、地址、年龄检查。无需收入证明（关联主账户）。",
-            log: `> 表单填写:
-  - 数据: 英国手机、英国地址
-  - 检查: 年龄 >= 18
-  - 用户体验: 聊天内表单`,
+            phase: "Scene 7: Application Process",
+            title: "Data Collection",
+            desc: "AI collects necessary info: Phone, Address, Age Check. No income proof needed (linked to main account).",
+            log: `> Form Filling:
+  - Data: UK Mobile, UK Address
+  - Check: Age >= 18
+  - UX: In-chat Form`,
             action: "msg_form"
         },
         {
-            phase: "场景8：人机协作",
-            title: "专业服务接力",
-            desc: "AI完成信息收集后，将申请草稿提交给专属客户经理。体现人机协作：AI提升效率，RM保障专业。",
-            log: `> 数字化交接 (Digital Handshake):
-  - AI角色: 信息收集 + 初步审核
-  - RM角色: 专业复核 + 主动跟进
-  - 预期时效: 1个工作日内联系
-  - 服务承诺: 卓越理财优先处理`,
+            phase: "Scene 8: Submission Complete",
+            title: "Processing & Ecosystem",
+            desc: "Application submitted. AI sets expectation (1-2 days review) but emphasizes digital speed. Family ecosystem locked.",
+            log: `> Application Submitted:
+  - Status: Under Review
+  - SLA: 1-2 Working Days
+  - Alerts: Enabled
+  - Ecosystem: Activated`,
             action: "msg_finish"
         }
     ];
@@ -368,30 +368,30 @@
              const body = document.getElementById('chatBody');
              body.innerHTML = ''; // Clean start
              
-             addChat("user", "我儿子在伦敦急需付房租押金，大概 2000 英镑。我现在转过去，他什么时候能收到？这可是晚上十点。");
+             addChat("user", "My son in London needs to pay a rent deposit urgently, about £2,000. If I transfer it now, when will he receive it? It's 10 PM here.");
              
-             setTimeout(() => addChat("ai", "李女士，请放心。基于 HSBC 的全球网络优势，您和 Leo 都是 Premier 客户，通过 <strong>Global View Global Transfer (GVGT)</strong> 通道，这笔资金可即时到账 Leo 在英国的 HSBC 账户，同时无需跨境手续费。通常到账预计为几秒到几分钟。<br><br><em>（屏幕显示预计到账时间：立即 / 几分钟内）</em>"), 1000);
+             setTimeout(() => addChat("ai", "Ms. Li, please rest assured. Leveraging HSBC's global network, as both you and Leo are Premier customers, using the <strong>Global View Global Transfer (GVGT)</strong> channel, the funds will arrive in Leo's UK HSBC account instantly, with zero cross-border fees. It typically takes a few seconds to a few minutes.<br><br><em>(Screen shows estimated arrival: Immediately / Within minutes)</em>"), 1000);
         }
 
         if (data.action === "msg_solution") {
-            addChat("user", "真的吗？太好了！那我马上转。");
+            addChat("user", "Really? That's great! I'll transfer it right away.");
             
             setTimeout(() => addChat("ai", `
                 <div class="transfer-card">
                     <div class="tc-row">
-                        <div class="tc-label">从：中国储蓄账户</div>
+                        <div class="tc-label">From: CN Savings</div>
                         <div class="tc-amount">¥ 18,450.00</div>
                     </div>
                     <div class="tc-arrow">↓</div>
                     <div class="tc-row">
-                        <div class="tc-label">到：Leo Li（英国）</div>
+                        <div class="tc-label">To: Leo Li (UK)</div>
                         <div class="tc-amount">£ 2,000.00</div>
                     </div>
                     <div class="tc-info">
-                        <span>汇率：9.225</span>
-                        <span class="highlight-text">手续费：£0.00</span>
+                        <span>Rate: 9.225</span>
+                        <span class="highlight-text">Fee: £0.00</span>
                     </div>
-                    <button class="btn-action" onclick="triggerFaceID()">确认转账</button>
+                    <button class="btn-action" onclick="triggerFaceID()">Confirm Transfer</button>
                 </div>
             `), 800);
         }
@@ -400,47 +400,47 @@
             const body = document.getElementById('chatBody');
             const log = document.createElement('div');
             log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
-            log.innerHTML = "✓ 已成功转账 £2,000.00";
+            log.innerHTML = "✓ £2,000.00 Transferred Successfully";
             body.appendChild(log);
 
-            setTimeout(() => addChat("user", "这次算是解决了。但他在那边没有英国本地的银行卡，平时坐地铁、超市买东西都很不方便，总不能天天带现金吧？"), 1000);
+            setTimeout(() => addChat("user", "That's sorted for now. But he doesn't have a local UK bank card. It's very inconvenient for taking the tube or grocery shopping. He can't carry cash every day, right?"), 1000);
         }
 
         if (data.action === "msg_upsell") {
             setTimeout(() => addChat("ai", `
-                这是留学生的常见痛点。您可以为 Leo 申请 <strong>HSBC Premier 附属信用卡</strong>。虽然不同地区权益略有差异，但典型功能包括：<br><br>
-                1. <strong>即时数字卡 (Digital Card)</strong> — 审批通过后，可立即添加到 Apple Pay/Google Pay，手机支付。<br>
-                2. <strong>交易提醒 & 可见账单</strong> — 您作为主卡持有人可在 App 上查看所有消费明细。<br>
-                3. <strong>积分共享</strong> — 附属卡消费为主账户累积积分。<br><br>
-                <span style="font-size:0.75rem; color:#666;">注意：附属卡持有人需年满 18 岁，且主卡持有人对所有消费承担连带责任。</span>
+                This is a common pain point for international students. You can apply for an <strong>HSBC Premier Supplementary Credit Card</strong> for Leo. While benefits vary by region, typical features include:<br><br>
+                1. <strong>Instant Digital Card</strong> — Once approved, add immediately to Apple Pay/Google Pay for mobile payments.<br>
+                2. <strong>Transaction Alerts & Visibility</strong> — As the primary cardholder, you can view all spending details in the App.<br>
+                3. <strong>Shared Points</strong> — Supplementary card spending accumulates points for the main account.<br><br>
+                <span style="font-size:0.75rem; color:#666;">Note: Supplementary cardholder must be over 18, and the primary cardholder is liable for all spending.</span>
             `), 1000);
         }
 
         if (data.action === "msg_monitoring") {
-            addChat("user", "那太好了！我最担心他乱花钱，我想随时看到消费情况，这个功能是实时的吗？");
+            addChat("user", "That's excellent! My biggest worry is him overspending. I want to see his spending status anytime. Is this feature real-time?");
             
-            setTimeout(() => addChat("ai", "是的，所有附属卡的消费交易会即时显示在您的 HSBC App 中。审批通过后，他可以在英国用手机刷 Apple Pay 坐地铁、超市购物，非常方便。"), 1500);
+            setTimeout(() => addChat("ai", "Yes, all supplementary card transactions will appear instantly in your HSBC App. Once approved, he can use Apple Pay on his phone for the tube and shopping in the UK, which is very convenient."), 1500);
             
-            setTimeout(() => addChat("user", "好，我要办！怎么操作？"), 3000);
+            setTimeout(() => addChat("user", "Okay, I want to apply! How do I do it?"), 3000);
         }
 
         if (data.action === "msg_form") {
             setTimeout(() => addChat("ai", `
-                我已为您准备好申请表。无需 Leo 提供收入证明。请确认以下信息：
+                I have prepared the application form for you. No income proof required for Leo. Please confirm the following information:
                 <div class="form-card">
-                    <div class="form-header">附属卡申请</div>
+                    <div class="form-header">Supplementary Card Application</div>
                     <div class="form-group">
-                        <label class="form-label">Leo 的英国手机号</label>
+                        <label class="form-label">Leo's UK Mobile</label>
                         <input type="text" class="form-input" value="+44 7700 900000">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">英国地址</label>
+                        <label class="form-label">UK Address</label>
                         <input type="text" class="form-input" value="UCL Hall, London">
                     </div>
                     <div class="form-check">
-                        <span>☑ 已确认：Leo 已年满 18 岁</span>
+                        <span>☑ Confirmed: Leo is over 18</span>
                     </div>
-                    <button class="btn-action" onclick="triggerFaceID()">提交申请</button>
+                    <button class="btn-action" onclick="triggerFaceID()">Submit Application</button>
                 </div>
             `), 1000);
         }
@@ -449,14 +449,14 @@
              const body = document.getElementById('chatBody');
              const log = document.createElement('div');
              log.style.textAlign = 'center'; log.style.color = '#008a3c'; log.style.fontSize='0.7rem'; log.style.margin='15px';
-             log.innerHTML = "✓ 申请已提交";
+             log.innerHTML = "✓ Application Submitted";
              body.appendChild(log);
 
-             addChat("ai", "感谢您提交资料。我已将申请草稿和您的需求整理完毕，并发送给您的专属客户经理 <strong>Sarah Wang</strong>。<br><br>作为卓越理财客户，Sarah 将在 <strong>1 个工作日内</strong>主动联系您，确认最终细节并加速办理流程。审批通过后，Leo 的数字卡可立即添加至 Apple Pay 使用。<br><br>同时，我已为您预设好消费提醒功能，届时您可实时查看他的每笔开支。");
+             addChat("ai", "Thank you for submitting the details. The supplementary card application has been sent for review, typically taking <strong>1–2 working days</strong>. Once approved, the digital card can be used immediately.<br><br>I have also enabled spending alerts for you to track his expenses in real-time.");
              
-             setTimeout(() => addChat("user", "你们真是想得周到。看来以后还是要多用汇丰。"), 2000);
+             setTimeout(() => addChat("user", "You really thought of everything. I should use HSBC more often."), 2000);
              
-             setTimeout(() => addChat("ai", "我们的目标是让您的全球生活更无缝。我们也提供全球紧急支援服务，包括紧急现金支援。请放心。"), 3500);
+             setTimeout(() => addChat("ai", "Our goal is to make your global life seamless. We also provide Global Emergency Support, including emergency cash assistance. Please rest assured."), 3500);
         }
 
         currentStep++;
