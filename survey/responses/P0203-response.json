@@ -1,0 +1,35 @@
+{
+  "persona_id": "P0203",
+  "q1_aum": "USD 500k – 1.5M",
+  "q2_age": "50 – 54",
+  "q3_residence": "Singapore",
+  "q4_markets": ["Singapore", "United States (e.g., US equities)", "Japan", "India"],
+  "q5_products": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q8_allocation_ranking": [
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q9_profit_perception_ranking": [
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q11_fx_impact": "Limited impact",
+  "q12_primary_priority": "Capital preservation"
+}

@@ -1,0 +1,39 @@
+{
+  "persona_id": "P0084",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "55 – 60",
+  "q3_residence": "United States",
+  "q4_markets": ["United States"],
+  "q5_products": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Investment-grade corporate or financial bonds",
+    "Investment properties (core cities)"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "Investment properties (core cities)"
+  ],
+  "q8_allocation_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q9_profit_perception_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Investment properties (core cities)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q10_market_popularity": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Stable cash flow"
+}

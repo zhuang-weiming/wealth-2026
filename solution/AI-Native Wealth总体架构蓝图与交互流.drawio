@@ -1,0 +1,596 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3" pages="2">
+  <diagram id="CIZUDDey1BT2MpLbWmBT" name="1">
+    <mxGraphModel dx="1814" dy="1152" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="avY2lH_lLycUwLDr6NPG-1" value="L6: 全链路可观测性" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1300" width="335" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-2" value="Tracing / Metrics / CoT Logging / Alerting" style="whiteSpace=wrap;strokeWidth=2;" parent="avY2lH_lLycUwLDr6NPG-1" vertex="1">
+          <mxGeometry x="46" y="43" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-3" value="L5: 数据存储底座 (Intelligence Base)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="1492" width="1480" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-4" value="L4: 功能引擎 (Action Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="900" y="1196" width="1960" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-5" value="L3: 代理网格协作 (Orchestration Layer)&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="118" y="439" width="2659" height="608" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-6" value="L2: 事件总线与网关 (Trigger Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="793" y="30" width="695" height="335" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-7" value="L1: 渠道与行为感知 (Input Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="199" y="30" width="574" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-8" value="HSBC App &#xa;(Web to Native APP?Flutter?)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="234" y="97" width="194" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-9" value="行为传感器 (Protobuf/MQTT)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="478" y="85" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-10" value="API 网关 (REST/gRPC)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="836" y="274" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-11" value="Amazon EventBridge (事件驱动)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1093" y="262" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-12" value="外部行情流 (Bloomberg/Reuters)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1193" y="85" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-13" value="Orchestrator &#xa; (Intent Analysis &amp; Tasks Dispatching)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="832" y="616" width="260" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-14" value="Sentinel &#xa; (Monitoring)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1149.5" y="492" width="147" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-15" value="Strategist &#xa; (Reasoning)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2190" y="900" width="150" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-16" value="Compliance (Gatekeeper)&#xa;Rule-based Engine?&#xa;AWS Guardrail?" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1362" y="858" width="164" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-17" value="Partner &#xa; (NLG / Delivery)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="242.5" y="600" width="177" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-18" value="Redis (短期: 上下文)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="505.5" y="804" width="205" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-19" value="Profile DB (长期: 画像)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="850" y="804" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-20" value="Oracle (MCP)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1056" y="1227" width="174" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-21" value="Trust (RAG)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1602" y="1227" width="162" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-22" value="Sensing (ML)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2180" y="1227" width="170" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-23" value="Global (Ledger)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2618" y="1227" width="192" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-24" value="Search : HSBC Website" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1406" y="1564" width="231" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-25" value="Timestream: 价格信号" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1120" y="1564" width="231" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-26" value="跨境关系图谱?" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2260" y="1564" width="239" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-27" value="SageMaker: 心理特征库" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1975" y="1564" width="238" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-28" value="外部行情流 (Bloomberg/Reuters)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="730" y="1564" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-29" value="核心银行 (HK/UK/CN)" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2600" y="1564" width="237" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-30" value="HSBC CIO 投研 PDF / 产品说明书" style="whiteSpace=wrap;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1686" y="1564" width="243" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-31" value="1. 指令" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.95;entryX=0;entryY=0.5;rounded=0;entryDx=0;entryDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-8" target="avY2lH_lLycUwLDr6NPG-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="200" />
+              <mxPoint x="600" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-32" value="2. 行为流" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-9" target="avY2lH_lLycUwLDr6NPG-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="608" y="188" />
+              <mxPoint x="1160" y="225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-33" value="2a. 市场事件" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.7;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-12" target="avY2lH_lLycUwLDr6NPG-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-34" value="3" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.44;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-10" target="avY2lH_lLycUwLDr6NPG-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-35" value="4" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-11" target="avY2lH_lLycUwLDr6NPG-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-36" value="5. 唤醒(AWS SNS)" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=1;entryY=0.07;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-14" target="avY2lH_lLycUwLDr6NPG-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1198" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-37" value="6. 读写上下文" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-38" value="6a. 预热" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;exitX=0;exitY=0.5;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-19" target="avY2lH_lLycUwLDr6NPG-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-39" value="6b. 读写长期标签" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-40" value="(7-11)Fast Track: 原子查询" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=1;entryX=0.47;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1133" y="755" />
+              <mxPoint x="1133" y="1097" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-41" value="7. Complex Track: 协作任务" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.14;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-15" edge="1">
+          <mxGeometry x="0.2123" y="-6" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1950" y="840" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-42" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0;exitY=0.58;entryX=1;entryY=0.32;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-15" target="avY2lH_lLycUwLDr6NPG-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1680" y="1100" />
+              <mxPoint x="1550" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-43" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-15" target="avY2lH_lLycUwLDr6NPG-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-44" value="" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.67;entryX=0.5;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-15" target="avY2lH_lLycUwLDr6NPG-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2561" y="1042" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-45" value="8. 实时行情/快照" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=0.5;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-20" target="avY2lH_lLycUwLDr6NPG-28" edge="1">
+          <mxGeometry x="0.2407" y="13" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="1350" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-46" value="8a. 存储时序信号" style="curved=1;startArrow=none;endArrow=block;exitX=0.75;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-20" target="avY2lH_lLycUwLDr6NPG-25" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-47" value="9. 提取/更新特征" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-22" target="avY2lH_lLycUwLDr6NPG-27" edge="1">
+          <mxGeometry x="-0.0043" y="2" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-48" value="10. 跨境账本同步" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-23" target="avY2lH_lLycUwLDr6NPG-29" edge="1">
+          <mxGeometry x="0.5892" y="2" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-49" value="10a. 映射实体关系" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=0.58;entryX=0.5;entryY=0;rounded=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-23" target="avY2lH_lLycUwLDr6NPG-26" edge="1">
+          <mxGeometry x="0.0759" y="5" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2520" y="1370" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-50" value="" style="curved=1;startArrow=none;endArrow=block;entryX=0.5;entryY=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-15" target="avY2lH_lLycUwLDr6NPG-21" edge="1">
+          <mxGeometry x="0.0117" y="3" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-51" value="11. HSBC Knowledge&#xa;检索 PDF 片段" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-21" target="avY2lH_lLycUwLDr6NPG-30" edge="1">
+          <mxGeometry x="0.0007" y="3" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-52" value="11a. HSBC Knowledge&#xa;向量索引" style="curved=1;startArrow=block;endArrow=block;exitX=0.25;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-21" target="avY2lH_lLycUwLDr6NPG-24" edge="1">
+          <mxGeometry x="0.0126" y="-4" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-53" value="12. 方案回传" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=1;entryY=0.25;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-15" target="avY2lH_lLycUwLDr6NPG-13" edge="1">
+          <mxGeometry x="-0.0395" y="6" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2120" y="770" />
+              <mxPoint x="1650" y="660" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-54" value="" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.75;entryX=0;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1218" y="793" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NCid0k92d3hLlOwuwHT8-3" value="13. 审计校验" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="avY2lH_lLycUwLDr6NPG-54" vertex="1" connectable="0">
+          <mxGeometry x="-0.0156" y="31" relative="1" as="geometry">
+            <mxPoint x="-1" y="42" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-56" value="Approve / &#xa;Reject: 携带反馈元数据 (Error Context) --&gt; Strategist" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.995;entryY=0.583;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;" parent="1" source="avY2lH_lLycUwLDr6NPG-16" target="avY2lH_lLycUwLDr6NPG-13" edge="1">
+          <mxGeometry x="-0.2198" y="2" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1337" y="758" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-57" value="14. 包装" style="curved=1;startArrow=none;endArrow=block;exitX=0;exitY=0.25;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-13" target="avY2lH_lLycUwLDr6NPG-17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-58" value="15. WebSocket/Push" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-17" target="avY2lH_lLycUwLDr6NPG-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-59" value="" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-5" target="avY2lH_lLycUwLDr6NPG-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="avY2lH_lLycUwLDr6NPG-60" value="" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="avY2lH_lLycUwLDr6NPG-4" target="avY2lH_lLycUwLDr6NPG-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NCid0k92d3hLlOwuwHT8-1" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Orchestrator : GPT-4o / Claude 3.5 Sonnet&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Strategist : GPT-4o / Claude 3.5 Sonnet&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Partner : GPT-4o mini / Claude 3.5 Haiku&lt;/font&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2294" y="451" width="471" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="2-English" id="ECz5ldmJcYk857HQ-R3Y">
+    <mxGraphModel dx="2952" dy="1630" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-0" />
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-1" parent="d3LRIMZmbpTF4Plx8dzZ-0" />
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-2" value="L6: End-to-End Observability" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="130" y="1300" width="335" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-3" value="Tracing / Metrics / CoT Logging / Alerting" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-2" vertex="1">
+          <mxGeometry x="46" y="43" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-4" value="L5: Data Storage (Intelligence Base)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1060" y="1492" width="1480" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-5" value="L4: Function Engine (Action Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="900" y="1196" width="1960" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-6" value="L3: Agents Collaboration (Orchestration Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="118" y="439" width="2659" height="608" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-7" value="L2: Event Bus &amp; Gateway (Trigger Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="793" y="30" width="695" height="335" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-8" value="L1: Channel &amp; Behavioral Perception (Input Layer)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="199" y="30" width="574" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-9" value="HSBC App &#xa;(Web to Native APP?Flutter?)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="234" y="97" width="194" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-10" value="Behavioral Perception (Protobuf/MQTT)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="478" y="85" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-11" value="API Gateway (REST/gRPC)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="836" y="274" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-12" value="Amazon EventBridge (Event Driven)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1093" y="262" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-13" value="External Market (Bloomberg/Reuters)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1193" y="85" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-14" value="Orchestrator &#xa; (Intent Analysis &amp; Tasks Dispatching)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="832" y="616" width="260" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-15" value="Sentinel &#xa; (Monitoring)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1149.5" y="492" width="147" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-16" value="Strategist &#xa; (Reasoning)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2190" y="900" width="150" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-17" value="Compliance (Gatekeeper)&#xa;Rule-based Engine?&#xa;AWS Guardrail?" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1362" y="858" width="164" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-18" value="Partner &#xa; (Natural Language Polish&#xa; / Delivery)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="242.5" y="600" width="177" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-19" value="Redis &#xa;(Short-term: Context)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="505.5" y="804" width="205" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-20" value="Profile DB &#xa;(Long-term: Customer Profile)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="850" y="804" width="222" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-21" value="Oracle (MCP)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1056" y="1227" width="174" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-22" value="Trust (RAG)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1602" y="1227" width="162" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-23" value="Sensing (ML)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2180" y="1227" width="170" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-24" value="Global (Ledger)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2618" y="1227" width="192" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-25" value="Search : HSBC Website" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1406" y="1564" width="231" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-26" value="Timestream: Market Price" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1120" y="1564" width="231" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-27" value="(Cross-border) Relationship Mapping?" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2260" y="1564" width="239" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-28" value="SageMaker: &#xa;Psychological Feature Database" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1975" y="1564" width="238" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-29" value="External Market (Bloomberg/Reuters)&#xa;Data &amp; News" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="730" y="1564" width="235" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-30" value="HSBC Bank (HK/UK/CN)" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2595.5" y="1564" width="237" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-31" value="HSBC Chief Investment PDF &#xa;/ Product Manual" style="whiteSpace=wrap;strokeWidth=2;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="1686" y="1564" width="243" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-32" value="1. Instruction" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.95;entryX=0;entryY=0.5;rounded=0;entryDx=0;entryDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-9" target="d3LRIMZmbpTF4Plx8dzZ-11" edge="1">
+          <mxGeometry x="0.0791" y="7" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="200" />
+              <mxPoint x="600" y="270" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-33" value="2. Behavioral Flow" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-10" target="d3LRIMZmbpTF4Plx8dzZ-12" edge="1">
+          <mxGeometry x="0.0011" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="608" y="188" />
+              <mxPoint x="1160" y="225" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-34" value="2a. Market Events" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.7;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-13" target="d3LRIMZmbpTF4Plx8dzZ-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-35" value="3" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.44;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-11" target="d3LRIMZmbpTF4Plx8dzZ-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-36" value="4" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-12" target="d3LRIMZmbpTF4Plx8dzZ-15" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-37" value="5. Wake (AWS SNS)" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=1;entryY=0.07;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-15" target="d3LRIMZmbpTF4Plx8dzZ-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1198" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-38" value="6. Read &amp; Write Context" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-39" value="6a. Preheating Load" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;exitX=0;exitY=0.5;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-20" target="d3LRIMZmbpTF4Plx8dzZ-19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-40" value="6b. Read &amp; Write Long-term Memory" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-20" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-41" value="(7-11)Fast Track: One-time Inquiry" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=1;entryX=0.47;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1133" y="755" />
+              <mxPoint x="1133" y="1097" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-42" value="7. Complex Track: Collaborative Tasks" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.14;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-16" edge="1">
+          <mxGeometry x="0.2123" y="-6" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1950" y="840" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-43" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0;exitY=0.58;entryX=1;entryY=0.32;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-16" target="d3LRIMZmbpTF4Plx8dzZ-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1680" y="1100" />
+              <mxPoint x="1550" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-44" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-16" target="d3LRIMZmbpTF4Plx8dzZ-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-45" value="" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.67;entryX=0.5;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-16" target="d3LRIMZmbpTF4Plx8dzZ-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2561" y="1042" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-46" value="8. Real-time Data / Snapshots" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=0.5;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-21" target="d3LRIMZmbpTF4Plx8dzZ-29" edge="1">
+          <mxGeometry x="0.2407" y="13" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="1350" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-47" value="8a. Storage Timing Signals" style="curved=1;startArrow=none;endArrow=block;exitX=0.75;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-21" target="d3LRIMZmbpTF4Plx8dzZ-26" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-48" value="9. Extract / Update&#xa;Features" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-23" target="d3LRIMZmbpTF4Plx8dzZ-28" edge="1">
+          <mxGeometry x="-0.0043" y="2" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-49" value="10. Cross-border Ledger Consolidation" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-24" target="d3LRIMZmbpTF4Plx8dzZ-30" edge="1">
+          <mxGeometry x="0.5892" y="2" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-50" value="10a. Mapping Entity Relationships" style="curved=1;startArrow=block;endArrow=block;exitX=0;exitY=0.58;entryX=0.5;entryY=0;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-24" target="d3LRIMZmbpTF4Plx8dzZ-27" edge="1">
+          <mxGeometry x="0.0759" y="5" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2520" y="1370" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-51" value="" style="curved=1;startArrow=none;endArrow=block;entryX=0.5;entryY=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-16" target="d3LRIMZmbpTF4Plx8dzZ-22" edge="1">
+          <mxGeometry x="0.0117" y="3" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-52" value="11. HSBC Knowledge&#xa;Search PDF" style="curved=1;startArrow=block;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-22" target="d3LRIMZmbpTF4Plx8dzZ-31" edge="1">
+          <mxGeometry x="0.0007" y="3" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-53" value="11a. HSBC Knowledge&#xa;Vector index" style="curved=1;startArrow=block;endArrow=block;exitX=0.25;exitY=1;entryX=0.5;entryY=0;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-22" target="d3LRIMZmbpTF4Plx8dzZ-25" edge="1">
+          <mxGeometry x="0.0126" y="-4" relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-54" value="12. Solution Feedback" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=1;entryY=0.25;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-16" target="d3LRIMZmbpTF4Plx8dzZ-14" edge="1">
+          <mxGeometry x="-0.0395" y="6" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2120" y="770" />
+              <mxPoint x="1650" y="660" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-55" value="" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.75;entryX=0;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1218" y="793" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-56" value="13. Audit Verification" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="d3LRIMZmbpTF4Plx8dzZ-55" vertex="1" connectable="0">
+          <mxGeometry x="-0.0156" y="31" relative="1" as="geometry">
+            <mxPoint x="-1" y="42" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-57" value="Approve / &#xa;Reject: feadback metadata&#xa;(Error Context) --&gt; Strategist" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.995;entryY=0.583;rounded=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Helvetica;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-17" target="d3LRIMZmbpTF4Plx8dzZ-14" edge="1">
+          <mxGeometry x="-0.2198" y="2" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1337" y="758" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-58" value="14. Package" style="curved=1;startArrow=none;endArrow=block;exitX=0;exitY=0.25;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-14" target="d3LRIMZmbpTF4Plx8dzZ-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-59" value="15. WebSocket/Push" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0;entryX=0.5;entryY=1;rounded=0;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-18" target="d3LRIMZmbpTF4Plx8dzZ-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-60" value="" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-6" target="d3LRIMZmbpTF4Plx8dzZ-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-61" value="" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" source="d3LRIMZmbpTF4Plx8dzZ-5" target="d3LRIMZmbpTF4Plx8dzZ-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3LRIMZmbpTF4Plx8dzZ-62" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Orchestrator : Fine-tuned small model&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Strategist : GPT-4o / Claude 3.5 Sonnet&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Partner : GPT-4o mini / Claude 3.5 Haiku&lt;/font&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" parent="d3LRIMZmbpTF4Plx8dzZ-1" vertex="1">
+          <mxGeometry x="2294" y="451" width="471" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

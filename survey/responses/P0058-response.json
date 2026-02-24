@@ -1,0 +1,35 @@
+{
+  "persona_id": "P0058",
+  "q1_aum": "USD 150k – 500k",
+  "q2_age": "25 – 34",
+  "q3_residence": "United States",
+  "q4_markets": ["United States (e.g., US equities)", "Europe / United Kingdom"],
+  "q5_products": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q6_holding_period": ["Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q8_allocation_ranking": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q10_market_popularity": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

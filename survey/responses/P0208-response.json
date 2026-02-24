@@ -1,0 +1,39 @@
+{
+  "persona_id": "P0208",
+  "q1_aum": "USD 150k – 500k",
+  "q2_age": "25 – 34",
+  "q3_residence": "Singapore",
+  "q4_markets": ["Singapore", "United States (e.g., US equities)", "Japan", "India"],
+  "q5_products": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Options trading / strategies"
+  ],
+  "q6_holding_period": ["Short-term trading (less than 1 year)", "Medium-term allocation (1–3 years)"],
+  "q7_attention_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Options trading / strategies"
+  ],
+  "q8_allocation_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Options trading / strategies"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Options trading / strategies"
+  ],
+  "q10_market_popularity": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)"
+  ],
+  "q11_fx_impact": "Very significant",
+  "q12_primary_priority": "Return maximization"
+}

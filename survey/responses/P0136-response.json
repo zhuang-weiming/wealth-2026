@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0136",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "25 – 34",
+  "q3_residence": "Hong Kong / Macau",
+  "q4_markets": ["Hong Kong", "China (e.g., A-shares)", "United States (e.g., US equities)", "Europe / United Kingdom", "Singapore"],
+  "q5_products": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "Bitcoin / Ethereum spot ETFs"
+  ],
+  "q6_holding_period": ["Short-term trading (less than 1 year)", "Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "U.S. individual stocks (non-ETF)",
+    "Bitcoin / Ethereum spot ETFs",
+    "Investment properties (core cities)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)"
+  ],
+  "q8_allocation_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "U.S. individual stocks (non-ETF)",
+    "Investment properties (core cities)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Bitcoin / Ethereum spot ETFs"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Bitcoin / Ethereum spot ETFs",
+    "Investment properties (core cities)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)"
+  ],
+  "q10_market_popularity": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "U.S. individual stocks (non-ETF)",
+    "Bitcoin / Ethereum spot ETFs"
+  ],
+  "q11_fx_impact": "Very significant",
+  "q12_primary_priority": "Return maximization"
+}

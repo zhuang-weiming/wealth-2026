@@ -1,0 +1,47 @@
+{
+  "persona_id": "P0216",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "60+",
+  "q3_residence": "Singapore",
+  "q4_markets": ["Singapore", "United States (e.g., US equities)", "Japan", "India"],
+  "q5_products": [
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q6_holding_period": ["Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q8_allocation_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q9_profit_perception_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "U.S. individual stocks (non-ETF)"
+  ],
+  "q11_fx_impact": "Limited impact",
+  "q12_primary_priority": "Stable cash flow"
+}

@@ -1,0 +1,39 @@
+{
+  "persona_id": "P0043",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "25 – 34",
+  "q3_residence": "United States",
+  "q4_markets": ["United States (e.g., US equities)", "Europe / United Kingdom", "Japan"],
+  "q5_products": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Investment properties (core cities)"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)"
+  ],
+  "q8_allocation_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Investment properties (core cities)"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)"
+  ],
+  "q10_market_popularity": [
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

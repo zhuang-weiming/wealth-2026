@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The Faith & Fortune (Omar)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme - Reused from UC-06) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #5A5A5A;
+            --hsbc-light-gray: #f2f2f7; /* iOS Background */
+            --white: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #8e8e93;
+            --accent-green: #008a3c;
+            --bubble-user: #db0011;
+            --bubble-ai: #ffffff;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Segoe UI", Roboto, sans-serif;
+            background-color: #1e1e1e;
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: #c6a87c; border: 1px solid #c6a87c; letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.08) 0%, transparent 100%);
+            transform: translateX(0);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .scene-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scene-desc { font-size: 0.9rem; color: #bbb; line-height: 1.5; margin-bottom: 10px; }
+
+        .system-log {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.75rem; background: #111; padding: 12px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-alert { color: #ff9f0a; }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: var(--hsbc-light-gray); border-radius: 45px;
+            border: 10px solid #2d2d2d; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 1. 状态栏 */
+        .status-bar { 
+            height: 44px; flex-shrink: 0;
+            display: flex; justify-content: space-between; padding: 0 20px; align-items: flex-end; padding-bottom: 8px; 
+            font-size: 12px; font-weight: 600; color: #000; 
+            background: rgba(255,255,255,0.95); z-index: 100;
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 30px; background: #2d2d2d; border-radius: 0 0 18px 18px; z-index: 101; }
+
+        /* 2. 头部 */
+        .chat-header {
+            height: 50px; flex-shrink: 0;
+            background: rgba(255,255,255,0.95); border-bottom: 1px solid #e5e5e5;
+            display: flex; align-items: center; padding: 0 15px; z-index: 90;
+        }
+        .header-title-box { flex: 1; text-align: center; }
+        .ht-main { font-size: 16px; font-weight: 600; color: #000; }
+        .ht-sub { font-size: 11px; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+
+        /* 3. 聊天区域 */
+        .chat-body {
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 15px; 
+            display: flex; flex-direction: column; gap: 16px; 
+            background: var(--hsbc-light-gray);
+            padding-bottom: 20px; 
+        }
+
+        /* 消息气泡 */
+        .bubble-row { display: flex; width: 100%; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.3s ease-out forwards; }
+        .bubble-row.user { justify-content: flex-end; }
+        .bubble-row.ai { justify-content: flex-start; }
+        
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0; }
+        .avatar img { width: 20px; }
+
+        .bubble {
+            max-width: 78%; padding: 12px 16px; font-size: 15px; line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative;
+        }
+        .bubble.ai { 
+            background: #ffffff; color: #000; 
+            border-radius: 18px 18px 18px 4px; 
+        }
+        .bubble.user { 
+            background: var(--hsbc-red); color: #fff; 
+            border-radius: 18px 18px 4px 18px; 
+        }
+
+        /* 4. 底部输入栏 */
+        .input-area {
+            flex-shrink: 0;
+            background: #f9f9f9; border-top: 1px solid #e5e5e5;
+            padding: 12px 15px 30px 15px; 
+            display: flex; align-items: center; gap: 10px; box-sizing: border-box;
+            position: relative; z-index: 100;
+        }
+        
+        /* RM Button */
+        .rm-btn {
+            width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; position: relative; flex-shrink: 0;
+        }
+        .rm-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .rm-badge {
+            position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; 
+            background: var(--accent-green); border: 2px solid #fff; border-radius: 50%;
+        }
+
+        .input-field {
+            flex: 1; height: 36px; border-radius: 18px; border: 1px solid #ddd; background: #fff;
+            padding: 0 15px; font-size: 14px; color: #333; display: flex; align-items: center;
+        }
+        .mic-icon { color: #999; font-size: 18px; flex-shrink: 0; }
+
+        /* --- Native-like Widgets --- */
+        
+        /* Card Styles */
+        .native-card {
+            background: #fff; border-radius: 10px; overflow: hidden; width: 100%; box-sizing: border-box;
+            border: 1px solid #e0e0e0; margin-top: 8px;
+        }
+        
+        .status-header {
+            background: #f9f9f9; padding: 10px 16px; font-size: 12px; font-weight: 600; color: #555;
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;
+        }
+
+        .card-list-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+        }
+        .card-list-item:last-child { border-bottom: none; }
+        
+        .list-main { display: flex; flex-direction: column; }
+        .list-title { font-size: 14px; font-weight: 500; color: #000; }
+        .list-sub { font-size: 12px; color: #8e8e93; margin-top: 2px; }
+        .list-value { font-size: 14px; font-weight: 600; color: #333; }
+        .success-text { color: var(--accent-green); font-weight: bold; }
+        .warn-text { color: #ff9f0a; font-weight: bold; }
+
+        /* Buttons */
+        .btn-group { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+        .action-btn {
+            width: 100%; padding: 12px; background: var(--hsbc-black); color: #fff;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; text-align: center;
+        }
+        .action-btn.secondary { background: #fff; color: var(--hsbc-red); border: 1px solid var(--hsbc-red); }
+        .action-btn:active { opacity: 0.8; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Notification */
+        .push-notif {
+            position: absolute; top: -100px; left: 12px; right: 12px;
+            background: rgba(255,255,255,0.98); padding: 12px; border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); z-index: 150;
+            display: flex; gap: 12px; transition: top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;
+            color: #000;
+        }
+        .push-notif.show { top: 55px; }
+        .notif-icon { width: 38px; height: 38px; border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden; background: #fff; border: 1px solid #f0f0f0; flex-shrink: 0;}
+
+        /* Face ID Overlay */
+        .faceid-modal {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 200;
+        }
+        .faceid-modal.show { display: flex; }
+        .faceid-box { background: white; padding: 30px; border-radius: 20px; text-align: center; width: 60%; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .faceid-icon { font-size: 40px; margin-bottom: 15px; display: block; }
+
+        /* Control Bar */
+        .control-bar { position: absolute; bottom: 0; left: 40px; right: calc(45% + 40px); padding: 15px 20px; background: #1e1e1e; border-top: 1px solid #333; display: flex; justify-content: space-between; }
+        .ctrl-btn { padding: 10px 20px; background: #333; color: #fff; border: 1px solid #555; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .ctrl-btn:hover { background: #444; }
+        .ctrl-btn.primary { background: #c6a87c; color: #000; border: none; }
+        .ctrl-btn.primary:hover { background: #d4b58b; }
+        .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Wealth Banking (Middle East)</span>
+        <span class="header-badge">AI PILOT</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>19:45</span>
+            <span>Etisalat</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="chat-header">
+            <div class="header-title-box">
+                <div class="ht-main">Shariah Quant Assistant</div>
+                <div class="ht-sub"><div class="dot"></div> Online</div>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chatBody"></div>
+
+        <div class="input-area">
+            <div class="rm-btn" title="Contact Shariah Advisor">
+                <img src="resource/rm_middle_east.jpeg" alt="RM">
+                <div class="rm-badge"></div>
+            </div>
+            <div class="input-field">
+                <span style="color:#ccc;">Type a message...</span>
+            </div>
+            <div class="mic-icon">🎤</div>
+        </div>
+
+        <div class="push-notif" id="pushNotif" onclick="startScenario()">
+            <div class="notif-icon"><img src="resource/IMG_1035.png" alt="HSBC Logo" style="width: 30px; height: 30px; object-fit: contain;"></div>
+            <div style="flex:1">
+                <div style="font-size:13px; font-weight:600; display:flex; justify-content:space-between; margin-bottom: 4px;">
+                    <span>Market Alert</span>
+                    <span style="color:#888; font-weight:normal; font-size: 11px;">Now</span>
+                </div>
+                <div style="font-size:13px; line-height:1.4; color: #333;">
+                    <strong>NVIDIA (NVDA) hits new high.</strong><br>Tap to check Shariah compliance status.
+                </div>
+            </div>
+        </div>
+
+        <div class="faceid-modal" id="faceIdModal">
+            <div class="faceid-box">
+                <div class="faceid-icon">Face ID</div>
+                <div style="font-weight:600; margin-bottom:5px; color: #000;">Verifying Omar</div>
+                <div style="color:#888; font-size:13px;">Confirming Donation</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="control-bar">
+    <button class="ctrl-btn" id="prevBtn" onclick="prevStep()" disabled>Previous</button>
+    <button class="ctrl-btn primary" id="nextBtn" onclick="nextStep()">Start Demo</button>
+</div>
+
+<script>
+    const scriptData = [
+        {
+            phase: "1. Intent & Concern",
+            title: "Investment Query",
+            desc: "Omar wants to buy NVIDIA stock but is concerned about its interest income (Riba). As a practicing Muslim, Shariah compliance is his top priority.",
+            log: `> INTENT: Stock Check (NVDA)\n> CONCERN: Financial Ratios / Debt\n> STANDARD: AAOIFI`,
+            action: "user_ask"
+        },
+        {
+            phase: "2. Quantitative Pre-Screening",
+            title: "AAOIFI Quant Scan",
+            desc: "AI extracts real-time financial data and calculates key ratios. AI emphasizes this is a 'Quantitative Pre-Screen' subject to Scholar review.",
+            log: `> Debt Ratio: 12.5% (<30% PASS)\n> Cash Ratio: 28.4% (<30% PASS)\n> STATUS: Passed Quant Screen`,
+            action: "ai_scan"
+        },
+        {
+            phase: "3. Trade & Flagging",
+            title: "Execution & Monitoring",
+            desc: "With data within limits, Omar executes the trade. AI flags the asset for 'Purification Review' and notifies the Shariah Advisor.",
+            log: `> TRADE: Buy $2,000,000\n> ACTION: Flag as 'Needs Purification'\n> NOTIFY: Shariah Advisor`,
+            action: "execute_trade"
+        },
+        {
+            phase: "4. Wealth Purification",
+            title: "Configurable Logic",
+            desc: "Ramadan time. Omar requests purification calculation using the 'Dividend-Based Method'. AI demonstrates flexibility in supporting different scholarly views.",
+            log: `> CONFIG: Scholar Preference (Dr. Ahmed)\n> METHOD: Dividend-Based Method\n> CALC: Donate $150`,
+            action: "ai_purify"
+        },
+        {
+            phase: "5. Legacy Planning",
+            title: "Faraid & Hibah",
+            desc: "Omar asks about inheritance. AI simulates Faraid distribution and suggests Hibah (Trust/Gift) to balance religious duty with personal wishes.",
+            log: `> SIM: Faraid (Son 2/3, Daughter 1/3)\n> SOLUTION: Jersey Trust (Lifetime Gift)\n> ACTION: Book Joint Meeting`,
+            action: "ai_legacy"
+        }
+    ];
+
+    let currentStepIndex = -1;
+
+    function nextStep() {
+        if (currentStepIndex < scriptData.length - 1) {
+            currentStepIndex++;
+            renderPanel(scriptData[currentStepIndex]);
+            executeAction(scriptData[currentStepIndex].action);
+            updateButtons();
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            document.getElementById('chatBody').innerHTML = '';
+            let targetIndex = currentStepIndex - 1;
+            currentStepIndex = -1;
+            for(let i=0; i<=targetIndex; i++) {
+                nextStep();
+            }
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentStepIndex <= 0;
+        document.getElementById('nextBtn').innerText = currentStepIndex >= scriptData.length - 1 ? "End Demo" : "Next Step";
+    }
+
+    function renderPanel(data) {
+        const panel = document.getElementById('storyPanel');
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header">${data.phase}</div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.prepend(card);
+    }
+
+    function executeAction(action) {
+        if(action === "user_ask") {
+            setTimeout(() => document.getElementById('pushNotif').classList.add('show'), 500);
+            setTimeout(() => {
+                document.getElementById('pushNotif').classList.remove('show');
+                addBubble('user', "As-salamu alaykum. I am considering an investment of $2M in NVIDIA. However, I have concerns regarding its compliance with Shariah principles, specifically pertaining to interest (Riba) income and debt ratios. Could you please conduct a screening against the AAOIFI standards?");
+            }, 1500);
+        }
+        else if(action === "ai_scan") {
+            addBubble('ai', "Wa Alaykum As-Salam, Mr. Al-Fayed. Initializing <strong>AAOIFI Quantitative Screening</strong> on real-time financial data...");
+            setTimeout(() => {
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">AAOIFI SCREENING (PRELIMINARY)</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Business Activity</div>
+                                <div class="list-sub">Tech/Chip</div>
+                            </div>
+                            <div class="list-value success-text">Compliant</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Debt Ratio</div>
+                                <div class="list-sub">Threshold < 30%</div>
+                            </div>
+                            <div class="list-value success-text">12.5%</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Liquidity</div>
+                                <div class="list-sub">Threshold < 30%</div>
+                            </div>
+                            <div class="list-value success-text">28.4%</div>
+                        </div>
+                        <div style="padding:10px 16px; font-size:12px; color:#555; font-style:italic;">
+                            *Preliminary real-time screen; final Shariah approval by the appointed Shariah Board.
+                        </div>
+                    </div>
+                `);
+            }, 1000);
+        }
+        else if(action === "execute_trade") {
+            addBubble('user', "The data looks solid. Proceed with the order.");
+            setTimeout(() => {
+                addBubble('ai', "Trade executed. The asset (NVIDIA) has been placed on your <strong>'Compliance Review List'</strong>. A report will be synced to your Shariah Advisor, Dr. Ahmed.");
+            }, 1000);
+        }
+        else if(action === "ai_purify") {
+            addBubble('user', "Also, it's Ramadan. Dr. Ahmed requires the 'Dividend-Based Method' for purification. Does the system support this?");
+            setTimeout(() => {
+                addBubble('ai', "Absolutely. I have set your purification preference to: <strong>Scholar-Directed: Dividend-Based Purification Method</strong>.");
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">PURIFICATION CALCULATION</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Calculated Amount</div>
+                                <div class="list-sub">Dividend-Based Method</div>
+                            </div>
+                            <div class="list-value">USD 150.00</div>
+                        </div>
+                        <div style="padding:10px 16px; font-size:12px; color:#666;">
+                            (Comparison: Earnings-Per-Share (EPS) Method would require $3,240)
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn" onclick="triggerFaceID()">Donate to HSBC Philanthropy</button>
+                        </div>
+                    </div>
+                `);
+            }, 1500);
+        }
+        else if(action === "ai_legacy") {
+            addBubble('user', "Donation confirmed. Lastly, about my London property. If I pass away, my daughter's stipulated share under Faraid (Islamic inheritance law) is less than I intend for her. I seek Shariah-compliant methods to augment her portion of my estate.");
+            setTimeout(() => {
+                addBubble('ai', "Estate planning is a crucial Islamic obligation (wasiyyah). Under Faraid, her share is indeed smaller. However, Shariah law provides compliant mechanisms for estate planning, such as Hibah (a revocable lifetime gift) and the establishment of a Shariah-compliant Trust.");
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">Distribution Simulation</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Scenario A: Strict Application of Faraid</div>
+                                <div class="list-sub">Daughter's Share: </div>
+                            </div>
+                            <div class="list-value">~16%</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title" style="color:var(--accent-green)">Scenario B: With a Shariah-Compliant Trust</div>
+                                <div class="list-sub">Daughter's Share: </div>
+                            </div>
+                            <div class="list-value success-text">Customizable (per your stipulation)</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn">Book Trust & Scholar Session</button>
+                        </div>
+                    </div>
+                `);
+            }, 1500);
+        }
+    }
+
+    function addBubble(role, text) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ${role}`;
+        let html = '';
+        if (role === 'ai') {
+            html += `<div class="avatar"><img src="resource/IMG_1035.png"></div>`;
+        }
+        html += `<div class="bubble ${role}">${text}</div>`;
+        row.innerHTML = html;
+        chat.appendChild(row);
+        requestAnimationFrame(() => { chat.scrollTop = chat.scrollHeight; });
+    }
+
+    function addWidget(html) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ai`;
+        row.innerHTML = `<div class="avatar"><img src="resource/IMG_1035.png"></div><div style="width: 85%">${html}</div>`;
+        chat.appendChild(row);
+        requestAnimationFrame(() => { chat.scrollTop = chat.scrollHeight; });
+    }
+
+    function triggerFaceID() {
+        const modal = document.getElementById('faceIdModal');
+        modal.classList.add('show');
+        setTimeout(() => {
+            modal.classList.remove('show');
+            addBubble('ai', "Donation processed successfully. Receipt sent to your email.");
+        }, 1500);
+    }
+    
+    function startScenario() {
+        document.getElementById('pushNotif').classList.remove('show');
+        setTimeout(() => nextStep(), 500);
+    }
+
+</script>
+</body>
+</html>

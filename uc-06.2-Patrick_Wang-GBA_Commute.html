@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汇丰 AI 助手：从理财通到全球全能账户 (Patrick Wang)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #5A5A5A;
+            --hsbc-light-gray: #f2f2f7; 
+            --white: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #8e8e93;
+            --accent-green: #008a3c;
+            --gold: #c6a87c;
+            --bubble-user: #db0011;
+            --bubble-ai: #ffffff;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Segoe UI", Roboto, sans-serif;
+            background-color: #1e1e1e;
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--gold); border: 1px solid var(--gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.08) 0%, transparent 100%);
+            transform: translateX(0);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .scene-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scene-desc { font-size: 0.9rem; color: #bbb; line-height: 1.5; margin-bottom: 10px; }
+
+        .system-log {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.75rem; background: #111; padding: 12px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: var(--hsbc-light-gray); border-radius: 45px;
+            border: 10px solid #2d2d2d; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-bar { 
+            height: 44px; flex-shrink: 0;
+            display: flex; justify-content: space-between; padding: 0 20px; align-items: flex-end; padding-bottom: 8px; 
+            font-size: 12px; font-weight: 600; color: #000; 
+            background: rgba(255,255,255,0.95); z-index: 100;
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 30px; background: #2d2d2d; border-radius: 0 0 18px 18px; z-index: 101; }
+
+        .chat-header {
+            height: 50px; flex-shrink: 0;
+            background: rgba(255,255,255,0.95); border-bottom: 1px solid #e5e5e5;
+            display: flex; align-items: center; padding: 0 15px; z-index: 90;
+        }
+        .header-title-box { flex: 1; text-align: center; }
+        .ht-main { font-size: 16px; font-weight: 600; color: #000; }
+        .ht-sub { font-size: 11px; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+
+        .chat-body {
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 15px; 
+            display: flex; flex-direction: column; gap: 16px; 
+            background: var(--hsbc-light-gray);
+            padding-bottom: 20px; 
+        }
+
+        .bubble-row { display: flex; width: 100%; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.3s ease-out forwards; }
+        .bubble-row.user { justify-content: flex-end; }
+        .bubble-row.ai { justify-content: flex-start; }
+        
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0; }
+        .avatar img { width: 20px; }
+
+        .bubble {
+            max-width: 78%; padding: 12px 16px; font-size: 15px; line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative;
+        }
+        .bubble.ai { 
+            background: #ffffff; color: #000; 
+            border-radius: 18px 18px 18px 4px; 
+        }
+        .bubble.user { 
+            background: var(--hsbc-red); color: #fff; 
+            border-radius: 18px 18px 4px 18px; 
+        }
+
+        /* --- 原生卡片组件 --- */
+        .native-card {
+            background: #fff; border-radius: 10px; overflow: hidden; width: 100%; box-sizing: border-box;
+            border: 1px solid #e0e0e0; margin-top: 8px;
+        }
+        .status-header {
+            background: #f9f9f9; padding: 10px 16px; font-size: 12px; font-weight: 600; color: #555;
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee;
+        }
+        .card-list-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+        }
+        .list-main { display: flex; flex-direction: column; }
+        .list-title { font-size: 14px; font-weight: 500; color: #000; }
+        .list-sub { font-size: 12px; color: #8e8e93; margin-top: 2px; }
+        .list-value { font-size: 14px; font-weight: 600; color: #333; }
+
+        /* 实体卡视觉 */
+        .debit-card-visual {
+            height: 160px; background: linear-gradient(135deg, #2d2d2d 0%, #000 100%);
+            margin: 15px; border-radius: 12px; position: relative; color: #fff; padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .debit-card-visual::after {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        .card-chip { width: 40px; height: 30px; background: linear-gradient(135deg, #d4af37, #f1d592); border-radius: 4px; margin-bottom: 45px; }
+        .card-type { font-size: 11px; letter-spacing: 2px; color: var(--gold); font-weight: 600; }
+        .card-name { font-family: 'SF Mono', monospace; font-size: 14px; margin-top: 8px; }
+        .card-hsbc-logo { position: absolute; top: 20px; right: 20px; width: 35px; opacity: 0.8; }
+
+        .btn-group { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+        .action-btn {
+            width: 100%; padding: 12px; background: var(--hsbc-black); color: #fff;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; text-align: center;
+        }
+
+        .input-area {
+            flex-shrink: 0; background: #f9f9f9; border-top: 1px solid #e5e5e5;
+            padding: 12px 15px 30px 15px; display: flex; align-items: center; gap: 10px;
+        }
+        .input-field { flex: 1; height: 36px; border-radius: 18px; border: 1px solid #ddd; background: #fff; padding: 0 15px; display: flex; align-items: center; font-size: 14px; color: #ccc; }
+
+        .control-bar { position: absolute; bottom: 0; left: 40px; right: calc(45% + 40px); padding: 15px 20px; background: #1e1e1e; border-top: 1px solid #333; display: flex; justify-content: space-between; }
+        .ctrl-btn { padding: 10px 20px; background: #333; color: #fff; border: 1px solid #555; border-radius: 6px; cursor: pointer; }
+        .ctrl-btn.primary { background: var(--gold); color: #000; border: none; font-weight: 600; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>湾区自由行者 (Explorer)</span>
+        <span class="header-badge">GBA UC-06-EXT</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar"><span>10:30</span><span>中国移动</span></div>
+        <div class="notch"></div>
+        <div class="chat-header">
+            <div class="header-title-box">
+                <div class="ht-main">大湾区智能助理</div>
+                <div class="ht-sub"><div class="dot"></div> 在线</div>
+            </div>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="input-area">
+            <div style="width:36px; height:36px; border-radius:50%; background:#eee; overflow:hidden;"><img src="resource/rm.jpeg" style="width:100%;"></div>
+            <div class="input-field">输入消息...</div>
+            <div style="color:#999;">🎤</div>
+        </div>
+    </div>
+</div>
+
+<div class="control-bar">
+    <button class="ctrl-btn" id="prevBtn" onclick="prevStep()" disabled>上一步</button>
+    <button class="ctrl-btn primary" id="nextBtn" onclick="nextStep()">开始演示</button>
+</div>
+
+<script>
+    const scriptData = [
+        {
+            phase: "1. 痛点识别",
+            title: "跨境消费摩擦",
+            desc: "AI 监测到 Patrick 在香港有频繁的刷卡记录。虽然南向通解决了投资，但无法解决生活支出的汇率损耗和资金锁死问题。",
+            log: `> 监测到: 香港线下签账 (HK Science Park)\n> 识别: 内地卡扣款 (汇率折算 0.93)\n> 痛点: 南向通资金闭环无法用于消费`,
+            action: "detect_friction"
+        },
+        {
+            phase: "2. 方案引导",
+            title: "全能账户 vs 南向通",
+            desc: "AI 引导客户理解“南向通账户”与“全能个人账户”的区别，将后者定位为真正的全球钱包。",
+            log: `> 动作: 对比账户功能\n> 目标: 转化 Patrick 开通香港本地账户\n> 卖点: 12种多货币, ATM取现`,
+            action: "compare_accounts"
+        },
+        {
+            phase: "3. 权益触达",
+            title: "Premier 身份联动",
+            desc: "针对 Patrick 对管理费和繁琐开户流程的顾虑，AI 强调两地 Premier 身份互认，实现跨境免月费。",
+            log: `> 权益检查: CN Premier (卓越理财)\n> 优惠: 香港账户月费豁免\n> 数字化: 资料复用无需临柜`,
+            action: "show_benefits"
+        },
+        {
+            phase: "4. 极速开户",
+            title: "数字化卡发放",
+            desc: "复用南向通 KYC 资料，一键提交申请。展示即将发放的 HSBC HK Premier 实体借记卡。",
+            log: `> 校验: KYC 信息同步完成\n> 申请: 开立香港主账户 (Master Account)\n> 结果: 电子卡即时生成`,
+            action: "issue_card"
+        },
+        // {
+        //     phase: "5. 全球视图",
+        //     title: "真正的跨境一体化",
+        //     desc: "账户开通后，引导客户通过 Global View 管理全球资产，并提示“环球转账”秒级到账。",
+        //     log: `> 视图: 全域资产视图 (CN+HK+WMC)\n> 动作: 绑定 Apple Pay\n> 状态: 闭环完成`,
+        //     action: "global_success"
+        // },
+        {
+            phase: "5. 即时激活 (Digital-First)",
+            title: "Apple Pay 瞬间爽感",
+            desc: "无需等待深圳的邮寄。Patrick 点击 'Add to Apple Wallet'，虚拟卡立刻激活，满足他在香港科学园的即时消费需求。",
+            log: `> 状态: 实体卡制卡中\n> 虚拟卡状态: 已激活\n> 动作: 一键推送至 Apple Wallet\n> 验证: Face ID 授权成功`,
+            action: "apple_pay_moment"
+        }
+    ];
+
+    let currentStepIndex = -1;
+
+    function nextStep() {
+        if (currentStepIndex < scriptData.length - 1) {
+            currentStepIndex++;
+            renderPanel(scriptData[currentStepIndex]);
+            executeAction(scriptData[currentStepIndex].action);
+            updateButtons();
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            document.getElementById('chatBody').innerHTML = '';
+            let targetIndex = currentStepIndex - 1;
+            currentStepIndex = -1;
+            for(let i=0; i<=targetIndex; i++) nextStep();
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentStepIndex <= 0;
+        document.getElementById('nextBtn').innerText = currentStepIndex >= scriptData.length - 1 ? "完成" : "下一步";
+    }
+
+    function renderPanel(data) {
+        const panel = document.getElementById('storyPanel');
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header">${data.phase}</div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.prepend(card);
+    }
+
+    function executeAction(action) {
+        const cb = document.getElementById('chatBody');
+        if (action === "detect_friction") {
+            addBubble('ai', "Patrick，注意到您近期在香港科学园有多次消费。目前您使用的是内地账户，每笔都有汇率损耗。");
+            setTimeout(() => addBubble('user', "是啊，我在香港喝杯咖啡都是刷内地卡，那我南向通里的收益能直接花吗？"), 1000);
+        } else if (action === "compare_accounts") {
+            addBubble('ai', "不能直接花，南向通是专门的投资跑道，其收益必须回流内地。您可以开通<strong>香港全能账户</strong>，从内地主账户另外转入生活费，秒级到账，且汇率优于柜台。");
+            addWidget(`
+                <div class="native-card">
+                    <div class="status-header">账户功能对比</div>
+                    <div class="card-list-item">
+                        <div class="list-main"><div class="list-title">南向通账户</div><div class="list-sub">仅限合规投资</div></div>
+                        <div class="list-value">资金闭环</div>
+                    </div>
+                    <div class="card-list-item">
+                        <div class="list-main"><div class="list-title">香港全能账户</div><div class="list-sub">全球支付与取现</div></div>
+                        <div class="list-value" style="color:var(--accent-green)">全球通达</div>
+                    </div>
+                </div>
+            `);
+        } else if (action === "show_benefits") {
+            addBubble('ai', "作为卓越理财客户，您的香港新账户将<b>永久豁免管理费</b>。而且因为您已开通南向通，我们可以直接复用资料，无需再去柜台。");
+            setTimeout(() => addBubble('user', "如果能在线办，那确实方便多了。"), 1000);
+        } else if (action === "issue_card") {
+            addBubble('ai', "正在为您同步 KYC 资料... 验证通过！您的香港主账户已准备就绪。这是为您配发的实体借记卡预览：");
+            addWidget(`
+                <div class="debit-card-visual">
+                    <div class="card-hsbc-logo"><img src="resource/IMG_1035.png" style="width:100%; filter:brightness(0) invert(1);"></div>
+                    <div class="card-chip"></div>
+                    <div class="card-type">PREMIER</div>
+                    <div class="card-name">PATRICK WANG</div>
+                </div>
+                <div class="btn-group"><button class="action-btn" onclick="nextStep()">确认开通并邮寄</button></div>
+            `);
+        } else if (action === "apple_pay_moment") {
+            addBubble('ai', "恭喜！账户已开通，您的实体卡正在制作中, 但不必等待邮寄，我现在为您发放<b>数字化借记卡</b>。");
+            addBubble('ai', "点击下方按钮，您可以直接将其加入 Apple Wallet, 现在就能用手机支付了。");
+            addWidget(`
+                <div class="native-card" style="border: 2px solid #000; background: #fafafa;">
+                    <div style="padding: 20px; text-align: center;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg" style="height:25px; margin-bottom:15px;">
+                        <div style="font-size: 14px; font-weight: 600; color: #000;">HSBC HK Premier Debit Card</div>
+                        <div style="font-size: 11px; color: #666; margin-bottom: 15px;">卡号尾号: **** 8888</div>
+                        <button class="action-btn" style="background:#000; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="simulateApplePay()">
+                             Add to Apple Wallet
+                        </button>
+                    </div>
+                </div>
+            `);
+            setTimeout(() => addBubble('user', "太好了，这下在深港两边办公无缝衔接了。"), 1000);
+
+        }
+    }
+
+    function addBubble(role, text) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ${role}`;
+        let html = role === 'ai' ? `<div class="avatar"><img src="resource/IMG_1035.png"></div>` : '';
+        html += `<div class="bubble ${role}">${text}</div>`;
+        row.innerHTML = html;
+        chat.appendChild(row);
+        chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addWidget(html) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ai`;
+        row.innerHTML = `<div class="avatar"><img src="resource/IMG_1035.png"></div><div style="width: 85%">${html}</div>`;
+        chat.appendChild(row);
+        chat.scrollTop = chat.scrollHeight;
+    }
+</script>
+</body>
+</html>

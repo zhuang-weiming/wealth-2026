@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0135",
+  "q1_aum": "USD 500k – 1.5M",
+  "q2_age": "50 – 54",
+  "q3_residence": "Hong Kong / Macau",
+  "q4_markets": ["Hong Kong", "China (e.g., A-shares)", "United States (e.g., US equities)", "Europe / United Kingdom", "Japan"],
+  "q5_products": [
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "REIT funds"
+  ],
+  "q6_holding_period": ["Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "REIT funds"
+  ],
+  "q8_allocation_ranking": [
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "REIT funds"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "China / Hong Kong equities",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "REIT funds",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q10_market_popularity": [
+    "U.S. individual stocks (non-ETF)",
+    "China / Hong Kong equities",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Capital preservation"
+}

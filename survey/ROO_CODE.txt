@@ -1,0 +1,13 @@
+Based on the persona prompts (survey/persona-prompts/P0001-prompt.txt ~ P0630-prompt.txt), please continue generating corresponding persona under folder of survey/realistic-investor-profiles, you will generate corresponding persona via reasoning and the results are realistic personas. you don't create any new program, you generate personas one by one directly.
+
+Can you generate large batches of 70 ~ 100 personas each?
+
+You need to check the personas (under survey/realistic-investor-profiles) with the persona prompts (survey/persona-prompts/P0001-prompt.txt ~ P0630-prompt.txt), the check point including Profile ID, AUM, Age, Residence and Active Markets. If the check passed, please move to next, if the check failed, please re-generate the persona based on the corrsponding prompt.
+
+———————————————————————————————————————————————————————————————————————————
+
+Methodology Applied
+* One-Pass Validation: Checked all requirements (Profile ID, AUM, Age, Residence, Active Markets) simultaneously
+* Targeted Corrections: Applied appropriate AUM values within prompt-specified ranges
+* Batch Processing: Efficiently processed 8-10 personas per batch
+* Systematic Documentation: Tracked progress and corrections made

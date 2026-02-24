@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0074",
+  "q1_aum": "USD 500k – 1.5M",
+  "q2_age": "60+",
+  "q3_residence": "United States",
+  "q4_markets": ["United States"],
+  "q5_products": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q8_allocation_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q9_profit_perception_ranking": [
+    "Investment properties (core cities)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)"
+  ],
+  "q11_fx_impact": "Limited impact",
+  "q12_primary_priority": "Capital preservation"
+}

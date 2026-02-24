@@ -1,0 +1,31 @@
+Generate a realistic investor persona for this profile:
+
+**Profile ID:** P0503
+**Demographics:**
+- AUM: USD 500k - 1.5M
+- Age: 35-44 
+- Residence: India
+- Active Markets: India, United States
+
+**Task:** Create a realistic, detailed persona using LLM reasoning. This persona should feel like a real person with authentic motivations, decision-making patterns, and investment behavior.
+
+**Persona Requirements:**
+1. **Personal Information**: Name, profession, family status, education background
+2. **Wealth Building Story**: How they accumulated their wealth, key financial milestones
+3. **Investment Philosophy**: Core principles, risk tolerance, investment approach
+4. **Behavioral Characteristics**: Decision-making style, market engagement, emotional factors
+5. **Current Portfolio**: Asset allocation, product preferences, geographic focus
+6. **Investment Priorities**: Primary goals, constraints, time horizon
+
+**Guidelines:**
+- Use culturally appropriate names and backgrounds for India
+- Make the persona internally consistent with their demographics
+- Include realistic career progression and wealth accumulation story
+- Align investment behavior with age, AUM, and regional factors
+- Add specific details that make them feel like a real person
+- Focus on investment-related characteristics relevant to the survey
+
+**Output Format:**
+Return a detailed, realistic persona that demonstrates LLM reasoning and understanding of investor psychology.
+
+Generate this persona now:
