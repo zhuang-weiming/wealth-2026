@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: Macro Butterfly Effect (Refined)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #5A5A5A;
+            --hsbc-light-gray: #f2f2f7; /* iOS Background */
+            --white: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #8e8e93;
+            --accent-green: #008a3c;
+            --bubble-user: #db0011;
+            --bubble-ai: #ffffff;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; /* iOS Font Stack */
+            background-color: #1e1e1e;
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: #c6a87c; border: 1px solid #c6a87c; letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.08) 0%, transparent 100%);
+            transform: translateX(0);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .scene-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scene-desc { font-size: 0.9rem; color: #bbb; line-height: 1.5; margin-bottom: 10px; }
+
+        .system-log {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.75rem; background: #111; padding: 12px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-alert { color: #ff9f0a; }
+
+        /* --- 右侧：手机模拟器 (User View) - Flexbox 修复版 --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: var(--hsbc-light-gray); border-radius: 45px;
+            border: 10px solid #2d2d2d; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            /* 关键修复：使用 Flex 布局垂直排列 */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 1. 顶部状态栏 (固定) */
+        .status-bar { 
+            height: 44px; flex-shrink: 0;
+            display: flex; justify-content: space-between; padding: 0 20px; align-items: flex-end; padding-bottom: 8px; 
+            font-size: 12px; font-weight: 600; color: #000; 
+            background: rgba(255,255,255,0.95); z-index: 100;
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 30px; background: #2d2d2d; border-radius: 0 0 18px 18px; z-index: 101; }
+
+        /* 2. 聊天头部 (固定) */
+        .chat-header {
+            height: 50px; flex-shrink: 0;
+            background: rgba(255,255,255,0.95); border-bottom: 1px solid #e5e5e5;
+            display: flex; align-items: center; padding: 0 15px; z-index: 90;
+        }
+        .header-title-box { flex: 1; text-align: center; }
+        .ht-main { font-size: 16px; font-weight: 600; color: #000; }
+        .ht-sub { font-size: 11px; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+
+        /* 3. 聊天区域 (自适应填充剩余空间) */
+        .chat-body {
+            flex: 1; /* 占据中间所有空间 */
+            overflow-y: auto; 
+            padding: 15px; 
+            display: flex; flex-direction: column; gap: 16px; 
+            background: var(--hsbc-light-gray);
+            /* 关键：不需要 padding-bottom 很大，因为输入框不再是 absolute 覆盖 */
+            padding-bottom: 20px; 
+        }
+
+        /* 消息气泡 */
+        .bubble-row { display: flex; width: 100%; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.3s ease-out forwards; }
+        .bubble-row.user { justify-content: flex-end; }
+        .bubble-row.ai { justify-content: flex-start; }
+        
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0; }
+        .avatar img { width: 20px; }
+
+        .bubble {
+            max-width: 78%; padding: 12px 16px; font-size: 15px; line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative;
+        }
+        .bubble.ai { 
+            background: #ffffff; color: #000; 
+            border-radius: 18px 18px 18px 4px; 
+        }
+        .bubble.user { 
+            background: var(--hsbc-red); color: #fff; 
+            border-radius: 18px 18px 4px 18px; 
+        }
+
+        /* 4. 底部输入栏 (固定在底部，不是绝对定位) */
+        .input-area {
+            flex-shrink: 0; /* 不会被压缩 */
+            background: #f9f9f9; border-top: 1px solid #e5e5e5;
+            padding: 12px 15px 30px 15px; /* 底部 padding 适配 iOS Home Indicator */
+            display: flex; align-items: center; gap: 10px; box-sizing: border-box;
+            position: relative; z-index: 100;
+        }
+        
+        /* RM Button */
+        .rm-btn {
+            width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; position: relative; flex-shrink: 0;
+        }
+        .rm-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .rm-badge {
+            position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; 
+            background: var(--accent-green); border: 2px solid #fff; border-radius: 50%;
+        }
+
+        .input-field {
+            flex: 1; height: 36px; border-radius: 18px; border: 1px solid #ddd; background: #fff;
+            padding: 0 15px; font-size: 14px; color: #333; display: flex; align-items: center;
+        }
+        .mic-icon { color: #999; font-size: 18px; flex-shrink: 0; }
+
+        /* --- Native-like Widgets (Cards) --- */
+        
+        /* Insight Card */
+        .card-insight {
+            background: #fff; border-radius: 12px; padding: 16px; width: 100%; box-sizing: border-box;
+            border: 1px solid #e5e5e5; margin-top: 8px;
+        }
+        .card-title { font-size: 13px; font-weight: 600; color: #888; margin-bottom: 8px; text-transform: uppercase; }
+        .chain-step { display: flex; align-items: center; margin-bottom: 8px; }
+        .step-icon { width: 24px; text-align: center; font-size: 14px; margin-right: 8px; }
+        .step-text { font-size: 14px; color: #333; }
+        .step-arrow { color: #ccc; margin: 0 8px; font-size: 12px; }
+        .highlight { color: var(--accent-green); font-weight: 600; }
+
+        /* Product Card */
+        .card-product {
+            background: #fff; border-radius: 12px; overflow: hidden; width: 100%; box-sizing: border-box;
+            border: 1px solid #e5e5e5; margin-top: 8px;
+        }
+        .cp-header { background: #f5f5f7; padding: 12px 16px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .cp-title { font-size: 14px; font-weight: 700; color: #000; }
+        .cp-tag { font-size: 10px; background: #e0e0e0; padding: 2px 6px; border-radius: 4px; color: #555; }
+        .cp-body { padding: 16px; }
+        .cp-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .cp-label { color: #666; }
+        .cp-value { font-weight: 600; color: #000; }
+        
+        .action-btn {
+            width: 100%; padding: 12px; background: var(--hsbc-black); color: #fff;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; text-align: center; margin-top: 10px; transition: opacity 0.2s;
+        }
+        .action-btn:active { opacity: 0.8; }
+        .action-btn.secondary { background: #fff; color: var(--hsbc-red); border: 1px solid var(--hsbc-red); margin-top: 8px;}
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Face ID */
+        .faceid-modal {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 200;
+        }
+        .faceid-modal.show { display: flex; }
+        .faceid-box { background: white; padding: 30px; border-radius: 20px; text-align: center; width: 60%; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .faceid-icon { font-size: 40px; margin-bottom: 15px; display: block; }
+
+        /* Notification */
+        .push-notif {
+            position: absolute; top: -100px; left: 12px; right: 12px;
+            background: rgba(255,255,255,0.98); padding: 12px; border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); z-index: 150;
+            display: flex; gap: 12px; transition: top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;
+            color: #000;
+        }
+        .push-notif.show { top: 55px; } /* Adjusted for taller status bar/header */
+        .notif-icon { width: 38px; height: 38px; border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden; background: #fff; border: 1px solid #f0f0f0; flex-shrink: 0;}
+
+        /* Control Bar */
+        .control-bar { position: absolute; bottom: 0; left: 40px; right: calc(45% + 40px); padding: 15px 20px; background: #1e1e1e; border-top: 1px solid #333; display: flex; justify-content: space-between; }
+        .ctrl-btn { padding: 10px 20px; background: #333; color: #fff; border: 1px solid #555; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .ctrl-btn:hover { background: #444; }
+        .ctrl-btn.primary { background: #c6a87c; color: #000; border: none; }
+        .ctrl-btn.primary:hover { background: #d4b58b; }
+        .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Wealth Banking</span>
+        <span class="header-badge">AI PILOT</span>
+    </div>
+    </div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>5G</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="chat-header">
+            <div class="header-title-box">
+                <div class="ht-main">HSBC AI</div>
+                <div class="ht-sub"><div class="dot"></div> Online</div>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            </div>
+
+        <div class="input-area">
+            <div class="rm-btn" title="Call RM Sarah">
+                <img src="resource/rm.jpeg" alt="RM">
+                <div class="rm-badge"></div>
+            </div>
+            <div class="input-field">
+                <span style="color:#ccc;">输入消息...</span>
+            </div>
+            <div class="mic-icon">🎤</div>
+        </div>
+
+        <div class="push-notif" id="pushNotif" onclick="startScenario()">
+            <div class="notif-icon"><img src="resource/IMG_1035.png" alt="HSBC Logo" style="width: 30px; height: 30px; object-fit: contain;"></div>
+            <div style="flex:1">
+                <div style="font-size:13px; font-weight:600; display:flex; justify-content:space-between; margin-bottom: 4px;">
+                    <span>环球观点</span>
+                    <span style="color:#888; font-weight:normal; font-size: 11px;">现在</span>
+                </div>
+                <div style="font-size:13px; line-height:1.4; color: #333;">
+                    <strong>美联储降息 25bp</strong><br>这会如何影响您的 A 股持仓？点击查看分析。
+                </div>
+            </div>
+        </div>
+
+        <div class="faceid-modal" id="faceIdModal">
+            <div class="faceid-box">
+                <div class="faceid-icon">Face ID</div>
+                <div style="font-weight:600; margin-bottom:5px; color: #000;">验证身份</div>
+                <div style="color:#888; font-size:13px;">确认提交至 RM 复核</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="control-bar">
+    <button class="ctrl-btn" id="prevBtn" onclick="prevStep()" disabled>上一步</button>
+    <button class="ctrl-btn primary" id="nextBtn" onclick="nextStep()">开始演示</button>
+</div>
+
+<script>
+    // --- 剧本数据 ---
+    const scriptData = [
+        {
+            phase: "1. 触达与唤醒",
+            title: "宏观事件推送",
+            desc: "利用美联储降息这一重大事件，主动推送与客户持仓（A股科技）强相关的分析，而非简单的早报。",
+            log: `> 监测到事件: FED_RATE_CUT (-25bps)\n> 客户画像: 重仓 A股成长股 + 闲置美元\n> 策略: 触发 'Global Viewpoint' 推送`,
+            action: "show_push"
+        },
+        {
+            phase: "2. 质疑与交互",
+            title: "客户提出质疑",
+            desc: "客户并不盲信，提出市场'高开低走'的疑虑。AI 需要进行深度的逻辑拆解。",
+            log: `> 用户输入: "A股高开低走，真的是利好吗？"\n> 意图识别: 寻求验证 (Validation)\n> 调用知识库: Global Research Strategy Note`,
+            action: "user_ask_market"
+        },
+        {
+            phase: "3. 深度分析",
+            title: "传导机制可视化",
+            desc: "AI 不只给结论，而是展示逻辑链：美元弱 -> 人民币强 -> 政策空间 -> 估值修复。建立专业信任。",
+            log: `> 生成组件: Insight_Card (Flowchart)\n> 核心观点: 结构性利好 (Structural Bullish)`,
+            action: "ai_market_analysis"
+        },
+        {
+            phase: "4. 痛点挖掘",
+            title: "美元资产焦虑",
+            desc: "客户意识到美元利息要跌，想存定期。这是典型的保守反应。AI 准备进行观念纠偏。",
+            log: `> 用户输入: "50万闲置美元，存定期锁定利息？"\n> 机会点: 引导至债券基金 (Bond Fund) 以获取资本利得`,
+            action: "user_ask_usd"
+        },
+        {
+            phase: "5. 方案对比",
+            title: "股债跷跷板",
+            desc: "AI 解释'定期 vs 债券'的区别：定期只有票息，债券有'票息+价差'。推荐全球投资级债券。",
+            log: `> 推荐逻辑: 降息周期买债券 (Capital Appreciation)\n> 风险提示: 投资级 (IG) 波动低，适合稳健资金`,
+            action: "ai_bond_pitch"
+        },
+        {
+            phase: "6. 审慎执行",
+            title: "提交 RM 复核",
+            desc: "涉及大额资金 ($300k)，AI 不直接成交，而是生成意向书提交给 RM Sarah。体现服务的严谨性。",
+            log: `> 动作: 生成认购草稿 (Draft Order)\n> 风控: 触发 Digital Handshake\n> 路由: 发送至 RM Workstation`,
+            action: "execute_handshake"
+        }
+    ];
+
+    let currentStepIndex = -1;
+
+    // --- 控制逻辑 ---
+    function nextStep() {
+        if (currentStepIndex < scriptData.length - 1) {
+            currentStepIndex++;
+            renderPanel(scriptData[currentStepIndex]);
+            executeAction(scriptData[currentStepIndex].action);
+            updateButtons();
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            document.getElementById('chatBody').innerHTML = '';
+            let targetIndex = currentStepIndex - 1;
+            currentStepIndex = -1;
+            for(let i=0; i<=targetIndex; i++) {
+                nextStep();
+            }
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentStepIndex <= 0;
+        document.getElementById('nextBtn').innerText = currentStepIndex >= scriptData.length - 1 ? "演示结束" : "下一步";
+    }
+
+    function renderPanel(data) {
+        const panel = document.getElementById('storyPanel');
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header">${data.phase}</div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.prepend(card);
+    }
+
+    // --- 模拟器动作 ---
+    function executeAction(action) {
+        if (action === "show_push") {
+            setTimeout(() => document.getElementById('pushNotif').classList.add('show'), 500);
+        }
+        else if (action === "user_ask_market") {
+            document.getElementById('pushNotif').classList.remove('show');
+            addBubble('user', "都在说降息，但我看今天 A 股高开低走啊。这对我的科技股持仓真的是利好吗？");
+        }
+        else if (action === "ai_market_analysis") {
+            addBubble('ai', "张先生，市场对“靴子落地”通常有短期反应，但从中期看，这对您的持仓是<strong>结构性利好</strong>。");
+            setTimeout(() => {
+                addWidget(`
+                    <div class="card-insight">
+                        <div class="card-title">传导机制分析 (Transmission)</div>
+                        <div class="chain-step">
+                            <div class="step-icon">🇺🇸</div>
+                            <div class="step-text">美联储降息</div>
+                            <div class="step-arrow">➜</div>
+                            <div class="step-text">美元走弱</div>
+                        </div>
+                        <div class="chain-step">
+                            <div class="step-icon">🇨🇳</div>
+                            <div class="step-text">央行空间打开</div>
+                            <div class="step-arrow">➜</div>
+                            <div class="step-text">流动性宽松</div>
+                        </div>
+                        <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #eee; font-size:13px; color:#555;">
+                            <span class="highlight">结论：</span> 成长股（新能源/科技）估值修复弹性最大。建议<strong>保持持有</strong>。
+                        </div>
+                    </div>
+                `);
+            }, 800);
+        }
+        else if (action === "user_ask_usd") {
+            addBubble('user', "懂了，那我就先拿着。不过我账上还有 50万 美金闲着，降息了利息肯定要跌，我是不是该赶紧锁个 1 年定期？");
+        }
+        else if (action === "ai_bond_pitch") {
+            addBubble('ai', "直觉很敏锐。现金利率确实会下行。但<strong>定期存款只能锁息，无法享受资本增值</strong>。");
+            setTimeout(() => {
+                addBubble('ai', "在降息周期起点，我们建议配置<strong>投资级债券基金</strong>：既有高票息，又能赚取利率下降带来的债券价格上涨。");
+                addWidget(`
+                    <div class="card-product">
+                        <div class="cp-header">
+                            <div class="cp-title">汇丰环球投资级债券基金</div>
+                            <div class="cp-tag">低波动</div>
+                        </div>
+                        <div class="cp-body">
+                            <div class="cp-row">
+                                <span class="cp-label">目标票息 (Yield)</span>
+                                <span class="cp-value term-val">~5.2% p.a.</span>
+                            </div>
+                            <div class="cp-row">
+                                <span class="cp-label">资本增值潜力</span>
+                                <span class="cp-value term-val">高 (随降息受益)</span>
+                            </div>
+                            <div class="cp-row">
+                                <span class="cp-label">流动性</span>
+                                <span class="cp-value">T+2 (优于定期)</span>
+                            </div>
+                            <button class="action-btn" onclick="nextStep()">配置 $300,000 (建议比例 60%)</button>
+                            <button class="action-btn secondary">联系 Sarah 咨询详情</button>
+                        </div>
+                    </div>
+                `);
+            }, 1000);
+        }
+        else if (action === "execute_handshake") {
+            // 模拟 FaceID
+            const modal = document.getElementById('faceIdModal');
+            modal.classList.add('show');
+            setTimeout(() => {
+                modal.classList.remove('show');
+                addBubble('ai', "<strong>意向书已生成。</strong><br>鉴于资金量较大，我已将配置指令发送给您的客户经理 <strong>Sarah</strong>。她将在核实合规性后，致电与您确认最终份额。");
+            }, 1500);
+        }
+    }
+
+    // --- 辅助函数 ---
+    function addBubble(role, text) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ${role}`;
+        
+        let html = '';
+        if (role === 'ai') {
+            html += `<div class="avatar"><img src="resource/IMG_1035.png"></div>`;
+        }
+        html += `<div class="bubble ${role}">${text}</div>`;
+        
+        row.innerHTML = html;
+        chat.appendChild(row);
+        
+        // 关键修复：确保DOM渲染后滚动
+        requestAnimationFrame(() => {
+            chat.scrollTop = chat.scrollHeight;
+        });
+    }
+
+    function addWidget(html) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ai`;
+        row.innerHTML = `<div class="avatar"><img src="resource/IMG_1035.png"></div><div style="width: 85%">${html}</div>`;
+        chat.appendChild(row);
+        
+        // 关键修复：确保DOM渲染后滚动
+        requestAnimationFrame(() => {
+            chat.scrollTop = chat.scrollHeight;
+        });
+    }
+
+    function startScenario() {
+        document.getElementById('pushNotif').classList.remove('show');
+        setTimeout(() => nextStep(), 500);
+    }
+
+</script>
+
+</body>
+</html>

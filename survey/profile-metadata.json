@@ -1,0 +1,8444 @@
+[
+  {
+    "id": "P0001",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0001_US_52_2.1M_Male.txt"
+  },
+  {
+    "id": "P0002",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0002_US_63_980K_Male.txt"
+  },
+  {
+    "id": "P0003",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0003_US_39_2.2M_Female.txt"
+  },
+  {
+    "id": "P0004",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0004_US_42_380K_Male.txt"
+  },
+  {
+    "id": "P0005",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0005_US_29_820K_Female.txt"
+  },
+  {
+    "id": "P0006",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0006_US_57_920K_Male.txt"
+  },
+  {
+    "id": "P0007",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0007_US_57_380K_Female.txt"
+  },
+  {
+    "id": "P0008",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0008_US_52_425K_Female.txt"
+  },
+  {
+    "id": "P0009",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0009_US_51_1.2M_Male.txt"
+  },
+  {
+    "id": "P0010",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0010_US_58_380K_Female.txt"
+  },
+  {
+    "id": "P0011",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0011_US_38_320K_Male.txt"
+  },
+  {
+    "id": "P0012",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0012_US_64_420K_Male.txt"
+  },
+  {
+    "id": "P0013",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0013_US_52_2.1M_Male.txt"
+  },
+  {
+    "id": "P0014",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0014_US_47_445K_Female.txt"
+  },
+  {
+    "id": "P0015",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0015_US_41_485K_Male.txt"
+  },
+  {
+    "id": "P0016",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0016_US_67_780K_Female.txt"
+  },
+  {
+    "id": "P0017",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0017_US_52_425K_Female.txt"
+  },
+  {
+    "id": "P0018",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0018_US_46_475K_Male.txt"
+  },
+  {
+    "id": "P0019",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0019_US_29_1.8M_Female.txt"
+  },
+  {
+    "id": "P0020",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0020_US_53_425K_Female.txt"
+  },
+  {
+    "id": "P0021",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0021_US_31_1.8M_Male.txt"
+  },
+  {
+    "id": "P0022",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0022_US_47_825K_Male.txt"
+  },
+  {
+    "id": "P0023",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0023_US_52_445K_Male.txt"
+  },
+  {
+    "id": "P0024",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0024_US_28_285K_Female.txt"
+  },
+  {
+    "id": "P0025",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0025_US_52_850K_Male.txt"
+  },
+  {
+    "id": "P0026",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0026_US_51_925K_Female.txt"
+  },
+  {
+    "id": "P0027",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0027_US_64_1.4M_Male.txt"
+  },
+  {
+    "id": "P0028",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0028_US_62_485K_Female.txt"
+  },
+  {
+    "id": "P0029",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0029_US_47_2.4M_Male.txt"
+  },
+  {
+    "id": "P0030",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0030_US_41_2.1M_Female.txt"
+  },
+  {
+    "id": "P0031",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0031_US_65_385K_Male.txt"
+  },
+  {
+    "id": "P0032",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0032_US_39_340K_Male.txt"
+  },
+  {
+    "id": "P0033",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0033_US_47_875K_Female.txt"
+  },
+  {
+    "id": "P0034",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0034_US_46_725K_Male.txt"
+  },
+  {
+    "id": "P0035",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0035_US_64_2.2M_Male.txt"
+  },
+  {
+    "id": "P0036",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0036_US_47_425K_Female.txt"
+  },
+  {
+    "id": "P0037",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0037_US_68_380K_Female.txt"
+  },
+  {
+    "id": "P0038",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0038_US_46_2.4M_Male.txt"
+  },
+  {
+    "id": "P0039",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0039_US_63_1.3M_Female.txt"
+  },
+  {
+    "id": "P0040",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0040_US_66_2.8M_Male.txt"
+  },
+  {
+    "id": "P0041",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0041_US_66_2.1M_Male.txt"
+  },
+  {
+    "id": "P0042",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0042_US_52_2.8M_Female.txt"
+  },
+  {
+    "id": "P0043",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0043_US_30_1.8M_Male.txt"
+  },
+  {
+    "id": "P0044",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0044_US_41_485K_Male.txt"
+  },
+  {
+    "id": "P0045",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0045_US_64_425K_Female.txt"
+  },
+  {
+    "id": "P0046",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0046_US_47_320K_Female.txt"
+  },
+  {
+    "id": "P0047",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0047_US_58_780K_Male.txt"
+  },
+  {
+    "id": "P0048",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0048_US_47_2.4M_Male.txt"
+  },
+  {
+    "id": "P0049",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0049_US_47_2.1M_Female.txt"
+  },
+  {
+    "id": "P0050",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0050_US_31_2.1M_Female.txt"
+  },
+  {
+    "id": "P0051",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0051_US_58_2.6M_Male.txt"
+  },
+  {
+    "id": "P0052",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0052_US_63_980K_Female.txt"
+  },
+  {
+    "id": "P0053",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0053_US_52_875K_Female.txt"
+  },
+  {
+    "id": "P0054",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0054_US_32_875K_Male.txt"
+  },
+  {
+    "id": "P0055",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0055_US_52_285K_Male.txt"
+  },
+  {
+    "id": "P0056",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0056_US_47_925K_Female.txt"
+  },
+  {
+    "id": "P0057",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0057_US_58_285K_Female.txt"
+  },
+  {
+    "id": "P0058",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0058_US_31_225K_Male.txt"
+  },
+  {
+    "id": "P0059",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0059_US_29_485K_Male.txt"
+  },
+  {
+    "id": "P0060",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0060_US_40_1.1M_Female.txt"
+  },
+  {
+    "id": "P0061",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0061_US_46_465K_Female.txt"
+  },
+  {
+    "id": "P0062",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0062_US_47_320K_Male.txt"
+  },
+  {
+    "id": "P0063",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0063_US_31_385K_Female.txt"
+  },
+  {
+    "id": "P0064",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0064_US_64_875K_Male.txt"
+  },
+  {
+    "id": "P0065",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0065_US_58_2.4M_Male.txt"
+  },
+  {
+    "id": "P0066",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0066_US_41_565K_Female.txt"
+  },
+  {
+    "id": "P0067",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0067_US_67_2.6M_Male.txt"
+  },
+  {
+    "id": "P0068",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0068_US_46_875K_Female.txt"
+  },
+  {
+    "id": "P0069",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0069_US_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0070",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0070_US_65_785K_Female.txt"
+  },
+  {
+    "id": "P0071",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0071_US_47_320K_Male.txt"
+  },
+  {
+    "id": "P0072",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0072_US_58_925K_Female.txt"
+  },
+  {
+    "id": "P0073",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0073_US_32_425K_Female.txt"
+  },
+  {
+    "id": "P0074",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0074_US_62_785K_Male.txt"
+  },
+  {
+    "id": "P0075",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0075_US_47_825K_Male.txt"
+  },
+  {
+    "id": "P0076",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0076_US_48_2.9M_Male.txt"
+  },
+  {
+    "id": "P0077",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0077_US_52_875K_Female.txt"
+  },
+  {
+    "id": "P0078",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0078_US_39_425K_Male.txt"
+  },
+  {
+    "id": "P0079",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0079_US_42_1.8M_Male.txt"
+  },
+  {
+    "id": "P0080",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0080_US_28_385K_Female.txt"
+  },
+  {
+    "id": "P0081",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0081_US_47_685K_Male.txt"
+  },
+  {
+    "id": "P0082",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0082_US_58_465K_Female.txt"
+  },
+  {
+    "id": "P0083",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0083_US_30_2.8M_Male.txt"
+  },
+  {
+    "id": "P0084",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0084_US_57_2.1M_Female.txt"
+  },
+  {
+    "id": "P0085",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0085_US_53_1.2M_Male.txt"
+  },
+  {
+    "id": "P0086",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0086_US_48_2.8M_Male.txt"
+  },
+  {
+    "id": "P0087",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0087_US_29_2.1M_Female.txt"
+  },
+  {
+    "id": "P0088",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0088_US_52_1.4M_Male.txt"
+  },
+  {
+    "id": "P0089",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0089_US_36_485K_Female.txt"
+  },
+  {
+    "id": "P0090",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United States",
+      "markets": [
+        "United States"
+      ]
+    },
+    "filename": "P0090_US_44_1.4M_Male.txt"
+  },
+  {
+    "id": "P0091",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0091_HK_52_380K_Male.txt"
+  },
+  {
+    "id": "P0092",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0092_HK_47_2.8M_Female.txt"
+  },
+  {
+    "id": "P0093",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0093_HK_46_1.2M_Female.txt"
+  },
+  {
+    "id": "P0094",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0094_HK_62_1.1M_Male.txt"
+  },
+  {
+    "id": "P0095",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0095_HK_65_420K_Female.txt"
+  },
+  {
+    "id": "P0096",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0096_HK_28_2.3M_Male.txt"
+  },
+  {
+    "id": "P0097",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0097_HK_52_1.1M_Male.txt"
+  },
+  {
+    "id": "P0098",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0098_HK_47_420K_Female.txt"
+  },
+  {
+    "id": "P0099",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0099_HK_29_1.0M_Female.txt"
+  },
+  {
+    "id": "P0100",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0100_HK_58_2.4M_Male.txt"
+  },
+  {
+    "id": "P0101",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0101_HK_57_380K_Female.txt"
+  },
+  {
+    "id": "P0102",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0102_HK_57_380K_Male.txt"
+  },
+  {
+    "id": "P0103",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0103_HK_35_1.8M_Female.txt"
+  },
+  {
+    "id": "P0104",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0104_HK_57_1.4M_Male.txt"
+  },
+  {
+    "id": "P0105",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0105_HK_52_1.6M_Male.txt"
+  },
+  {
+    "id": "P0106",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0106_HK_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0107",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0107_HK_47_2.1M_Male.txt"
+  },
+  {
+    "id": "P0108",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0108_HK_52_380K_Male.txt"
+  },
+  {
+    "id": "P0109",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0109_HK_57_1.6M_Male.txt"
+  },
+  {
+    "id": "P0110",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0110_HK_56_420K_Female.txt"
+  },
+  {
+    "id": "P0111",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0111_HK_52_380K_Female.txt"
+  },
+  {
+    "id": "P0112",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0112_HK_41_2.4M_Male.txt"
+  },
+  {
+    "id": "P0113",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0113_HK_51_980K_Female.txt"
+  },
+  {
+    "id": "P0114",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0114_HK_58_420K_Female.txt"
+  },
+  {
+    "id": "P0115",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0115_HK_31_280K_Male.txt"
+  },
+  {
+    "id": "P0116",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0116_HK_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0117",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0117_HK_29_2.8M_Female.txt"
+  },
+  {
+    "id": "P0118",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0118_HK_31_350K_Male.txt"
+  },
+  {
+    "id": "P0119",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0119_HK_27_2.2M_Female.txt"
+  },
+  {
+    "id": "P0120",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0120_HK_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0121",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0121_HK_41_2.8M_Male.txt"
+  },
+  {
+    "id": "P0122",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0122_HK_64_2.1M_Female.txt"
+  },
+  {
+    "id": "P0123",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0123_HK_28_280K_Female.txt"
+  },
+  {
+    "id": "P0124",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0124_HK_53_380K_Male.txt"
+  },
+  {
+    "id": "P0125",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0125_HK_32_1.1M_Male.txt"
+  },
+  {
+    "id": "P0126",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0126_HK_67_320K_Female.txt"
+  },
+  {
+    "id": "P0127",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0127_HK_62_1.8M_Male.txt"
+  },
+  {
+    "id": "P0128",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0128_HK_68_2.4M_Male.txt"
+  },
+  {
+    "id": "P0129",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0129_HK_52_2.6M_Female.txt"
+  },
+  {
+    "id": "P0130",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0130_HK_64_1.2M_Male.txt"
+  },
+  {
+    "id": "P0131",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0131_HK_47_2.8M_Male.txt"
+  },
+  {
+    "id": "P0132",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0132_HK_58_420K_Female.txt"
+  },
+  {
+    "id": "P0133",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0133_HK_59_380K_Male.txt"
+  },
+  {
+    "id": "P0134",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0134_HK_65_2.6M_Female.txt"
+  },
+  {
+    "id": "P0135",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0135_HK_51_1.1M_Female.txt"
+  },
+  {
+    "id": "P0136",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0136_HK_30_2.8M_Male.txt"
+  },
+  {
+    "id": "P0137",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0137_HK_33_1.1M_Female.txt"
+  },
+  {
+    "id": "P0138",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0138_HK_66_420K_Female.txt"
+  },
+  {
+    "id": "P0139",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0139_HK_52_2.3M_Female.txt"
+  },
+  {
+    "id": "P0140",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0140_HK_58_890K_Male.txt"
+  },
+  {
+    "id": "P0141",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0141_HK_59_1.8M_Female.txt"
+  },
+  {
+    "id": "P0142",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0142_HK_38_1.1M_Male.txt"
+  },
+  {
+    "id": "P0143",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0143_HK_63_480K_Male.txt"
+  },
+  {
+    "id": "P0144",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0144_HK_39_900K_Female.txt"
+  },
+  {
+    "id": "P0145",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0145_HK_47_280K_Male.txt"
+  },
+  {
+    "id": "P0146",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0146_HK_58_3.0M_Male.txt"
+  },
+  {
+    "id": "P0147",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0147_HK_29_2.2M_Female.txt"
+  },
+  {
+    "id": "P0148",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0148_HK_41_180K_Male.txt"
+  },
+  {
+    "id": "P0149",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0149_HK_42_320K_Female.txt"
+  },
+  {
+    "id": "P0150",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0150_HK_47_1.0M_Male.txt"
+  },
+  {
+    "id": "P0151",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0151_HK_39_2.9M_Male.txt"
+  },
+  {
+    "id": "P0152",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0152_HK_58_700K_Male.txt"
+  },
+  {
+    "id": "P0153",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0153_HK_52_2.3M_Female.txt"
+  },
+  {
+    "id": "P0154",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0154_HK_64_2.7M_Female.txt"
+  },
+  {
+    "id": "P0155",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0155_HK_46_200K_Male.txt"
+  },
+  {
+    "id": "P0156",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0156_HK_68_280K_Female.txt"
+  },
+  {
+    "id": "P0157",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0157_HK_47_2.8M_Male.txt"
+  },
+  {
+    "id": "P0158",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0158_HK_31_420K_Male.txt"
+  },
+  {
+    "id": "P0159",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0159_HK_30_650K_Female.txt"
+  },
+  {
+    "id": "P0160",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0160_HK_68_3.0M_Female.txt"
+  },
+  {
+    "id": "P0161",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0161_HK_38_2.2M_Male.txt"
+  },
+  {
+    "id": "P0162",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0162_HK_67_1.2M_Female.txt"
+  },
+  {
+    "id": "P0163",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0163_HK_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0164",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0164_HK_52_1.7M_Male.txt"
+  },
+  {
+    "id": "P0165",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0165_HK_57_1.5M_Female.txt"
+  },
+  {
+    "id": "P0166",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0166_HK_52_1.6M_Female.txt"
+  },
+  {
+    "id": "P0167",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0167_HK_32_980K_Male.txt"
+  },
+  {
+    "id": "P0168",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0168_HK_46_1.1M_Female.txt"
+  },
+  {
+    "id": "P0169",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0169_HK_52_420K_Male.txt"
+  },
+  {
+    "id": "P0170",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0170_HK_58_180K_Female.txt"
+  },
+  {
+    "id": "P0171",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0171_HK_58_320K_Male.txt"
+  },
+  {
+    "id": "P0172",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0172_HK_53_900K_Male.txt"
+  },
+  {
+    "id": "P0173",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0173_HK_39_250K_Female.txt"
+  },
+  {
+    "id": "P0174",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0174_HK_27_1.4M_Male.txt"
+  },
+  {
+    "id": "P0175",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0175_HK_63_2.2M_Male.txt"
+  },
+  {
+    "id": "P0176",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0176_HK_58_480K_Female.txt"
+  },
+  {
+    "id": "P0177",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0177_HK_51_550K_Male.txt"
+  },
+  {
+    "id": "P0178",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0178_HK_57_1.7M_Female.txt"
+  },
+  {
+    "id": "P0179",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0179_HK_64_2.9M_Female.txt"
+  },
+  {
+    "id": "P0180",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Hong Kong/Macau",
+      "markets": [
+        "Hong Kong",
+        "China (A-shares)",
+        "United States"
+      ]
+    },
+    "filename": "P0180_HK_58_420K_Male.txt"
+  },
+  {
+    "id": "P0181",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0181_SG_52_980K_Female.txt"
+  },
+  {
+    "id": "P0182",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0182_SG_65_2.7M_Male.txt"
+  },
+  {
+    "id": "P0183",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0183_SG_41_1.8M_Male.txt"
+  },
+  {
+    "id": "P0184",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0184_SG_57_1.1M_Female.txt"
+  },
+  {
+    "id": "P0185",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0185_SG_52_380K_Female.txt"
+  },
+  {
+    "id": "P0186",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0186_SG_53_2.1M_Male.txt"
+  },
+  {
+    "id": "P0187",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0187_SG_68_480K_Female.txt"
+  },
+  {
+    "id": "P0188",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0188_SG_52_200K_Female.txt"
+  },
+  {
+    "id": "P0189",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0189_SG_29_280K_Male.txt"
+  },
+  {
+    "id": "P0190",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0190_SG_32_350K_Female.txt"
+  },
+  {
+    "id": "P0191",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0191_SG_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0192",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0192_SG_46_1.0M_Female.txt"
+  },
+  {
+    "id": "P0193",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0193_SG_39_320K_Female.txt"
+  },
+  {
+    "id": "P0194",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0194_SG_53_1.6M_Female.txt"
+  },
+  {
+    "id": "P0195",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0195_SG_29_980K_Female.txt"
+  },
+  {
+    "id": "P0196",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0196_SG_31_2.7M_Male.txt"
+  },
+  {
+    "id": "P0197",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0197_SG_33_750K_Female.txt"
+  },
+  {
+    "id": "P0198",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0198_SG_47_1.1M_Male.txt"
+  },
+  {
+    "id": "P0199",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0199_SG_58_200K_Male.txt"
+  },
+  {
+    "id": "P0200",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0200_SG_56_2.1M_Female.txt"
+  },
+  {
+    "id": "P0201",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0201_SG_57_650K_Male.txt"
+  },
+  {
+    "id": "P0202",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0202_SG_47_420K_Female.txt"
+  },
+  {
+    "id": "P0203",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0203_SG_52_2.2M_Male.txt"
+  },
+  {
+    "id": "P0204",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0204_SG_57_1.2M_Female.txt"
+  },
+  {
+    "id": "P0205",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0205_SG_51_550K_Male.txt"
+  },
+  {
+    "id": "P0206",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0206_SG_30_1.0M_Female.txt"
+  },
+  {
+    "id": "P0207",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0207_SG_46_1.5M_Male.txt"
+  },
+  {
+    "id": "P0208",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0208_SG_58_700K_Female.txt"
+  },
+  {
+    "id": "P0209",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0209_SG_59_480K_Female.txt"
+  },
+  {
+    "id": "P0210",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0210_SG_47_200K_Male.txt"
+  },
+  {
+    "id": "P0211",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0211_SG_46_750K_Female.txt"
+  },
+  {
+    "id": "P0212",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0212_SG_52_350K_Male.txt"
+  },
+  {
+    "id": "P0213",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0213_SG_47_420K_Male.txt"
+  },
+  {
+    "id": "P0214",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0214_SG_52_900K_Female.txt"
+  },
+  {
+    "id": "P0215",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0215_SG_63_1.6M_Female.txt"
+  },
+  {
+    "id": "P0216",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0216_SG_62_1.4M_Male.txt"
+  },
+  {
+    "id": "P0217",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0217_SG_38_820K_Female.txt"
+  },
+  {
+    "id": "P0218",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0218_SG_31_1.2M_Male.txt"
+  },
+  {
+    "id": "P0219",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0219_SG_58_150K_Female.txt"
+  },
+  {
+    "id": "P0220",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0220_SG_28_1.0M_Male.txt"
+  },
+  {
+    "id": "P0221",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0221_SG_59_200K_Female.txt"
+  },
+  {
+    "id": "P0222",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0222_SG_52_700K_Female.txt"
+  },
+  {
+    "id": "P0223",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0223_SG_58_2.3M_Female.txt"
+  },
+  {
+    "id": "P0224",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0224_SG_53_420K_Male.txt"
+  },
+  {
+    "id": "P0225",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0225_SG_29_1.8M_Female.txt"
+  },
+  {
+    "id": "P0226",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0226_SG_40_320K_Female.txt"
+  },
+  {
+    "id": "P0227",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0227_SG_59_2.8M_Male.txt"
+  },
+  {
+    "id": "P0228",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0228_SG_57_900K_Female.txt"
+  },
+  {
+    "id": "P0229",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0229_SG_31_1.6M_Male.txt"
+  },
+  {
+    "id": "P0230",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0230_SG_27_150K_Female.txt"
+  },
+  {
+    "id": "P0231",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0231_SG_61_480K_Female.txt"
+  },
+  {
+    "id": "P0232",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0232_SG_42_1.9M_Male.txt"
+  },
+  {
+    "id": "P0233",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0233_SG_65_550K_Male.txt"
+  },
+  {
+    "id": "P0234",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0234_SG_47_1.7M_Female.txt"
+  },
+  {
+    "id": "P0235",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0235_SG_58_420K_Female.txt"
+  },
+  {
+    "id": "P0236",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0236_SG_63_700K_Male.txt"
+  },
+  {
+    "id": "P0237",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0237_SG_56_2.3M_Female.txt"
+  },
+  {
+    "id": "P0238",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0238_SG_39_450K_Male.txt"
+  },
+  {
+    "id": "P0239",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0239_SG_52_250K_Female.txt"
+  },
+  {
+    "id": "P0240",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0240_SG_57_1.1M_Female.txt"
+  },
+  {
+    "id": "P0241",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0241_SG_37_1.3M_Male.txt"
+  },
+  {
+    "id": "P0242",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0242_SG_41_2.1M_Female.txt"
+  },
+  {
+    "id": "P0243",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0243_SG_62_650K_Female.txt"
+  },
+  {
+    "id": "P0244",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0244_SG_47_3.0M_Male.txt"
+  },
+  {
+    "id": "P0245",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0245_SG_58_350K_Female.txt"
+  },
+  {
+    "id": "P0246",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0246_SG_52_1.9M_Female.txt"
+  },
+  {
+    "id": "P0247",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0247_SG_42_2.1M_Male.txt"
+  },
+  {
+    "id": "P0248",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0248_SG_38_1.9M_Female.txt"
+  },
+  {
+    "id": "P0249",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0249_SG_45_1.8M_Male.txt"
+  },
+  {
+    "id": "P0250",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0250_SG_40_1.7M_Male.txt"
+  },
+  {
+    "id": "P0251",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0251_SG_47_2.3M_Male.txt"
+  },
+  {
+    "id": "P0252",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0252_SG_52_1.1M_Male.txt"
+  },
+  {
+    "id": "P0253",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0253_SG_64_750K_Male.txt"
+  },
+  {
+    "id": "P0254",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0254_SG_53_2.4M_Female.txt"
+  },
+  {
+    "id": "P0255",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0255_SG_29_1.3M_Male.txt"
+  },
+  {
+    "id": "P0256",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0256_SG_57_350K_Female.txt"
+  },
+  {
+    "id": "P0257",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0257_SG_58_1.6M_Male.txt"
+  },
+  {
+    "id": "P0258",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0258_SG_47_180K_Female.txt"
+  },
+  {
+    "id": "P0259",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0259_SG_39_820K_Male.txt"
+  },
+  {
+    "id": "P0260",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0260_SG_31_1.2M_Female.txt"
+  },
+  {
+    "id": "P0261",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0261_SG_38_2.6M_Male.txt"
+  },
+  {
+    "id": "P0262",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0262_SG_58_1.0M_Male.txt"
+  },
+  {
+    "id": "P0263",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0263_SG_41_1.5M_Female.txt"
+  },
+  {
+    "id": "P0264",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0264_SG_52_700K_Female.txt"
+  },
+  {
+    "id": "P0265",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0265_SG_63_980K_Female.txt"
+  },
+  {
+    "id": "P0266",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0266_SG_29_1.1M_Male.txt"
+  },
+  {
+    "id": "P0267",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0267_SG_65_1.8M_Male.txt"
+  },
+  {
+    "id": "P0268",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0268_SG_41_420K_Male.txt"
+  },
+  {
+    "id": "P0269",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0269_SG_61_1.3M_Female.txt"
+  },
+  {
+    "id": "P0270",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Singapore",
+      "markets": [
+        "Singapore",
+        "United States",
+        "Japan",
+        "India"
+      ]
+    },
+    "filename": "P0270_SG_47_2.1M_Female.txt"
+  },
+  {
+    "id": "P0271",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0271_CN_39_1.6M_Male.txt"
+  },
+  {
+    "id": "P0272",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0272_CN_47_3.0M_Female.txt"
+  },
+  {
+    "id": "P0273",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0273_CN_48_820K_Male.txt"
+  },
+  {
+    "id": "P0274",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0274_CN_58_1.2M_Male.txt"
+  },
+  {
+    "id": "P0275",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0275_CN_42_480K_Male.txt"
+  },
+  {
+    "id": "P0276",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0276_CN_39_1.0M_Female.txt"
+  },
+  {
+    "id": "P0277",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0277_CN_63_2.9M_Male.txt"
+  },
+  {
+    "id": "P0278",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0278_CN_61_350K_Male.txt"
+  },
+  {
+    "id": "P0279",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0279_CN_58_420K_Male.txt"
+  },
+  {
+    "id": "P0280",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0280_CN_47_180K_Female.txt"
+  },
+  {
+    "id": "P0281",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0281_CN_41_1.8M_Male.txt"
+  },
+  {
+    "id": "P0282",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0282_CN_52_2.4M_Female.txt"
+  },
+  {
+    "id": "P0283",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0283_CN_53_2.8M_Female.txt"
+  },
+  {
+    "id": "P0284",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0284_CN_57_2.1M_Male.txt"
+  },
+  {
+    "id": "P0285",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0285_CN_41_0K_Male.txt"
+  },
+  {
+    "id": "P0286",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0286_CN_38_420K_Male.txt"
+  },
+  {
+    "id": "P0287",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0287_CN_64_380K_Male.txt"
+  },
+  {
+    "id": "P0288",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0288_CN_29_950K_Male.txt"
+  },
+  {
+    "id": "P0289",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0289_CN_52_0K_Male.txt"
+  },
+  {
+    "id": "P0290",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0290_CN_47_0K_Male.txt"
+  },
+  {
+    "id": "P0291",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0291_CN_31_420K_Male.txt"
+  },
+  {
+    "id": "P0292",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0292_CN_58_0K_Male.txt"
+  },
+  {
+    "id": "P0293",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0293_CN_39_0K_Male.txt"
+  },
+  {
+    "id": "P0294",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0294_CN_63_850K_Male.txt"
+  },
+  {
+    "id": "P0295",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0295_CN_42_480K_Male.txt"
+  },
+  {
+    "id": "P0296",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0296_CN_38_0K_Male.txt"
+  },
+  {
+    "id": "P0297",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0297_CN_41_420K_Male.txt"
+  },
+  {
+    "id": "P0298",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0298_CN_67_320K_Male.txt"
+  },
+  {
+    "id": "P0299",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0299_CN_53_0K_Male.txt"
+  },
+  {
+    "id": "P0300",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0300_CN_58_0K_Male.txt"
+  },
+  {
+    "id": "P0301",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0301_CN_52_0K_Male.txt"
+  },
+  {
+    "id": "P0302",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0302_CN_29_380K_Male.txt"
+  },
+  {
+    "id": "P0303",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0303_CN_47_0K_Male.txt"
+  },
+  {
+    "id": "P0304",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0304_CN_32_850K_Male.txt"
+  },
+  {
+    "id": "P0305",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0305_CN_64_0K_Male.txt"
+  },
+  {
+    "id": "P0306",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0306_CN_41_950K_Male.txt"
+  },
+  {
+    "id": "P0307",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0307_CN_57_0K_Male.txt"
+  },
+  {
+    "id": "P0308",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0308_CN_52_650K_Male.txt"
+  },
+  {
+    "id": "P0309",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0309_CN_47_2.2M_Male.txt"
+  },
+  {
+    "id": "P0310",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0310_CN_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0311",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0311_CN_29_1.1M_Male.txt"
+  },
+  {
+    "id": "P0312",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0312_CN_63_1.4M_Male.txt"
+  },
+  {
+    "id": "P0313",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0313_CN_31_1.3M_Male.txt"
+  },
+  {
+    "id": "P0314",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0314_CN_52_1.4M_Male.txt"
+  },
+  {
+    "id": "P0315",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0315_CN_47_1.4M_Male.txt"
+  },
+  {
+    "id": "P0316",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0316_CN_51_380K_Male.txt"
+  },
+  {
+    "id": "P0317",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0317_CN_39_1.2M_Male.txt"
+  },
+  {
+    "id": "P0318",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0318_CN_46_420K_Male.txt"
+  },
+  {
+    "id": "P0319",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0319_CN_47_2.1M_Male.txt"
+  },
+  {
+    "id": "P0320",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0320_CN_52_2.3M_Male.txt"
+  },
+  {
+    "id": "P0321",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0321_CN_47_1.2M_Male.txt"
+  },
+  {
+    "id": "P0322",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0322_CN_38_2.8M_Male.txt"
+  },
+  {
+    "id": "P0323",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0323_CN_52_450K_Male.txt"
+  },
+  {
+    "id": "P0324",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0324_CN_41_1.1M_Male.txt"
+  },
+  {
+    "id": "P0325",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0325_CN_63_1.3M_Male.txt"
+  },
+  {
+    "id": "P0326",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0326_CN_39_1.4M_Male.txt"
+  },
+  {
+    "id": "P0327",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0327_CN_47_1.1M_Male.txt"
+  },
+  {
+    "id": "P0328",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0328_CN_29_480K_Male.txt"
+  },
+  {
+    "id": "P0329",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0329_CN_46_1.4M_Male.txt"
+  },
+  {
+    "id": "P0330",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0330_CN_48_1.2M_Male.txt"
+  },
+  {
+    "id": "P0331",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0331_CN_52_2.2M_Male.txt"
+  },
+  {
+    "id": "P0332",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0332_CN_51_2.8M_Male.txt"
+  },
+  {
+    "id": "P0333",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0333_CN_47_1.4M_Male.txt"
+  },
+  {
+    "id": "P0334",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0334_CN_64_1.4M_Male.txt"
+  },
+  {
+    "id": "P0335",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0335_CN_28_780K_Male.txt"
+  },
+  {
+    "id": "P0336",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0336_CN_42_1.3M_Male.txt"
+  },
+  {
+    "id": "P0337",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0337_CN_57_480K_Male.txt"
+  },
+  {
+    "id": "P0338",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0338_CN_65_380K_Male.txt"
+  },
+  {
+    "id": "P0339",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0339_CN_30_850K_Male.txt"
+  },
+  {
+    "id": "P0340",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0340_CN_27_680K_Male.txt"
+  },
+  {
+    "id": "P0341",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0341_CN_29_1.1M_Male.txt"
+  },
+  {
+    "id": "P0342",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Mainland China",
+      "markets": [
+        "China (A-shares)",
+        "Hong Kong"
+      ]
+    },
+    "filename": "P0342_CN_38_1.2M_Male.txt"
+  },
+  {
+    "id": "P0343",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0343_UK_63_420K_Male.txt"
+  },
+  {
+    "id": "P0344",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0344_UK_28_720K_Female.txt"
+  },
+  {
+    "id": "P0345",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0345_UK_41_1.1M_Male.txt"
+  },
+  {
+    "id": "P0346",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0346_UK_39_2.4M_Male.txt"
+  },
+  {
+    "id": "P0347",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0347_UK_67_450K_Male.txt"
+  },
+  {
+    "id": "P0348",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0348_UK_58_480K_Male.txt"
+  },
+  {
+    "id": "P0349",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0349_UK_57_2.8M_Male.txt"
+  },
+  {
+    "id": "P0350",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0350_UK_29_580K_Female.txt"
+  },
+  {
+    "id": "P0351",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0351_UK_47_2.2M_Male.txt"
+  },
+  {
+    "id": "P0352",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0352_UK_31_650K_Male.txt"
+  },
+  {
+    "id": "P0353",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0353_UK_32_1.4M_Male.txt"
+  },
+  {
+    "id": "P0354",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0354_UK_41_1.8M_Male.txt"
+  },
+  {
+    "id": "P0355",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0355_UK_68_2.2M_Male.txt"
+  },
+  {
+    "id": "P0356",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0356_UK_46_1.6M_Male.txt"
+  },
+  {
+    "id": "P0357",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0357_UK_51_1.8M_Male.txt"
+  },
+  {
+    "id": "P0358",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0358_UK_62_950K_Male.txt"
+  },
+  {
+    "id": "P0359",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0359_UK_67_2.1M_Male.txt"
+  },
+  {
+    "id": "P0360",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0360_UK_61_1.4M_Female.txt"
+  },
+  {
+    "id": "P0361",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0361_UK_28_380K_Male.txt"
+  },
+  {
+    "id": "P0362",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0362_UK_46_1.2M_Male.txt"
+  },
+  {
+    "id": "P0363",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0363_UK_51_450K_Male.txt"
+  },
+  {
+    "id": "P0364",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0364_UK_62_1.8M_Male.txt"
+  },
+  {
+    "id": "P0365",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0365_UK_63_1.4M_Male.txt"
+  },
+  {
+    "id": "P0366",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0366_UK_36_1.9M_Male.txt"
+  },
+  {
+    "id": "P0367",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0367_UK_63_1.2M_Male.txt"
+  },
+  {
+    "id": "P0368",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0368_UK_47_1.1M_Female.txt"
+  },
+  {
+    "id": "P0369",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0369_UK_62_1.9M_Male.txt"
+  },
+  {
+    "id": "P0370",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0370_UK_39_1.8M_Male.txt"
+  },
+  {
+    "id": "P0371",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0371_UK_42_2.0M_Female.txt"
+  },
+  {
+    "id": "P0372",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0372_UK_58_1.2M_Male.txt"
+  },
+  {
+    "id": "P0373",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0373_UK_46_380K_Female.txt"
+  },
+  {
+    "id": "P0374",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0374_UK_58_1.1M_Male.txt"
+  },
+  {
+    "id": "P0375",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0375_UK_46_450K_Male.txt"
+  },
+  {
+    "id": "P0376",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0376_UK_64_2.2M_Female.txt"
+  },
+  {
+    "id": "P0377",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0377_UK_41_1.2M_Male.txt"
+  },
+  {
+    "id": "P0378",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0378_UK_30_1.7M_Female.txt"
+  },
+  {
+    "id": "P0379",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0379_UK_44_420K_Male.txt"
+  },
+  {
+    "id": "P0380",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0380_UK_47_1.8M_Male.txt"
+  },
+  {
+    "id": "P0381",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0381_UK_52_420K_Male.txt"
+  },
+  {
+    "id": "P0382",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0382_UK_51_2.1M_Female.txt"
+  },
+  {
+    "id": "P0383",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0383_UK_32_1.8M_Male.txt"
+  },
+  {
+    "id": "P0384",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0384_UK_28_1.9M_Male.txt"
+  },
+  {
+    "id": "P0385",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0385_UK_57_1.4M_Female.txt"
+  },
+  {
+    "id": "P0386",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0386_UK_62_380K_Male.txt"
+  },
+  {
+    "id": "P0387",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0387_UK_46_1.9M_Male.txt"
+  },
+  {
+    "id": "P0388",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0388_UK_29_2.1M_Male.txt"
+  },
+  {
+    "id": "P0389",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0389_UK_31_950K_Male.txt"
+  },
+  {
+    "id": "P0390",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0390_UK_30_1.1M_Male.txt"
+  },
+  {
+    "id": "P0391",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0391_UK_47_1.4M_Female.txt"
+  },
+  {
+    "id": "P0392",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0392_UK_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0393",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0393_UK_63_2.3M_Female.txt"
+  },
+  {
+    "id": "P0394",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0394_UK_58_1.4M_Male.txt"
+  },
+  {
+    "id": "P0395",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0395_UK_32_2.1M_Male.txt"
+  },
+  {
+    "id": "P0396",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0396_UK_57_1.2M_Male.txt"
+  },
+  {
+    "id": "P0397",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0397_UK_57_380K_Male.txt"
+  },
+  {
+    "id": "P0398",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0398_UK_47_1.8M_Male.txt"
+  },
+  {
+    "id": "P0399",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0399_UK_39_420K_Female.txt"
+  },
+  {
+    "id": "P0400",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0400_UK_52_1.8M_Male.txt"
+  },
+  {
+    "id": "P0401",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0401_UK_46_1.4M_Female.txt"
+  },
+  {
+    "id": "P0402",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0402_UK_52_2.1M_Male.txt"
+  },
+  {
+    "id": "P0403",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0403_UK_63_2.8M_Male.txt"
+  },
+  {
+    "id": "P0404",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0404_UK_47_480K_Male.txt"
+  },
+  {
+    "id": "P0405",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0405_UK_29_2.0M_Male.txt"
+  },
+  {
+    "id": "P0406",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0406_UK_58_1.2M_Male.txt"
+  },
+  {
+    "id": "P0407",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0407_UK_29_1.2M_Female.txt"
+  },
+  {
+    "id": "P0408",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0408_UK_58_420K_Male.txt"
+  },
+  {
+    "id": "P0409",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0409_UK_47_450K_Female.txt"
+  },
+  {
+    "id": "P0410",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0410_UK_46_1.4M_Male.txt"
+  },
+  {
+    "id": "P0411",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0411_UK_58_2.8M_Male.txt"
+  },
+  {
+    "id": "P0412",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0412_UK_47_2.9M_Male.txt"
+  },
+  {
+    "id": "P0413",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0413_UK_58_425K_Male.txt"
+  },
+  {
+    "id": "P0414",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "United Kingdom",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0414_UK_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0415",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0415_EU_58_2.8M_Female.txt"
+  },
+  {
+    "id": "P0416",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0416_EU_58_425K_Male.txt"
+  },
+  {
+    "id": "P0417",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0417_EU_29_425K_Male.txt"
+  },
+  {
+    "id": "P0418",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0418_EU_52_980K_Male.txt"
+  },
+  {
+    "id": "P0419",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0419_EU_58_425K_Male.txt"
+  },
+  {
+    "id": "P0420",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0420_EU_52_420K_Female.txt"
+  },
+  {
+    "id": "P0421",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0421_EU_32_425K_Male.txt"
+  },
+  {
+    "id": "P0422",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0422_EU_52_385K_Male.txt"
+  },
+  {
+    "id": "P0423",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0423_EU_29_1.1M_Male.txt"
+  },
+  {
+    "id": "P0424",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0424_EU_58_1.2M_Female.txt"
+  },
+  {
+    "id": "P0425",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0425_EU_58_2.0M_Male.txt"
+  },
+  {
+    "id": "P0426",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0426_EU_65_425K_Male.txt"
+  },
+  {
+    "id": "P0427",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0427_EU_58_385K_Male.txt"
+  },
+  {
+    "id": "P0428",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0428_EU_47_1.8M_Male.txt"
+  },
+  {
+    "id": "P0429",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0429_EU_62_2.2M_Male.txt"
+  },
+  {
+    "id": "P0430",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0430_EU_58_420K_Male.txt"
+  },
+  {
+    "id": "P0431",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0431_EU_57_420K_Male.txt"
+  },
+  {
+    "id": "P0432",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0432_EU_63_1.2M_Male.txt"
+  },
+  {
+    "id": "P0433",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0433_EU_47_420K_Male.txt"
+  },
+  {
+    "id": "P0434",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0434_EU_37_1.4M_Female.txt"
+  },
+  {
+    "id": "P0435",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0435_EU_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0436",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0436_EU_62_420K_Male.txt"
+  },
+  {
+    "id": "P0437",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0437_EU_62_1.2M_Male.txt"
+  },
+  {
+    "id": "P0438",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0438_EU_45_420K_Male.txt"
+  },
+  {
+    "id": "P0439",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0439_EU_58_1.2M_Female.txt"
+  },
+  {
+    "id": "P0440",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0440_EU_39_420K_Male.txt"
+  },
+  {
+    "id": "P0441",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0441_EU_36_2.4M_Male.txt"
+  },
+  {
+    "id": "P0442",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0442_EU_43_2.8M_Male.txt"
+  },
+  {
+    "id": "P0443",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0443_EU_62_1.6M_Male.txt"
+  },
+  {
+    "id": "P0444",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0444_EU_62_1.2M_Male.txt"
+  },
+  {
+    "id": "P0445",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0445_EU_47_2.1M_Male.txt"
+  },
+  {
+    "id": "P0446",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0446_EU_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0447",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0447_EU_47_420K_Male.txt"
+  },
+  {
+    "id": "P0448",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0448_EU_62_420K_Male.txt"
+  },
+  {
+    "id": "P0449",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0449_EU_47_1.2M_Female.txt"
+  },
+  {
+    "id": "P0450",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0450_EU_63_2.8M_Male.txt"
+  },
+  {
+    "id": "P0451",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0451_EU_33_420K_Female.txt"
+  },
+  {
+    "id": "P0452",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0452_EU_62_2.9M_Male.txt"
+  },
+  {
+    "id": "P0453",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0453_EU_29_1.3M_Female.txt"
+  },
+  {
+    "id": "P0454",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0454_EU_62_2.8M_Male.txt"
+  },
+  {
+    "id": "P0455",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0455_EU_36_2.1M_Female.txt"
+  },
+  {
+    "id": "P0456",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0456_EU_63_1.2M_Male.txt"
+  },
+  {
+    "id": "P0457",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0457_EU_52_1.2M_Female.txt"
+  },
+  {
+    "id": "P0458",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0458_EU_58_3.1M_Male.txt"
+  },
+  {
+    "id": "P0459",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0459_EU_47_1.2M_Female.txt"
+  },
+  {
+    "id": "P0460",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0460_EU_39_425K_Male.txt"
+  },
+  {
+    "id": "P0461",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0461_EU_47_480K_Male.txt"
+  },
+  {
+    "id": "P0462",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0462_EU_47_1.2M_Male.txt"
+  },
+  {
+    "id": "P0463",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0463_EU_28_2.2M_Male.txt"
+  },
+  {
+    "id": "P0464",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0464_EU_39_380K_Male.txt"
+  },
+  {
+    "id": "P0465",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0465_EU_57_420K_Male.txt"
+  },
+  {
+    "id": "P0466",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0466_EU_41_1.1M_Male.txt"
+  },
+  {
+    "id": "P0467",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0467_EU_29_420K_Female.txt"
+  },
+  {
+    "id": "P0468",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0468_EU_64_1.2M_Male.txt"
+  },
+  {
+    "id": "P0469",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0469_EU_58_1.4M_Male.txt"
+  },
+  {
+    "id": "P0470",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0470_EU_62_2.4M_Male.txt"
+  },
+  {
+    "id": "P0471",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0471_EU_66_380K_Male.txt"
+  },
+  {
+    "id": "P0472",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0472_EU_47_1.1M_Male.txt"
+  },
+  {
+    "id": "P0473",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0473_EU_38_485K_Male.txt"
+  },
+  {
+    "id": "P0474",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0474_EU_41_2.1M_Male.txt"
+  },
+  {
+    "id": "P0475",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0475_EU_58_2.0M_Male.txt"
+  },
+  {
+    "id": "P0476",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0476_EU_52_2.4M_Male.txt"
+  },
+  {
+    "id": "P0477",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0477_EU_57_1.4M_Male.txt"
+  },
+  {
+    "id": "P0478",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0478_EU_47_2.0M_Male.txt"
+  },
+  {
+    "id": "P0479",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0479_EU_31_1.1M_Male.txt"
+  },
+  {
+    "id": "P0480",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0480_EU_29_2.8M_Male.txt"
+  },
+  {
+    "id": "P0481",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0481_EU_32_1.3M_Male.txt"
+  },
+  {
+    "id": "P0482",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0482_EU_58_650K_Male.txt"
+  },
+  {
+    "id": "P0483",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0483_EU_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0484",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0484_EU_46_420K_Male.txt"
+  },
+  {
+    "id": "P0485",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0485_EU_42_495K_Male.txt"
+  },
+  {
+    "id": "P0486",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "Europe",
+      "markets": [
+        "Europe/UK",
+        "United States"
+      ]
+    },
+    "filename": "P0486_EU_57_2.8M_Male.txt"
+  },
+  {
+    "id": "P0487",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0487_IN_58_2.2M_Male.txt"
+  },
+  {
+    "id": "P0488",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0488_IN_62_650K_Male.txt"
+  },
+  {
+    "id": "P0489",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0489_IN_47_1.8M_Male.txt"
+  },
+  {
+    "id": "P0490",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0490_IN_58_2.1M_Male.txt"
+  },
+  {
+    "id": "P0491",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0491_IN_31_1.2M_Male.txt"
+  },
+  {
+    "id": "P0492",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0492_IN_64_650K_Male.txt"
+  },
+  {
+    "id": "P0493",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0493_IN_46_450K_Male.txt"
+  },
+  {
+    "id": "P0494",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0494_IN_58_420K_Male.txt"
+  },
+  {
+    "id": "P0495",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0495_IN_32_1.4M_Male.txt"
+  },
+  {
+    "id": "P0496",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0496_IN_52_650K_Male.txt"
+  },
+  {
+    "id": "P0497",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0497_IN_57_580K_Male.txt"
+  },
+  {
+    "id": "P0498",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0498_IN_47_1.3M_Male.txt"
+  },
+  {
+    "id": "P0499",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0499_IN_30_420K_Male.txt"
+  },
+  {
+    "id": "P0500",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0500_IN_52_520K_Male.txt"
+  },
+  {
+    "id": "P0501",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0501_IN_63_850K_Male.txt"
+  },
+  {
+    "id": "P0502",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0502_IN_52_2.2M_Male.txt"
+  },
+  {
+    "id": "P0503",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0503_IN_41_1.1M_Male.txt"
+  },
+  {
+    "id": "P0504",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0504_IN_47_1.6M_Male.txt"
+  },
+  {
+    "id": "P0505",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0505_IN_31_2.2M_Female.txt"
+  },
+  {
+    "id": "P0506",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0506_IN_29_420K_Male.txt"
+  },
+  {
+    "id": "P0507",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0507_IN_65_180K_Male.txt"
+  },
+  {
+    "id": "P0508",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0508_IN_28_280K_Female.txt"
+  },
+  {
+    "id": "P0509",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0509_IN_52_320K_Male.txt"
+  },
+  {
+    "id": "P0510",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0510_IN_67_2.8M_Male.txt"
+  },
+  {
+    "id": "P0511",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0511_IN_53_750K_Female.txt"
+  },
+  {
+    "id": "P0512",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0512_IN_58_1.2M_Male.txt"
+  },
+  {
+    "id": "P0513",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0513_IN_57_1.9M_Male.txt"
+  },
+  {
+    "id": "P0514",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0514_IN_38_280K_Male.txt"
+  },
+  {
+    "id": "P0515",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0515_IN_41_1.1M_Male.txt"
+  },
+  {
+    "id": "P0516",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0516_IN_47_320K_Male.txt"
+  },
+  {
+    "id": "P0517",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0517_IN_48_2.2M_Male.txt"
+  },
+  {
+    "id": "P0518",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0518_IN_29_2.8M_Male.txt"
+  },
+  {
+    "id": "P0519",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0519_IN_63_720K_Male.txt"
+  },
+  {
+    "id": "P0520",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0520_IN_52_220K_Male.txt"
+  },
+  {
+    "id": "P0521",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0521_IN_53_1.2M_Male.txt"
+  },
+  {
+    "id": "P0522",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0522_IN_47_280K_Male.txt"
+  },
+  {
+    "id": "P0523",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0523_IN_46_180K_Male.txt"
+  },
+  {
+    "id": "P0524",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0524_IN_51_2.4M_Male.txt"
+  },
+  {
+    "id": "P0525",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0525_IN_58_180K_Male.txt"
+  },
+  {
+    "id": "P0526",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0526_IN_64_850K_Male.txt"
+  },
+  {
+    "id": "P0527",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0527_IN_39_980K_Male.txt"
+  },
+  {
+    "id": "P0528",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0528_IN_57_1.1M_Male.txt"
+  },
+  {
+    "id": "P0529",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0529_IN_65_2.8M_Male.txt"
+  },
+  {
+    "id": "P0530",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0530_IN_41_220K_Male.txt"
+  },
+  {
+    "id": "P0531",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0531_IN_39_950K_Male.txt"
+  },
+  {
+    "id": "P0532",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0532_IN_36_2.8M_Male.txt"
+  },
+  {
+    "id": "P0533",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0533_IN_29_380K_Male.txt"
+  },
+  {
+    "id": "P0534",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0534_IN_42_380K_Male.txt"
+  },
+  {
+    "id": "P0535",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0535_IN_38_1.6M_Male.txt"
+  },
+  {
+    "id": "P0536",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0536_IN_47_2.6M_Male.txt"
+  },
+  {
+    "id": "P0537",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0537_IN_58_220K_Male.txt"
+  },
+  {
+    "id": "P0538",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0538_IN_39_320K_Male.txt"
+  },
+  {
+    "id": "P0539",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0539_IN_41_280K_Male.txt"
+  },
+  {
+    "id": "P0540",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0540_IN_63_180K_Male.txt"
+  },
+  {
+    "id": "P0541",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0541_IN_46_850K_Male.txt"
+  },
+  {
+    "id": "P0542",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0542_IN_48_750K_Male.txt"
+  },
+  {
+    "id": "P0543",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0543_IN_40_950K_Male.txt"
+  },
+  {
+    "id": "P0544",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0544_IN_31_2.6M_Male.txt"
+  },
+  {
+    "id": "P0545",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0545_IN_42_1.1M_Male.txt"
+  },
+  {
+    "id": "P0546",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0546_IN_65_2.8M_Male.txt"
+  },
+  {
+    "id": "P0547",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0547_IN_67_2.2M_Male.txt"
+  },
+  {
+    "id": "P0548",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0548_IN_52_1.5M_Male.txt"
+  },
+  {
+    "id": "P0549",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0549_IN_58_950K_Male.txt"
+  },
+  {
+    "id": "P0550",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0550_IN_64_180K_Male.txt"
+  },
+  {
+    "id": "P0551",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0551_IN_52_320K_Male.txt"
+  },
+  {
+    "id": "P0552",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0552_IN_63_150K_Male.txt"
+  },
+  {
+    "id": "P0553",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0553_IN_28_420K_Male.txt"
+  },
+  {
+    "id": "P0554",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0554_IN_39_280K_Male.txt"
+  },
+  {
+    "id": "P0555",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0555_IN_58_420K_Male.txt"
+  },
+  {
+    "id": "P0556",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "35-44",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0556_IN_59_1.9M_Male.txt"
+  },
+  {
+    "id": "P0557",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0557_IN_29_1.7M_Male.txt"
+  },
+  {
+    "id": "P0558",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "India",
+      "markets": [
+        "India",
+        "United States"
+      ]
+    },
+    "filename": "P0558_IN_63_980K_Male.txt"
+  },
+  {
+    "id": "P0559",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0559_ME_28_320K_Female.txt"
+  },
+  {
+    "id": "P0560",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0560_ME_41_1.2M_Male.txt"
+  },
+  {
+    "id": "P0561",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0561_ME_47_950K_Male.txt"
+  },
+  {
+    "id": "P0562",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0562_ME_46_380K_Male.txt"
+  },
+  {
+    "id": "P0563",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0563_ME_64_290K_Male.txt"
+  },
+  {
+    "id": "P0564",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0564_ME_39_980K_Male.txt"
+  },
+  {
+    "id": "P0565",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0565_ME_57_420K_Male.txt"
+  },
+  {
+    "id": "P0566",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0566_ME_38_2.2M_Female.txt"
+  },
+  {
+    "id": "P0567",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0567_ME_58_1.2M_Male.txt"
+  },
+  {
+    "id": "P0568",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0568_ME_41_1.8M_Male.txt"
+  },
+  {
+    "id": "P0569",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0569_ME_47_320K_Male.txt"
+  },
+  {
+    "id": "P0570",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0570_ME_52_1.9M_Male.txt"
+  },
+  {
+    "id": "P0571",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0571_ME_40_1.2M_Female.txt"
+  },
+  {
+    "id": "P0572",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0572_ME_38_2.3M_Male.txt"
+  },
+  {
+    "id": "P0573",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0573_ME_65_1.9M_Male.txt"
+  },
+  {
+    "id": "P0574",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0574_ME_52_380K_Male.txt"
+  },
+  {
+    "id": "P0575",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0575_ME_47_2.0M_Male.txt"
+  },
+  {
+    "id": "P0576",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0576_ME_38_420K_Male.txt"
+  },
+  {
+    "id": "P0577",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0577_ME_46_340K_Male.txt"
+  },
+  {
+    "id": "P0578",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0578_ME_29_1.9M_Female.txt"
+  },
+  {
+    "id": "P0579",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0579_ME_27_280K_Male.txt"
+  },
+  {
+    "id": "P0580",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0580_ME_67_1.8M_Male.txt"
+  },
+  {
+    "id": "P0581",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0581_ME_58_1.1M_Male.txt"
+  },
+  {
+    "id": "P0582",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0582_ME_52_2.7M_Male.txt"
+  },
+  {
+    "id": "P0583",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0583_ME_58_480K_Male.txt"
+  },
+  {
+    "id": "P0584",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0584_ME_52_450K_Male.txt"
+  },
+  {
+    "id": "P0585",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0585_ME_63_380K_Male.txt"
+  },
+  {
+    "id": "P0586",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0586_ME_41_1.7M_Female.txt"
+  },
+  {
+    "id": "P0587",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0587_ME_39_1.3M_Male.txt"
+  },
+  {
+    "id": "P0588",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0588_ME_53_1.4M_Male.txt"
+  },
+  {
+    "id": "P0589",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0589_ME_29_680K_Male.txt"
+  },
+  {
+    "id": "P0590",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0590_ME_40_420K_Male.txt"
+  },
+  {
+    "id": "P0591",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0591_ME_52_380K_Male.txt"
+  },
+  {
+    "id": "P0592",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0592_ME_28_420K_Female.txt"
+  },
+  {
+    "id": "P0593",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0593_ME_51_450K_Male.txt"
+  },
+  {
+    "id": "P0594",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0594_ME_42_1.5M_Male.txt"
+  },
+  {
+    "id": "P0595",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0595_ME_63_780K_Male.txt"
+  },
+  {
+    "id": "P0596",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0596_ME_30_1.9M_Female.txt"
+  },
+  {
+    "id": "P0597",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0597_ME_47_420K_Male.txt"
+  },
+  {
+    "id": "P0598",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0598_ME_58_880K_Male.txt"
+  },
+  {
+    "id": "P0599",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0599_ME_57_320K_Male.txt"
+  },
+  {
+    "id": "P0600",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0600_ME_63_380K_Male.txt"
+  },
+  {
+    "id": "P0601",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0601_ME_61_420K_Male.txt"
+  },
+  {
+    "id": "P0602",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0602_ME_58_320K_Female.txt"
+  },
+  {
+    "id": "P0603",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0603_ME_29_280K_Female.txt"
+  },
+  {
+    "id": "P0604",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0604_ME_31_850K_Male.txt"
+  },
+  {
+    "id": "P0605",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0605_ME_27_750K_Male.txt"
+  },
+  {
+    "id": "P0606",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0606_ME_58_2.1M_Male.txt"
+  },
+  {
+    "id": "P0607",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0607_ME_52_380K_Male.txt"
+  },
+  {
+    "id": "P0608",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0608_ME_51_420K_Female.txt"
+  },
+  {
+    "id": "P0609",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0609_ME_47_1.2M_Male.txt"
+  },
+  {
+    "id": "P0610",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0610_ME_53_450K_Male.txt"
+  },
+  {
+    "id": "P0611",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0611_ME_47_480K_Male.txt"
+  },
+  {
+    "id": "P0612",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0612_ME_39_2.2M_Male.txt"
+  },
+  {
+    "id": "P0613",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0613_ME_38_1.4M_Male.txt"
+  },
+  {
+    "id": "P0614",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "25-34",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0614_ME_64_1.4M_Male.txt"
+  },
+  {
+    "id": "P0615",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0615_ME_41_420K_Male.txt"
+  },
+  {
+    "id": "P0616",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0616_ME_30_720K_Male.txt"
+  },
+  {
+    "id": "P0617",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0617_ME_52_1.1M_Female.txt"
+  },
+  {
+    "id": "P0618",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0618_ME_42_2.5M_Male.txt"
+  },
+  {
+    "id": "P0619",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0619_ME_65_480K_Male.txt"
+  },
+  {
+    "id": "P0620",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "45-49",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0620_ME_28_820K_Male.txt"
+  },
+  {
+    "id": "P0621",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0621_ME_47_1.4M_Male.txt"
+  },
+  {
+    "id": "P0622",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "60+",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0622_ME_39_1.3M_Female.txt"
+  },
+  {
+    "id": "P0623",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0623_ME_58_450K_Male.txt"
+  },
+  {
+    "id": "P0624",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0624_ME_42_450K_Male.txt"
+  },
+  {
+    "id": "P0625",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0625_ME_57_480K_Male.txt"
+  },
+  {
+    "id": "P0626",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0626_ME_58_1.4M_Male.txt"
+  },
+  {
+    "id": "P0627",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "55-60",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0627_ME_47_2.8M_Female.txt"
+  },
+  {
+    "id": "P0628",
+    "demographics": {
+      "aum": "USD 500k - 1.5M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0628_ME_52_1.2M_Male.txt"
+  },
+  {
+    "id": "P0629",
+    "demographics": {
+      "aum": "USD 150k - 500k",
+      "age": "50-54",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0629_ME_63_1.1M_Male.txt"
+  },
+  {
+    "id": "P0630",
+    "demographics": {
+      "aum": "USD 1.5M - 3.0M",
+      "age": "35-44",
+      "residence": "Middle East",
+      "markets": [
+        "Middle East",
+        "United States",
+        "Europe/UK"
+      ]
+    },
+    "filename": "P0630_ME_40_1.2M_Male.txt"
+  }
+]

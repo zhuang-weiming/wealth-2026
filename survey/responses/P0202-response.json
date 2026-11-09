@@ -1,0 +1,39 @@
+{
+  "persona_id": "P0202",
+  "q1_aum": "USD 150k – 500k",
+  "q2_age": "45 – 49",
+  "q3_residence": "Singapore",
+  "q4_markets": ["Singapore", "United States (e.g., US equities)", "Japan", "India"],
+  "q5_products": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "High-yield deposits / money market funds / cash management products",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q6_holding_period": ["Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "High-yield deposits / money market funds / cash management products",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q8_allocation_ranking": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "High-yield deposits / money market funds / cash management products",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q9_profit_perception_ranking": [
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

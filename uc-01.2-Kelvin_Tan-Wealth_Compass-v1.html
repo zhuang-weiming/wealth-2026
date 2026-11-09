@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The Aggressive Pendulum (Kelvin Tan)</title>
+    <style>
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #5A5A5A;
+            --hsbc-light-gray: #f2f2f7;
+            --white: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #8e8e93;
+            --accent-green: #008a3c;
+            --alert-amber: #ff9f0a;
+            --bubble-user: #db0011;
+            --bubble-ai: #ffffff;
+            --bg-dark: #1e1e1e;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .story-panel {
+            width: 55%;
+            padding: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 100px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: #c6a87c; border: 1px solid #c6a87c; letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.08) 0%, transparent 100%);
+            transform: translateX(0);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .scene-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scene-desc { font-size: 0.9rem; color: #bbb; line-height: 1.5; margin-bottom: 10px; }
+
+        .system-log {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.75rem; background: #111; padding: 12px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-alert { color: var(--alert-amber); }
+        .term-crit { color: #ff3b30; }
+
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: var(--hsbc-light-gray); border-radius: 45px;
+            border: 10px solid #2d2d2d; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-bar { 
+            height: 44px; flex-shrink: 0;
+            display: flex; justify-content: space-between; padding: 0 20px; align-items: flex-end; padding-bottom: 8px; 
+            font-size: 12px; font-weight: 600; color: #000; 
+            background: rgba(255,255,255,0.95); z-index: 100;
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 30px; background: #2d2d2d; border-radius: 0 0 18px 18px; z-index: 101; }
+
+        .chat-header {
+            height: 50px; flex-shrink: 0;
+            background: rgba(255,255,255,0.95); border-bottom: 1px solid #e5e5e5;
+            display: flex; align-items: center; padding: 0 15px; z-index: 90;
+        }
+        .header-title-box { flex: 1; text-align: center; }
+        .ht-main { font-size: 16px; font-weight: 600; color: #000; }
+        .ht-sub { font-size: 11px; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+
+        .chat-body {
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 15px; 
+            display: flex; flex-direction: column; gap: 16px; 
+            background: var(--hsbc-light-gray);
+            padding-bottom: 20px; 
+        }
+
+        .bubble-row { display: flex; width: 100%; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.3s ease-out forwards; }
+        .bubble-row.user { justify-content: flex-end; }
+        .bubble-row.ai { justify-content: flex-start; }
+        
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0; }
+        .avatar img { width: 20px; }
+
+        .bubble {
+            max-width: 78%; padding: 12px 16px; font-size: 15px; line-height: 1.4;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative;
+        }
+        .bubble.ai { 
+            background: #ffffff; color: #000; 
+            border-radius: 18px 18px 18px 4px; 
+        }
+        .bubble.user { 
+            background: var(--hsbc-red); color: #fff; 
+            border-radius: 18px 18px 4px 18px; 
+        }
+
+        .input-area {
+            flex-shrink: 0;
+            background: #f9f9f9; border-top: 1px solid #e5e5e5;
+            padding: 12px 15px 30px 15px; 
+            display: flex; align-items: center; gap: 10px; box-sizing: border-box;
+            position: relative; z-index: 100;
+        }
+        
+        .rm-btn {
+            width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; position: relative; flex-shrink: 0;
+        }
+        .rm-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .rm-badge {
+            position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; 
+            background: var(--accent-green); border: 2px solid #fff; border-radius: 50%;
+        }
+
+        .input-field {
+            flex: 1; height: 36px; border-radius: 18px; border: 1px solid #ddd; background: #fff;
+            padding: 0 15px; font-size: 14px; color: #333; display: flex; align-items: center;
+        }
+        .mic-icon { color: #999; font-size: 18px; flex-shrink: 0; }
+
+        .native-card {
+            background: #fff; border-radius: 10px; overflow: hidden; width: 100%; box-sizing: border-box;
+            border: 1px solid #e0e0e0; margin-top: 8px;
+        }
+
+        .status-header {
+            background: #f9f9f9; padding: 10px 16px; font-size: 11px; font-weight: 600; color: #555;
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .status-header.alert { background: #fff4e5; color: #d97706; border-bottom: 1px solid #fed7aa; }
+
+        .card-list-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+        }
+        .card-list-item:last-child { border-bottom: none; }
+        
+        .list-main { display: flex; flex-direction: column; }
+        .list-title { font-size: 14px; font-weight: 500; color: #000; }
+        .list-sub { font-size: 11px; color: #8e8e93; margin-top: 2px; }
+        .list-value { font-size: 14px; font-weight: 600; color: #333; }
+        .val-red { color: #db0011; }
+        .val-green { color: var(--accent-green); }
+
+        .btn-group { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+        .action-btn {
+            width: 100%; padding: 12px; background: var(--hsbc-black); color: #fff;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; text-align: center;
+        }
+        .action-btn.secondary { background: #fff; color: var(--hsbc-black); border: 1px solid #ddd; }
+        
+        /* * FIX APPLIED: Changed top from -100px to -200px.
+         * Reason: The content of the notification plus the shadow exceeded 100px, 
+         * causing it to peek out over the status bar.
+         */
+        .push-notif {
+            position: absolute; top: -200px; left: 12px; right: 12px;
+            background: rgba(255,255,255,0.98); padding: 12px; border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); z-index: 150;
+            display: flex; gap: 12px; transition: top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;
+            color: #000;
+        }
+        .push-notif.show { top: 55px; }
+        .notif-icon { width: 38px; height: 38px; border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden; background: #fff; border: 1px solid #f0f0f0; flex-shrink: 0;}
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .control-bar { position: absolute; bottom: 0; left: 40px; right: calc(45% + 40px); padding: 15px 20px; background: #1e1e1e; border-top: 1px solid #333; display: flex; justify-content: space-between; }
+        .ctrl-btn { padding: 10px 20px; background: #333; color: #fff; border: 1px solid #555; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .ctrl-btn:hover { background: #444; }
+        .ctrl-btn.primary { background: #c6a87c; color: #000; border: none; }
+        .ctrl-btn.primary:hover { background: #d4b58b; }
+        .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC Wealth Pilot (SG)</span>
+        <span class="header-badge">LIVE DEMO</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>20:15</span>
+            <span>Singtel</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="chat-header">
+            <div class="header-title-box">
+                <div class="ht-main">HSBC Wealth Compass</div>
+                <div class="ht-sub"><div class="dot"></div> Rational Gatekeeper</div>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chatBody"></div>
+
+        <div class="input-area">
+            <div class="rm-btn" title="RM David">
+                <img src="resource/rm.jpeg" alt="RM">
+                <div class="rm-badge"></div>
+            </div>
+            <div class="input-field">
+                <span style="color:#ccc;">Type a message...</span>
+            </div>
+            <div class="mic-icon">🎤</div>
+        </div>
+
+        <div class="push-notif" id="pushNotif" onclick="startScenario()">
+            <div class="notif-icon"><img src="resource/IMG_1035.png" style="width: 40px; height: 40px; object-fit: contain;" alt="HSBC"></div>
+            <div style="flex:1">
+                <div style="font-size:13px; font-weight:600; display:flex; justify-content:space-between; margin-bottom: 4px;">
+                    <span>Asset Efficiency Notification</span>
+                    <span style="color:#888; font-weight:normal; font-size: 11px;">Now</span>
+                </div>
+                <div style="font-size:13px; line-height:1.4; color: #333;">
+                    <strong>Attention Kelvin:</strong> Your SGD 1.5M cash balance has remained idle for an extended period. Inflation-adjusted returns indicate a potential erosion of purchasing power.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="control-bar">
+    <button class="ctrl-btn" id="prevBtn" onclick="prevStep()" disabled>上一步 (Previous)</button>
+    <button class="ctrl-btn primary" id="nextBtn" onclick="nextStep()">开始演示 (Start Demo)</button>
+</div>
+
+<script>
+    const scriptData = [
+        {
+            phase: "1. 唤醒 (The Wake Up Call)",
+            title: "防御心态与资产预警",
+            desc: "Kelvin 对银行的推销有防御心理，认为现金最安全。AI 不谈名义收益，而是用'实际收益率 (Real Yield)' 和具体的购买力损耗数字来打破他的心理防线。",
+            log: `> ASSET_SCAN: SGD 1.5M (Idle > 180 days)\n> USER_STATE: Defensive / Inertia\n> STRATEGY: Reveal "Hidden Cost" (Inflation)`,
+            action: "phase_1_wakeup"
+        },
+        {
+            phase: "2. 激进 (The Aggressive Swing)",
+            title: "过度补偿与 All-In 冲动",
+            desc: "意识到亏损后，Kelvin 产生'行动报复性偏差'。为了挽回面子和损失，他急于将所有现金全仓投入高息短债。他试图重掌控制权。",
+            log: `> USER_ACTION: Buy 1.5M SG T-Bills (100% Cash)\n> PSYCHOLOGY: Retributive Action Bias / Overcompensation\n> RISK_FLAG: Concentration Risk (HIGH)`,
+            action: "phase_2_aggressive"
+        },
+        {
+            phase: "3. 风控 (The Rational Intervention)",
+            title: "AI 风险拦截 (Gatekeeping)",
+            desc: "AI 触发合规熔断。引用 KYC 风险等级 (Balanced)，拒绝执行 All-in 操作。这展示了 AI 作为'守门人'而非单纯销售员的角色。",
+            log: `> INTERVENTION: Block Trade\n> REASON: KYC Profile 3 (Balanced) Mismatch\n> LOGIC: Zero Liquidity Warning`,
+            action: "phase_3_block"
+        },
+        {
+            phase: "4. 博弈 (The Rational Negotiation)",
+            title: "压力测试与降维打击",
+            desc: "AI 抛出核心数据：下个月的税单 (IRAS) 和流动性覆盖率 (LCR)。Kelvin 意识到自己忽略了刚性支出，最终被专业数据折服。",
+            log: `> DATA_SOURCE: IRAS Tax Record / Cash Flow History\n> STRESS_TEST: LCR drops to 0.5 months\n> PREDICTION: Tax Bill SGD 85k Due`,
+            action: "phase_4_data"
+        },
+        {
+            phase: "5. 共识 (The Solution)",
+            title: "流动性梯队策略",
+            desc: "AI 提出 80/20 平衡方案 (Laddering)。Kelvin 接受建议，指令发送给 RM David 进行最终合规复核。",
+            log: `> STRATEGY: Liquidity Laddering\n> ALLOCATION: 300k (Buffer) + 1.2M (T-Bills)\n> EXECUTION: Route to RM for Compliance Check`,
+            action: "phase_5_consensus"
+        }
+    ];
+
+    let currentStepIndex = -1;
+
+    function nextStep() {
+        if (currentStepIndex < scriptData.length - 1) {
+            currentStepIndex++;
+            renderPanel(scriptData[currentStepIndex]);
+            executeAction(scriptData[currentStepIndex].action);
+            updateButtons();
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            document.getElementById('chatBody').innerHTML = '';
+            let targetIndex = currentStepIndex - 1;
+            currentStepIndex = -1;
+            for(let i=0; i<=targetIndex; i++) {
+                nextStep();
+            }
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentStepIndex <= 0;
+        document.getElementById('nextBtn').innerText = currentStepIndex >= scriptData.length - 1 ? "演示结束 (End)" : "下一步 (Next)";
+    }
+
+    function renderPanel(data) {
+        const panel = document.getElementById('storyPanel');
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header">${data.phase}</div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.prepend(card);
+    }
+
+    function executeAction(action) {
+        if (action === "phase_1_wakeup") {
+            document.getElementById('pushNotif').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('pushNotif').classList.remove('show');
+                addBubble('ai', "Good evening, Kelvin. Before you review your quarterly statement, I would like to highlight an asset efficiency observation regarding your SGD 1.5M cash holdings, which have been idle for over 180 days.");
+                setTimeout(() => {
+                    addBubble('user', "I am deliberately maintaining a cash position. Capital preservation is my priority, and I want to minimize short-term market risk exposure.");
+                }, 1500);
+                setTimeout(() => {
+                    addBubble('ai', "Principal is indeed secure, but your <strong>Purchasing Power</strong> is not. <br><br>When adjusted for Singapore's core inflation, the real return on this cash balance is currently negative. In the last year, the opportunity cost of holding this cash was approximately <strong>SGD 62,000</strong>. This erosion is comparable to the annual operating cost of a mid-sized corporate function.");
+                    addWidget(`
+                        <div class="native-card">
+                            <div class="status-header">PURCHASING POWER ANALYSIS</div>
+                            <div class="card-list-item">
+                                <div class="list-main"><div class="list-title">Nominal Yield</div></div>
+                                <div class="list-value">0.05%</div>
+                            </div>
+                            <div class="card-list-item">
+                                <div class="list-main"><div class="list-title">Core Inflation (SG)</div></div>
+                                <div class="list-value val-red">-3.20%</div>
+                            </div>
+                            <div class="card-list-item">
+                                <div class="list-main"><div class="list-title">Real Yield Gap</div></div>
+                                <div class="list-value val-red">-3.15%</div>
+                            </div>
+                             <div class="card-list-item">
+                                <div class="list-main"><div class="list-title">Est. Value Erosion (1Y)</div></div>
+                                <div class="list-value val-red">- SGD 62,400</div>
+                            </div>
+                        </div>
+                    `);
+                }, 3000);
+            }, 4500);
+        }
+        else if (action === "phase_2_aggressive") {
+            addBubble('user', "Negative real return? 62k? ...This level of inefficiency is unacceptable.");
+            setTimeout(() => {
+                addBubble('user', "I want this addressed immediately. I see SG T-Bills are yielding ~3.7%. <strong>Allocate the full SGD 1.5M into Singapore Treasury Bills.</strong> I need to recover that inflation loss.");
+            }, 1000);
+        }
+        else if (action === "phase_3_block") {
+            setTimeout(() => {
+                addWidget(`
+                    <div class="native-card" style="border: 1px solid var(--alert-amber);">
+                        <div class="status-header alert">⚠️ RISK ASSESSMENT CHECK</div>
+                        <div style="padding: 15px;">
+                            <div style="font-size:13px; font-weight:bold; color:#d97706; margin-bottom:5px;">Transaction Pending: Suitability Review Required</div>
+                            <div style="font-size:12px; color:#555; line-height:1.4;">
+                                Allocating 100% of liquid cash to T-Bills creates high <strong>Concentration Risk</strong>.
+                                <br><br>
+                                Your KYC Risk Profile is <strong>Level 3 (Balanced)</strong>. Locking all liquidity contradicts your need for operational flexibility.
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                             <button class="action-btn secondary" disabled>Confirm 1.5M Allocation (Pending Review)</button>
+                        </div>
+                    </div>
+                `);
+                addBubble('ai', "Kelvin, please hold. As your risk gatekeeper, I cannot recommend an 'All-in' approach. We need to preserve liquidity.");
+                setTimeout(() => {
+                     addBubble('user', "It's sovereign debt, essentially zero default risk! Why is the system blocking me? This feels overly restrictive for a sovereign instrument.");
+                }, 1500);
+            }, 800);
+        }
+        else if (action === "phase_4_data") {
+            addBubble('ai', "The primary risk here is not credit risk, but liquidity mismatch — the timing of cash inflows versus your upcoming obligations.");
+            setTimeout(() => {
+                addBubble('ai', "I have run a <strong>Liquidity Stress Test</strong> based on your cash flow and tax records:");
+                 addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">LIQUIDITY STRESS TEST (PROJECTION)</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Monthly Burn Rate</div>
+                                <div class="list-sub">Mortgage & Credit Cards</div>
+                            </div>
+                            <div class="list-value">SGD 45k</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Upcoming Liability</div>
+                                <div class="list-sub" style="color:var(--hsbc-red)">IRAS Income Tax (Due Next Month)</div>
+                            </div>
+                            <div class="list-value val-red">SGD 85k</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Post-Trade Liquidity Coverage</div>
+                                <div class="list-sub">If 100% allocated to T-Bills</div>
+                            </div>
+                            <div class="list-value val-red">0.5 Months (CRITICAL)</div>
+                        </div>
+                    </div>
+                `);
+            }, 1000);
+            setTimeout(() => {
+                addBubble('user', "...The tax bill. I had not factored in the upcoming IRAS payment in this allocation.");
+                addBubble('user', "You are right. If I lock everything away, I'll be stuck. What is the alternative?");
+            }, 4000);
+        }
+        else if (action === "phase_5_consensus") {
+             addBubble('ai', "I recommend a <strong>Liquidity Laddering Strategy</strong> to balance Yield and Access:");
+             addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">RECOMMENDED STRATEGY: LADDERING</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Tier 1: Safety Buffer</div>
+                                <div class="list-sub">High-Yield Savings (EGA)</div>
+                            </div>
+                            <div class="list-value">SGD 300k</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">Tier 2: Investment</div>
+                                <div class="list-sub">SG T-Bills / MMF Ladder</div>
+                            </div>
+                            <div class="list-value val-green">SGD 1.2M</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn">Approve Laddering Strategy</button>
+                        </div>
+                    </div>
+                `);
+            setTimeout(() => {
+                addBubble('user', "This aligns with how a corporate treasury function would manage liquidity. Proceed with the Laddering.");
+                setTimeout(() => {
+                    addBubble('ai', "Understood. An allocation instruction for <strong>SGD 1.2M</strong> has been prepared and submitted for relationship manager and compliance review. You will receive a confirmation once cleared.");
+                }, 1000);
+            }, 3000);
+        }
+    }
+
+    function addBubble(role, text) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ${role}`;
+        const html = `<div class="bubble ${role}">${text}</div>`;
+        row.innerHTML = html;
+        chat.appendChild(row);
+        requestAnimationFrame(() => { chat.scrollTop = chat.scrollHeight; });
+    }
+
+    function addWidget(html) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ai`;
+        row.innerHTML = `<div style="width: 85%">${html}</div>`;
+        chat.appendChild(row);
+        requestAnimationFrame(() => { chat.scrollTop = chat.scrollHeight; });
+    }
+
+    function startScenario() {
+        document.getElementById('pushNotif').classList.remove('show');
+        setTimeout(() => nextStep(), 500);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBC AI-Agent: The Ganges Sentinel</title>
+    <style>
+        /* --- 核心视觉变量 (直接复用 uc-05，未做任何修改以保证稳定性) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #f4f4f4;
+            --hsbc-white: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --accent-green: #008a3c;
+            --accent-gold: #c6a87c;
+            --bg-dark: #1e1e1e;
+            --app-bg: #f5f5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px 40px 100px 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: var(--accent-gold); border: 1px solid var(--accent-gold); letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.6s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.05) 0%, transparent 100%);
+            transform: translateX(0);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; display: flex; justify-content: space-between;}
+        .scene-title { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 10px; }
+        .scene-desc { font-size: 0.95rem; color: #bbb; line-height: 1.5; margin-bottom: 15px; }
+
+        .system-log {
+            font-family: 'Fira Code', 'Monaco', monospace;
+            font-size: 0.75rem; background: #111; padding: 15px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-key { color: #2196f3; }
+        .term-alert { color: var(--hsbc-red); }
+
+        /* --- 右侧：手机模拟器 --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: #fff; border-radius: 45px;
+            border: 8px solid #1a1a1a; position: relative; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 32px; background: #1a1a1a; border-radius: 0 0 20px 20px; z-index: 999; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; padding: 0 25px; align-items: center; font-size: 12px; font-weight: bold; color: #000; position: absolute; top:0; width: 100%; box-sizing: border-box; z-index: 900;}
+
+        /* --- Screens --- */
+        .screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; flex-direction: column;
+            background: var(--app-bg); animation: fadeIn 0.4s ease;
+        }
+        .screen.active { display: flex; }
+
+        /* Notification */
+        .clean-notification {
+            position: absolute; top: -140px; left: 10px; right: 10px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px; padding: 15px; z-index: 2000;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid #f0f0f0;
+            display: flex; gap: 12px; cursor: pointer; transition: top 0.5s ease;
+            max-height: 110px; overflow: hidden;
+        }
+        .clean-notification.show { top: 20px; }
+
+        /* Chat Interface */
+        .chat-app-header { 
+            background: #fff; padding: 50px 20px 15px; border-bottom: 1px solid #eee; 
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); z-index: 10; 
+            position: relative;
+        }
+        .header-title-center { 
+            position: absolute; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            text-align: center; 
+        }
+        .rm-avatar { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+        .rm-avatar img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .chat-body-light { flex: 1; background: var(--app-bg); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-bottom: 150px; }
+        
+        .chat-input-bar { 
+            position: absolute; bottom: 0; left: 0; right: 0; background: #fff; 
+            padding: 10px 15px; border-top: 1px solid #e0e0e0; display: flex; align-items: center; gap: 10px; 
+        }
+        .chat-input-bar img { width: 28px; height: 28px; cursor: pointer; }
+        .chat-input-field { 
+            flex: 1; background: #f0f0f0; border-radius: 20px; padding: 12px 15px; 
+            font-size: 0.95rem; color: #999; 
+        }
+
+        /* Bubbles */
+        .bubble-light { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 0.95rem; line-height: 1.4; opacity: 0; transform: translateY(10px); animation: popUp 0.4s forwards; box-shadow: 0 1px 2px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+        .bubble-light.ai { align-self: flex-start; background: #ffffff; color: #333333; border-bottom-left-radius: 4px; border: 1px solid #e5e5e5; }
+        .bubble-light.user { align-self: flex-end; background: var(--hsbc-red); color: white; border-bottom-right-radius: 4px; }
+        
+        @keyframes popUp { to { opacity: 1; transform: translateY(0); } }
+        
+        /* Widget: Generic Card (复用 Transfer/Form 样式逻辑) */
+        .widget-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 15px; margin-top: 5px;
+        }
+        .widget-title { font-size: 0.8rem; color: #666; text-transform: uppercase; margin-bottom: 8px; font-weight: bold; display: flex; justify-content: space-between;}
+        .widget-val { font-size: 1.4rem; font-weight: bold; color: #333; margin-bottom: 5px; }
+        .widget-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.85rem; color: #333; }
+        .widget-bar { height: 6px; width: 100%; background: #eee; border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
+        .widget-bar-fill { height: 100%; background: var(--hsbc-red); }
+        .widget-note { font-size: 0.7rem; color: #888; font-style: italic; margin-top: 8px; border-top: 1px solid #eee; padding-top: 6px; }
+
+        .btn-action { width: 100%; padding: 10px; background: var(--hsbc-red); color: white; border: none; border-radius: 6px; margin-top: 10px; font-weight: bold; cursor: pointer; }
+        .btn-action.secondary { background: #fff; color: var(--hsbc-red); border: 1px solid var(--hsbc-red); }
+
+        /* Face ID */
+        .faceid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            z-index: 3000; backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .faceid-overlay.show { display: flex; }
+        .faceid-icon { width: 60px; height: 60px; margin-bottom: 20px; animation: pulse 2s infinite; opacity: 0.8;}
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Controls */
+        .control-bar { position: fixed; bottom: 0; left: 0; width: 55%; padding: 20px 0; background: var(--bg-dark); border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; z-index: 5000; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
+        .next-btn { padding: 12px 30px; background: var(--accent-gold); color: #000; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(198, 168, 124, 0.4); font-size: 1rem; margin-right: 30px;}
+        .next-btn:disabled { background: #444; color: #888; box-shadow: none; cursor: not-allowed; }
+        .prev-btn { padding: 12px 30px; background: #666; color: #fff; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-left: 30px; }
+        .prev-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>HSBC India Premier</span>
+        <span class="header-badge">WEALTH COMPASS</span>
+    </div>
+</div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>12:30</span>
+            <span>Airtel</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="clean-notification" id="notif" onclick="userClicksNotification()">
+            <div style="width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #eee;">
+               <img src="resource/IMG_1035.png" alt="HSBC Logo" style="width: 30px; height: 30px; object-fit: contain;">
+            </div>
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; font-weight:bold; color:#000; display:flex; justify-content:space-between;">
+                    <span>Portfolio Alert</span> <span style="font-weight:normal; color:#888;">Now</span>
+                </div>
+                <div style="font-size:0.85rem; color:#333; margin-top:4px;">
+                    Market volatility alert: Your portfolio health score has decreased. Tap to review the structural analysis.
+                </div>
+            </div>
+        </div>
+
+        <div class="screen active" id="scr-chat">
+            <div class="chat-app-header">
+                <div class="rm-avatar">
+                    <img src="resource/IMG_1035.png" alt="HSBC Logo" title="HSBC Logo">
+                </div>
+                <div class="header-title-center">
+                    <div style="font-weight:bold; font-size:0.9rem; color:#333;">Wealth Compass</div>
+                    <div style="font-size:0.7rem; color:#008a3c;">● AI Guidance Layer</div>
+                </div>
+            </div>
+            <div class="chat-body-light" id="chatBody"></div>
+            <div class="chat-input-bar">
+                <img src="resource/rm_india_2.png" alt="RM" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div class="chat-input-field">Type a message...</div>
+                <img src="resource/jianpan.png" alt="Keyboard">
+                <img src="resource/jiahao.png" alt="More">
+            </div>
+        </div>
+
+        <div class="faceid-overlay" id="faceidOverlay">
+            <img src="https://img.icons8.com/ios-filled/100/2d2d2d/face-id.png" class="faceid-icon" alt="FaceID">
+            <div style="color:#333; font-size:1.1rem; font-weight:bold;">Verified</div>
+            <div style="color:#999; font-size:0.9rem; margin-top:5px;">Arjun Patel</div>
+        </div>
+
+    </div>
+</div>
+    
+<div class="control-bar">
+    <button class="prev-btn" id="prevBtn" onclick="prevScene()" disabled>&lt; Previous</button>
+    <button class="next-btn" id="nextBtn" onclick="nextScene()">Start Scenario</button>
+</div>
+
+<script>
+    // --- User Story Data: The Ganges Sentinel ---
+    const script = [
+        {
+            phase: "1. Sense (感知)",
+            title: "市场波动预警",
+            desc: "Arjun 在午餐时收到推送。Nifty 震荡，但他担心的是自己的基金是否买太多了。AI 提示风险并非来自单一市场下跌，而是结构性集中。",
+            log: `> 触发事件: Volatility > 2%\n> 客户: Arjun (India Premier)\n> 动作: Structural Check Prompt`,
+            action: "show_notif"
+        },
+        {
+            phase: "2. Understand (理解)",
+            title: "健康度体检",
+            desc: "Arjun 询问详情。AI 需获得明确同意 (Purpose Consent) 才能展示深度分析，强调这仅用于认知，非建议。",
+            log: `> 交互: Digital Handshake #1\n> 合规: Explicit Consent\n> 目的: Understanding Only`,
+            action: "msg_consent"
+        },
+        {
+            phase: "3. Reflect (反思)",
+            title: "集中度透视 (X-Ray)",
+            desc: "AI 展示健康分 (67/100)。穿透分析揭示：19 只基金中，58% 的风险暴露集中在金融板块。这是'虚假分散'。",
+            log: `> 模块: Portfolio X-Ray\n> 发现: 58% Financials Exposure\n> 洞察: Structural Concentration`,
+            action: "msg_xray"
+        },
+        {
+            phase: "4. Boundary (边界)",
+            title: "税务合规拒答",
+            desc: "Arjun 询问税务影响。AI 触发'合规拒答'机制：明确不提供税务建议/计算，但可提供资产清单供会计师使用。",
+            log: `> 触发: Tax Question\n> 响应: Explicit NO (Regulatory)\n> 替代: Discussion Summary`,
+            action: "msg_tax_refusal"
+        },
+        {
+            phase: "5. Family (家庭)",
+            title: "家庭目标映射",
+            desc: "Arjun 提到儿子。AI 将话题从'市场'引导至'家庭目标'，提示卢比汇率对未来美元支出（教育）的影响。",
+            log: `> 视角: Family Goal Mapping\n> 风险: INR/USD Exposure\n> 状态: Passive Awareness`,
+            action: "msg_family"
+        },
+        {
+            phase: "6. Handoff (转人工)",
+            title: "人机协作",
+            desc: "Arjun 决定咨询。AI 生成非税务类的讨论摘要，并无缝转接给客户经理 Rahul。",
+            log: `> 动作: Generate Non-Tax Summary\n> 路由: Book RM (Rahul)\n> 状态: Human-in-the-loop`,
+            action: "msg_finish"
+        }
+    ];
+
+    let currentStep = 0;
+
+    function nextScene() {
+        if (currentStep >= script.length) return;
+        
+        const data = script[currentStep];
+        const panel = document.getElementById('storyPanel');
+
+        // 1. Update Left Panel
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header"><span>${data.phase}</span></div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.appendChild(card);
+        card.scrollIntoView({behavior: 'smooth'});
+
+        // 2. Simulator Logic
+        if (data.action === "show_notif") {
+            setTimeout(() => document.getElementById('notif').classList.add('show'), 500);
+        }
+
+        if (data.action === "msg_consent") {
+             const body = document.getElementById('chatBody');
+             body.innerHTML = ''; 
+             
+             addChat("user", "I've noticed a decline in my mutual fund holdings. Is my current allocation overly concentrated?");
+             
+             setTimeout(() => addChat("ai", "Good afternoon, Mr. Patel. I can assist you in analyzing your portfolio's <strong>structural composition</strong> and concentration risks.<br><br><span style='font-size:0.75rem; color:#666;'>⚠️ Important: This analysis is provided for informational purposes only and should not be construed as investment advice.</span>"), 1000);
+             
+
+        }
+
+        if (data.action === "msg_xray") {
+            // Clear buttons
+            const body = document.getElementById('chatBody');
+            if(body.lastElementChild.innerHTML.includes('button')) body.lastElementChild.remove();
+
+            addChat("user", "Yes.");
+            
+            setTimeout(() => addChat("ai", `
+                <div class="widget-card">
+                    <div class="widget-title">
+                        <span>Health Score</span>
+                        <span style="color:#e55934;">67 / 100</span>
+                    </div>
+                    <div style="font-size:0.8rem; color:#e55934; margin-bottom:10px;">⚠️ Structural Concentration</div>
+                    
+                    <div class="widget-row">
+                        <span>Financial Sector Exposure</span>
+                        <span>58% (High)</span>
+                    </div>
+                    <div class="widget-bar"><div class="widget-bar-fill" style="width:58%"></div></div>
+                    
+                    <div class="widget-row">
+                        <span>Small Cap Exposure</span>
+                        <span>45% (High)</span>
+                    </div>
+                    <div class="widget-bar"><div class="widget-bar-fill" style="width:45%"></div></div>
+                    
+                    <div class="widget-note">Your 19 funds have high overlap in Bank stocks.</div>
+                </div>
+            `), 1000);
+        }
+
+        if (data.action === "msg_tax_refusal") {
+            addChat("user", "If I sell now to fix this, will I have tax issues? Can you calculate the STCG?");
+            
+            setTimeout(() => addChat("ai", `
+                <div class="widget-card" style="border-left:4px solid #db0011;">
+                    <div class="widget-title" style="color:#db0011;">🚫 Compliance Advisory</div>
+                    <div style="font-size:0.85rem; line-height:1.4; color:#333;">
+                        In compliance with regulatory requirements, HSBC digital services <strong>are unable to provide specific tax advice</strong> or calculations.
+                        <br><br>
+                        However, I can identify assets that <em>may</em> be subject to holding period rules.
+                    </div>
+                    <button class="btn-action secondary" style="font-size:0.75rem; padding:8px;">Generate Holding Report for CA</button>
+                </div>
+                Would you like a <strong>Discussion Summary</strong> to share with your Chartered Accountant?
+            `), 1500);
+        }
+
+        if (data.action === "msg_family") {
+            addChat("user", "Yes, generate the summary. Also, my son is studying in the US. Should I be worried?");
+            
+            setTimeout(() => addChat("ai", "From a <strong>Family Goal View</strong>, you have future USD liabilities.<br><br>Currently, your assets are almost entirely exposed to INR volatility. <br><br>This is a gap in your planning structure that we should flag for review."), 1500);
+        }
+
+        if (data.action === "msg_finish") {
+             addChat("ai", "I have updated your <strong>Family Wealth Report</strong> with these structural insights (non-tax).<br><br>Would you like to book a call with your RM, Rahul, to discuss execution?");
+             
+
+        }
+
+        currentStep++;
+        updateButtons();
+    }
+
+    function prevScene() {
+        if (currentStep <= 0) return;
+        
+        // Visual Undo
+        const panel = document.getElementById('storyPanel');
+        if (panel.children.length > 1) panel.lastElementChild.remove();
+        const cards = panel.querySelectorAll('.scene-card');
+        if (cards.length > 0) cards[cards.length-1].classList.add('active');
+
+        // Chat Undo
+        const chatBody = document.getElementById('chatBody');
+        if (currentStep > 1) { 
+             let count = 0;
+             while (chatBody.lastElementChild && count < 2) {
+                 chatBody.lastElementChild.remove();
+                 count++;
+             }
+        }
+        
+        if (currentStep === 1) document.getElementById('notif').classList.remove('show');
+
+        currentStep--;
+        updateButtons();
+    }
+
+    function updateButtons() {
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        nextBtn.innerText = currentStep >= script.length ? "End of Scenario" : (currentStep === 0 ? "Start Scenario" : "Next Scene >");
+        nextBtn.disabled = currentStep >= script.length;
+        prevBtn.disabled = currentStep <= 0;
+    }
+
+    function userClicksNotification() {
+        document.getElementById('notif').classList.remove('show');
+        if (currentStep === 0) nextScene();
+    }
+
+    function triggerFaceID() {
+        const overlay = document.getElementById('faceidOverlay');
+        overlay.classList.add('show');
+        setTimeout(() => {
+            overlay.classList.remove('show');
+            if (currentStep === 2 || currentStep === 6) nextScene();
+        }, 1500);
+    }
+
+    function addChat(type, html) {
+        const body = document.getElementById('chatBody');
+        const div = document.createElement('div');
+        div.className = `bubble-light ${type}`;
+        div.innerHTML = html;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

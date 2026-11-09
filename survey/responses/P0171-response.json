@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0171",
+  "q1_aum": "USD 150k – 500k",
+  "q2_age": "55 – 60",
+  "q3_residence": "Hong Kong / Macau",
+  "q4_markets": ["Hong Kong", "United States (e.g., US equities)"],
+  "q5_products": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "China / Hong Kong equities",
+    "REIT funds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "China / Hong Kong equities",
+    "REIT funds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q8_allocation_ranking": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "China / Hong Kong equities",
+    "REIT funds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q9_profit_perception_ranking": [
+    "China / Hong Kong equities",
+    "REIT funds",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "China / Hong Kong equities",
+    "REIT funds"
+  ],
+  "q11_fx_impact": "Limited impact",
+  "q12_primary_priority": "Stable cash flow"
+}

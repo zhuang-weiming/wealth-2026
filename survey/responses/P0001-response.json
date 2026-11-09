@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0001",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "50 – 54",
+  "q3_residence": "United States",
+  "q4_markets": ["United States"],
+  "q5_products": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment-grade corporate or financial bonds",
+    "Investment properties (core cities)"
+  ],
+  "q6_holding_period": ["Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Investment properties (core cities)",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q8_allocation_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "Investment-grade corporate or financial bonds"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment properties (core cities)",
+    "Investment-grade corporate or financial bonds",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)"
+  ],
+  "q10_market_popularity": [
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "U.S. individual stocks (non-ETF)",
+    "Government bonds (e.g., U.S. Treasuries, sovereign or municipal bonds)"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

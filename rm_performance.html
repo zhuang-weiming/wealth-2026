@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .brand-red {
+            color: #db0011;
+        }
+
+        .bg-brand-red {
+            background-color: #db0011;
+        }
+
+        .border-brand-red {
+            border-color: #db0011;
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .chat-bubble-in {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Copilot Widget Styling */
+        .copilot-widget {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            height: 600px;
+            max-height: 80vh;
+            z-index: 50;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+        }
+        .copilot-widget.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 640px) {
+            .copilot-widget {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                border-radius: 1rem 1rem 0 0;
+                max-height: 50vh;
+            }
+        }
+        .copilot-trigger {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 49;
+            transition: transform 0.2s;
+        }
+        .copilot-trigger:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+        </head>
+
+        <body class="bg-gray-100 text-gray-800 h-screen flex flex-col overflow-hidden">
+
+    <div class="flex-1 flex flex-col overflow-y-auto">
+
+        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="resource/IMG_1035.png" alt="HSBC" class="h-6 mr-3">
+                    <h2 class="font-bold text-lg text-gray-800">Sales Performance</h2>
+                </div>
+                <nav class="flex space-x-4 text-sm items-center">
+                    <a href="rm_opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                            class="fa-solid fa-magnifying-glass md:mr-1"></i> <span class="hidden md:inline">Opportunity</span></a>
+                    <a href="rm_planning.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                            class="fa-solid fa-user-check md:mr-1"></i> <span class="hidden md:inline">Planning</span></a>
+                    <a href="rm_investment.html" class="text-gray-600 hover:text-brand-red flex items-center"><i
+                            class="fa-solid fa-chart-line md:mr-1"></i> <span class="hidden md:inline">Investment</span></a>
+                    <a href="rm_performance.html"
+                        class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i
+                            class="fa-solid fa-chart-pie md:mr-1"></i> <span class="hidden md:inline">Performance</span></a>
+                    <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i
+                            class="fa-solid fa-house"></i></a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 pb-32">
+            <div class="max-w-5xl mx-auto space-y-8">
+
+                <div id="copilot-insight-card"
+                    class="bg-yellow-100 rounded-xl p-5 shadow-lg border-l-8 border-yellow-500 transition duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-4xl text-yellow-700"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-xl text-yellow-800 mb-2 flex items-center">
+                                <span
+                                    class="bg-yellow-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">INSIGHT</span>
+                                Coaching Opportunity
+                            </h3>
+                            <p class="text-sm text-gray-700">Pacific Northwest's success rate on ESG mandate referrals is 15%
+                                below the national average. Suggest a brief training session.</p>
+                            <button onclick="handleCopilotInput('Pacific Northwest ESG coaching plan')"
+                                class="mt-3 text-sm font-semibold text-yellow-700 hover:underline flex items-center">
+                                Generate Coaching Plan <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">QTD Sales Volume</p>
+                        <p class="text-3xl font-bold text-gray-900">$2,415,000</p>
+                        <p class="text-xs text-green-600 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i> +12.4% from last
+                            quarter</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">Referral Pipeline</p>
+                        <p class="text-3xl font-bold text-gray-900">42</p>
+                        <p class="text-xs text-red-600 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i> -3 referrals
+                            this week</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">ESG Conversion Rate</p>
+                        <p class="text-3xl font-bold text-gray-900">64.8%</p>
+                        <p class="text-xs text-gray-500 mt-1">National Avg: 71.2%</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">Top Sales Reps (QTD)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold w-4 text-green-700">1.</span>
+                                <span class="font-semibold text-gray-800 ml-3">Emily Zhang</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-lg text-green-700">$452,100</p>
+                                <span class="text-xs text-gray-500">22 New Accounts</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold w-4 text-gray-500">2.</span>
+                                <span class="font-semibold text-gray-800 ml-3">Michael Scott</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-lg text-gray-800">$384,200</p>
+                                <span class="text-xs text-gray-500">1 Major Deal</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="font-bold w-4 text-gray-500">3.</span>
+                                <span class="font-semibold text-gray-800 ml-3">Sasa Connor</span>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-lg text-gray-800">$215,400</p>
+                                <span class="text-xs text-gray-500">3 Deals</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 border-b pb-2">Regional Performance (QTD)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Region</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Sales Volume</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Conversion Rate</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Change</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        AI Insight</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Northeast Metro
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,105,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">78.4%
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600"><i
+                                            class="fa-solid fa-arrow-up mr-1"></i> +5.2%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700">Top-tier product
+                                        knowledge.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Pacific Northwest
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$802,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-semibold">50.1%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600"><i
+                                            class="fa-solid fa-arrow-down mr-1"></i> -10.5%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700 flex items-center">
+                                        ESG mandate struggling.
+                                        <button onclick="handleCopilotInput('Pacific Northwest struggling')"
+                                            class="ml-3 text-blue-500 hover:text-blue-700 text-xs font-semibold">Ask
+                                            AI</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Midwest Region</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$508,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-semibold">71.0%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">0%</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-700">Steady performance, no
+                                        flags.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot()" class="copilot-trigger bg-brand-red text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-red-700 focus:outline-none transition-colors">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    <aside id="copilot-widget" class="copilot-widget bg-white flex flex-col flex-shrink-0 p-4 border border-gray-200">
+        <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
+            <h3 class="text-lg font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
+            <button onclick="toggleCopilot()" class="text-gray-400 hover:text-gray-600 transition-colors"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div
+                    class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-robot"></i></div>
+                <div
+                    class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">
+                    Welcome back. Your dashboard has been updated. Do you have any questions about this quarter's
+                    performance?</div>
+            </div>
+
+        </div>
+        <div class="flex-shrink-0 space-y-3">
+            <div class="mb-3">
+                <div class="flex items-center gap-2 mb-2">
+                    <i class="fa-solid fa-bolt text-blue-400 text-xs"></i>
+                    <span class="text-xs font-semibold text-gray-600">Quick Actions:</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="handleCopilotInput('Why is Pacific Northwest struggling?')"
+                        class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Why
+                        is Pacific Northwest struggling?</button>
+                    <button onclick="handleCopilotInput('Identify top growth this quarter')"
+                        class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Identify
+                        top growth this quarter</button>
+                    <button onclick="handleCopilotInput('Schedule Pacific Northwest ESG coaching')"
+                        class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">Schedule
+                        Regional ESG coaching</button>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200 flex space-x-2">
+                <input type="text" id="copilot-input" placeholder="Ask a question about sales performance..."
+                    class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-red"
+                    onkeypress="if(event.key === 'Enter') handleCopilotInput()">
+                <button onclick="handleCopilotInput()"
+                    class="bg-brand-red hover:bg-red-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        // Helper function to render messages in the chat panel
+        function sendChatMessage(message, isUser = false) {
+            const chatContainer = document.getElementById('chat-container');
+            const newChat = document.createElement('div');
+            newChat.className = `flex gap-3 chat-bubble-in mb-4 ${isUser ? 'justify-end' : ''}`;
+
+            const messageContent = `<div class="p-3 rounded-lg shadow-sm border text-sm w-full max-w-xs ${isUser ? 'bg-brand-red text-white rounded-tr-none border-brand-red' : 'bg-white text-gray-700 rounded-tl-none border-gray-200'}">${message}</div>`;
+            const avatar = `<div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>`;
+
+            if (isUser) {
+                newChat.innerHTML = `${messageContent}${avatar}`;
+            } else {
+                newChat.innerHTML = `${avatar}${messageContent}`;
+            }
+
+            chatContainer.appendChild(newChat);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Handle user input from the text field or action buttons
+        function handleCopilotInput(presetMessage = '') {
+            const input = document.getElementById('copilot-input');
+            let message = presetMessage || input.value.trim();
+
+            if (message !== '') {
+                // Append User Msg
+                sendChatMessage(message, true);
+
+                // Clear input if it wasn't a preset
+                if (!presetMessage) {
+                    input.value = '';
+                }
+
+                // Simulate AI response based on message
+                let response = `Analysis requested for: **${message}**. Please wait for the results.`;
+                if (message.includes('Pacific Northwest struggling')) {
+                    response = `The Pacific Northwest region's primary gap is **lack of confidence in new ESG product documentation**. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
+                } else if (message.includes('growth this quarter')) {
+                    response = `Top 3 growth drivers: **Robert Chen** (Liquidity Event), **Alice Num** (New ETF allocation), and **Sarah Jenkins** (New client onboard).`;
+                } else if (message.includes('ESG coaching plan')) {
+                    response = `Coaching Plan Generated: Focus on product knowledge (iShares ESG Advanced vs. Vanguard ESG Global). Schedule sent to Regional leaders.`;
+                } else if (message.includes('Schedule Pacific Northwest ESG coaching')) {
+                    response = `Meeting scheduled with Pacific Northwest leaders for **Tuesday, 10:00 AM** to review ESG process. Calendar invites sent.`;
+                }
+
+                setTimeout(() => {
+                    sendChatMessage(response, false);
+                }, 800);
+            }
+        }
+
+        function toggleCopilot() {
+            const widget = document.getElementById('copilot-widget');
+            const trigger = document.getElementById('copilot-trigger');
+            widget.classList.toggle('active');
+            
+            if (widget.classList.contains('active')) {
+                trigger.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    const input = document.getElementById('copilot-input');
+                    if(input) input.focus();
+                }, 100);
+            } else {
+                trigger.style.transform = 'scale(1)';
+            }
+        }
+    </script>
+</body>
+
+</html>

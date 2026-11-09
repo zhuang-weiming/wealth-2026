@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汇丰 AI 助手：大湾区理财通 (Patrick Wang)</title>
+    <style>
+        /* --- 核心视觉变量 (HSBC Theme) --- */
+        :root {
+            --hsbc-red: #db0011;
+            --hsbc-black: #2d2d2d;
+            --hsbc-gray: #5A5A5A;
+            --hsbc-light-gray: #f2f2f7; /* iOS Background */
+            --white: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #8e8e93;
+            --accent-green: #008a3c;
+            --bubble-user: #db0011;
+            --bubble-ai: #ffffff;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Segoe UI", Roboto, sans-serif;
+            background-color: #1e1e1e;
+            color: #cccccc;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- 左侧：剧本与后台 (Governance View) --- */
+        .story-panel {
+            width: 55%;
+            padding: 40px;
+            border-right: 1px solid #333;
+            overflow-y: auto;
+            background: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-title {
+            font-size: 1.4rem; color: #fff; 
+            border-bottom: 2px solid var(--hsbc-red); padding-bottom: 15px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-badge { font-size: 0.7rem; background: #333; padding: 4px 8px; border-radius: 4px; color: #c6a87c; border: 1px solid #c6a87c; letter-spacing: 1px;}
+
+        .scene-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0.3; transform: translateX(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .scene-card.active {
+            opacity: 1; border-left-color: var(--hsbc-red);
+            background: linear-gradient(90deg, rgba(219, 0, 17, 0.08) 0%, transparent 100%);
+            transform: translateX(0);
+        }
+
+        .scene-header { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .scene-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .scene-desc { font-size: 0.9rem; color: #bbb; line-height: 1.5; margin-bottom: 10px; }
+
+        .system-log {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.75rem; background: #111; padding: 12px;
+            border-radius: 6px; border: 1px solid #333; color: #aaa;
+            line-height: 1.4;
+        }
+        .term-val { color: var(--accent-green); }
+        .term-alert { color: #ff9f0a; }
+
+        /* --- 右侧：手机模拟器 (User View) --- */
+        .device-stage {
+            width: 45%;
+            background: #e5e5e5;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .phone-frame {
+            width: 375px; height: 812px;
+            background: var(--hsbc-light-gray); border-radius: 45px;
+            border: 10px solid #2d2d2d; 
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 1. 状态栏 */
+        .status-bar { 
+            height: 44px; flex-shrink: 0;
+            display: flex; justify-content: space-between; padding: 0 20px; align-items: flex-end; padding-bottom: 8px; 
+            font-size: 12px; font-weight: 600; color: #000; 
+            background: rgba(255,255,255,0.95); z-index: 100;
+        }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 160px; height: 30px; background: #2d2d2d; border-radius: 0 0 18px 18px; z-index: 101; }
+
+        /* 2. 头部 */
+        .chat-header {
+            height: 50px; flex-shrink: 0;
+            background: rgba(255,255,255,0.95); border-bottom: 1px solid #e5e5e5;
+            display: flex; align-items: center; padding: 0 15px; z-index: 90;
+        }
+        .header-title-box { flex: 1; text-align: center; }
+        .ht-main { font-size: 16px; font-weight: 600; color: #000; }
+        .ht-sub { font-size: 11px; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+
+        /* 3. 聊天区域 */
+        .chat-body {
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 15px; 
+            display: flex; flex-direction: column; gap: 16px; 
+            background: var(--hsbc-light-gray);
+            padding-bottom: 20px; 
+        }
+
+        /* 消息气泡 */
+        .bubble-row { display: flex; width: 100%; margin-bottom: 4px; opacity: 0; animation: fadeUp 0.3s ease-out forwards; }
+        .bubble-row.user { justify-content: flex-end; }
+        .bubble-row.ai { justify-content: flex-start; }
+        
+        .avatar { width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0; }
+        .avatar img { width: 20px; }
+
+        .bubble {
+            max-width: 78%; padding: 12px 16px; font-size: 15px; line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08); position: relative;
+        }
+        .bubble.ai { 
+            background: #ffffff; color: #000; 
+            border-radius: 18px 18px 18px 4px; 
+        }
+        .bubble.user { 
+            background: var(--hsbc-red); color: #fff; /* 用户改为红色背景 */
+            border-radius: 18px 18px 4px 18px; 
+        }
+
+        /* 4. 底部输入栏 */
+        .input-area {
+            flex-shrink: 0;
+            background: #f9f9f9; border-top: 1px solid #e5e5e5;
+            padding: 12px 15px 30px 15px; 
+            display: flex; align-items: center; gap: 10px; box-sizing: border-box;
+            position: relative; z-index: 100;
+        }
+        
+        /* RM Button */
+        .rm-btn {
+            width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; position: relative; flex-shrink: 0;
+        }
+        .rm-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .rm-badge {
+            position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; 
+            background: var(--accent-green); border: 2px solid #fff; border-radius: 50%;
+        }
+
+        .input-field {
+            flex: 1; height: 36px; border-radius: 18px; border: 1px solid #ddd; background: #fff;
+            padding: 0 15px; font-size: 14px; color: #333; display: flex; align-items: center;
+        }
+        .mic-icon { color: #999; font-size: 18px; flex-shrink: 0; }
+
+        /* --- 简化后的卡片设计 (Simplified Native UI) --- */
+        
+        /* 通用卡片容器 */
+        .native-card {
+            background: #fff; border-radius: 10px; overflow: hidden; width: 100%; box-sizing: border-box;
+            border: 1px solid #e0e0e0; margin-top: 8px;
+        }
+
+        /* 列表项 (List Item) */
+        .card-list-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 16px; border-bottom: 1px solid #f0f0f0;
+        }
+        .card-list-item:last-child { border-bottom: none; }
+        
+        .list-main { display: flex; flex-direction: column; }
+        .list-title { font-size: 14px; font-weight: 500; color: #000; }
+        .list-sub { font-size: 12px; color: #8e8e93; margin-top: 2px; }
+        .list-value { font-size: 14px; font-weight: 600; color: #333; }
+        .list-icon { width: 24px; height: 24px; margin-right: 12px; }
+
+        /* 状态头 (Status Header) */
+        .status-header {
+            background: #f9f9f9; padding: 10px 16px; font-size: 12px; font-weight: 600; color: #555;
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee;
+        }
+
+        /* 按钮组 */
+        .btn-group { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+        .action-btn {
+            width: 100%; padding: 12px; background: var(--hsbc-black); color: #fff;
+            border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; text-align: center;
+        }
+        .action-btn.secondary { background: #fff; color: var(--hsbc-red); border: 1px solid var(--hsbc-red); }
+        .action-btn:active { opacity: 0.8; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Face ID & Overlays */
+        .overlay-modal {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 200;
+        }
+        .overlay-modal.show { display: flex; }
+        .overlay-box { background: white; padding: 24px; border-radius: 16px; text-align: center; width: 65%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .overlay-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+
+        /* Notification */
+        .push-notif {
+            position: absolute; top: -100px; left: 12px; right: 12px;
+            background: rgba(255,255,255,0.98); padding: 12px; border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); z-index: 150;
+            display: flex; gap: 12px; transition: top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;
+            color: #000;
+        }
+        .push-notif.show { top: 55px; }
+        .notif-icon { width: 38px; height: 38px; border-radius: 8px; display:flex; align-items:center; justify-content:center; overflow: hidden; background: #fff; border: 1px solid #f0f0f0; flex-shrink: 0;}
+
+        /* Control Bar */
+        .control-bar { position: absolute; bottom: 0; left: 40px; right: calc(45% + 40px); padding: 15px 20px; background: #1e1e1e; border-top: 1px solid #333; display: flex; justify-content: space-between; }
+        .ctrl-btn { padding: 10px 20px; background: #333; color: #fff; border: 1px solid #555; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .ctrl-btn:hover { background: #444; }
+        .ctrl-btn.primary { background: #c6a87c; color: #000; border: none; }
+        .ctrl-btn.primary:hover { background: #d4b58b; }
+        .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    </style>
+</head>
+<body>
+
+<div class="story-panel" id="storyPanel">
+    <div class="header-title">
+        <span>汇丰卓越理财 (大湾区)</span>
+        <span class="header-badge">AI PILOT</span>
+    </div>
+    </div>
+
+<div class="device-stage">
+    <div class="phone-frame">
+        <div class="status-bar">
+            <span>10:30</span>
+            <span>中国移动</span>
+        </div>
+        <div class="notch"></div>
+
+        <div class="chat-header">
+            <div class="header-title-box">
+                <div class="ht-main">大湾区理财通助手</div>
+                <div class="ht-sub"><div class="dot"></div> 在线</div>
+            </div>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            </div>
+
+        <div class="input-area">
+            <div class="rm-btn" title="联系客户经理">
+                <img src="resource/rm.jpeg" alt="RM">
+                <div class="rm-badge"></div>
+            </div>
+            <div class="input-field">
+                <span style="color:#ccc;">输入消息...</span>
+            </div>
+            <div class="mic-icon">🎤</div>
+        </div>
+
+        <div class="push-notif" id="pushNotif" onclick="startScenario()">
+            <div class="notif-icon"><img src="resource/IMG_1035.png" alt="HSBC Logo" style="width: 30px; height: 30px; object-fit: contain;"></div>
+            <div style="flex:1">
+                <div style="font-size:13px; font-weight:600; display:flex; justify-content:space-between; margin-bottom: 4px;">
+                    <span>市场提醒</span>
+                    <span style="color:#888; font-weight:normal; font-size: 11px;">现在</span>
+                </div>
+                <div style="font-size:13px; line-height:1.4; color: #333;">
+                    <strong>恒生科技指数大涨 +4.2%</strong><br>您的大湾区投资机会分析已就绪。
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay-modal" id="faceIdModal">
+            <div class="overlay-box">
+                <div class="overlay-icon">Face ID</div>
+                <div style="font-weight:600; margin-bottom:5px; color: #000;">身份验证</div>
+                <div style="color:#888; font-size:13px;">确认提交至 RM 复核</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="control-bar">
+    <button class="ctrl-btn" id="prevBtn" onclick="prevStep()" disabled>上一步</button>
+    <button class="ctrl-btn primary" id="nextBtn" onclick="nextStep()">开始演示</button>
+</div>
+
+<script>
+    // --- 剧本数据 ---
+    const scriptData = [
+        {
+            phase: "1. 唤醒与痛点",
+            title: "全域资产视图 (GBA One View)",
+            desc: "Patrick 看到港股大涨，但资金在国内。AI 通过整合两地账户视图，直观展示'国内闲置、香港缺钱'的资金分布痛点。",
+            log: `> 触发: 市场行情 (恒科指 +4.2%)\n> 客户状态: 双重卓越理财 (CN/HK)\n> 动作: 展示 'GBA 资产全景图'`,
+            action: "show_welcome"
+        },
+        {
+            phase: "2. 合规咨询",
+            title: "消除跨境疑虑",
+            desc: "客户担心传统电汇的合规风险。AI 智能推荐国家支持的'跨境理财通-南向通'，强调官方渠道和资金闭环。",
+            log: `> 用户意图: 跨境转账咨询 (50万 RMB)\n> 风险点: 外汇管制担忧\n> 方案: 推荐 '南向通 (WMC Southbound)'`,
+            action: "user_ask_compliance"
+        },
+        {
+            phase: "3. 数字化开通",
+            title: "极简资格认证",
+            desc: "打破'跑柜台'的刻板印象。AI 引导客户在线完成资格自证和账户配对。必要时提供人工协助选项。",
+            log: `> 流程: 数字化 Onboarding\n> 检查: 大湾区社保/资产达标\n> 选项: 增加 '预约 RM' 备选`,
+            action: "ai_setup_wmc"
+        },
+        {
+            phase: "4. 资金划转",
+            title: "闭环资金流",
+            desc: "模拟资金从深圳账户划入香港专户的过程。无需繁琐用途申报，突显闭环管理的便捷性。",
+            log: `> 交易: 资金划转 (CNY -> CNH)\n> 金额: 500,000 RMB\n> 状态: 闭环账户内实时到账`,
+            action: "execute_transfer"
+        },
+        {
+            phase: "5. 投资建议",
+            title: "合规产品边界",
+            desc: "纠正'直接炒股'的误区，推荐合规的'大中华科技基金'。既满足了投资方向，又符合监管要求。",
+            log: `> 边界控制: 拦截个股交易请求\n> 替代方案: 推荐科技主题互认基金\n> 风险等级: R4 (中高风险)`,
+            action: "ai_product_rec"
+        },
+        {
+            phase: "6. 审慎执行",
+            title: "提交 RM 复核",
+            desc: "对于大额投资指令，不进行全自动下单，而是生成意向书并转交 RM 跟进，体现银行的严谨风控。",
+            log: `> 动作: 提交基金认购申请\n> 风控: Digital Handshake + RM Review\n> 结果: 流程闭环`,
+            action: "execute_invest"
+        }
+    ];
+
+    let currentStepIndex = -1;
+
+    // --- 控制逻辑 ---
+    function nextStep() {
+        if (currentStepIndex < scriptData.length - 1) {
+            currentStepIndex++;
+            renderPanel(scriptData[currentStepIndex]);
+            executeAction(scriptData[currentStepIndex].action);
+            updateButtons();
+        }
+    }
+
+    function prevStep() {
+        if (currentStepIndex > 0) {
+            document.getElementById('chatBody').innerHTML = '';
+            let targetIndex = currentStepIndex - 1;
+            currentStepIndex = -1;
+            for(let i=0; i<=targetIndex; i++) {
+                nextStep();
+            }
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById('prevBtn').disabled = currentStepIndex <= 0;
+        document.getElementById('nextBtn').innerText = currentStepIndex >= scriptData.length - 1 ? "演示结束" : "下一步";
+    }
+
+    function renderPanel(data) {
+        const panel = document.getElementById('storyPanel');
+        document.querySelectorAll('.scene-card').forEach(c => c.classList.remove('active'));
+        
+        const card = document.createElement('div');
+        card.className = 'scene-card active';
+        card.innerHTML = `
+            <div class="scene-header">${data.phase}</div>
+            <div class="scene-title">${data.title}</div>
+            <div class="scene-desc">${data.desc}</div>
+            <div class="system-log">${data.log.replace(/\n/g, '<br>')}</div>
+        `;
+        panel.prepend(card);
+    }
+
+    // --- 模拟器动作 ---
+    function executeAction(action) {
+        if (action === "show_welcome") {
+            // 模拟点击推送进入
+            setTimeout(() => document.getElementById('pushNotif').classList.add('show'), 500);
+            setTimeout(() => {
+                document.getElementById('pushNotif').classList.remove('show');
+                addBubble('ai', "早上好，Patrick。恒生科技指数反弹强劲。这是您目前的大湾区资产全景视图：");
+                setTimeout(() => {
+                    addWidget(`
+                        <div class="native-card">
+                            <div class="status-header">GBA 全域资产视图</div>
+                            <div class="card-list-item">
+                                <div class="list-main">
+                                    <div class="list-title">🇨🇳 汇丰中国 (深圳)</div>
+                                    <div class="list-sub">人民币储蓄</div>
+                                </div>
+                                <div class="list-value">¥ 2,000,000</div>
+                            </div>
+                            <div class="card-list-item">
+                                <div class="list-main">
+                                    <div class="list-title">🇭🇰 汇丰香港</div>
+                                    <div class="list-sub">港币储蓄</div>
+                                </div>
+                                <div class="list-value" style="color:#8e8e93;">HK$ 50,000</div>
+                            </div>
+                            <div style="padding:12px 16px; font-size:12px; color:#db0011; background:#fff;">
+                                💡 提示：您在香港市场的流动性较低，可能错过行情。
+                            </div>
+                        </div>
+                    `);
+                }, 600);
+            }, 2000);
+        }
+        else if (action === "user_ask_compliance") {
+            addBubble('user', "我想转 50万人民币去香港买科技股，直接电汇会不会被外管局卡住？我不想惹合规麻烦。");
+            setTimeout(() => {
+                addBubble('ai', "非常理解您的顾虑。直接电汇确实主要用于留学等经常项目，不适合投资。");
+                addBubble('ai', "作为大湾区居民，您完全可以使用官方支持的<strong>“跨境理财通 - 南向通”</strong>通道。");
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">南向通 (Southbound) 优势</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">✅ 官方合规通道</div>
+                                <div class="list-sub">国家政策支持，资金链路清晰</div>
+                            </div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">✅ 额度独立</div>
+                                <div class="list-sub">拥有 300万 专属投资额度</div>
+                            </div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">✅ 不占购汇额度</div>
+                                <div class="list-sub">保留您每年 5万美元 的个人额度</div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }, 1000);
+        }
+        else if (action === "ai_setup_wmc") {
+            addBubble('user', "听起来不错，但开通是不是很麻烦？要去香港柜台吗？");
+            setTimeout(() => {
+                addBubble('ai', "那是旧流程了。现在通过汇丰 App，您可以全流程线上办理资格认证和账户配对。");
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">南向通资格速办</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">大湾区社保/税收校验</div>
+                            </div>
+                            <div class="list-value" style="color:var(--accent-green)">通过</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">双边账户自动配对</div>
+                                <div class="list-sub">深圳结算户 ↔ 香港投资户</div>
+                            </div>
+                            <div class="list-value" style="color:var(--accent-green)">就绪</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn" onclick="nextStep()">立即开通</button>
+                            <button class="action-btn secondary">预约 RM 协助办理</button>
+                        </div>
+                    </div>
+                `);
+            }, 1000);
+        }
+        else if (action === "execute_transfer") {
+            // 模拟资金划转界面
+            addBubble('ai', "账户配对已完成！现在您可以进行闭环资金划转。该资金将专款专用，仅用于购买合规理财产品。");
+            setTimeout(() => {
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">资金划转 (闭环)</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">转出账户 (CN)</div>
+                                <div class="list-sub">人民币储蓄</div>
+                            </div>
+                            <div class="list-value">- ¥500,000</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">转入账户 (HK)</div>
+                                <div class="list-sub">南向通投资专户</div>
+                            </div>
+                            <div class="list-value">+ ¥500,000</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="action-btn" onclick="nextStep()">确认划转</button>
+                        </div>
+                    </div>
+                `);
+            }, 800);
+        }
+        else if (action === "ai_product_rec") {
+            addBubble('user', "钱到了。我现在能直接买腾讯或者美团的股票吗？");
+            setTimeout(() => {
+                addBubble('ai', "需要向您说明：<strong>南向通暂不支持直接买卖个股</strong>。");
+                addBubble('ai', "建议您通过<strong>“大湾区科技主题基金”</strong>来布局。由专业机构管理，不仅合规，还能分散个股风险。");
+                addWidget(`
+                    <div class="native-card">
+                        <div class="status-header">为您精选 (南向通合规)</div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">汇丰大中华新经济基金</div>
+                                <div class="list-sub">主要投向：腾讯, 美团, 阿里等</div>
+                            </div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">近一年收益</div>
+                            </div>
+                            <div class="list-value" style="color:#db0011">+12.4%</div>
+                        </div>
+                        <div class="card-list-item">
+                            <div class="list-main">
+                                <div class="list-title">风险等级</div>
+                            </div>
+                            <div class="list-value">R4 (中高风险)</div>
+                        </div>
+                    </div>
+                `);
+            }, 1200);
+        }
+        else if (action === "execute_invest") {
+            addBubble('user', "好，那就买这个基金，投入 50万。");
+            setTimeout(() => {
+                const modal = document.getElementById('faceIdModal');
+                modal.classList.add('show');
+                setTimeout(() => {
+                    modal.classList.remove('show');
+                    addBubble('ai', "<strong>认购申请已受理。</strong><br>鉴于这是一笔较大的跨境投资，您的客户经理 <strong>David</strong> 会在后台进行最终合规复核，并在交易完成后通知您。<br><br>您可以在“全域资产视图”中随时查看这笔投资的表现。");
+                }, 1500);
+            }, 800);
+        }
+    }
+
+    // --- 辅助函数 ---
+    function addBubble(role, text, autoScroll = true) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ${role}`;
+        
+        let html = '';
+        if (role === 'ai') {
+            html += `<div class="avatar"><img src="resource/IMG_1035.png"></div>`;
+        }
+        html += `<div class="bubble ${role}">${text}</div>`;
+        
+        row.innerHTML = html;
+        chat.appendChild(row);
+        
+        if (autoScroll) {
+            requestAnimationFrame(() => {
+                chat.scrollTop = chat.scrollHeight;
+            });
+        }
+    }
+
+    function addWidget(html, autoScroll = true) {
+        const chat = document.getElementById('chatBody');
+        const row = document.createElement('div');
+        row.className = `bubble-row ai`;
+        row.innerHTML = `<div class="avatar"><img src="resource/IMG_1035.png"></div><div style="width: 85%">${html}</div>`;
+        chat.appendChild(row);
+        
+        if (autoScroll) {
+            requestAnimationFrame(() => {
+                chat.scrollTop = chat.scrollHeight;
+            });
+        }
+    }
+
+    function startScenario() {
+        document.getElementById('pushNotif').classList.remove('show');
+        setTimeout(() => nextStep(), 500);
+    }
+
+</script>
+
+</body>
+</html>

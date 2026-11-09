@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Platform | Role-Based Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .brand-red {
+            color: #db0011;
+        }
+
+        .bg-brand-red {
+            background-color: #db0011;
+        }
+
+        .text-brand-red {
+            color: #db0011;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Style for the Chief Economist Card's blue elements */
+        .text-brand-blue {
+            color: #2563eb;
+        }
+        .border-blue-600 {
+            border-color: #2563eb;
+        }
+        .bg-blue-600 {
+            background-color: #2563eb;
+        }
+        .hover\:bg-blue-700:hover {
+            background-color: #1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+
+    <!-- Compliance Entry Point -->
+    <div class="absolute top-6 right-6 z-50">
+        <a href="compliance_dashboard.html" 
+           class="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition text-sm shadow-lg">
+            <i class="fas fa-shield-alt"></i>
+            <span>Compliance</span>
+        </a>
+    </div>
+
+    <div class="max-w-6xl mx-auto w-full pt-16 sm:pt-0">
+        <div class="text-center mb-10">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-20 h-20 sm:w-24 md:w-28 lg:w-32 flex items-center justify-center mr-3 transition-transform transform hover:scale-110">
+                    <img src="resource/IMG_1035.png" alt="HSBC logo" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900">Wealth Platform</h1>
+            </div>
+            <p class="text-gray-500 text-lg">AI Native experience</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div
+                class="bg-white rounded-xl border-t-4 border-brand-red shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
+                    <i class="fa-solid fa-user-tie text-brand-red text-3xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Relationship Manager</h3>
+                    <p class="text-sm text-gray-500">Allen Johnson - Senior RM</p>
+                </div>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-magnifying-glass w-5 text-red-500 mr-3"></i>
+                        Client Discovery: AI-powered opportunity radar.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-user-check w-5 text-red-500 mr-3"></i>
+                        Financial Planning: Goal tracking & scenario analysis.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-chart-area w-5 text-red-500 mr-3"></i>
+                        Investment Management: Portfolio monitoring & rebalancing.</p>
+                </div>
+                <a href="rm_opportunity.html"
+                    class="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 text-sm rounded text-center transition">Launch RM Platform<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div
+                class="bg-white rounded-xl border-t-4 border-blue-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
+                    <i class="fa-solid fa-globe text-blue-600 text-3xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Chief Economist</h3>
+                    <p class="text-sm text-gray-500">Dr. Jonathan Miller - Macro Research</p>
+                </div>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-chart-line w-5 text-blue-500 mr-3"></i>
+                        Macro Trends: Global economic outlook & forecasts.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-newspaper w-5 text-blue-500 mr-3"></i>
+                        Market Intelligence: Central bank policy analysis.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-lightbulb w-5 text-blue-500 mr-3"></i>
+                        Strategic Insights: Investment themes & opportunities.</p>
+                </div>
+                <a href="research_portal.html"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 text-sm rounded text-center transition">View Research Portal<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <div
+                class="bg-white rounded-xl border-t-4 border-green-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
+                    <i class="fa-solid fa-mobile-screen-button text-green-600 text-3xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Customer</h3>
+                    <p class="text-sm text-gray-500">Jennifer Wu - Premier Banking</p>
+                </div>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-bell w-5 text-green-500 mr-3"></i>
+                        Smart Alerts: Personalized market & rate impacts.</p>
+                    <p class="flex items-center text-gray-700"><i
+                            class="fa-solid fa-sliders w-5 text-green-500 mr-3"></i> Quick Actions: Intelligent self-service options.</p>
+                    <p class="flex items-center text-gray-700"><i
+                            class="fa-solid fa-phone-volume w-5 text-green-500 mr-3"></i> Advisor Connect: Context-aware scheduling.</p>
+                </div>
+                <a href="customer_lockscreen.html"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 text-sm rounded text-center transition">Launch Mobile App<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

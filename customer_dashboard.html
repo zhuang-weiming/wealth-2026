@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Native Wealth - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .app-frame {
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 640px) {
+            body {
+                background-color: #f2f2f2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+            .app-frame {
+                max-width: 28rem;
+                height: 90vh;
+                border-radius: 1.5rem;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                border: 1px solid #e5e7eb;
+            }
+        }
+
+        /* Hide Scrollbar */
+        .app-frame::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hsbc-red { color: #db0011; }
+        .bg-hsbc-red { background-color: #db0011; }
+        
+        .ai-gradient {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 1px solid #d1d5db;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(90deg, #db0011 0%, #ff4d4d 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Toggle Switch Styling */
+        .strategy-btn {
+            transition: all 0.2s;
+        }
+        .strategy-btn.active {
+            background-color: #1f2937;
+            color: white;
+            border-color: #1f2937;
+        }
+        .copilot-modal { transition: transform 0.3s ease-out; transform: translateY(100%); }
+        .copilot-modal.active { transform: translateY(0); }
+        .copilot-trigger { position: absolute; bottom: 80px; right: 16px; z-index: 49; transition: all 0.2s; }
+        .copilot-trigger:hover { transform: scale(1.05); }
+        .copilot-trigger.hidden { opacity: 0; pointer-events: none; }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out;
+        }
+        .chat-bubble-in { animation: slide-in 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-white sm:bg-gray-100">
+
+    <div class="app-frame">
+        
+        <main class="flex-1 overflow-y-auto bg-gray-50">
+            <header class="sticky top-0 bg-white z-20 px-5 pt-12 pb-4 border-b border-gray-100">
+                <a href="index.html" class="absolute top-4 left-4 text-gray-400 hover:text-gray-600 text-xs transition">← Roles</a>
+                <div class="flex justify-between items-center mb-4">
+                    <div class="flex items-center gap-2">
+                        <img src="resource/IMG_1035.png" alt="HSBC" class="h-6">
+                        <span class="font-semibold text-lg tracking-tight"> AI-Native Wealth </span>
+                    </div>
+                    <div class="flex gap-4 text-gray-600">
+                        <i class="far fa-bell text-lg"></i>
+                        <i class="far fa-user-circle text-lg"></i>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="text-gray-500 text-xs uppercase tracking-wide">Total Assets (USD)</p>
+                    <div class="flex items-end gap-2">
+                        <h1 class="text-3xl font-bold text-gray-900">$1,245,800</h1>
+                        <span class="text-green-600 font-medium text-sm mb-1">
+                            <i class="fas fa-arrow-up"></i> +$3,420 (0.28%)
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="px-5 pt-6 pb-24 space-y-6">
+
+            <section>
+                <h2 class="text-sm font-bold text-gray-400 uppercase mb-3">Today's Market News (2025.11.26)</h2>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-3">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-gray-800 text-sm leading-snug">Fed Suggests Possible Stop of Balance Sheet Reduction in Early 2026</h3>
+                        <span class="text-xs text-gray-400">07:00 AM</span>
+                    </div>
+                    <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                        <div class="mb-1"><span class="ai-badge"><i class="fas fa-sparkles"></i> AI Summary</span></div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            This development is favorable for long-term bond allocations. Conversely, it may precipitate a short-term correction in technology growth equities, such as those represented by the QQQ ETF.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-gray-800 text-sm leading-snug">Tech Sector Earnings Season Ends, VIX Rises</h3>
+                        <span class="text-xs text-gray-400">07:15 AM</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-2">Although most companies exceeded earnings expectations, guidance was weak.</p>
+                    <div class="flex items-center gap-2 text-xs font-medium text-amber-600">
+                        <i class="fas fa-exclamation-triangle"></i> Your technology equity allocation is currently elevated at 42%, exceeding the recommended threshold for risk diversification.
+                    </div>
+                </div>
+            </section>
+
+            <section id="action-card" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden ring-1 ring-black/5">
+                <div class="bg-gray-900 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <h2 class="font-bold text-md flex items-center gap-2">
+                            <i class="fas fa-bolt text-yellow-400"></i> AI Investment Advice
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-0.5">Real-time optimization based on volatility and macro data</p>
+                    </div>
+                    <span class="bg-white/20 px-2 py-1 rounded text-xs">92% Confidence Score</span>
+                </div>
+
+                <div class="p-5">
+                    <div class="mb-5">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Decision Basis (Transparency)</h3>
+                        <div class="flex gap-2 mb-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded text-gray-600">Historical backtest success rate 78%</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs rounded text-gray-600">Risk exposure: -12% (indicating a hedging benefit)</span>
+                        </div>
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            In light of elevated volatility in technology equities and rising Treasury yields, it is prudent to realize gains on select technology positions and reallocate to defensive fixed-income securities to optimize portfolio risk-return profile.
+                        </p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-xs font-bold text-gray-500 uppercase mb-2">Select Strategy (Control)</h3>
+                        <div class="flex p-1 bg-gray-100 rounded-lg">
+                            <button onclick="setStrategy('defensive')" id="btn-defensive" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Defensive</button>
+                            <button onclick="setStrategy('balanced')" id="btn-balanced" class="strategy-btn active flex-1 py-2 text-xs font-medium rounded-md bg-white shadow-sm text-gray-900 border border-gray-200">Balanced (Recommended)</button>
+                            <button onclick="setStrategy('aggressive')" id="btn-aggressive" class="strategy-btn flex-1 py-2 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900">Aggressive</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-4 border border-dashed border-gray-300 mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-red-600"><i class="fas fa-minus-circle"></i> Sell</span>
+                            <span class="text-sm font-bold" id="sell-target">QQQ (NASDAQ ETF)</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900 mb-3" id="sell-amount">$50,000</div>
+                        
+                        <div class="h-px bg-gray-200 my-2"></div>
+
+                        <div class="flex justify-between items-center mb-2 mt-3">
+                            <span class="text-sm font-semibold text-green-600"><i class="fas fa-plus-circle"></i> Buy</span>
+                            <span class="text-sm font-bold" id="buy-target">TLT (20-Year Treasury)</span>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-900" id="buy-amount">$50,000</div>
+                    </div>
+
+                    <button onclick="executeRebalancing()" class="w-full bg-hsbc-red hover:bg-red-700 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-red-200 transition active:scale-95 flex justify-center items-center gap-2">
+                        <i class="fas fa-fingerprint"></i> Execute Rebalancing
+                    </button>
+                    <p class="text-center text-[10px] text-gray-400 mt-2">Clicking represents your agreement to the AI Auto Trading Service Terms</p>
+                </div>
+            </section>
+            
+            <div class="text-center text-xs text-gray-400 pb-4">
+                HSBC AI Wealth Services &copy; 2025
+            </div>
+            </div>
+        </main>
+
+        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-30 pb-8">
+        <a href="customer_portfolio.html" class="flex flex-col items-center text-hsbc-red">
+            <i class="fas fa-home text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a href="customer_portfolio.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-chart-pie text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Portfolio</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400">
+            <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center -mt-6 border-4 border-gray-50 shadow-lg">
+                <i class="fas fa-magic text-white text-lg"></i>
+            </div>
+            <span class="text-[10px] font-medium mt-1">AI Advisor</span>
+        </div>
+        <a href="customer_lockscreen.html" class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-newspaper text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">News</span>
+        </a>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-cog text-xl mb-1"></i>
+            <span class="text-[10px] font-medium">Settings</span>
+        </div>
+    </nav>
+
+    <!-- AI Agent Modal -->
+    <div id="copilot-modal" class="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-end copilot-modal">
+        <div class="bg-white w-full rounded-t-3xl p-6 shadow-2xl h-3/4 flex flex-col">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-green-600 flex items-center"><i class="fa-solid fa-sparkles mr-2"></i> Wealth AI Agent</h2>
+                <button onclick="toggleCopilot(false)" class="text-gray-500 hover:text-gray-800 text-xl" title="Close chat"><i class="fa-solid fa-times"></i></button>
+            </div>
+            
+            <div id="copilot-chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+            </div>
+
+            <div class="flex-shrink-0 space-y-3">
+                <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-green-600"></i> Quick Actions:</h4>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="sendActionFromChip('Execute rebalancing recommendation')" class="px-4 py-2 text-sm rounded-full bg-green-600 text-white hover:bg-green-700 shadow-md flex items-center">
+                        <i class="fa-solid fa-chart-line mr-2"></i> Execute Rebalancing
+                    </button>
+                    <button onclick="sendActionFromChip('Analyze market volatility impact')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                        <i class="fa-solid fa-chart-area mr-2"></i> Market Analysis
+                    </button>
+                    <button onclick="sendActionFromChip('Review portfolio risk exposure')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                        <i class="fa-solid fa-shield-alt mr-2"></i> Risk Review
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative flex items-center mt-3">
+                <button class="text-gray-400 hover:text-green-600 mr-2 text-lg" title="Voice input"><i class="fa-solid fa-microphone"></i></button>
+                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Ask about your investments..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-green-600 shadow-sm">
+                <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-green-600 hover:text-green-700" title="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Agent Trigger Button -->
+    <button id="copilot-trigger" onclick="toggleCopilot(true)" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors" title="Open AI Assistant">
+        <i class="fa-solid fa-robot"></i>
+    </button>
+
+    </div>
+
+    <script>
+        // Initial AI Agent conversation data
+        const initialCopilotChat = `
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div class="w-8 h-8 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">
+                    Hello! I'm your AI Investment Assistant. I can help you understand the rebalancing recommendation or answer questions about your portfolio.
+                </div>
+            </div>`;
+
+        function setStrategy(type) {
+            // Update Buttons
+            document.querySelectorAll('.strategy-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-white', 'shadow-sm', 'text-gray-900', 'border', 'border-gray-200');
+                btn.classList.add('text-gray-500');
+            });
+            const activeBtn = document.getElementById('btn-' + type);
+            activeBtn.classList.add('active', 'bg-white', 'shadow-sm', 'text-gray-900', 'border', 'border-gray-200');
+            activeBtn.classList.remove('text-gray-500');
+
+            // Update Content based on Risk Profile
+            const sellAmount = document.getElementById('sell-amount');
+            const buyAmount = document.getElementById('buy-amount');
+
+            if (type === 'defensive') {
+                sellAmount.innerText = "$80,000";
+                buyAmount.innerText = "$80,000";
+                // Animation effect
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            } else if (type === 'balanced') {
+                sellAmount.innerText = "$50,000";
+                buyAmount.innerText = "$50,000";
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            } else if (type === 'aggressive') {
+                sellAmount.innerText = "$15,000";
+                buyAmount.innerText = "$15,000";
+                flashUpdate(sellAmount);
+                flashUpdate(buyAmount);
+            }
+        }
+
+        function flashUpdate(element) {
+            element.style.opacity = '0.5';
+            setTimeout(() => element.style.opacity = '1', 200);
+        }
+
+        function executeRebalancing() {
+            // Show confirmation
+            const confirmed = confirm('✅ Rebalancing Order Submitted\n\nYour portfolio will be updated within 2 hours.\nYou can track the progress in your Wealth page.');
+            if (confirmed) {
+                // Redirect to customer_portfolio.html
+                window.location.href = 'customer_portfolio.html';
+            }
+        }
+
+        function toggleCopilot(show) {
+            const modal = document.getElementById('copilot-modal');
+            const chat = document.getElementById('copilot-chat-container');
+            const trigger = document.getElementById('copilot-trigger');
+            if (show) {
+                // Reset chat content on open
+                chat.innerHTML = initialCopilotChat;
+                modal.classList.add('active');
+                trigger.classList.add('hidden');
+                // Ensure scroll to bottom on open
+                setTimeout(() => chat.scrollTop = chat.scrollHeight, 10); 
+            } else {
+                modal.classList.remove('active');
+                trigger.classList.remove('hidden');
+            }
+        }
+
+        function sendChatMessage(message, isUser = true) {
+            const chatContainer = document.getElementById('copilot-chat-container');
+            
+            if (isUser) {
+                // User message bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-blue-600 text-white p-3 rounded-xl rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+            } else {
+                // AI response bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">${message}</div></div>`;
+            }
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendActionFromChip(action) {
+            sendChatMessage(action, true);
+            
+            let response = '';
+            
+            if (action.includes('Execute rebalancing recommendation')) {
+                response = 'The AI recommendation suggests selling $50,000 of QQQ (tech ETF) and buying $50,000 of TLT (Treasury bonds) to reduce portfolio risk by 30%. This is based on current market volatility and Fed policy changes. Would you like me to proceed with execution?';
+            } else if (action.includes('Analyze market volatility impact')) {
+                response = 'Current VIX is elevated at 28.5, indicating high market uncertainty. Your tech allocation at 42% is above the recommended 35% threshold. The AI suggests reducing exposure to mitigate downside risk during this volatile period.';
+            } else if (action.includes('Review portfolio risk exposure')) {
+                response = 'Your current portfolio risk score is 7.2/10 (High). Tech sector concentration and rising interest rates are the primary risk factors. The recommended rebalancing would reduce this to 5.1/10 (Moderate), improving your risk-adjusted returns.';
+            }
+            
+            setTimeout(() => {
+                sendChatMessage(response, false);
+            }, 500);
+        }
+
+        function handleCopilotInput() {
+            const input = document.getElementById('copilot-input');
+            if (input.value.trim() !== '') {
+                const message = input.value.trim();
+                sendChatMessage(message, true);
+                
+                // Simulate AI response based on generic text input
+                setTimeout(() => {
+                    sendChatMessage(`I've received your query: ${message}. I am processing that request now and will respond shortly.`, false);
+                }, 500);
+                
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

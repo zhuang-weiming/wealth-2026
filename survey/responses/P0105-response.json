@@ -1,0 +1,39 @@
+{
+  "persona_id": "P0105",
+  "q1_aum": "USD 1.5M – 3.0M",
+  "q2_age": "50 – 54",
+  "q3_residence": "Hong Kong / Macau",
+  "q4_markets": ["China (e.g., A-shares)", "Hong Kong", "United States (e.g., US equities)", "Japan"],
+  "q5_products": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)"
+  ],
+  "q6_holding_period": ["Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "China / Hong Kong equities",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "U.S. individual stocks (non-ETF)"
+  ],
+  "q8_allocation_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "China / Hong Kong equities",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "U.S. individual stocks (non-ETF)"
+  ],
+  "q9_profit_perception_ranking": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "U.S. individual stocks (non-ETF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "China / Hong Kong equities"
+  ],
+  "q10_market_popularity": [
+    "Private equity (PE) / secondary funds / feeder funds (FOF)",
+    "Thematic / sector ETFs (e.g., AI, semiconductors, clean energy)",
+    "U.S. individual stocks (non-ETF)"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

@@ -1,0 +1,43 @@
+{
+  "persona_id": "P0214",
+  "q1_aum": "USD 500k – 1.5M",
+  "q2_age": "50 – 54",
+  "q3_residence": "Singapore",
+  "q4_markets": ["Singapore", "United States (e.g., US equities)", "Japan", "India"],
+  "q5_products": [
+    "China / Hong Kong equities",
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q6_holding_period": ["Short-term trading (less than 1 year)", "Medium-term allocation (1–3 years)", "Long-term holding (more than 3 years)"],
+  "q7_attention_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q8_allocation_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q9_profit_perception_ranking": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities",
+    "Investment-grade corporate or financial bonds",
+    "High-yield deposits / money market funds / cash management products"
+  ],
+  "q10_market_popularity": [
+    "U.S. individual stocks (non-ETF)",
+    "Broad-based index funds / ETFs (e.g., S&P 500, NASDAQ)",
+    "China / Hong Kong equities"
+  ],
+  "q11_fx_impact": "Somewhat significant",
+  "q12_primary_priority": "Return maximization"
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Product Q&A - HSBC Wealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+        }
+        .brand-green { background-color: #10b981; }
+        .text-brand-green { color: #10b981; }
+        .screen { display: none; }
+        .active-screen { display: flex; }
+
+        .text-hsbc-red { color: #db0011; }
+        .bg-hsbc-red { background-color: #db0011; }
+        .border-hsbc-red { border-color: #db0011; }
+
+        .ai-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .ai-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            100% { left: 150%; }
+        }
+        .score-circle {
+            background: conic-gradient(#db0011 0% 85%, #e5e7eb 85% 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out;
+        }
+        .copilot-modal { transition: transform 0.3s ease-out; transform: translateY(100%); }
+        .copilot-modal.active { transform: translateY(0); }
+        .copilot-trigger { position: absolute; bottom: 80px; right: 16px; z-index: 49; transition: all 0.2s; }
+        .copilot-trigger:hover { transform: scale(1.05); }
+        .copilot-trigger.hidden { opacity: 0; pointer-events: none; }
+        .chat-bubble-in { animation: slide-in 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-white sm:bg-gray-100 h-screen flex items-center justify-center p-0">
+
+    <div class="w-full h-full sm:max-w-md sm:h-[90vh] sm:rounded-3xl bg-white flex flex-col overflow-hidden relative sm:shadow-2xl sm:border border-gray-200">
+        <a href="index.html" class="absolute top-4 left-1/2 -translate-x-1/2 text-gray-400 hover:text-gray-800 text-xs z-50 bg-white/80 px-2 py-1 rounded-full backdrop-blur-sm shadow-sm">Back to Roles</a>
+
+        <div id="screen-list" class="screen active-screen flex-col h-full">
+            
+            <div class="flex-shrink-0 p-5 pt-10 bg-white border-b border-gray-100">
+                <img src="resource/IMG_1035.png" alt="HSBC" class="h-5 mb-3">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-gray-800">Wealth Products</h2>
+                    <i class="fas fa-user-circle text-gray-400 text-xl"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">AI-Powered Product Discovery</p>
+                
+                <div class="relative mt-4 mb-4">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" placeholder="Search funds, deposits, bonds..." class="w-full bg-gray-100 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green">
+                </div>
+
+                <div class="flex gap-2 overflow-x-auto pb-2">
+                    <button class="px-4 py-1.5 bg-gray-900 text-white text-xs rounded-full whitespace-nowrap">All</button>
+                    <button class="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 text-xs rounded-full whitespace-nowrap flex items-center gap-1">
+                        <i class="fas fa-sparkles text-hsbc-red"></i> AI Recommended
+                    </button>
+                    <button class="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 text-xs rounded-full whitespace-nowrap">Low Risk</button>
+                    <button class="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 text-xs rounded-full whitespace-nowrap">T+0 Liquidity</button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                
+                <div class="bg-blue-100 p-4 rounded-xl shadow-lg mb-4 border-l-4 border-blue-500 animate-slide-in">
+                    <h3 class="font-bold text-blue-800 flex items-center mb-1"><i class="fas fa-sparkles text-blue-500 mr-2 text-xl"></i> AI Recommendation</h3>
+                    <p class="text-sm text-blue-700">Based on your conservative risk profile and liquidity needs, we found 1 perfect match for you.</p>
+                </div>
+
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Today's Featured</h2>
+
+                <div onclick="showScreen('screen-detail')" class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-red-50 text-hsbc-red text-[10px] font-bold px-3 py-1 rounded-bl-xl border-b border-l border-red-100">
+                        <i class="fas fa-robot mr-1"></i> AI Match: 85%
+                    </div>
+
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-hsbc-red">
+                            <i class="fas fa-coins text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 leading-tight">HSBC Tokenized Deposit</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Digital Asset • Low Risk</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-end border-t border-gray-50 pt-3">
+                        <div>
+                            <div class="text-2xl font-bold text-hsbc-red">3.50%</div>
+                            <div class="text-[10px] text-gray-400 uppercase">Annual Yield (APY)</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-semibold text-gray-900">T+0</div>
+                            <div class="text-[10px] text-gray-400 uppercase">Liquidity</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 pt-2">
+                        <span class="text-xs text-blue-600 font-medium flex items-center gap-1">
+                            Tap for AI Deep Analysis <i class="fas fa-chevron-right text-[10px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 opacity-60 relative">
+                    <div class="absolute top-0 right-0 bg-gray-50 text-gray-500 text-[10px] font-bold px-3 py-1 rounded-bl-xl border-b border-l border-gray-100">
+                        AI Match: 78%
+                    </div>
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                            <i class="fas fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 leading-tight">Short-Term Bond Fund</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Fixed Income • Medium-Low Risk</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end border-t border-gray-50 pt-3">
+                        <div>
+                            <div class="text-2xl font-bold text-gray-900">4.20%</div>
+                            <div class="text-[10px] text-gray-400 uppercase">Annual Yield (APY)</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-semibold text-gray-900">T+1</div>
+                            <div class="text-[10px] text-gray-400 uppercase">Liquidity</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-shrink-0 border-t border-gray-200 bg-white p-3">
+                <div class="flex justify-around">
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-house text-xl mb-1"></i>Home</button>
+                    <button class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fas fa-layer-group text-xl mb-1"></i>Products</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-chart-pie text-xl mb-1"></i>Portfolio</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-user text-xl mb-1"></i>Profile</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="screen-detail" class="screen flex-col h-full">
+            
+            <div class="flex-shrink-0 p-5 pt-10 bg-white border-b border-gray-100">
+                <div class="flex items-center gap-3 mb-4">
+                    <button onclick="showScreen('screen-list')" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-full">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <img src="resource/IMG_1035.png" alt="HSBC" class="h-5">
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">Product Details</h2>
+                <p class="text-sm text-gray-500">AI-Powered Analysis</p>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                
+                <div class="mb-6">
+                    <div class="flex gap-2 mb-2">
+                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-[10px] font-bold rounded">Low Risk</span>
+                        <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded">T+0 Redemption</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900 mb-1">HSBC Tokenized Deposit</h1>
+                    <p class="text-sm text-gray-500">Product Code: HSB-TD-001</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-red-100 mb-4 ai-shimmer relative overflow-hidden">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-6 h-6 bg-gradient-to-r from-red-500 to-orange-500 rounded-md flex items-center justify-center text-white text-xs">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-800 uppercase tracking-wide">AI One-Sentence Summary</span>
+                    </div>
+                    <p class="text-sm text-gray-800 leading-relaxed font-medium">
+                        "Blockchain-backed digital deposit certificate offering <span class="text-hsbc-red">3.5% APY</span> with <span class="text-hsbc-red">T+0</span> instant redemption, ideal for short-term cash management."
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 mb-4 flex gap-4 items-center">
+                    <div class="relative w-20 h-20 score-circle flex-shrink-0">
+                        <div class="absolute w-[70px] h-[70px] bg-white rounded-full flex items-center justify-center flex-col">
+                            <span class="text-xl font-bold text-gray-900">85</span>
+                            <span class="text-[8px] text-gray-400 uppercase">Fit Score</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-sm font-bold text-gray-900 mb-2">Why It Suits You:</h3>
+                        <ul class="space-y-1.5">
+                            <li class="flex items-center gap-2 text-xs text-gray-600">
+                                <i class="fas fa-check-circle text-green-500"></i> Matches your conservative risk profile
+                            </li>
+                            <li class="flex items-center gap-2 text-xs text-gray-600">
+                                <i class="fas fa-check-circle text-green-500"></i> Meets your high liquidity requirements
+                            </li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-exclamation-circle text-amber-500"></i> Yield slightly below some long-term bonds
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="text-xs font-bold text-gray-400 uppercase mb-3 px-1">AI 5W1H Deep Analysis</h3>
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="fas fa-box"></i> What (Product)</div>
+                        <div class="text-xs font-medium text-gray-800">Blockchain-backed digital deposit certificate with principal protection.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="fas fa-bullseye"></i> Why (Benefits)</div>
+                        <div class="text-xs font-medium text-gray-800">Higher yield than savings, faster redemption than funds.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="far fa-clock"></i> When (Timing)</div>
+                        <div class="text-xs font-medium text-gray-800">Available anytime, recommended when holding cash reserves.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="far fa-user"></i> Who (Target)</div>
+                        <div class="text-xs font-medium text-gray-800">Conservative investors like you who need high liquidity.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> Where (Platform)</div>
+                        <div class="text-xs font-medium text-gray-800">HSBC Digital Wealth Platform with mobile access.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl border border-gray-100">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center gap-1"><i class="fas fa-cog"></i> How (Process)</div>
+                        <div class="text-xs font-medium text-gray-800">One-tap purchase, instant settlement, T+0 redemption.</div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900 rounded-xl p-4 text-white mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold flex items-center gap-2">
+                            <i class="fas fa-balance-scale"></i> Product Comparison
+                        </h3>
+                        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded">AI Generated</span>
+                    </div>
+                    
+                    <div class="w-full text-xs">
+                        <div class="grid grid-cols-3 gap-2 pb-2 border-b border-gray-700 mb-2 font-bold text-gray-400">
+                            <div>Feature</div>
+                            <div class="text-white">HSBC TD</div>
+                            <div>Money Market</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-2 border-b border-gray-800">
+                            <div class="text-gray-400">Annual Yield</div>
+                            <div class="text-green-400 font-bold">3.5%</div>
+                            <div class="text-gray-300">3.0%</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-2 border-b border-gray-800">
+                            <div class="text-gray-400">Liquidity</div>
+                            <div class="text-green-400 font-bold">T+0 (Instant)</div>
+                            <div class="text-gray-300">T+1</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 py-2 border-b border-gray-800">
+                            <div class="text-gray-400">Risk Level</div>
+                            <div class="text-white">Very Low</div>
+                            <div class="text-gray-300">Low</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-3 bg-white/10 rounded-lg">
+                        <p class="text-xs text-gray-200 leading-snug">
+                            <strong class="text-yellow-400">AI Conclusion:</strong> Given your high liquidity requirements, HSBC Tokenized Deposit outperforms traditional money market funds in both liquidity and yield. Recommended for allocation.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex-shrink-0 border-t border-gray-200 bg-white p-3">
+                <div class="flex gap-3 mb-2">
+                    <button class="flex-1 bg-white border border-gray-300 text-gray-700 py-3 rounded-xl font-semibold text-sm">
+                        View Terms
+                    </button>
+                    <button class="flex-[2] bg-hsbc-red text-white py-3 rounded-xl font-semibold text-sm shadow-lg shadow-red-200">
+                        Add to Portfolio
+                    </button>
+                </div>
+                <div class="flex justify-around">
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-house text-xl mb-1"></i>Home</button>
+                    <button class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fas fa-layer-group text-xl mb-1"></i>Products</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-chart-pie text-xl mb-1"></i>Portfolio</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fas fa-user text-xl mb-1"></i>Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Agent Trigger Button -->
+        <button id="copilot-trigger" onclick="toggleCopilot(true)" class="copilot-trigger bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl hover:bg-green-700 focus:outline-none transition-colors">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+
+        <!-- AI Agent Modal -->
+        <div id="copilot-modal" class="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-end copilot-modal">
+            <div class="bg-white w-full rounded-t-3xl p-6 shadow-2xl h-3/4 flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-brand-green flex items-center"><i class="fa-solid fa-sparkles mr-2"></i> Product AI Agent</h2>
+                    <button onclick="toggleCopilot(false)" class="text-gray-500 hover:text-gray-800 text-xl"><i class="fa-solid fa-times"></i></button>
+                </div>
+                
+                <div id="copilot-chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+                </div>
+
+                <div class="flex-shrink-0 space-y-3">
+                    <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-brand-green"></i> Quick Actions:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="sendActionFromChip('Explain why this product suits me')" class="px-4 py-2 text-sm rounded-full brand-green text-white hover:bg-green-700 shadow-md flex items-center">
+                            <i class="fa-solid fa-lightbulb mr-2"></i> Why This Product?
+                        </button>
+                        <button onclick="sendActionFromChip('Compare with similar products')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                            <i class="fa-solid fa-balance-scale mr-2"></i> Compare Products
+                        </button>
+                        <button onclick="sendActionFromChip('What are the risks?')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm flex items-center">
+                            <i class="fa-solid fa-shield-alt mr-2"></i> Risk Analysis
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative flex items-center mt-3">
+                    <button class="text-gray-400 hover:text-brand-green mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
+                    <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Ask about this product..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-green shadow-sm">
+                    <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-green hover:text-green-700"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const screens = ['screen-list', 'screen-detail'];
+        
+        // Initial AI Agent conversation data
+        const initialCopilotChat = `
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div class="w-8 h-8 brand-green rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">
+                    Hello! I'm your Product AI Agent. I can help you understand HSBC Tokenized Deposit and answer any questions you have.
+                </div>
+            </div>`;
+        
+        function showScreen(screenId) {
+            screens.forEach(id => {
+                const screen = document.getElementById(id);
+                if (screen) {
+                    screen.classList.remove('active-screen');
+                    screen.style.display = 'none';
+                }
+            });
+            const activeScreen = document.getElementById(screenId);
+            if (activeScreen) {
+                activeScreen.classList.add('active-screen');
+                activeScreen.style.display = 'flex';
+            }
+        }
+
+        function toggleCopilot(show) {
+            const modal = document.getElementById('copilot-modal');
+            const chat = document.getElementById('copilot-chat-container');
+            const trigger = document.getElementById('copilot-trigger');
+            if (show) {
+                // Reset chat content on open
+                chat.innerHTML = initialCopilotChat;
+                modal.classList.add('active');
+                trigger.classList.add('hidden');
+                // Ensure scroll to bottom on open
+                setTimeout(() => chat.scrollTop = chat.scrollHeight, 10); 
+            } else {
+                modal.classList.remove('active');
+                trigger.classList.remove('hidden');
+            }
+        }
+
+        function sendChatMessage(message, isUser = true) {
+            const chatContainer = document.getElementById('copilot-chat-container');
+            
+            if (isUser) {
+                // User message bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-blue-600 text-white p-3 rounded-xl rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+            } else {
+                // AI response bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 brand-green rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">${message}</div></div>`;
+            }
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function sendActionFromChip(action) {
+            sendChatMessage(action, true);
+            
+            let response = '';
+            
+            if (action.includes('why this product suits me')) {
+                response = 'Based on your conservative risk profile and high liquidity needs, HSBC Tokenized Deposit offers the perfect balance: 3.5% APY (higher than savings) with T+0 instant redemption (faster than funds). Your 85% fit score reflects this strong alignment with your investment preferences.';
+            } else if (action.includes('Compare with similar products')) {
+                response = 'Compared to traditional money market funds, HSBC Tokenized Deposit offers 0.5% higher yield (3.5% vs 3.0%) and superior liquidity (T+0 vs T+1). The blockchain backing provides additional security while maintaining the same low-risk profile you prefer.';
+            } else if (action.includes('risks')) {
+                response = 'HSBC Tokenized Deposit carries very low risk: principal protection, HSBC backing, and regulatory compliance. The main considerations are: yield may fluctuate with market rates, and while T+0 redemption is available, large amounts may have processing delays during high-demand periods.';
+            } else {
+                response = `I understand you're asking about: "${action}". This product offers blockchain-backed security with traditional banking reliability. The 3.5% APY and T+0 liquidity make it ideal for conservative investors like yourself who need both yield and flexibility.`;
+            }
+            
+            setTimeout(() => {
+                sendChatMessage(response, false);
+            }, 500);
+        }
+
+        function handleCopilotInput() {
+            const input = document.getElementById('copilot-input');
+            if (input.value.trim() !== '') {
+                const message = input.value.trim();
+                sendChatMessage(message, true);
+                
+                // Simulate AI response based on product context
+                setTimeout(() => {
+                    sendChatMessage(`Great question about HSBC Tokenized Deposit! Based on your query "${message}", I can provide detailed insights about this product's features, benefits, and how it fits your investment profile. Would you like me to elaborate on any specific aspect?`, false);
+                }, 500);
+                
+                input.value = '';
+            }
+        }
+        
+        // Initialize view
+        showScreen('screen-list');
+    </script>
+</body>
+</html>
