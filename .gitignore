@@ -30,3 +30,10 @@ Thumbs.db
 
 backup/
 
+
+# large video: use release/v5.5c.mp4.* parts
+v5.5c.mp4
+
+# whole videos, not tracked
+v5.5c.mp4
+release/Next PB generation solution 5.3.mp4.*
